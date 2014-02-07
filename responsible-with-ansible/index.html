@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Responsible with Ansible</title>
+
+		<meta name="description" content="Workshop on provisioning and deployment with Ansible">
+		<meta name="author" content="Stein Inge Morisbak">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../css/reveal.min.css">
+		<link rel="stylesheet" href="../css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+				<h2>Responsible with Ansible</h2>
+				</section>
+
+				<section>
+				<h2>What's a provisioning framework?</h2>
+				<ul>
+					<li>Automated setup of servers</li>
+					<li>Configuration as code</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+				</section>
+
+				<section>
+				<h2>Examples</h2>
+				<ul>
+					<li>Create users</li>
+					<li>Generate config files</li>
+					<li>Install software</li>
+					<li>Start/stop/restart processes</li>
+					<li>Set up dependencies between operations</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+				</section>
+				<section>
+				<h2>Pros</h2>
+				<ul>
+					<li class="fragment">In source control.</li>
+					<li class="fragment">Less differences between environments</li>
+					<li class="fragment">Self documenting (it's code!)</li>
+					<li class="fragment">Refactoring</li>
+					<li class="fragment">Deterministic</li>
+					<li class="fragment">Prevents manual steps</li>
+					<li class="fragment">Fast and easy to configure up a new environment</li>
+					<li class="fragment">Easier to test server setup</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+				</section>
+				<section>
+				<h2>Cons</h2>
+				<ul>
+					<li class="fragment">Unfamiliar to "old school operators"</li>
+					<li class="fragment">Operations is unfamiliar to developers</li>
+					<li class="fragment">Startup cost
+					<ul>
+						<li>Training</li>
+						<li>Migrating</li>
+					</ul>
+
+					</li>
+				</ul>
+				<aside class="notes">
+				</aside>
+				</section>
+
+				</section>
+
+				<section>
+				<div style="width: 63%; float: left">
+					<h2>Imperative</h2>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+#!/bin/bash
+
+if $( command -v vim &gt;/dev/null 2&gt;&amp;1 ); then
+  echo "vim is already installed."
+else
+  yum install vim
+fi
+
+if $( grep -Fxq "filetype indent off" /etc/vim/vimrc ); then
+  echo "set filetype indent off is already in /etc/vim/vimrc."
+else
+  echo "filetype indent off" &gt;&gt; /etc/vim/vimrc
+  # TODO: Do not continue if this fails.
+fi
+
+# TODO: Rollback if something fails.
+					</code></pre>
+					</div>
+
+					<div style="width: 37%; float: right">
+						<h2>Declarative</h2>
+						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+- name: ensure installed vim
+  yum: pkg={{ item }} state=latest
+
+- name: add a string to the new file
+  lineinfile: dest=/etc/vim/vimrc
+  line='filetype indent off'
+  state=present
+
+					</code></pre>
+						</div>
+						<div style="clear: both"></div>
+						<aside class="notes">
+
+						</aside>
+						</section>
+
+						<section>
+						<h2>The task</h2>
+						<ul>
+							<li>An app user 'devops', with:</li>
+							<ul>
+								<li>Password: 'devops123'</li>
+								<li>Home directory: /home/devops</li>
+								<li>Default shell: /bin/bash</li>
+							</ul>
+                                                        <li>A database</li>
+							<li>An init script</li>
+							<li>Nginx with a reverse proxy using example configuration</li>
+                                                        <li>An init script</li>
+							<li>Deploy an application that uses the provisioned infrastructure</li>
+						</ul>
+						<aside class="notes">
+
+						</aside>
+						</section>
+
+						<section>
+						<section>
+						<h2>Ansible</h2>
+						<ul>
+							<li>SSH-based</li>
+							<li>Client only (no server)</li>
+							<li>YAML configuration</li>
+							<li>Push</li>
+							<li>Supports more than setup and provisioning:</li>
+							<ul>
+								<li>Application deployment</li>
+								<li>Remote command execution</li>
+							</ul>
+						</ul>
+						<aside class="notes">
+						</aside>
+						</section>
+						<section>
+						<h2>Example code</h2>
+						<pre><code data-trim contenteditable>
+- hosts: webservers
+  tasks:
+  - name: create deployment user
+    user: name=devops password=$6$asdljfhasdjkhfka$N5LyeR5WWqWOAz3fGWfXh4YUUK8GMgrsWA0S6JkXaRZBH0p991.j2/UEJZ8y3pkglTpi8.9VOn.9tuca0Pbfp.
+						</code></pre>
+						<aside class="notes">
+						</aside>
+						</section>
+
+<!--						<section>
+						<h2>Installation and setup</h2>
+						<pre><code data-trim contenteditable>
+$ sudo easy_install pip
+$ sudo pip install ansible
+						</pre></code>
+						<aside class="notes">
+						</aside>
+						</section> -->
+						<section>
+						<h1>Demo</h1>
+						<aside class="notes">
+
+						</aside>
+						</section>
+						<section>
+						<h2>Pros</h2>
+						<ul>
+							<li>Very easy setup, only client</li>
+							<li>Easy configuration files (YAML)</li>
+							<li>Low startup-cost</li>
+							<li>Able to deploy applications</li>
+							<li>Less abstractions</li>
+						</ul>
+						<aside class="notes">
+						</aside>
+						</section>
+
+						<section>
+						<h2>Cons</h2>
+						<ul>
+							<li>Configuration drift</li>
+							<li>Linux/Unix only</li>
+							<li>Not package-manager-agnostic</li>
+							<li>Less abstraction</li>
+							<li>Scalability</li>
+							<li>Small user base</li>
+						</ul>
+						<aside class="notes">
+						</aside>
+						</section>
+						</section>
+
+						<section>
+						<h1>Demo</h1>
+						<aside class="notes">
+
+						</aside>
+						</section>
+							<section>
+							<h1>What did we forget?</h1>
+							</section>
+							<section>
+							<h1>To test!</h1>
+							</section>
+
+							<section>
+							<h2>ServerSpec</h2>
+							<p>
+							<ul>
+								<li>RSpec</li>
+								<li>Tests your servers' actual state</li>
+								<li>SSH access</li>
+								<li> No agent softwares on your servers</li>
+								<li>Use any configuration management tool
+								<ul>
+									<li>The ones we have talked about</li>
+									<li>Even manual setup</li>
+								</ul>
+								</li>
+							</p>
+							<aside class="notes">
+
+							</aside>
+							</section>
+                                                	<section>
+                                                	<h1>Demo</h1>
+                                                	<aside class="notes">
+
+                                                	</aside>
+                                                	</section>
+							<section>
+							<h2>What are you waiting for?</h2>
+							<ul>
+								<li>Describe your existing infrastructure with ServerSpec</li>
+								<li>Use Vagrant and VirtualBox to play around in a "real" environment.</li>
+								<li>Use a provisioning framework to make your tests go green</li>
+								<li>Go live!</li>
+							</ul>
+
+							<aside class="notes">
+
+							</aside>
+							</section>
+
+						</div>
+
+					</div>
+
+					<script src="../lib/js/head.min.js"></script>
+					<script src="../js/reveal.min.js"></script>
+
+					<script>
+
+						// Full list of configuration options available here:
+						// https://github.com/hakimel/reveal.js#configuration
+						Reveal.initialize({
+							controls: true,
+							progress: true,
+							history: true,
+							center: true,
+
+							theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+							transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+							// Optional libraries used to extend on reveal.js
+							dependencies: [
+							{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+							{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+							{ src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+							{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+							{ src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+							{ src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+							// { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+							// { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+							]
+						});
+
+					</script>
+
+				</body>
+			</html>
