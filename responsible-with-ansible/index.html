@@ -1,115 +1,103 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>Responsible with Ansible</title>
+    <title>Responsible with Ansible</title>
 
-		<meta name="description" content="Workshop on provisioning and deployment with Ansible">
-		<meta name="author" content="Stein Inge Morisbak">
+    <meta name="description" content="Workshop on provisioning and deployment with Ansible">
+    <meta name="author" content="Stein Inge Morisbak">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="../css/reveal.min.css">
-		<link rel="stylesheet" href="../css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="../css/reveal.min.css">
+    <link rel="stylesheet" href="../css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+      <div class="slides">
 
-				<section>
-				<h2>Responsible with Ansible</h2>
-				</section>
+        <section>
+        <h2>Responsible with Ansible</h2>
+        </section>
 
-				<section>
-				<h2>What's a provisioning framework?</h2>
-				<ul>
-					<li>Automated setup of servers</li>
-					<li>Configuration as code</li>
-				</ul>
-				<aside class="notes">
+        <section>
+        <h2>What's a provisioning framework?</h2>
+        <ul>
+          <li>Automated setup of servers</li>
+          <li>Configuration as code</li>
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
 
-				</aside>
-				</section>
+        <section>
+        <h2>Examples</h2>
+        <ul>
+          <li>Create users</li>
+          <li>Generate config files</li>
+          <li>Install software</li>
+          <li>Start/stop/restart processes</li>
+          <li>Set up dependencies between operations</li>
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
+        <section>
+        <h2>Pros</h2>
+        <ul>
+          <li class="fragment">In source control.</li>
+          <li class="fragment">Less differences between environments.</li>
+          <li class="fragment">Self documenting (it's code!).</li>
+          <li class="fragment">Refactoring.</li>
+          <li class="fragment">Deterministic.</li>
+          <li class="fragment">Prevents manual steps.</li>
+          <li class="fragment">Fast and easy to configure up a new environment.</li>
+          <li class="fragment">Easier to test server setup.</li>
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
+        <section>
+        <h2>Cons</h2>
+        <ul>
+          <li class="fragment">Unfamiliar to "old school operators".</li>
+          <li class="fragment">Operations is unfamiliar to developers.</li>
+          <li class="fragment">Startup cost.
+          <ul>
+            <li >Training</li>
+            <li>Migrating</li>
+          </ul>
+          </li>
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
 
-				<section>
-				<h2>Examples</h2>
-				<ul>
-					<li>Create users</li>
-					<li>Generate config files</li>
-					<li>Install software</li>
-					<li>Start/stop/restart processes</li>
-					<li>Set up dependencies between operations</li>
-				</ul>
-				<aside class="notes">
-
-				</aside>
-				</section>
-				<section>
-				<h2>Pros</h2>
-				<ul>
-					<li class="fragment">In source control.</li>
-					<li class="fragment">Less differences between environments</li>
-					<li class="fragment">Self documenting (it's code!)</li>
-					<li class="fragment">Refactoring</li>
-					<li class="fragment">Deterministic</li>
-					<li class="fragment">Prevents manual steps</li>
-					<li class="fragment">Fast and easy to configure up a new environment</li>
-					<li class="fragment">Easier to test server setup</li>
-				</ul>
-				<aside class="notes">
-
-				</aside>
-				</section>
-				<section>
-				<h2>Cons</h2>
-				<ul>
-					<li class="fragment">Unfamiliar to "old school operators"</li>
-					<li class="fragment">Operations is unfamiliar to developers</li>
-					<li class="fragment">Startup cost
-					<ul>
-						<li>Training</li>
-						<li>Migrating</li>
-					</ul>
-
-					</li>
-				</ul>
-				<aside class="notes">
-				</aside>
-				</section>
-
-				</section>
-
-				<section>
-				<div style="width: 63%; float: left">
-					<h2>Imperative</h2>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+        <section>
+          <h2>Imperative</h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 #!/bin/bash
 
 if $( command -v vim &gt;/dev/null 2&gt;&amp;1 ); then
   echo "vim is already installed."
 else
-  yum install vim
+  apt-get install vim
 fi
 
 if $( grep -Fxq "filetype indent off" /etc/vim/vimrc ); then
@@ -120,206 +108,363 @@ else
 fi
 
 # TODO: Rollback if something fails.
-					</code></pre>
-					</div>
-
-					<div style="width: 37%; float: right">
-						<h2>Declarative</h2>
-						<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+          </code></pre>
+        </section>
+        <section>
+            <h2>Declarative</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: ensure installed vim
-  yum: pkg={{ item }} state=latest
+  apt: pkg={{ item }} state=installed
 
 - name: add a string to the new file
-  lineinfile: dest=/etc/vim/vimrc
-  line='filetype indent off'
-  state=present
+  lineinfile:
+    dest=/etc/vim/vimrc
+    line='filetype indent off'
+    state=present
 
-					</code></pre>
-						</div>
-						<div style="clear: both"></div>
-						<aside class="notes">
+          </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+        </section>
 
-						</aside>
-						</section>
+            <section>
+            <h2>Ansible</h2>
+            <ul>
+              <li>SSH-based</li>
+              <li>Client only (no server)</li>
+              <li>YAML configuration</li>
+              <li>Push</li>
+              <li>Supports more than setup and provisioning:</li>
+              <ul>
+                <li>Application deployment</li>
+                <li>Remote command execution</li>
+              </ul>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>The task</h2>
+            <ul>
+            <li>An app user 'devops', with:</li>
+              <ul>
+                <li>Password: 'devops123'</li>
+                <li>Home directory: /home/devops</li>
+                <li>ssh-key</li>
+               </ul>
+            <li>A MySql database.</li>
+            <li>Nginx with a reverse proxy using example configuration.</li>
+            <li>An init script installed as a service.</li>
+            <li>Deploy an application that uses the provisioned infrastructure.</li>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
 
-						<section>
-						<h2>The task</h2>
-						<ul>
-							<li>An app user 'devops', with:</li>
-							<ul>
-								<li>Password: 'devops123'</li>
-								<li>Home directory: /home/devops</li>
-								<li>Default shell: /bin/bash</li>
-							</ul>
-                                                        <li>A database</li>
-							<li>An init script</li>
-							<li>Nginx with a reverse proxy using example configuration</li>
-                                                        <li>An init script</li>
-							<li>Deploy an application that uses the provisioned infrastructure</li>
-						</ul>
-						<aside class="notes">
+            <section>
+            <h2>Installation and setup</h2>
+            <ul>
+              <li>Clone repo
+              <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git clone https://github.com/steinim/responsible-with-ansible.git
+            </code></pre>
+              <li>Install
+                <ul>
+                  <li>Vagrant</li>
+                  <li>Virtualbox</li>
+                  <li>Ansible</li>
+                </ul></li>
+                 if you haven't already done so.
+              <li>Run:
+                <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+vagrant up
+            </code></pre>
+            </li>
+            </ul>
+            <aside class="notes">
+            </aside>
+            </section>
+            <section>
+            <h2>Task1: Install and configure software</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout start
+ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
+            </code></pre>
+            <ul>
+              <li>Modify roles/common/tasks/apt.yml.</li>
+              <li>Install Vim.</li>
+              <li>Insert the line 'filetype indent off' in /etc/vim/vimrc</li>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Task1: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git diff task1
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						</aside>
-						</section>
+            <section>
+            <h2>Task2: Create an application user</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task1 # or keep your own solution
+            </code></pre>
+            <ul>
+              <li>Create roles/users/tasks/{main.yml,users.yml}</li>
+              <li>Password: 'devops123'</li>
+              <li>Home directory: /home/devops</li>
+              <li>ssh-key</li>
+            </ul>
+            <pre>NB! Use variables (group_vars/appservers).</pre>
+            <pre>ProTip: Use --tags and/or --limit to reduce execution time.</pre> 
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Task2: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ssh devops@app1.local
+git diff task2
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						<section>
-						<section>
-						<h2>Ansible</h2>
-						<ul>
-							<li>SSH-based</li>
-							<li>Client only (no server)</li>
-							<li>YAML configuration</li>
-							<li>Push</li>
-							<li>Supports more than setup and provisioning:</li>
-							<ul>
-								<li>Application deployment</li>
-								<li>Remote command execution</li>
-							</ul>
-						</ul>
-						<aside class="notes">
-						</aside>
-						</section>
-						<section>
-						<h2>Example code</h2>
-						<pre><code data-trim contenteditable>
-- hosts: webservers
-  tasks:
-  - name: create deployment user
-    user: name=devops password=$6$asdljfhasdjkhfka$N5LyeR5WWqWOAz3fGWfXh4YUUK8GMgrsWA0S6JkXaRZBH0p991.j2/UEJZ8y3pkglTpi8.9VOn.9tuca0Pbfp.
-						</code></pre>
-						<aside class="notes">
-						</aside>
-						</section>
+            <section>
+            <h2>Task3: Install and configure MySql</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task2 # or keep your own solution
+            </code></pre>
+            Create:
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+roles/mysql
+├── handlers
+│   └── main.yml
+├── tasks
+│   ├── configure_mysql.yml
+│   ├── install_mysql.yml
+│   └── main.yml
+└── templates
+    └── my.cnf.j2
+            </code></pre>
+            <pre>NB! Use variables (host_vars/db.local).</pre>
+            <pre>Help: git checkout master -- roles/mysql/templates/my.cnf.j2</pre>
 
-<!--						<section>
-						<h2>Installation and setup</h2>
-						<pre><code data-trim contenteditable>
-$ sudo easy_install pip
-$ sudo pip install ansible
-						</pre></code>
-						<aside class="notes">
-						</aside>
-						</section> -->
-						<section>
-						<h1>Demo</h1>
-						<aside class="notes">
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Task3: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+vagrant ssh db
+mysql -u devops -p
+git diff task3
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						</aside>
-						</section>
-						<section>
-						<h2>Pros</h2>
-						<ul>
-							<li>Very easy setup, only client</li>
-							<li>Easy configuration files (YAML)</li>
-							<li>Low startup-cost</li>
-							<li>Able to deploy applications</li>
-							<li>Less abstractions</li>
-						</ul>
-						<aside class="notes">
-						</aside>
-						</section>
+            <section>
+            <h2>Task4: Deploy!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task3 # or keep your own solution
+            </code></pre>
+            Create:
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+roles/app
+├── files
+│   └── init.sh
+├── handlers
+│   └── main.yml
+├── tasks
+│   ├── deploy.yml
+│   └── main.yml
+└── templates
+    └── config.properties.j2
+            </code></pre>
+            <pre>NB! Use variables (./hosts).</pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						<section>
-						<h2>Cons</h2>
-						<ul>
-							<li>Configuration drift</li>
-							<li>Linux/Unix only</li>
-							<li>Not package-manager-agnostic</li>
-							<li>Less abstraction</li>
-							<li>Scalability</li>
-							<li>Small user base</li>
-						</ul>
-						<aside class="notes">
-						</aside>
-						</section>
-						</section>
+            <section>
+            <h2>Task4: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+open http://app1.local:1234/
+git diff task4
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Task5: Deploy database</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task4 # or keep your own solution
+            </code></pre>
+            Create:
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+roles/db
+├── files
+│   └── migrate_db.sql
+└── tasks
+    ├── main.yml
+    └── migrate_db.yml
+            </code></pre>
+            <pre>Help: git checkout master -- roles/db/files/migrate_db.sql</pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						<section>
-						<h1>Demo</h1>
-						<aside class="notes">
+            <section>
+            <h2>Task5: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+open http://app1.local:1234/
+git diff task5
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Task6: Set up proxy</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task5 # or keep your own solution
+            </code></pre>
+            Create:
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+roles/nginx
+├── handlers
+│   └── main.yml
+├── tasks
+│   ├── config_nginx.yml
+│   ├── install_nginx.yml
+│   └── main.yml
+└── templates
+    └── devops.conf.j2
+            </code></pre>
+            <pre>NB! Use variables (./hosts).</pre>
+            <pre>Help: git checkout master -- roles/nginx/templates/devops.conf.j2</pre>
+            <aside class="notes"> </aside>
+            </section>
 
-						</aside>
-						</section>
-							<section>
-							<h1>What did we forget?</h1>
-							</section>
-							<section>
-							<h1>To test!</h1>
-							</section>
+            <section>
+            <h2>Task6: Solution</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+open http://proxy.local/ # refresh me many times
+git diff task6
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Play time :-)</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task6 # or keep your own solution
+            </code></pre>
+            <h3>Suggestions:</h3>
+            <ul>
+              <li>Stop one of the appservers.</li>
+              <li>Change database table name from HELLO to MESSAGES and deploy a new version without downtime.</li>
+            <ul>
+            <aside class="notes"> </aside>
+            </section>
 
-							<section>
-							<h2>ServerSpec</h2>
-							<p>
-							<ul>
-								<li>RSpec</li>
-								<li>Tests your servers' actual state</li>
-								<li>SSH access</li>
-								<li> No agent softwares on your servers</li>
-								<li>Use any configuration management tool
-								<ul>
-									<li>The ones we have talked about</li>
-									<li>Even manual setup</li>
-								</ul>
-								</li>
-							</p>
-							<aside class="notes">
 
-							</aside>
-							</section>
-                                                	<section>
-                                                	<h1>Demo</h1>
-                                                	<aside class="notes">
 
-                                                	</aside>
-                                                	</section>
-							<section>
-							<h2>What are you waiting for?</h2>
-							<ul>
-								<li>Describe your existing infrastructure with ServerSpec</li>
-								<li>Use Vagrant and VirtualBox to play around in a "real" environment.</li>
-								<li>Use a provisioning framework to make your tests go green</li>
-								<li>Go live!</li>
-							</ul>
 
-							<aside class="notes">
 
-							</aside>
-							</section>
 
-						</div>
 
-					</div>
 
-					<script src="../lib/js/head.min.js"></script>
-					<script src="../js/reveal.min.js"></script>
 
-					<script>
 
-						// Full list of configuration options available here:
-						// https://github.com/hakimel/reveal.js#configuration
-						Reveal.initialize({
-							controls: true,
-							progress: true,
-							history: true,
-							center: true,
 
-							theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-							transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-							// Optional libraries used to extend on reveal.js
-							dependencies: [
-							{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
-							{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-							{ src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-							{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-							{ src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-							{ src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-							// { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-							// { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-							]
-						});
 
-					</script>
 
-				</body>
-			</html>
+
+
+
+            <section>
+            <h2>Pros</h2>
+            <ul>
+              <li>Very easy setup, only client.</li>
+              <li>Easy configuration files (YAML).</li>
+              <li>Low startup-cost.</li>
+              <li>Able to deploy applications.</li>
+              <li>Less abstractions.</li>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Cons</h2>
+            <ul>
+              <li>Configuration drift.</li>
+              <li>Linux/Unix only.</li>
+              <li>Not package-manager-agnostic.</li>
+              <li>Less abstraction.</li>
+              <li>Scalability.</li>
+              <li>Small user base.</li>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h1>What did we forget?</h1>
+            </section>
+            <section>
+            <h1>To test!</h1>
+            </section>
+
+            <section>
+            <h2>ServerSpec</h2>
+            <ul>
+              <li>RSpec</li>
+              <li>Tests your servers' actual state</li>
+              <li>SSH access</li>
+              <li>No agent softwares on your servers</li>
+              <li>Use any configuration management tool
+              <ul>
+                <li>The one we have talked about</li>
+                <li>Even manual setup</li>
+              </ul>
+              </li>
+              <aside class="notes"> </aside>
+              </section>
+              <section>
+              <h2>What are you waiting for?</h2>
+              <ul>
+                <li>Describe your existing infrastructure with ServerSpec</li>
+                <li>Use Vagrant and VirtualBox to play around in a "real" environment.</li>
+                <li>Use a provisioning framework to make your tests go green</li>
+                <li>Go live!</li>
+              </ul>
+              <aside class="notes"> </aside>
+              </section>
+            </div>
+
+          </div>
+
+          <script src="../lib/js/head.min.js"></script>
+          <script src="../js/reveal.min.js"></script>
+
+          <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+
+              theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+              transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+              // Optional libraries used to extend on reveal.js
+              dependencies: [
+              { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+              { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+              { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+              // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+              // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+              ]
+            });
+
+          </script>
+
+        </body>
+      </html>
