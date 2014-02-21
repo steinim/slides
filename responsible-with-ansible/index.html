@@ -143,6 +143,61 @@ fi
             <aside class="notes"> </aside>
             </section>
             <section>
+            <h2>Installation and setup</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git clone https://github.com/steinim/responsible-with-ansible.git
+git checkout start
+            </code></pre>
+            Install: Vagrant, Virtualbox and Ansible
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+vagrant up
+            </code></pre>
+            <aside class="notes">
+            </aside>
+            </section>
+            <section>
+            <h2>Layout</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+├── ansible.cfg
+├── hosts
+├── site.yml
+├── group_vars
+│   └── &lt;group name&gt;
+├── host_vars
+│   └── &lt;host name&gt;
+├── roles
+│   ├── &lt;role&gt;
+│   │   ├── files
+│   │       └── &lt;file&gt;
+│   │   └── templates
+│   │       └── &lt;template&gt;.j
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+            </code></pre>
+            <aside class="notes">Explain all folders and files.</aside>
+            </section>
+            <section>
+            <h2>Play!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Facts</h2>
+            <ul>
+              <li>Ansible by default gathers “facts” about the machines under management.</li>
+              <li>These facts can be accessed in Playbooks and in templates.</li>
+            </ul>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible -m setup \
+--private-key=~/.vagrant.d/insecure_private_key -u vagrant app1.local
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
             <h2>The task</h2>
             <ul>
             <li>An app user 'devops', with:</li>
@@ -158,29 +213,10 @@ fi
             </ul>
             <aside class="notes"> </aside>
             </section>
-
             <section>
-            <h2>Installation and setup</h2>
-            <ul>
-              <li>Clone repo
-              <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git clone https://github.com/steinim/responsible-with-ansible.git
-            </code></pre>
-              <li>Install
-                <ul>
-                  <li>Vagrant</li>
-                  <li>Virtualbox</li>
-                  <li>Ansible</li>
-                </ul></li>
-                 if you haven't already done so.
-              <li>Run:
-                <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-vagrant up
-            </code></pre>
-            </li>
-            </ul>
-            <aside class="notes">
-            </aside>
+            <h2>Help!</h2>
+            http://docs.ansible.com/list_of_all_modules.html
+            <aside class="notes"> </aside>
             </section>
             <section>
             <h2>Task1: Install and configure software</h2>
@@ -193,6 +229,11 @@ ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key -u vag
               <li>Install Vim.</li>
               <li>Insert the line 'filetype indent off' in /etc/vim/vimrc</li>
             </ul>
+            <pre>
+Help:
+  - http://docs.ansible.com/apt_module.html
+  - http://docs.ansible.com/lineinfile_module.html
+            </pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -200,6 +241,21 @@ ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key -u vag
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task1
             </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>Variables</h2>
+<ul>
+<li>Ansible uses variables (a lot!).</li>
+<li>http://docs.ansible.com/playbooks_variables.html
+<ul>
+  <li>Inventory</li>
+  <li>group_vars and host_vars</li>
+  <li>Playbook</li>
+  <li>Facts</li>
+</ul>
+<li>Access variables from playbooks: "{{ variable }}"</li>
+</ul>
             <aside class="notes"> </aside>
             </section>
 
@@ -213,9 +269,17 @@ git checkout task1 # or keep your own solution
               <li>Password: 'devops123'</li>
               <li>Home directory: /home/devops</li>
               <li>ssh-key</li>
+              <li>Use variables! (group_vars)</li>
             </ul>
-            <pre>NB! Use variables (group_vars/appservers).</pre>
-            <pre>ProTip: Use --tags and/or --limit to reduce execution time.</pre> 
+            <pre>
+Help:
+  - http://docs.ansible.com/group_module.html
+  - http://docs.ansible.com/user_module.html
+  - http://docs.ansible.com/file_module.html (copy ssh-key)
+  - http://docs.ansible.com/lineinfile_module.html (.ssh/authorized_keys)
+  - http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables
+            </pre>
+            <pre>ProTip: Use '--tags', '--limit' and/or 'gather_facts: False' to reduce execution time.</pre> 
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -232,7 +296,6 @@ git diff task2
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout task2 # or keep your own solution
             </code></pre>
-            Create:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/mysql
 ├── handlers
@@ -244,9 +307,18 @@ roles/mysql
 └── templates
     └── my.cnf.j2
             </code></pre>
-            <pre>NB! Use variables (host_vars/db.local).</pre>
-            <pre>Help: git checkout master -- roles/mysql/templates/my.cnf.j2</pre>
-
+            <pre>Use variables (host_vars/db.local).</pre>
+            <pre>Use handler to restart mysql upon notification</pre>
+            <pre>Template: git checkout master -- roles/mysql/templates/my.cnf.j2</pre>
+            <pre>MySql and deps: git checkout master -- roles/mysql/tasks/install_mysql.yml</pre>
+            <pre>
+Help:
+  - http://docs.ansible.com/template_module.html (my.cnf.j2)
+  - http://docs.ansible.com/mysql_user_module.html
+  - http://docs.ansible.com/mysql_db_module.html
+  - http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change
+  - http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables
+            </pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -263,8 +335,8 @@ git diff task3
             <h2>Task4: Deploy!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout task3 # or keep your own solution
+git checkout task4_help # we have a lot to do!
             </code></pre>
-            Create:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/app
 ├── files
@@ -278,6 +350,12 @@ roles/app
     └── config.properties.j2
             </code></pre>
             <pre>NB! Use variables (./hosts).</pre>
+            <pre>Set 'serial: 1' for appservers in site.yml.</pre>
+            <pre>
+Help:
+- http://docs.ansible.com/service_module.html
+- http://docs.ansible.com/stat_module.html
+            </pre>
             <aside class="notes"> </aside>
             </section>
 
@@ -294,7 +372,6 @@ git diff task4
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout task4 # or keep your own solution
             </code></pre>
-            Create:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/db
 ├── files
@@ -304,6 +381,11 @@ roles/db
     └── migrate_db.yml
             </code></pre>
             <pre>Help: git checkout master -- roles/db/files/migrate_db.sql</pre>
+            <pre>
+Help:
+- http://docs.ansible.com/shell_module.html
+"cat /tmp/migrate_db.sql | mysql -u{{ mysql_user }} -p{{ mysql_user_password }} -hlocalhost {{ mysql_user }}"
+            </pre>
             <aside class="notes"> </aside>
             </section>
 
@@ -319,8 +401,8 @@ git diff task5
             <h2>Task6: Set up proxy</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout task5 # or keep your own solution
+git checkout task6 # we will have a walk through instead of hands-on
             </code></pre>
-            Create:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/nginx
 ├── handlers
@@ -332,8 +414,10 @@ roles/nginx
 └── templates
     └── devops.conf.j2
             </code></pre>
-            <pre>NB! Use variables (./hosts).</pre>
-            <pre>Help: git checkout master -- roles/nginx/templates/devops.conf.j2</pre>
+            <pre>
+Help:
+- http://wsgiarea.pocoo.org/jinja/docs/loops.html
+            </pre>
             <aside class="notes"> </aside>
             </section>
 
@@ -347,33 +431,24 @@ git diff task6
             </section>
             <section>
             <h2>Play time :-)</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task6 # or keep your own solution
-            </code></pre>
-            <h3>Suggestions:</h3>
             <ul>
-              <li>Stop one of the appservers.</li>
-              <li>Change database table name from HELLO to MESSAGES and deploy a new version without downtime.</li>
-            <ul>
+            <li>Suggestions:</li>
+              <ul>
+                <li>Stop one of the appservers.</li>
+                <li>Change database table name from HELLO to MESSAGES and deploy a new version without downtime.</li>
+              </ul>
+            </ul>
             <aside class="notes"> </aside>
             </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <section>
+            <h1>Thank you!</h1>
+            <ul>
+              <li>stein.inge.morisbak@BEKK.no</li>
+              <li>@steinim</li>
+            </ul>
+            <aside class="notes"> </aside>
+            </section>
+<!--
             <section>
             <h2>Pros</h2>
             <ul>
@@ -398,7 +473,6 @@ git checkout task6 # or keep your own solution
             </ul>
             <aside class="notes"> </aside>
             </section>
-
             <section>
             <h1>What did we forget?</h1>
             </section>
@@ -431,6 +505,7 @@ git checkout task6 # or keep your own solution
               </ul>
               <aside class="notes"> </aside>
               </section>
+-->
             </div>
 
           </div>
