@@ -181,7 +181,8 @@ vagrant up
             <section>
             <h2>Play!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
+ansible-playbook --private-key=~/.vagrant.d/insecure_private_key \
+-u vagrant site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -215,7 +216,7 @@ ansible -m setup \
             </section>
             <section>
             <h2>Help!</h2>
-            http://docs.ansible.com/list_of_all_modules.html
+            <a href="http://docs.ansible.com/list_of_all_modules.html">http://docs.ansible.com/list_of_all_modules.html</a>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -232,8 +233,8 @@ ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key \
             </ul>
             <pre>
 Help:
-  - http://docs.ansible.com/apt_module.html
-  - http://docs.ansible.com/lineinfile_module.html
+<a href="http://docs.ansible.com/apt_module.html">http://docs.ansible.com/apt_module.html</a>
+<a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -248,7 +249,7 @@ git diff task1
             <h2>Variables</h2>
 <ul>
 <li>Ansible uses variables (a lot!).</li>
-<li>http://docs.ansible.com/playbooks_variables.html
+<li><a href="http://docs.ansible.com/playbooks_variables.html">http://docs.ansible.com/playbooks_variables.html</a>
 <ul>
   <li>Inventory</li>
   <li>group_vars and host_vars</li>
@@ -274,13 +275,13 @@ git checkout task1 # or keep your own solution
             </ul>
             <pre>
 Help:
-  - http://docs.ansible.com/group_module.html
-  - http://docs.ansible.com/user_module.html
-  - http://docs.ansible.com/file_module.html (copy ssh-key)
-  - http://docs.ansible.com/lineinfile_module.html (.ssh/authorized_keys)
-  - http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables
+<a href="http://docs.ansible.com/group_module.html">http://docs.ansible.com/group_module.html</a>
+<a href="http://docs.ansible.com/user_module.html">http://docs.ansible.com/user_module.html</a>
+<a href="http://docs.ansible.com/file_module.html">http://docs.ansible.com/file_module.html</a> (copy ssh-key)
+<a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a> (.ssh/authorized_keys)
+<a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
             </pre>
-            <pre>ProTip: Use '--tags', '--limit' and/or 'gather_facts: False' to reduce execution time.</pre> 
+            <pre>ProTip: Use '--tags', '--limit' and/or 'gather_facts: False'<br/>to reduce execution time.</pre> 
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -314,11 +315,11 @@ roles/mysql
             <pre>MySql and deps: git checkout master -- roles/mysql/tasks/install_mysql.yml</pre>
             <pre>
 Help:
-  - http://docs.ansible.com/template_module.html (my.cnf.j2)
-  - http://docs.ansible.com/mysql_user_module.html
-  - http://docs.ansible.com/mysql_db_module.html
-  - http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change
-  - http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables
+<a href="http://docs.ansible.com/template_module.html">http://docs.ansible.com/template_module.html</a> (my.cnf.j2)
+<a href="http://docs.ansible.com/mysql_user_module.html">http://docs.ansible.com/mysql_user_module.html</a>
+<a href="http://docs.ansible.com/mysql_db_module.html">http://docs.ansible.com/mysql_db_module.html</a>
+<a href="http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change">http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change</a>
+<a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -354,8 +355,8 @@ roles/app
             <pre>Set 'serial: 1' for appservers in site.yml.</pre>
             <pre>
 Help:
-- http://docs.ansible.com/service_module.html
-- http://docs.ansible.com/stat_module.html
+<a href="http://docs.ansible.com/service_module.html">http://docs.ansible.com/service_module.html</a>
+<a href="http://docs.ansible.com/stat_module.html">http://docs.ansible.com/stat_module.html</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -363,7 +364,7 @@ Help:
             <section>
             <h2>Task4: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-open http://app1.local:1234/
+open <a href="http://app1.local:1234/">http://app1.local:1234/</a>
 git diff task4
             </code></pre>
             <aside class="notes"> </aside>
@@ -384,8 +385,9 @@ roles/db
             <pre>Help: git checkout master -- roles/db/files/migrate_db.sql</pre>
             <pre>
 Help:
-- http://docs.ansible.com/shell_module.html
-"cat /tmp/migrate_db.sql | mysql -u{{ mysql_user }} -p{{ mysql_user_password }} -hlocalhost {{ mysql_user }}"
+<a href="http://docs.ansible.com/shell_module.html">http://docs.ansible.com/shell_module.html</a>
+"cat /tmp/migrate_db.sql | mysql -u{{ mysql_user }} \
+-p{{ mysql_user_password }} -hlocalhost {{ mysql_user }}"
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -393,7 +395,7 @@ Help:
             <section>
             <h2>Task5: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-open http://app1.local:1234/
+open <a href="http://app1.local:1234/">http://app1.local:1234/</a>
 git diff task5
             </code></pre>
             <aside class="notes"> </aside>
@@ -417,7 +419,7 @@ roles/nginx
             </code></pre>
             <pre>
 Help:
-- http://wsgiarea.pocoo.org/jinja/docs/loops.html
+<a href="http://wsgiarea.pocoo.org/jinja/docs/loops.html">http://wsgiarea.pocoo.org/jinja/docs/loops.html</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -425,7 +427,7 @@ Help:
             <section>
             <h2>Task6: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-open http://proxy.local/ # refresh me many times
+open <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
 git diff task6
             </code></pre>
             <aside class="notes"> </aside>
