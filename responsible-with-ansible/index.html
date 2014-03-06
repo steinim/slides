@@ -15,10 +15,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="../css/reveal.min.css">
-    <link rel="stylesheet" href="../css/theme/default.css" id="theme">
+    <!-- BEKK Theme -->
+    <link rel="stylesheet" href="../css/theme/bekk.css" id="theme">
+    <!-- <link rel="stylesheet" href="../css/theme/default.css" id="theme"> -->
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- BEKK Theme -->
+    <link rel="stylesheet" href="../css/theme/bekk.css" id="theme">
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
@@ -31,6 +36,7 @@
   </head>
 
   <body>
+
 
     <div class="reveal">
 
@@ -224,8 +230,7 @@ vagrant up
             <section>
             <h2>Play!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook --private-key=~/.vagrant.d/insecure_private_key \
--u vagrant site.yml
+ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -236,8 +241,7 @@ ansible-playbook --private-key=~/.vagrant.d/insecure_private_key \
               <li>These facts can be accessed in Playbooks and in templates.</li>
             </ul>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible -m setup \
---private-key=~/.vagrant.d/insecure_private_key -u vagrant app1.local
+ansible -m setup --private-key=~/.vagrant.d/insecure_private_key -u vagrant app1.local
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -266,8 +270,7 @@ ansible -m setup \
             <h2>Task1: Install and configure software</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout start
-ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key \
--u vagrant site.yml
+ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
             </code></pre>
             <ul>
               <li>Modify roles/common/tasks/apt.yml.</li>
@@ -488,10 +491,8 @@ git diff task6
             </section>
             <section>
             <h1>Thank you!</h1>
-            <ul>
-              <li>stein.inge.morisbak@BEKK.no</li>
-              <li>@steinim</li>
-            </ul>
+            <p><a href="https://twitter.com/steinim">@steinim</a></p>
+            <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
             <aside class="notes"> </aside>
             </section>
 <!--
@@ -568,6 +569,7 @@ git diff task6
               progress: true,
               history: true,
               center: true,
+              width: 1100,
 
               theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
               transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
