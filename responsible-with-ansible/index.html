@@ -60,7 +60,7 @@
         </ul>
         <aside class="notes"> </aside>
         </section>
-        <section>
+<!--        <section>
         <h2>Pros</h2>
         <ul>
           <li class="fragment">In source control.</li>
@@ -87,10 +87,10 @@
           </li>
         </ul>
         <aside class="notes"> </aside>
-        </section>
+        </section> -->
 
         <section>
-          <h2>Imperative</h2>
+          <h2>Describe what to do</h2>
           <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 #!/bin/bash
 
@@ -111,7 +111,7 @@ fi
           </code></pre>
         </section>
         <section>
-            <h2>Declarative</h2>
+            <h2>Describe state</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: ensure installed vim
   apt: pkg={{ item }} state=installed
@@ -143,7 +143,50 @@ fi
             <aside class="notes"> </aside>
             </section>
             <section>
-            <h2>Installation and setup</h2>
+            <h2>Installation and setup (1 of 3)</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+# Map the ip addresses of the VMs in your /etc/hosts
+192.168.101.10 db.local db
+192.168.101.11 app1.local app1
+192.168.101.12 app2.local app2
+192.168.101.13 proxy.local proxy
+            </code></pre> 
+            <aside class="notes">
+            </aside>
+            </section>
+            <section>
+            <h2>Installation and setup (2 of 3)</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+#Prevent StrictHostKeyChecking by adding the following to ~/.ssh/config
+Host db.local
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+User vagrant
+LogLevel QUIET
+
+Host app1.local
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+User vagrant
+LogLevel QUIET
+
+Host app2.local
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+User vagrant
+LogLevel QUIET
+
+Host proxy.local
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+User vagrant
+LogLevel QUIET
+            </code></pre> 
+            <aside class="notes">
+            </aside>
+            </section>
+            <section>
+            <h2>Installation and setup (3 of 3)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git clone https://github.com/steinim/responsible-with-ansible.git
 git checkout start
