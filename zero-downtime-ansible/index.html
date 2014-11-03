@@ -207,7 +207,7 @@ vagrant up
             <section>
             <h2>Play!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -218,7 +218,7 @@ ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant site
               <li>These facts can be accessed in Playbooks and in templates.</li>
             </ul>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible -m setup --private-key=~/.vagrant.d/insecure_private_key -u vagrant app1.local
+ansible -m setup app1.local
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -247,7 +247,7 @@ ansible -m setup --private-key=~/.vagrant.d/insecure_private_key -u vagrant app1
             <h2>Task1: Install and configure software</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout start
-ansible-playbook -i hosts --private-key=~/.vagrant.d/insecure_private_key -u vagrant site.yml
+ansible-playbook -i hosts site.yml
             </code></pre>
             <ul>
               <li>Modify roles/common/tasks/apt.yml.</li>
