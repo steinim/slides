@@ -160,8 +160,8 @@ fi
             <section>
             <h2>Installation and setup (1 of 2)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-# Map the ip addresses of the VMs in your /etc/hosts
-ansible-playbook -i localhost --ask-sudo-pass localhost.yml
+git clone https://github.com/steinim/responsible-with-ansible.git
+git checkout start
             </code></pre> 
             <aside class="notes">
             </aside>
@@ -169,8 +169,8 @@ ansible-playbook -i localhost --ask-sudo-pass localhost.yml
             <section>
             <h2>Installation and setup (2 of 2)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git clone https://github.com/steinim/responsible-with-ansible.git
-git checkout start
+# Map the ip addresses of the VMs in your /etc/hosts
+ansible-playbook -i localhost --ask-sudo-pass localhost.yml
             </code></pre>
             Install: Vagrant, Virtualbox and Ansible
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
