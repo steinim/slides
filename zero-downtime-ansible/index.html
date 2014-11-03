@@ -309,7 +309,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task2
 git checkout task2 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --limit appservers
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ssh devops@app1.local
@@ -353,7 +353,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task3
 git checkout task3 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --limit dbservers
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
@@ -396,7 +396,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task4
 git checkout task4 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --limit appservers
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -426,7 +426,7 @@ sudo_user: postgres
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task5
 git checkout task5 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --limit dbservers
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -456,7 +456,7 @@ Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me man
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task6
 git checkout task6 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --limit proxies
             </code></pre>
             <aside class="notes"> </aside>
             </section>
