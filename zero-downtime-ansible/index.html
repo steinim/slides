@@ -262,6 +262,8 @@ Help:
             <h2>Task1: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task1
+git checkout task1 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -284,9 +286,6 @@ git diff task1
 
             <section>
             <h2>Task2: Create an application user</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task1 # or keep your own solution
-            </code></pre>
             <ul>
               <li>Create roles/users/tasks/{main.yml,users.yml}</li>
               <li>Password: 'devops123'</li>
@@ -312,15 +311,14 @@ ssh devops@app1.local
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task2
+git checkout task2 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
 
             <section>
             <h2>Task3: Install and configure PostgreSQL</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task2 # or keep your own solution
-            </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/postgresql
 ├── files
@@ -359,6 +357,8 @@ devops=&gt;
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task3
+git checkout task3 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -366,7 +366,6 @@ git diff task3
             <section>
             <h2>Task4: Deploy!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task3 # or keep your own solution
 git checkout task4_help # we have a lot to do!
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -396,14 +395,13 @@ Help:
             Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task4
+git checkout task4 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
             <h2>Task5: Deploy database</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task4 # or keep your own solution
-            </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/db
 ├── files
@@ -427,14 +425,13 @@ sudo_user: postgres
             Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task5
+git checkout task5 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
             <h2>Task6: Set up proxy</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task5 # or keep your own solution
-            </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/nginx
 ├── handlers
@@ -458,14 +455,13 @@ Help:
 Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task6
+git checkout task6 # or keep your own solution
+ansible-playbook site.yml
             </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
             <h2>Play time :-)</h2>
-<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task6 # or keep your own solution
-            </code></pre>
             <ul>
             <li>Suggestions:</li>
               <ul>
