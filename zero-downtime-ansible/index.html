@@ -100,7 +100,7 @@ fi
             <h2>Describe state</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: ensure installed vim
-  apt: pkg={{ item }} state=installed
+  apt: pkg=vim state=installed
 
 - name: add a string to the new file
   lineinfile:
