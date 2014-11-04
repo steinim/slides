@@ -102,7 +102,7 @@ fi
 - name: ensure installed vim
   apt: pkg=vim state=installed
 
-- name: add a string to the new file
+- name: set filetype indent off for vim
   lineinfile:
     dest=/etc/vim/vimrc
     line='filetype indent off'
