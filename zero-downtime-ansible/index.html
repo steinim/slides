@@ -357,7 +357,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task3
 git checkout task3 # or keep your own solution
-ansible-playbook site.yml --limit dbservers --skip-tags apt,vim,etc_hosts
+ansible-playbook site.yml --limit dbservers --tags pg_install
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
