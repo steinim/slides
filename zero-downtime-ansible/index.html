@@ -255,10 +255,10 @@ git checkout start
 Help:
 <a href="http://docs.ansible.com/apt_module.html">http://docs.ansible.com/apt_module.html</a>
 <a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a>
+            </pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout task1_help
             </code></pre>
-            </pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -266,8 +266,10 @@ git checkout task1_help
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task1
 git checkout task1 # or keep your own solution
-ansible-playbook site.yml
+ansible-playbook site.yml --tags apt,vim
             </code></pre>
+            <pre style="font-size: 18px; margin-top: 40px;">
+ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -304,7 +306,9 @@ Help:
 <a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a> (.ssh/authorized_keys)
 <a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
             </pre>
-            <pre>ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre> 
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task2_help
+            </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -312,7 +316,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task2
 git checkout task2 # or keep your own solution
-ansible-playbook site.yml --limit appservers
+ansible-playbook site.yml --limit appservers --skip-tags apt,vim,etc_hosts
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ssh devops@app1.local
@@ -331,16 +335,13 @@ roles/postgresql
 │   └── main.yml
 ├── tasks
 │   ├── main.yml
-│   ├── postgresql.yml
-│   └── repository.yml
+│   └── ...
 └── templates
     └── pg_hba.conf.j2
             </code></pre>
             <pre>Use variables (group_vars/all and/or group_vars/dbservers).</pre>
             <pre>Use handler to restart postgresql upon notification</pre>
             <pre>Template: git checkout master -- roles/postgresql/templates/pg_hba.conf.j2</pre>
-            <pre>PostgreSQL and deps: git checkout master -- roles/postgresql</pre>
-            <pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/template_module.html">http://docs.ansible.com/template_module.html</a> (pg_hba.conf.j2)
@@ -356,7 +357,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task3
 git checkout task3 # or keep your own solution
-ansible-playbook site.yml --limit dbservers
+ansible-playbook site.yml --limit dbservers --skip-tags apt,vim,etc_hosts
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
@@ -368,9 +369,6 @@ devops=&gt;\q
 
             <section>
             <h2>Task4: Deploy!</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task4_help # we have a lot to do!
-            </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/app
 ├── files
@@ -399,7 +397,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task4
 git checkout task4 # or keep your own solution
-ansible-playbook site.yml --limit appservers
+ansible-playbook site.yml --limit appservers --skip-tags apt,vim,etc_hosts,users
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -413,13 +411,14 @@ roles/db
     ├── main.yml
     └── migrate_db.yml
             </code></pre>
-            <pre>Help: git checkout master -- roles/db/files/migrate_db.sql</pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/command_module.html">http://docs.ansible.com/command_module.html</a>
-"psql -d {{ db.name }} -q -f /tmp/migrate_db.sql"
+</pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 0px;">
+psql -d {{ db.name }} -q -f /tmp/migrate_db.sql
 sudo_user: postgres
-            </pre>
+            </code></pre>
             <aside class="notes"> </aside>
             </section>
 
@@ -429,7 +428,7 @@ sudo_user: postgres
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task5
 git checkout task5 # or keep your own solution
-ansible-playbook site.yml --limit dbservers
+ansible-playbook site.yml --limit dbservers --skip-tags apt,vim,etc_hosts,pg_install
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -459,7 +458,7 @@ Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me man
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task6
 git checkout task6 # or keep your own solution
-ansible-playbook site.yml --limit proxies
+ansible-playbook site.yml --limit proxies --skip-tags apt,vim,etc_hosts
             </code></pre>
             <aside class="notes"> </aside>
             </section>
