@@ -373,10 +373,7 @@ devops=&gt;\q
 roles/app
 ├── files
 │   └── init.sh
-├── handlers
-│   └── main.yml
 ├── tasks
-│   ├── deploy.yml
 │   └── main.yml
 └── templates
     └── config.properties.j2
@@ -397,7 +394,7 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task4
 git checkout task4 # or keep your own solution
-ansible-playbook site.yml --limit appservers --skip-tags apt,vim,etc_hosts,users
+ansible-playbook site.yml --limit appservers --tags deploy
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -428,7 +425,7 @@ sudo_user: postgres
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task5
 git checkout task5 # or keep your own solution
-ansible-playbook site.yml --limit dbservers --skip-tags apt,vim,etc_hosts,pg_install
+ansible-playbook site.yml --limit dbservers --tags deploy
             </code></pre>
             <aside class="notes"> </aside>
             </section>
