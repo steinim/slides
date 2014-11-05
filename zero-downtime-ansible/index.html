@@ -292,7 +292,7 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
             <section>
             <h2>Task2: Create an application user</h2>
             <ul>
-              <li>Create roles/users/tasks/{main.yml,users.yml}</li>
+              <li>Create roles/users/tasks/main.yml</li>
               <li>Password: 'devops123'</li>
               <li>Home directory: /home/devops</li>
               <li>ssh-key</li>
@@ -383,7 +383,6 @@ roles/app
             <pre>
 Help:
 <a href="http://docs.ansible.com/service_module.html">http://docs.ansible.com/service_module.html</a>
-<a href="http://docs.ansible.com/stat_module.html">http://docs.ansible.com/stat_module.html</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
@@ -405,8 +404,7 @@ roles/db
 ├── files
 │   └── migrate_db.sql
 └── tasks
-    ├── main.yml
-    └── migrate_db.yml
+    └── main.yml
             </code></pre>
             <pre>
 Help:
@@ -455,7 +453,7 @@ Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me man
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff task6
 git checkout task6 # or keep your own solution
-ansible-playbook site.yml --limit proxies --skip-tags apt,vim,etc_hosts
+ansible-playbook site.yml --limit proxies --tags nginx
             </code></pre>
             <aside class="notes"> </aside>
             </section>
