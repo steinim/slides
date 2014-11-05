@@ -181,7 +181,7 @@ body {
 body:before {
   position: absolute; 
   display: block;
-  background: url("http://open.bekk.no/Content/Images/BEKK_logo.svgz") left bottom no-repeat;
+  background: url("../../img/BEKK_logo.svgz") left bottom no-repeat;
   width: 120px;
   height: 25px;
   bottom: 30px;
@@ -190,8 +190,6 @@ body:before {
   z-index: 9999; }
 
 body:before {
-  position: absolute
-  background-size: 120px 25px;
   content: "OPEN";
   color: #35bdb2!important;
   font-size: 42px;
