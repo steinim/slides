@@ -181,7 +181,7 @@ body {
 body:before {
   position: absolute; 
   display: block;
-  background: url("../../img/BEKK_logo.svgz") left bottom no-repeat;
+  background: url("../../img/BEKK_logo.svg") left bottom no-repeat;
   width: 120px;
   height: 25px;
   bottom: 30px;
