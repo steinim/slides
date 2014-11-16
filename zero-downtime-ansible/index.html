@@ -218,14 +218,14 @@ ansible -m setup app1.local
                 <li>ssh-key</li>
                </ul>
             <li>A PostgresSQL database.</li>
-            <li>Nginx with a reverse proxy using example configuration.</li>
+            <li>Nginx as a reverse proxy.</li>
             <li>An init script installed as a service.</li>
             <li>Deploy an application that uses the provisioned infrastructure.</li>
             </ul>
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/architecture.png" alt="architecture">
+            <img width="449" height="510" src="img/architecture.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -449,14 +449,14 @@ ansible-playbook site.yml --limit proxies --tags nginx
             </code></pre>
             <aside class="notes"> </aside>
             </section>
-<!--            <section>
-            <h2>Expand/Contract</h2>
+            <section>
+            <h2>The Expand/Contract pattern</h2>
             <br>
-            <table class="reveal">
+            <table class="reveal" width="100%">
             <th>Expand</th>
             <th>Contract</th>
             <tr>
-            <td>
+            <td width="50%">
             <ul>
               <li>Add tables</li>
               <li>Add columns</li>
@@ -464,7 +464,7 @@ ansible-playbook site.yml --limit proxies --tags nginx
             </ul>
             </td>
             <td>
-            <ul>
+            <ul width="50%">
               <li>Remove tables</li>
               <li>Remove columns</li>
               <li>Remove/add constraints</li>
@@ -473,30 +473,30 @@ ansible-playbook site.yml --limit proxies --tags nginx
             </tr>
             </table>
             </section>
-            <aside class="notes"> </aside>-->
-            </section>
-            <section>
-            <img width="642" height="728" src="img/architecture.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/pre-upgrade-db.png" alt="architecture">
+            <img width="449" height="510" src="img/architecture.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/upgrade1.png" alt="architecture">
+            <img width="449" height="510" src="img/pre-upgrade-db.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/upgrade2.png" alt="architecture">
+            <img width="449" height="510" src="img/upgrade1.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/post-upgrade-db.png" alt="architecture">
+            <img width="449" height="510" src="img/upgrade2.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
-            <img width="642" height="728" src="img/architecture.png" alt="architecture">
+            <img width="449" height="510" src="img/post-upgrade-db.png" alt="architecture">
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <img width="449" height="510" src="img/architecture.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
             <section>
