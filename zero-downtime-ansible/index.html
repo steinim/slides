@@ -415,6 +415,25 @@ ansible-playbook site.yml --limit appservers --tags java,deploy
             <aside class="notes"> </aside>
             </section>
             <section>
+            <h2>What just happened?</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+/home/devops
+├── config.properties
+├── current -&gt; /home/devops/devops_1416228023.jar
+├── previous -&gt; /home/devops/devops_1416221573.jar
+├── devops_1416221573.jar
+├── devops_1416228023.jar
+└── logs
+    ├── stderr.log
+    └── stdout.log
+              </code></pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+/etc/init.d
+└── devops
+            </code></pre>
+            <aside class="notes"> </aside>
+	    </section>
+            <section>
             <h2>Progress</h2>
             <ul>
               <li>Installed software</li>
@@ -565,8 +584,8 @@ ansible-playbook site.yml --limit proxies --tags nginx
             <ul>
             <li>Suggestions:</li>
               <ul>
-                <li>Stop one of the appservers.</li>
                 <li>Change database table name from HELLO to MESSAGES and deploy a new version without downtime.</li>
+                <li>Implement automated rollback.</li>
               </ul>
             </ul>
             <aside class="notes"> </aside>
