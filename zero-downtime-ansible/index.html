@@ -208,7 +208,6 @@ ansible -m setup app1.local
             <ul>
             <li>An app user 'devops', with:</li>
               <ul>
-                <li>Password: 'devops123'</li>
                 <li>Home directory: /home/devops</li>
                 <li>ssh-key</li>
                </ul>
@@ -288,7 +287,6 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
             <h2>Task2: Create an application user</h2>
             <ul>
               <li>Create roles/users/tasks/main.yml</li>
-              <li>Password: 'devops123'</li>
               <li>Home directory: /home/devops</li>
               <li>ssh-key</li>
               <li>Use variables! (group_vars)</li>
@@ -590,6 +588,15 @@ ansible-playbook site.yml --limit proxies --tags nginx
                 <li>Implement automated rollback.</li>
               </ul>
             </ul>
+            <aside class="notes"> </aside>
+            </section>
+            <section>
+            <h2>I have been playing :-)</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout play
+ansible-playbook site.yml --limit appservers,dbservers --tags deploy
+ansible-playbook site.yml --limit appservers,dbservers --tags rollback
+            </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
