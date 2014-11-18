@@ -155,13 +155,8 @@ fi
             <aside class="notes"> </aside>
             </section>
             <section>
-            <h2>Getting started</h2>
+            <h2>Bring up the boxes</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-
-# Map the ip addresses of the VMs in your /etc/hosts
-ansible-playbook -i localhost --ask-sudo-pass localhost.yml
-
-# Bring up the boxes
 vagrant up
             </code></pre>
             <aside class="notes">
@@ -256,7 +251,7 @@ git checkout task1_help
             <section>
             <h2>Task1: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task1
+git diff HEAD origin/task1
 git checkout task1 # or keep your own solution
 ansible-playbook site.yml --tags apt,vim
             </code></pre>
@@ -314,9 +309,9 @@ git checkout task2_help
             <section>
             <h2>Task2: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task2
+git diff HEAD origin/task2
 git checkout task2 # or keep your own solution
-ansible-playbook site.yml --limit appservers --skip-tags apt,vim,etc_hosts
+ansible-playbook site.yml --limit appservers --skip-tags apt,vim,java
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ssh devops@app1.local
@@ -363,14 +358,14 @@ Help:
             <section>
             <h2>Task3: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task3
+git diff HEAD origin/task3
 git checkout task3 # or keep your own solution
 ansible-playbook site.yml --limit dbservers --tags pg_install
             </code></pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
 vagrant@db:~$ psql -d devops -U devops -W
-devops=&gt;\q
+devops=&gt; \q
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -408,9 +403,9 @@ Help:
             <h2>Task4: Solution</h2>
             Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task4
+git diff HEAD origin/task4
 git checkout task4 # or keep your own solution
-ansible-playbook site.yml --limit appservers --tags java,deploy
+ansible-playbook site.yml --limit appservers --tags deploy
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -468,9 +463,16 @@ sudo_user: postgres
             <h2>Task5: Solution</h2>
             Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task5
+git diff HEAD origin/task5
 git checkout task5 # or keep your own solution
 ansible-playbook site.yml --limit dbservers --tags deploy
+            </code></pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+$ vagrant ssh db
+vagrant@db:~$ psql -d devops -U devops -W
+devops=&gt; \dt
+devops=&gt; select * from hello;
+devops=&gt; \q
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -510,7 +512,7 @@ Help:
             <h2>Task6: Solution</h2>
 Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff task6
+git diff HEAD origin/task6
 git checkout task6 # or keep your own solution
 ansible-playbook site.yml --limit proxies --tags nginx
             </code></pre>
@@ -536,15 +538,15 @@ ansible-playbook site.yml --limit proxies --tags nginx
             <th>Expand</th>
             <th>Contract</th>
             <tr>
-            <td width="50%">
+            <td width="50%" class="fragment">
             <ul>
               <li>Add tables</li>
               <li>Add columns</li>
               <li>Tweak indexes</li>
             </ul>
             </td>
-            <td>
-            <ul width="50%">
+            <td width="50%" class="fragment">
+            <ul>
               <li>Remove tables</li>
               <li>Remove columns</li>
               <li>Remove/add constraints</li>
