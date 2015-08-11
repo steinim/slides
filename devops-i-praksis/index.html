@@ -113,12 +113,6 @@ fi
             </section>
         </section>
         <section>
-            <h2>Cloud og virtuelle maskiner</h2>
-            Golden image
-            <aside class="notes"> </aside>
-            </section>
-        </section>
-<!--        <section>
         <h2>Pros</h2>
         <ul>
           <li class="fragment">In source control.</li>
@@ -145,23 +139,8 @@ fi
           </li>
         </ul>
         <aside class="notes"> </aside>
-        </section>-->
+        </section>
 
-            <section>
-            <h2>Ansible</h2>
-            <ul>
-              <li>SSH-based</li>
-              <li>Client only (no server)</li>
-              <li>YAML configuration</li>
-              <li>Push (and pull)</li>
-              <li>Supports more than setup and provisioning:</li>
-              <ul>
-                <li>Application deployment</li>
-                <li>Remote command execution</li>
-              </ul>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
             <section>
             <h2>Bring up the boxes</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -246,282 +225,7 @@ git checkout start
               <li>Insert the line 'filetype indent off' in /etc/vim/vimrc</li>
             </ul>
             <pre>
-Help:
-<a href="http://docs.ansible.com/apt_module.html">http://docs.ansible.com/apt_module.html</a>
-<a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a>
             </pre>
-<!--            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task1_help
-            </code></pre>-->
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task1: Solution</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task1
-git checkout task1 # or keep your own solution
-ansible-playbook site.yml --tags apt,vim
-            </code></pre>
-            <pre style="font-size: 18px; margin-top: 40px;">
-ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Progress</h2>
-            <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Variables</h2>
-<ul>
-<li>Ansible uses variables (a lot!).</li>
-<li><a href="http://docs.ansible.com/playbooks_variables.html">http://docs.ansible.com/playbooks_variables.html</a>
-<ul>
-  <li>Inventory</li>
-  <li>group_vars and host_vars</li>
-  <li>Playbook</li>
-  <li>Facts</li>
-  <li>Command line</li>
-</ul>
-<li>Access variables from playbooks: "{{ variable }}"</li>
-</ul>
-            <aside class="notes"> </aside>
-            </section>
-
-            <section>
-            <h2>Task2: Create an application user</h2>
-            <ul>
-              <li>Create roles/users/tasks/main.yml</li>
-              <li>Home directory: /home/devops</li>
-              <li>ssh-key</li>
-              <li>Use variables! (group_vars)</li>
-            </ul>
-            <pre>
-Help:
-<a href="http://docs.ansible.com/group_module.html">http://docs.ansible.com/group_module.html</a>
-<a href="http://docs.ansible.com/user_module.html">http://docs.ansible.com/user_module.html</a>
-<a href="http://docs.ansible.com/file_module.html">http://docs.ansible.com/file_module.html</a> (copy ssh-key)
-<a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a> (.ssh/authorized_keys)
-<a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
-            </pre>
-<!--            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task2_help
-            </code></pre>-->
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task2: Solution</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task2
-git checkout task2 # or keep your own solution
-ansible-playbook site.yml --limit appservers --skip-tags apt,vim,java
-            </code></pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ssh devops@app1.local
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Progress</h2>
-            <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task3: Install and configure PostgreSQL</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-roles/postgresql
-├── files
-│   ├── ACCC4CF8.asc
-│   └── postgresql.conf
-├── handlers
-│   └── main.yml
-├── tasks
-│   ├── main.yml
-│   └── ...
-└── templates
-    └── pg_hba.conf.j2
-            </code></pre>
-            <pre>Use variables (group_vars/all and/or group_vars/dbservers).</pre>
-            <pre>Use handler to restart postgresql upon notification</pre>
-            <pre>Template: git checkout master -- roles/postgresql/templates/pg_hba.conf.j2</pre>
-            <pre>
-Help:
-<a href="http://docs.ansible.com/template_module.html">http://docs.ansible.com/template_module.html</a> (pg_hba.conf.j2)
-<a href="http://docs.ansible.com/postgresql_user_module.html">http://docs.ansible.com/postgresql_user_module.html</a>
-<a href="http://docs.ansible.com/postgresql_db_module.html">http://docs.ansible.com/postgresql_db_module.html</a>
-<a href="http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change">http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change</a>
-<a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
-            </pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task3: Solution</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task3
-git checkout task3 # or keep your own solution
-ansible-playbook site.yml --limit dbservers --tags pg_install
-            </code></pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-$ vagrant ssh db
-vagrant@db:~$ psql -d devops -U devops -W
-devops=&gt; \q
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Progress</h2>
-            <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task4: Deploy!</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-roles/app
-├── files
-│   └── init.sh
-├── tasks
-│   └── main.yml
-└── templates
-    └── config.properties.j2
-            </code></pre>
-            <pre>NB! Use variables (./hosts).</pre>
-            <pre>Set 'serial: 1' for appservers in site.yml.</pre>
-            <pre>
-Help:
-<a href="http://docs.ansible.com/service_module.html">http://docs.ansible.com/service_module.html</a>
-            </pre>
-            <aside class="notes"> </aside>
-            </section>
-
-            <section>
-            <h2>Task4: Solution</h2>
-            Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task4
-git checkout task4 # or keep your own solution
-ansible-playbook site.yml --limit appservers --tags deploy
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>What just happened?</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-/home/devops
-├── config.properties
-├── current -&gt; /home/devops/devops_1416228023.jar
-├── previous -&gt; /home/devops/devops_1416221573.jar
-├── devops_1416221573.jar
-├── devops_1416228023.jar
-└── logs
-    ├── stderr.log
-    └── stdout.log
-              </code></pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-/etc/init.d
-└── devops
-            </code></pre>
-            <aside class="notes"> </aside>
-	    </section>
-            <section>
-            <h2>Progress</h2>
-            <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task5: Deploy database</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-roles/db
-├── files
-│   └── migrate_db.sql
-└── tasks
-    └── main.yml
-            </code></pre>
-            <pre>
-Help:
-<a href="http://docs.ansible.com/command_module.html">http://docs.ansible.com/command_module.html</a>
-</pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 0px;">
-psql -d {{ db.name }} -q -f /tmp/migrate_db.sql
-sudo_user: postgres
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-
-            <section>
-            <h2>Task5: Solution</h2>
-            Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task5
-git checkout task5 # or keep your own solution
-ansible-playbook site.yml --limit dbservers --tags deploy
-            </code></pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-$ vagrant ssh db
-vagrant@db:~$ psql -d devops -U devops -W
-devops=&gt; \dt
-devops=&gt; select * from hello;
-devops=&gt; \q
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Progress</h2>
-            <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
-              <li>Migrated the database schema and fetched data from it through the application</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h2>Task6: Set up proxy</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-roles/nginx
-├── handlers
-│   └── main.yml
-├── tasks
-│   ├── config_nginx.yml
-│   ├── install_nginx.yml
-│   └── main.yml
-└── templates
-    └── devops.conf.j2
-            </code></pre>
-            <pre>
-Help:
-<a href="http://wsgiarea.pocoo.org/jinja/docs/loops.html">http://wsgiarea.pocoo.org/jinja/docs/loops.html</a>
-            </pre>
-            <aside class="notes"> </aside>
-            </section>
-
-            <section>
-            <h2>Task6: Solution</h2>
-Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task6
-git checkout task6 # or keep your own solution
-ansible-playbook site.yml --limit proxies --tags nginx
-            </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -587,33 +291,36 @@ ansible-playbook site.yml --limit proxies --tags nginx
             <img width="449" height="510" src="img/architecture.png" alt="architecture">
             <aside class="notes"> </aside>
             </section>
-            <section>
-            <h2>Play time :-)</h2>
+        <section>
+
+            <h2>Cloud og virtuelle maskiner</h2>
             <ul>
-            <li>Suggestions:</li>
+            <li> Golden images (el. containers)</li>
+            <li>Provisjonering av resten</li>
               <ul>
-                <li>Change database table name from HELLO to MESSAGES and deploy a new version without downtime.</li>
-                <li>Implement automated rollback.</li>
+                <li>Konfigurasjonsendringer</li>
+                <li>Deploy</li>
               </ul>
             </ul>
             <aside class="notes"> </aside>
             </section>
-            <section>
-            <h2>I have been playing :-)</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout play
-ansible-playbook site.yml --limit appservers,dbservers --tags deploy
-ansible-playbook site.yml --limit appservers,dbservers --tags rollback
-            </code></pre>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h1>Thank you!</h1>
+
+        <h2>Monitorering</h2>
+        <img width="1000" height="529" src="img/monitoring.png" alt="architecture">
+        </section>
+
+        <section>
+        <h2>Real developers carry beepers</h2>
+        <img width="800" height="480" src="img/pagerduty.jpg" alt="architecture">
+        </section>
+
+        <section>
+            <h1>Takk for meg!</h1>
             <img width="252" height="235" src="img/me_bart.png" alt="Stein Inge Morisbak">
             <p><a href="https://twitter.com/steinim">@steinim</a></p>
             <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
             <aside class="notes"> </aside>
-            </section>
+        </section>
 
         <section>
         <h2>Slides & Repo</h2>
