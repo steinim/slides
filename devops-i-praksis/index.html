@@ -158,6 +158,21 @@ vagrant up
         </aside>
       </section>
       <section>
+        <h2>Oppgaven</h2>
+        <ul>
+          <li>En appbruker 'devops', med:</li>
+          <ul>
+            <li>Home directory: /home/devops</li>
+            <li>ssh-nøkkel</li>
+          </ul>
+          <li>En PostgresSQL database.</li>
+          <li>Nginx som reverse proxy.</li>
+          <li>Init-script installert som en service.</li>
+          <li>Deploy en applikasjon som bruker den provisjonerte infrastrukturen.</li>
+        </ul>
+        <aside class="notes"> </aside>
+      </section>
+      <section>
         <h2>Facts</h2>
         <ul>
           <li>Ansible henter “facts” om boksene.</li>
@@ -190,21 +205,6 @@ ansible -m setup app1.local
 │   │   │   └── main.yml
             </code></pre>
         <aside class="notes">Explain all folders and files.</aside>
-      </section>
-      <section>
-        <h2>Oppgaven</h2>
-        <ul>
-          <li>En appbruker 'devops', med:</li>
-          <ul>
-            <li>Home directory: /home/devops</li>
-            <li>ssh-nøkkel</li>
-          </ul>
-          <li>En PostgresSQL database.</li>
-          <li>Nginx som reverse proxy.</li>
-          <li>Init-script installert som en service.</li>
-          <li>Deploy en applikasjon som bruker den provisjonerte infrastrukturen.</li>
-        </ul>
-        <aside class="notes"> </aside>
       </section>
       <section>
         <h2>Arkitekturen</h2>
@@ -313,14 +313,12 @@ ansible-playbook site.yml --tags deploy
 
       <section>
         <h2>3. Monitorering</h2>
-        <img width="1000" height="529" src="img/monitoring.png" alt="monitorering">
-        Vi tar en titt på Digipost Monitorering.
+        <img width="1000" height="529" src="img/monitoring.png" alt="monitorering"> Vi tar en titt på Digipost Monitorering.
       </section>
 
       <section>
         <h2>Real developers carry beepers</h2>
-        <img width="800" height="480" src="img/pagerduty.jpg" alt="pagerduty">
-        Vi trigger et problem og tar en titt på PagerDuty og Slack ("ChatOps").
+        <img width="800" height="480" src="img/pagerduty.jpg" alt="pagerduty"> Vi trigger et problem og tar en titt på PagerDuty og Slack ("ChatOps").
       </section>
 
       <section>
