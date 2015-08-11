@@ -252,31 +252,6 @@ ansible-playbook site.yml --skip-tags deploy
         <aside class="notes"> </aside>
       </section>
       <section>
-        <h2>The Expand/Contract pattern</h2>
-        <br>
-        <table class="reveal" width="100%">
-          <th>Expand</th>
-          <th>Contract</th>
-          <tr>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Add tables</li>
-                <li>Add columns</li>
-                <li>Tweak indexes</li>
-              </ul>
-            </td>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Remove tables</li>
-                <li>Remove columns</li>
-                <li>Remove/add constraints</li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <aside class="notes"> </aside>
-      </section>
-      <section>
         <h2>Deploy!</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --tags deploy
