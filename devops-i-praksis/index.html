@@ -224,29 +224,8 @@ ansible-playbook site.yml --skip-tags deploy
         <img width="506" height="285" src="img/one-click-deploy.png" alt="one-click-deploy">
       </section>
       <section>
-        <h2>The Expand/Contract pattern</h2>
-        <br>
-        <table class="reveal" width="100%">
-          <th>Expand</th>
-          <th>Contract</th>
-          <tr>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Add tables</li>
-                <li>Add columns</li>
-                <li>Tweak indexes</li>
-              </ul>
-            </td>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Remove tables</li>
-                <li>Remove columns</li>
-                <li>Remove/add constraints</li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-        <aside class="notes"> </aside>
+        <h2>Må være nedetidsfritt!</h2>
+        <img width="506" height="285" src="img/website-down.jpg" alt="website-down">
       </section>
       <section>
         <img width="449" height="510" src="img/architecture.png" alt="architecture">
@@ -273,6 +252,31 @@ ansible-playbook site.yml --skip-tags deploy
         <aside class="notes"> </aside>
       </section>
       <section>
+        <h2>The Expand/Contract pattern</h2>
+        <br>
+        <table class="reveal" width="100%">
+          <th>Expand</th>
+          <th>Contract</th>
+          <tr>
+            <td width="50%" class="fragment">
+              <ul>
+                <li>Add tables</li>
+                <li>Add columns</li>
+                <li>Tweak indexes</li>
+              </ul>
+            </td>
+            <td width="50%" class="fragment">
+              <ul>
+                <li>Remove tables</li>
+                <li>Remove columns</li>
+                <li>Remove/add constraints</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <aside class="notes"> </aside>
+      </section>
+      <section>
         <h2>Deploy!</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --tags deploy
@@ -287,7 +291,7 @@ ansible-playbook site.yml --tags deploy
           <li>Laget en bruker og satt opp ssh-nøkkel</li>
           <li>Installert en database og lagt til en databasebruker</li>
           <li>Deployet en applikasjon til to appservere og installert den som en service</li>
-          <li>Migrert database skjemaet og hentet data fra databasen gjennom applikasjonen</li>
+          <li>Migrert databaseskjemaet og hentet data fra databasen gjennom applikasjonen</li>
           <li>Satt opp en reverse proxy for automatsk failover mellom de to appserverene</li>
         </ul>
         <aside class="notes"> </aside>
