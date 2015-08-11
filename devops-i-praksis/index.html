@@ -79,7 +79,7 @@
           <li>Lag brukere</li>
           <li>Installer software</li>
           <li>Generer og endre konfigurasjonsfiler</li>
-          <li>Start/stop/restart prosesser</li>
+          <li>Start/stopp/restart prosesser</li>
           <li>Sett opp avhengigheter mellom operasjoner</li>
         </ul>
         <aside class="notes"> </aside>
@@ -158,6 +158,17 @@ vagrant up
         </aside>
       </section>
       <section>
+        <h2>Facts</h2>
+        <ul>
+          <li>Ansible henter “facts” om boksene.</li>
+          <li>Disse kan aksesseres i Playbooks og i templates.</li>
+        </ul>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible -m setup app1.local
+            </code></pre>
+        <aside class="notes"> </aside>
+      </section>
+      <section>
         <h2>Layout</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ├── ansible.cfg
@@ -181,24 +192,6 @@ vagrant up
         <aside class="notes">Explain all folders and files.</aside>
       </section>
       <section>
-        <h2>Play!</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook site.yml
-            </code></pre>
-        <aside class="notes"> </aside>
-      </section>
-      <section>
-        <h2>Facts</h2>
-        <ul>
-          <li>Ansible henter “facts” om boksene.</li>
-          <li>Disse kan aksesseres i Playbooks og i templates.</li>
-        </ul>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible -m setup app1.local
-            </code></pre>
-        <aside class="notes"> </aside>
-      </section>
-      <section>
         <h2>Oppgaven</h2>
         <ul>
           <li>En appbruker 'devops', med:</li>
@@ -213,37 +206,22 @@ ansible -m setup app1.local
         </ul>
         <aside class="notes"> </aside>
       </section>
-      
-      <section>
-        <h2>2. One-click deploy</h2>
-        <img width="640" height="512" src="img/one-click-deploy.png" alt="one-click-deploy">
-      </section>
       <section>
         <h2>Arkitekturen</h2>
         <img width="449" height="510" src="img/architecture.png" alt="architecture">
         <aside class="notes"> </aside>
       </section>
       <section>
-        <h2>Progress</h2>
-        <ul>
-          <li>Deployed an application to two appservers and enabled it as a service</li>
-          <li>Migrated the database schema and fetched data from it through the application</li>
-          <li>Set up a reverse proxy for automatic failover between the two appservers</li>
-        </ul>
+        <h2>Provisjoner!</h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook site.yml --skip-tags deploy
+            </code></pre>
         <aside class="notes"> </aside>
       </section>
+
       <section>
-        <h2>Progress</h2>
-        <ul>
-          <li>Installed software</li>
-          <li>Manipulated files</li>
-          <li>Created a user and set up a ssh-key</li>
-          <li>Installed and configured a database and a db user</li>
-          <li>Deployed an application to two appservers and enabled it as a service</li>
-          <li>Migrated the database schema and fetched data from it through the application</li>
-          <li>Set up a reverse proxy for automatic failover between the two appservers</li>
-        </ul>
-        <aside class="notes"> </aside>
+        <h2>2. One-click deploy</h2>
+        <img width="506" height="285" src="img/one-click-deploy.png" alt="one-click-deploy">
       </section>
       <section>
         <h2>The Expand/Contract pattern</h2>
@@ -292,6 +270,26 @@ ansible -m setup app1.local
       </section>
       <section>
         <img width="449" height="510" src="img/architecture.png" alt="architecture">
+        <aside class="notes"> </aside>
+      </section>
+      <section>
+        <h2>Deploy!</h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook site.yml --tags deploy
+            </code></pre>
+        <aside class="notes"> </aside>
+      </section>
+      <section>
+        <h2>Hva har vi gjort?</h2>
+        <ul>
+          <li>Installert software</li>
+          <li>Manipulert filer</li>
+          <li>Laget en bruker og satt opp ssh-nøkkel</li>
+          <li>Installert en database og lagt til en databasebruker</li>
+          <li>Deployet en applikasjon til to appservere og installert den som en service</li>
+          <li>Migrert database skjemaet og hentet data fra databasen gjennom applikasjonen</li>
+          <li>Satt opp en reverse proxy for automatsk failover mellom de to appserverene</li>
+        </ul>
         <aside class="notes"> </aside>
       </section>
       <section>
