@@ -41,40 +41,42 @@
       <div class="slides">
 
         <section>
-        <h2>Zero Downtime Deployment with Ansible</h2>
+        <h2>DevOps i Praksis</h2>
         </section>
 
         <section>
-        <h2>Slides & Repo</h2>
+        <img width="615" height="461" src="img/worked-fine-in-dev.jpg" alt="worked fine in dev - ops problem now">
+        </section>
+
+        <section>
+        <h2>Scope</h2>
+        <a href="http://bekkopen.github.io/maturity-model/">Modenhetsmodellen</a>
+        <img width="776" height="222" src="img/scope.png" alt="scope">
+        <aside class="notes"> </aside>
+        </section>
+
+        <section>
+        <h2>Hva er konfigurasjon som kode?</h2>
         <ul>
-          <li><a href="http://steinim.github.io/slides/zero-downtime-ansible">http://steinim.github.io/slides/zero-downtime-ansible</a></li>
-          <li><a href="https://github.com/steinim/zero-downtime-ansible">https://github.com/steinim/zero-downtime-ansible</a></li>
+          <li>Automatisert oppsett av servere</li>
+          <li>Konfigurasjon som kode</li>
         </ul>
         <aside class="notes"> </aside>
         </section>
 
         <section>
-        <h2>What's a provisioning framework?</h2>
+        <h2>Eksempler</h2>
         <ul>
-          <li>Automated setup of servers</li>
-          <li>Configuration as code</li>
-        </ul>
-        <aside class="notes"> </aside>
-        </section>
-
-        <section>
-        <h2>Examples</h2>
-        <ul>
-          <li>Create users</li>
-          <li>Install software</li>
-          <li>Generate and manipulate config files</li>
-          <li>Start/stop/restart processes</li>
-          <li>Set up dependencies between operations</li>
+          <li>Lag brukere</li>
+          <li>Installer software</li>
+          <li>Generer og endre konfigurasjonsfiler</li>
+          <li>Start/stop/restart prosesser</li>
+          <li>Sett opp avhengigheter mellom operasjoner</li>
         </ul>
         <aside class="notes"> </aside>
         </section>
         <section>
-          <h2>Describe what to do</h2>
+          <h2>Deskriptivt (lag en oppskrift)</h2>
           <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 #!/bin/bash
 
@@ -95,7 +97,7 @@ fi
           </code></pre>
         </section>
         <section>
-            <h2>Describe state</h2>
+            <h2>Deklarativt (beskriv tilstand)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: ensure installed vim
   apt: pkg=vim state=installed
@@ -107,6 +109,12 @@ fi
     state=present
 
           </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+        </section>
+        <section>
+            <h2>Cloud og virtuelle maskiner</h2>
+            Golden image
             <aside class="notes"> </aside>
             </section>
         </section>
@@ -606,67 +614,15 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
             <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
             <aside class="notes"> </aside>
             </section>
-<!--
-            <section>
-            <h2>Pros</h2>
-            <ul>
-              <li>Very easy setup, only client.</li>
-              <li>Easy configuration files (YAML).</li>
-              <li>Low startup-cost.</li>
-              <li>Able to deploy applications.</li>
-              <li>Less abstractions.</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
 
-            <section>
-            <h2>Cons</h2>
-            <ul>
-              <li>Configuration drift.</li>
-              <li>Linux/Unix only.</li>
-              <li>Not package-manager-agnostic.</li>
-              <li>Less abstraction.</li>
-              <li>Scalability.</li>
-              <li>Small user base.</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
-            <section>
-            <h1>What did we forget?</h1>
-            </section>
-            <section>
-            <h1>To test!</h1>
-            </section>
-
-            <section>
-            <h2>ServerSpec</h2>
-            <ul>
-              <li>RSpec</li>
-              <li>Tests your servers' actual state</li>
-              <li>SSH access</li>
-              <li>No agent softwares on your servers</li>
-              <li>Use any configuration management tool
-              <ul>
-                <li>The one we have talked about</li>
-                <li>Even manual setup</li>
-              </ul>
-              </li>
-              <aside class="notes"> </aside>
-              </section>
-              <section>
-              <h2>What are you waiting for?</h2>
-              <ul>
-                <li>Describe your existing infrastructure with ServerSpec</li>
-                <li>Use Vagrant and VirtualBox to play around in a "real" environment.</li>
-                <li>Use a provisioning framework to make your tests go green</li>
-                <li>Go live!</li>
-              </ul>
-              <aside class="notes"> </aside>
-              </section>
--->
-            </div>
-
-          </div>
+        <section>
+        <h2>Slides & Repo</h2>
+        <ul>
+          <li><a href="http://steinim.github.io/slides/devops-i-praksis">http://steinim.github.io/slides/devops-i-praksis</a></li>
+          <li><a href="https://github.com/steinim/devops-i-praksis">https://github.com/steinim/devops-i-praksis</a></li>
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
 
           <script src="../lib/js/head.min.js"></script>
           <script src="../js/reveal.min.js"></script>
@@ -699,6 +655,5 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
             });
 
           </script>
-
         </body>
       </html>
