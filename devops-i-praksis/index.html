@@ -254,7 +254,7 @@ ansible-playbook site.yml --skip-tags deploy,post_deploy,rollback,nginx_config
       <section>
         <h2>Deploy!</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook site.yml --tags deploy
+ansible-playbook site.yml --tags deploy,post_deploy,nginx_config --skip-tags rollback
             </code></pre>
         <aside class="notes"> </aside>
       </section>
