@@ -214,7 +214,7 @@ ansible -m setup app1.local
       <section>
         <h2>Provisjoner!</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook site.yml --skip-tags deploy,post_deploy,rollback
+ansible-playbook site.yml --skip-tags deploy,post_deploy,rollback,nginx_config
             </code></pre>
         <aside class="notes"> </aside>
       </section>
@@ -254,7 +254,7 @@ ansible-playbook site.yml --skip-tags deploy,post_deploy,rollback
       <section>
         <h2>Deploy!</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook site.yml --tags deploy,post_deploy,nginx_config --skip-tags rollback
+ansible-playbook site.yml --tags deploy,post_deploy --skip-tags rollback
             </code></pre>
         <aside class="notes"> </aside>
       </section>
