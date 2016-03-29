@@ -1,0 +1,9 @@
+.reveal ul { line-height: 1.5; }
+
+.reveal .slides section .fragment.highlight-grey {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .slides section .fragment.highlight-grey.visible {
+  color: grey; }
+
