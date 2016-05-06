@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Stop All IT-projects!</title>
+
+  <meta name="description" content="DevOps Norway Meetup May 25th 2016">
+  <meta name="author" content="Stein Inge Morisbak">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <!-- <link rel="stylesheet" href="css/theme/default.css" id="theme"> -->
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- BEKK Theme -->
+  <link rel="stylesheet" href="css/theme/bekk.css" id="theme">
+
+  <!-- Custom css -->
+  <link rel="stylesheet" href="css/custom.css" id="custom">
+
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+    document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+
+  </script>
+
+  <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+  <div class="reveal">
+
+    <div class="slides">
+
+    <section data-background="img/time_for_change.jpg"></section>
+
+    <section>
+       <h1>Stop All IT-projects!</h1>
+       <p>DevOpsNorway Meetup May 25th 2016</p>
+       <img width="252" height="235" src="img/me_bart.png" alt="Stein Inge Morisbak">
+       <p><a href="https://twitter.com/steinim">@steinim</a></p>
+       <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+    </section>
+
+    <section>
+      <h2>What's a project?</h2>
+    </section>
+
+    <section>
+        <blockquote cite="http://www.pmi.org/About-Us/About-Us-What-is-Project-Management.aspx"> &ldquo;A project is a <div style="color: #35bdb2;
+      display:inline;">temporary</div> endeavor undertaken to create a unique product, service or result ... it has a <div style="color: #35bdb2;
+      display:inline;">defined beginning and end in time</div>, and therefore <div style="color: #35bdb2; display:inline;">defined scope and resources</div> ...
+      a project team often includes <div style="color: #35bdb2; display:inline;">people who don’t usually work together</div> ...&rdquo;</blockquote>
+
+       <footer style="font-size: 0.5em;"><a href="http://www.pmi.org/About-Us/About-Us-What-is-Project-Management.aspx">Project Management Institute, 2004</a></footer>
+    </section>
+
+      <section>
+        <h1 style="font-size: 300px;">$</h1>
+        <aside class="notes">
+          So you get a lot of money
+       </aside>
+    </section>
+    
+    <section>
+      <img src="img/scope.png">
+        <aside class="notes">
+          Set your scope
+       </aside>
+    </section>
+
+    <section data-background="img/people.png">
+        <aside class="notes">
+          Staff up with peolple who haven't worked together before.
+       </aside>
+    </section>
+
+    <section data-background="img/Start-or-Stop.jpg">
+        <aside class="notes">
+          Press start, and you have already decided when to press stop. Because then all the money is spent. Probably more money than you expected.
+       </aside>
+    </section>
+
+    <section>
+      <img src="img/prosjektveiviseren.png">
+      <aside class="notes">
+          And then you start
+          You have already created a concept, a whole bunch of requirements, analysis and design.
+          And then...Do Agile!
+          Then it's time for a test phase, integration- and acceptance. Probably load, stress, scaling, security etc. etc.
+          And finally it's time to hand everything over to operations or the line.
+          And theeeeen you can get some value from what ever you've been creating.
+          The ability to produce value early and continuously is gone, and when the project is done chances are that you have failed miserably on creating value.
+      </aside>
+    </section>
+
+    <section>
+      <h2>But my project is Agile!</h2>
+      <aside class="notes">
+OK, some have improved.
+Many arganizations use Agile methodologies when they run their projects.
+They have more slack in their scope and it is possible to change direction as you go.
+Very well, but it's not enough.
+      </aside>
+    </section>
+
+    <section>
+      <h2>Agile is not enough!</h2>
+      <aside class="notes">
+The problem doesn't sit in Agile as such, but outside.
+With Agile you can produce working software (in theory) fast and continuously.
+But everything outside of your project has to be able to receive what is produced at the same pace.
+The line must be able to absorb what is produced. E. g. Operations.
+How the software works in production after it's been handed over is unfortunately seldomn the Agile teams' responsibility.
+      </aside>
+    </section>
+
+    <section>
+      <blockquote cite="https://queue.acm.org/detail.cfm?id=1142065"> &ldquo;You build it, you run it&rdquo;</blockquote>
+      <footer style="font-size: 0.5em;"><a href="https://queue.acm.org/detail.cfm?id=1142065">Werner Vogels (CTO i Amazon) </a></footer>
+      <aside class="notes">
+You build it, you run it!
+If you use the line to create products or services instead you can let the team take responsibility from day one.
+You push maintenance and operations to the very start of the development.
+They who create the software must be responsible from conception to when the software dies.
+      </aside>
+    </section>
+
+    <section>
+      <blockquote cite="http://www.meetup.com/DevOps-Norway/events/112627352/"> DevOps = &ldquo;Developers carry beepers&rdquo;</blockquote>
+      <footer style="font-size: 0.5em;"><a href="http://www.meetup.com/DevOps-Norway/events/112627352/">Kent Beck defines DevOps at the DevOps Norway Meetup in 2013</a></footer>
+      <aside class="notes">
+Kent Becks' definition of DevOps is great. Developers carry beepers.
+It's those who have created the crap that should be on call and get phoned up in the middle of the night if something happens.
+You can't distinguish between development and operations.
+The responisbility has to be on the same team.
+Then you have the incentives to create high quality software.
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/worked-fine-in-dev.jpg">
+      <aside class="notes">
+          You have all probably seen this.
+          It's in almost all DevOps presentations.
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/prosjekt_ferdig_linja_naa.jpg">
+      <aside class="notes">
+          This is equally true.
+      </aside>
+    </section>
+
+    <section>
+      <h2>Challenges with project as a way of doing work</h2>
+      <ul>
+        <li class="fragment"><span class="fragment highlight-grey">it's hard to produce value continuously</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">conflict between project goal and organizational goals</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">large gap between the project and the line</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">short-term financing</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">challenges with handovers and knowledge transfer</span></li>
+        <li class="fragment">difficult to scale</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Brooks' law</h2>
+      <img src="img/mythical_man_month.jpg" style="float: left;">
+      <blockquote cite="https://en.wikipedia.org/wiki/Brooks%E2%80%99_law" style="float: right;">Adding manpower to a late<br>software project makes it later</blockquote>
+      <footer style="float: right; font-size: 0.5em;"><a href="https://en.wikipedia.org/wiki/Brooks%E2%80%99_law">Fred Brooks, The Mythical Man-Month, 1975</a></footer>
+      <aside class="notes">
+          This is true for projects. You can't simply increase the budget and hire more people.
+          With continuous product development in _the line_ "to late" is never a thing. There you can adjust staffing continuously based on prioritization and business needs.
+      </aside>
+    </section>
+
+    <section>
+      <h2>Conway's law</h2>
+      <img src="img/conway.png" style="float: left;">
+      <blockquote cite="https://en.wikipedia.org/wiki/Conway%27s_law" style="float: right;">
+        Organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations
+      </blockquote>
+      <footer style="float: right; font-size: 0.5em;"><a href="http://www.melconway.com/research/committees.html">M. Conway, How Do Committees Invent, 1968</a></footer>
+      <aside class="notes">
+          I will talk a little bit about organization.
+          Melvin Conway said in 1968 that your systems will mirror your organization.
+          This is probably why we have so many monoliths everywhere.
+          Projects create monoliths becaus they are separate from the rest of the organization.
+      </aside>
+    </section>
+
+    <section>
+      <h2>Demystifying Conway's Law</h2>
+      <img src="img/sam_newman.jpeg" style="float: left;">
+      <blockquote cite="https://www.thoughtworks.com/insights/blog/demystifying-conways-law" style="float: right;">Microservices allow organizations to align the architecture of their systems to the structure of their teams.</blockquote>
+      <footer style="font-size: 0.5em;"><a href="https://www.thoughtworks.com/insights/blog/demystifying-conways-law">Sam Newman, Demystifying Conway’s Law, 2015</a></footer>
+      <aside class="notes">
+        A better alternative is to create feature teams aligned with business areas.
+        Netflix and Amazon has an organization where small teams have responsibility for a small part of the over all system.
+        The same with Spotify.
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/spotify_teams.png">
+      <aside class="notes">
+        Henrik Knibergs keynote from Smidig 2014 explained how they keep their teams as autonomous as possible.
+        Autonomouse teams are teams who can solve all tasks which is necessary to develop a product without interference from outside or the need to contact people external to the team.
+        The different teams have responsibility for the entire lifecycle of their product.
+        They are independent from each other so they can be pushed to production faster.
+        This is not a project organisation. It is line work!
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/spotify_containers.png">
+      <aside class="notes">
+        Every team work on their business area.
+        Spotify used to be a monolith, but now each team has the responsibility for the player, the playlist, artist information, mobile app and so on.
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/ultimate_team.png">
+      <aside class="notes">
+        The wholy trinity. The modern IT-organization.
+        Kunden, brukerne og et kryssfunksjonelt team som kan løse alt som trengs for å utvikle, drifte og forvalte applikasjoner.
+      </aside>
+    </section>
+
+    <section>
+      <img src="img/scaling.png">
+      <aside class="notes">
+        Og det skalerer utrolig bra.
+        Autonome team som fokuserer på sin del. Hvert team kan løse alle oppgaver som skal til for å videreutvikle sitt forretningsområde uten å ha noen avhengigheter til andre utenfor teamet.
+        Og så har du virksomhetens visjon som er som en ledestjerne for alt virksomheten foretar seg.
+      </aside>
+    </section>
+
+
+    <section>
+      <h2>Alternativet</h2>
+    </section>
+
+    <section>
+      <h2>Kontinuerlige produktutviklingsløp i linja.</h2>
+    </section>
+
+    <section>
+      <h2>Kontinuerlig ...</h2>
+      <ul>
+        <li class="fragment"><span class="fragment highlight-grey">realisering av gevinster</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">justering av initiativene opp mot virksomhetens mål</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">involvering av hele organisasjonen</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">finansiering</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">kommunikasjon</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">kunnskapsbygging istedenfor kunnskapsoverlevering</span></li>
+        <li class="fragment">skalering ved omprioritering av finansiering</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Hva sier forskning?</h2>
+      <br/>
+      <footer style="font-size: 0.5em; line-height: 1.5;"><a href="https://www.simula.no/publications/survey-characteristics-projects-success-delivering-client-benefits">A Survey on the Characteristics of Projects with Success in Delivering Client Benefits</a>
+      <br/>Magne Jørgensen, Simula Research Laboratory 2015</footer>
+    </section>
+
+    <section>
+      <blockquote cite="https://www.simula.no/publications/survey-characteristics-projects-success-delivering-client-benefits">
+      <div style="color: #35bdb2; display:inline;">Fixed-price</div> projects ... were, in general, <div style="color: #35bdb2; display:inline;">less successful</div> than other projects.
+      </blockquote>
+      <aside class="notes">
+        Fastprisprosjekter har generelt mindre suksess enn andre prosjekter.
+      </aside>
+    </section>
+
+    <section>
+      <blockquote cite="https://www.simula.no/publications/survey-characteristics-projects-success-delivering-client-benefits">
+         Success in terms of client benefit was only <div style="color: #35bdb2; display:inline;">weakly correlated with</div> success in terms of <div style="color: #35bdb2; display:inline;">&ldquo;on time&rdquo; and &ldquo;on budget&rdquo;</div>
+      </blockquote>
+      <aside class="notes">o
+        På tid og på budsjett har lite å si for om det blir en suksess eller ikke.
+      </aside>
+    </section>
+
+    <section>
+      <blockquote cite="https://www.simula.no/publications/survey-characteristics-projects-success-delivering-client-benefits">
+      <div style="color: #35bdb2; display:inline;">Benefit management</div> planning before the project started and benefit management activities during project execution were <div style="color: #35bdb2; display:inline;">connected with success</div> on delivering client benefits
+      </blockquote>
+      <aside class="notes">
+        Det å måle verdi kontinuerlig gjenom prosjektets levetid er veldig viktig.
+      </aside>
+    </section>
+
+    <section>
+      <blockquote cite="https://www.simula.no/publications/survey-characteristics-projects-success-delivering-client-benefits">
+         Agile projects were, in general, more successful than other projects, <div class="fragment" style="color: #35bdb2; display:inline;">but</div>
+        <div class="fragment">agile projects <div style="color: #35bdb2; display:inline;">without <u>flexible scope</u></div> to reflect changed user needs and learning,</div>
+        <div class="fragment">or <div style="color: #35bdb2; display:inline;">without <u>frequent delivery</u></div> to the client,</div>
+        <div class="fragment">had less than average success</div>
+      </blockquote>
+    </section>
+
+    <section>
+      <h2>Kjennetegn ved suksessfulle smidige &ldquo;prosjekter&rdquo;</h2>
+      <ul>
+        <li class="fragment"><span class="fragment highlight-grey">løpende timer &ndash; ikke fastpris</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">på tid og budsjett er mindre viktig</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">måler gevinstrealisering kontinuerlig</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">fleksibelt scope</span></li>
+        <li class="fragment"><span class="fragment highlight-grey">hyppige leveranser</span></li>
+      </ul>
+      <p><div class="fragment">&ldquo;Smidig&rdquo; uten disse egenskapene har mindre suksess enn vannfall.</div></p>
+    </section>
+      
+    <section>
+      <h2>Høres ut som noe som er bedre egnet i linja spør du meg!</h2>
+    </section>
+
+    <section>
+      <blockquote> &ldquo;Å jobbe i linja er når <div style="color: #35bdb2;
+      display:inline;">folk som kjenner hverandre</div> jobber sammen i <div style="color: #35bdb2; display:inline;">autonome team</div> som skaper unike produkter eller tjenester <div style="color: #35bdb2;
+      display:inline;">kontinuerlig</div>, og tar <div style="color: #35bdb2; display:inline;">ansvar for hele livssyklusen til systemene</div> de lager, og
+      <div style="color: #35bdb2; display:inline;">måler verdien</div> opp mot <div style="color: #35bdb2; display:inline;">forretningens visjon</div> ...&rdquo;</blockquote>
+      <footer style="font-size: 0.5em;"><a href="http://steinim.github.io/slides/slutt-med-it-prosjekter">Stein Inge Morisbak, 2015</a></footer>
+    </section>
+
+    <section data-background="img/a_new_hope.png">
+      <h2>A NEW HOPE?</h2>
+    </section>
+
+    <section>
+      <img src="img/difi_tilskotsordning.png">
+      <aside class="notes">
+        Difi har lansert en ny finansieringsordning for små og mellomstore digitaliseringsprosjekter som skal bidra til å øke digitaliseringstempoet i offentlig sektor og gi reell gevinstrealisering.
+        Så kan vi jo ihvertfall håpe at disse porsjektene blir mindre og havner i produksjon og i linja  raskere.
+      </aside>
+    </section>
+
+    <section data-background="img/the_dark_side.jpg">
+      <h2 style="background: #222;">YOU CANNOT RESIST THE POWER OF THE DARK SIDE</h2>
+      <br/><br/>
+      <h2 style="background: #222;">IT IS YOUR DESTINY</h2>
+      <aside class="notes">Men, kan vi tro på endring? Det virker ikke som om offentlig sektor har lært veldig mye. Ihvertfall ikke NAV!</aside>
+    </section>
+
+    <section>
+      <img src="img/nav.png">
+      <aside class="notes">For nå skal de starte med NAV Prosjekt 2 som har en kostnadsramme på 1,3 milliarder. Blir spennende å se om de kan dele opp den elefanten. Og hvordan vet de i det hele tatt at det koster 1,3 milliarder??!?!??!!!</aside>
+    </section>
+
+    <section>
+      <img style="background: white" src="img/devopsdays_oslo.png"/>
+      <h2>5. og 6. september 2016</h2>
+    </section>
+
+    <section>
+      <h1>Thank you!</h1>
+      <img width="252" height="235" src="img/me_bart.png" alt="Stein Inge Morisbak"/>
+      <p><a href="https://twitter.com/steinim">@steinim</a></p>
+      <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+    </section>
+
+</div>
+</div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls: false,
+          progress: false,
+          history: false,
+          center: true,
+          width: 1100,
+
+          theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+          transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+          // Optional libraries used to extend on reveal.js
+          dependencies: [{
+              src: 'lib/js/classList.js',
+              condition: function() {
+                return !document.body.classList;
+              }
+            }, {
+              src: 'plugin/markdown/marked.js',
+              condition: function() {
+                return !!document.querySelector('[data-markdown]');
+              }
+            }, {
+              src: 'plugin/markdown/markdown.js',
+              condition: function() {
+                return !!document.querySelector('[data-markdown]');
+              }
+            }, {
+              src: 'plugin/highlight/highlight.js',
+              async: true,
+              callback: function() {
+                hljs.initHighlightingOnLoad();
+              }
+            }, {
+              src: 'plugin/zoom-js/zoom.js',
+              async: true,
+              condition: function() {
+                return !!document.body.classList;
+              }
+            }, {
+              src: 'plugin/notes/notes.js',
+              async: true,
+              condition: function() {
+                return !!document.body.classList;
+              }
+            }
+            // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+          ]
+        });
+
+    </script>
+</body>
+
+</html>
