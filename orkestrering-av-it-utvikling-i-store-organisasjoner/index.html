@@ -73,7 +73,7 @@
         <li>Den fikk en del oppmerksomhet og startet en del gode diskusjoner.
         <li>Det er mange gode grunner for å slutte med IT-prosjekter, men den jeg skal snakke om i dag er
         <li>hvordan man kan få bukt med all koordinering, synkronisering og orkestrering som må håndteres.
-        <li>Ikke bare i IT-prosjekter, men også i organisasjoner generelt over en viss størrelse.
+        <li>Ikke bare i IT-prosjekter, men også i store organisasjoner generelt.
       </ul>
       </aside>
     </section>
@@ -120,8 +120,8 @@
     <section>
         <img style="background: #222; border: 0px; width: 900px;" src="img/prince2_tube_map_v2.3.png">
         <aside class="notes">
-          Prince2 har mange verktøy for prosjektledelse, men ikke <b>ett</b> sted er IT-arkitektur beskrevet som et virkemiddel for omorganisering.<br><br>
-          Alle virkemidlene handler om prosesser, sjekkpunkter, dokumenter og planer.
+          Prince2 har mange verktøy for prosjektledelse, men ikke <b>ett</b> sted er IT-arkitektur beskrevet som et virkemiddel.<br><br>
+          Alle virkemidlene handler om prosesser, sjekkpunkter, milepæler, dokumenter, overleveringer, og planer.
         </aside>
     </section>
 
@@ -149,6 +149,7 @@
         <aside class="notes">
           Etter min mening har det vært et alt for stort fokus på personer og samspill at de tekniske forutsetningene for å lykkes med Smidig blir helt borte.<br><br>
           Alt fokus blir også med Smidig fokusert rundt å bekjempe avhengigheter med *prosess*.
+          Smidig funker derfor bra i småskala, men blir det stort må du se andre steder for å finne ut hvordan det skal skalere.
         </aside>
     </section>
 
@@ -158,7 +159,7 @@
           Den store synderen er alt fokuset på kommunikasjon.<br><br>
           Kommunikasjon på tvers av team ender fort opp med misforståelser, uenigheter, tidkrevende møter og omfattende dokumentasjon.<br><br>
           Man bør derfor se etter løsninger hvor teamene er mindre avhengige av å måtte kommunisere med andre team.
-          Teamene bør være mest mulig autonome.  
+          Teamene bør være mest mulig autonome.
         </aside>
     </section>
 
@@ -168,7 +169,7 @@
       <footer style="font-size: 0.5em;"><a href="https://radar.bekk.no/tech2016/prosess-og-kvalitet/autonome-team">BEKK Radar 2016</a></footer>
       <aside class="notes">
         Autonome team er team som kan løse alle oppgaver som skal til for å videreutvikle tjenester uten ekstern innblanding eller behov for å henvende seg til utenforstående personer.<br><br>
-        Får du til fullstendig autonomitet, så vil tjenesteutvikling foregå raskest mulig.
+        Får du til fullstendig autonomitet, så vil tjenesteutvikling per team foregå raskest mulig.
       </aside>
     </section>
 
@@ -211,7 +212,7 @@
           Hvorfor gjorde han så det? Hva betyr det?<br><br>
           Smidige team kommuniserer veldig tett internt.<br><br>
           Men med en gang de må synkronisere seg med andre team blir det problemer.<br><br>
-          Derfor lager man IT-arkitekturen på en sånn måte at det å legge til ny funksjonalitet påvirker én tjeneste og ett team.<br><br>
+          Derfor bør man lage IT-arkitekturen på en sånn måte at det å legge til ny funksjonalitet påvirker én tjeneste og ett team.<br><br>
           Data og funksjonalitet implementeres der hvor det i et forretningsperspektiv hører best hjemme.<br><br>
           All kommunikasjon mellom systemer foregår over API-er. Det gjør at hvert team kan kjøre full fart uten avhengigheter til andre team.
         </aside>
@@ -282,6 +283,9 @@
       <h2>En teknisk løsning på en organisatorisk utfordring</h2>
        <footer style="font-size: 0.5em;">Eksemplet er hentet fra <a href="http://blog.jessitron.com/2016/05/tradeoffs-in-coordination-among-teams.html">"Tradeoffs in Coordination Among Teams"</a> av Jessica Kerr</footer>
       <aside class="notes">
+        I store organisasjoner må du derfor se på IT-arkitektur for å bli mer effektiv.<br><br>
+        Det holder ikke med Smidig.<br><br>
+        Smidig skalerer dårlig uten å gjøre noe med de teknologiske forutsetningene.
       </aside>
     </section>
 
@@ -289,28 +293,40 @@
         <h2>Ett team med et stort potensiale</h2>
         <img src="img/arrow.png">
         <aside class="notes">
-       </aside>
+        La oss si at vi har ett team på 2-7 folk.<br>
+        Den tomme pilen representerer potensialet eller kapasiteten til teamet.
+        </aside>
     </section>
 
     <section>
         <h2>Full fart! &#9786;</h2>
         <img src="img/filled-arrow.png">
         <aside class="notes">
-       </aside>
+        La oss is at vi skal lage en byggesøknads-applikasjon.<br><br>
+        Teamet kjører full fart og bygger en skjemaløsning som lagrer søknader i en database.
+        </aside>
     </section>
 
     <section>
         <h2>Skalering til to team som jobber på samme system.</h2>
         <img src="img/two-arrows-coordinating.png">
         <aside class="notes">
+        Etter en stund så trenger de et system for saksbehandlere som skal behandle søknadene så de danner to Smidig-team.<br><br>
+        Vi bruker fortsatt samme database og bygger en saksbehandlerapplikasjon på den samme plattformen.<br><br>
+        Derfor må de to teamene samarbeide. Flere folk fører til mer kommunikasjonsoverhead.
        </aside>
     </section>
 
     <section>
-        <h2>Businessen går bra! &#9786;</h2>
+        <h2>Vi må skalere mer!</h2>
         <img src="img/four-arrows-coordinating.png">
         <h2>... men fremdriften er dårlig &#9785;</h2>
         <aside class="notes">
+        Så skal det integreres mot kartverket, det skal lastes opp tegninger, og det skal skilles mellom bedrifter og privatpersoner.<br><br>
+        Nå begynner det å bli et salig rot.<br><br>
+        Hvis bedriftsteamet endrer databasen ødelegger det for privat-teamet.<br><br>
+        Oppgraderinger av rammeverk og systemer kan ikke gjøres fordi det vil ødelegge for de andre<br><br>
+        Konsensus og koordinering begynner å bli uoverkommelig og utviklerne har ikke oversikt over systemet som et hele lenger.<br><br>
        </aside>
     </section>
 
@@ -327,13 +343,24 @@
     <section>
         <img src="img/api.jpg">
         <aside class="notes">
-       </aside>
+        Noe må gjøres så vi splitter opp monolitten i deler med:<br><br>
+        <ul>
+          <li>Hver sin database og dupliserer data om det er nødvendig.
+          <li>Hver sin applikasjon med veldefinerte API-er for kommunikasjon mellom de
+        </ul>
+        </aside>
     </section>
 
     <section>
         <h2>Autonome team med mye ansvar (DevOps)</h2>
         <img src="img/wide-arrows-coordinating.png">
         <aside class="notes">
+        Dette er en annen type overhead. Den er teknisk fordi alle teamene må vedlikeholde hvert sitt system.<br><br>
+        Derfor er pilene tykkere. Farten er omtrent den samme som før.<br><br>
+        Forskjellen er at det skalerer. Vi kan legge til flere team uten at kommunikasjon blir en hindring igjen.<br><br>
+        Det er ingen koordinering av releaser og alle kjører på i sitt eget tempo.<br><br>
+        Merk at retning og overordnet visjon er et forretningsanliggende, så der må det være konsensus.
+<!--
         <ul>
           <li>Separate databaser
           <li>En annen type overhead: mer teknisk, ikke mellommenneskelig.
@@ -343,6 +370,7 @@
           <li>Releaser trenger ikke koordineres.
           <li>Pilene er tykkere fordi teamene må håndtere mer.
         </ul>
+-->
         </aside>
     </section>
 
@@ -350,7 +378,12 @@
         <h2>Ingen vits i å finne opp hjulet på nytt (&ldquo;DevOps&rdquo;-teams)</h2>
         <img src="img/organized-arrows.png">
         <aside class="notes">
-       </aside>
+        Hvis alle teamene gjør alt forskjellig og bruker helt forskjellige teknologier så forblir pilene tykke.<br><br>
+        Det *kan* være mer effektivt å ha egne team som er tjenesteytere til de andre teamene.<br><br>
+        For eksempel å lage deployskript, automatisere opprettelse av miljøer, supportere velprøvde databaser osv.<br><br>
+        Merk at det er fremdeles separate databaser og separate applikasjoner.
+        Dette fungerer bare om infrastruktur-teamene er som kundeservice.
+        </aside>
     </section>
 
     <section>
@@ -368,7 +401,11 @@
         <h2>NoOps</h2>
         <img src="img/cloud-arrows-coordinating.png">
         <aside class="notes">
-       </aside>
+        NoOps er et konsept hvor du bruker tjenester hos en public cloud leverandør.<br><br>
+        Da trenger du ikke å bekymre deg over drift selv. Det er overlatt til verdens beste driftere<br><br>
+        Det er naivt å tro at din egen driftsavdeling kan konkurrere med de store public cloud leverandørene.<br><br>
+        Og i den verdenen er *alt* API-er så derfor er det veldig lett å bruke disse tjenestene.
+        </aside>
     </section>
 
     <section>
