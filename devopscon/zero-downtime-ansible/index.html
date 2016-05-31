@@ -76,7 +76,7 @@
         <aside class="notes"> </aside>
         </section>
         <section>
-          <h2>Describe what to do</h2>
+          <h2>Describe what to do (imperative)</h2>
           <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 #!/bin/bash
 
@@ -97,7 +97,7 @@ fi
           </code></pre>
         </section>
         <section>
-            <h2>Describe state</h2>
+            <h2>Describe state (declarative)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: ensure installed vim
   apt: pkg=vim state=installed
@@ -112,7 +112,7 @@ fi
             <aside class="notes"> </aside>
             </section>
         </section>
-<!--        <section>
+        <section>
         <h2>Pros</h2>
         <ul>
           <li class="fragment">In source control.</li>
@@ -139,7 +139,7 @@ fi
           </li>
         </ul>
         <aside class="notes"> </aside>
-        </section>-->
+        </section>
 
             <section>
             <h2>Ansible</h2>
@@ -166,7 +166,7 @@ vagrant up
             </section>
             <section>
             <h2>Layout</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 500px;">
 ├── ansible.cfg
 ├── hosts
 ├── site.yml
@@ -183,6 +183,8 @@ vagrant up
 │   │   ├── handlers
 │   │   │   └── main.yml
 │   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── vars
 │   │   │   └── main.yml
             </code></pre>
             <aside class="notes">Explain all folders and files.</aside>
