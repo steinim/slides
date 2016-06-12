@@ -235,6 +235,9 @@ ansible -m setup app1.local
             </section>
             <section>
             <h2>Task1: Install and configure software</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout start
+            </code></pre>
             <ul>
               <li>Modify roles/common/tasks/apt.yml.</li>
               <li>Install Vim.</li>
@@ -245,38 +248,22 @@ Help:
 <a href="http://docs.ansible.com/apt_module.html">http://docs.ansible.com/apt_module.html</a>
 <a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a>
             </pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git checkout task1_help
+            </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
             <h2>Task1: Solution</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-- name: Ensure installed vim
-  apt:
-    pkg=vim
-    state=present
-    update_cache=no
-  tags:
-    - vim
-
-- name: Set filetype indent off
-  lineinfile:
-    dest=/etc/vim/vimrc
-    line='filetype indent off'
-    state=present
-  tags:
-    - vim
-            </code></pre>
-            </section>
-            <section>
-            <h2>Task1: Run!</h2>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+git diff HEAD origin/task1
+git checkout task1 # or keep your own solution
 ansible-playbook site.yml --tags vim
             </code></pre>
             <pre style="font-size: 18px; margin-top: 40px;">
 ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre>
             <aside class="notes"> </aside>
             </section>
-
             <section>
             <h2>Progress</h2>
             <ul>
