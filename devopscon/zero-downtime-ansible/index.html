@@ -50,9 +50,14 @@
         </section>
 
         <section>
-        <h2>Slides & Repo</h2>
+        <h2>Slides</h2>
         <p><a href="http://steinim.github.io/slides/devopscon/zero-downtime-ansible">http://steinim.github.io/slides/devopscon/zero-downtime-ansible</a></p>
+        
+         <h2>Source code</h2>
         <p><a href="https://github.com/steinim/zero-downtime-ansible">git@github.com:steinim/zero-downtime-ansible.git</a></p>
+
+        <h2>Full tutorial</h2>
+        <p><a href="http://steinim.github.io/slides/devopscon/zero-downtime-ansible">http://steinim.github.io/slides/devopscon/zero-downtime-ansible/tutorial.html</a></p>
         <aside class="notes"> </aside>
         </section>
 
@@ -268,7 +273,7 @@ Help:
             </code></pre>
             </section>
             <section>
-            <h2>Task1: Run!</h2>
+            <h2>Run it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --tags vim
             </code></pre>
@@ -314,27 +319,82 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
 Help:
 <a href="http://docs.ansible.com/group_module.html">http://docs.ansible.com/group_module.html</a>
 <a href="http://docs.ansible.com/user_module.html">http://docs.ansible.com/user_module.html</a>
-<a href="http://docs.ansible.com/file_module.html">http://docs.ansible.com/file_module.html</a> (copy ssh-key)
+<a href="http://docs.ansible.com/file_module.html">http://docs.ansible.com/file_module.html</a> (create a directory)
 <a href="http://docs.ansible.com/lineinfile_module.html">http://docs.ansible.com/lineinfile_module.html</a> (.ssh/authorized_keys)
 <a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
             </pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git checkout task2_help
-            </code></pre>
             <aside class="notes"> </aside>
             </section>
             <section>
-            <h2>Task2: Solution</h2>
+            <h2>Define some variables</h2>
+            <pre style="font-size: 18px; margin-top: 40px;"># group_vars/appservers</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task2
-git checkout task2 # or keep your own solution
+user: devops
+group: devops
+user_name: "Devops app user"
+
+            </code></pre>
+            </section>
+            <section>
+            <h2>Task2: Solution</h2>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/users/tasks/main.yml</pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+- name: Create group
+  group: name={{ group }} state=present
+  tags:
+    - users
+
+- name: Create user
+  user:
+    name={{ user }}
+    comment="{{ user_name }}"
+    group={{ group }}
+    createhome=yes
+    home=/home/{{ user }}
+    shell=/bin/bash
+    state=present
+  tags:
+    - users
+
+- name: Ensure ssh directory exists for user
+  file:
+    dest=/home/{{ user }}/.ssh
+    owner={{ user }}
+    group={{ group }}
+    state=directory
+    mode=0700
+  tags:
+    - users
+
+- name: Ensure public key is in authorized_keys
+  lineinfile:
+    dest=/home/{{ user }}/.ssh/authorized_keys
+    state=present
+    line="{{ lookup('file','~/.ssh/id_rsa.pub') }}"
+    insertafter=EOF
+    create=yes
+    owner={{ user }}
+    group={{ group }}
+    mode=600
+    regexp=stein.inge.morisbak@BEKK.no$
+  tags:
+    - users
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit appservers --skip-tags apt,vim,java
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ssh devops@app1.local
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -349,7 +409,6 @@ ssh devops@app1.local
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/postgresql
 ├── files
-│   ├── ACCC4CF8.asc
 │   └── postgresql.conf
 ├── handlers
 │   └── main.yml
@@ -359,26 +418,104 @@ roles/postgresql
 └── templates
     └── pg_hba.conf.j2
             </code></pre>
-            <pre>Use variables (group_vars/all and/or group_vars/dbservers).</pre>
+            <pre>Use variables (group_vars/dbservers).</pre>
+            <pre>Template: roles/postgresql/templates/pg_hba.conf.j2</pre>
             <pre>Use handler to restart postgresql upon notification</pre>
-            <pre>Template: git checkout master -- roles/postgresql/templates/pg_hba.conf.j2</pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/template_module.html">http://docs.ansible.com/template_module.html</a> (pg_hba.conf.j2)
 <a href="http://docs.ansible.com/postgresql_user_module.html">http://docs.ansible.com/postgresql_user_module.html</a>
 <a href="http://docs.ansible.com/postgresql_db_module.html">http://docs.ansible.com/postgresql_db_module.html</a>
 <a href="http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change">http://docs.ansible.com/playbooks_intro.html#handlers-running-operations-on-change</a>
-<a href="http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables">http://docs.ansible.com/playbooks_best_practices.html#group-and-host-variables</a>
             </pre>
             <aside class="notes"> </aside>
             </section>
             <section>
-            <h2>Task3: Solution</h2>
+            <h2>Define some variables</h2>
+            <pre style="font-size: 18px; margin-top: 40px;"># group_vars/dbservers</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task3
-git checkout task3 # or keep your own solution
+postgresql:
+  version: 9.4
+  repo: 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'
+  user: postgres
+  group: postgres
+  data_dir: /var/lib/pgsql/data
+  address: 192.168.101.0/24
+
+db:
+  name: devops
+  user: devops
+  password: devops123
+            </code></pre>
+            </section>
+            <section>
+            <h2>Create a template</h2>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/templates/pg_hba.conf.j2</pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+# TYPE  DATABASE        USER            ADDRESS                         METHOD
+local   all             all                                             trust
+host    {{ db.name }}   {{ db.user }}   {{ postgresql.address }}        md5
+            </code></pre>
+            </section>
+            <section>
+            <h2>Create a handler</h2>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/handlers/main.yml</pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+- name: Restart postgresql
+  service: name=postgresql state=restarted
+            </code></pre>
+            </section>
+            <section>
+            <h2>Task3: Solution</h2>
+<pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/tasks/postgresql.yml</pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+- name: Install Postgresql and dependencies
+  apt: pkg={{ item }} state=installed update_cache=yes
+  with_items:
+    - postgresql-{{ postgresql.version }}
+    - python-psycopg2
+  tags:
+    - pg_install
+
+- name: Install postgresql.conf
+  copy: src=postgresql.conf
+        dest=/etc/postgresql/{{ postgresql.version }}/main/postgresql.conf
+        owner={{ postgresql.user }}
+        group={{ postgresql.group }}
+  notify:
+    - Restart postgresql
+  tags:
+    - pg_install
+
+- name: Install pg_hba.conf
+  template: src=pg_hba.conf.j2
+            dest=/etc/postgresql/{{ postgresql.version }}/main/pg_hba.conf
+            owner={{ postgresql.user }}
+            group={{ postgresql.group }}
+  notify:
+    - Restart postgresql
+  tags:
+    - pg_install
+
+- name: Create database
+  postgresql_db: name={{ db.name }}
+  become_user: postgres
+  tags:
+    - pg_install
+
+- name: Create db user
+  postgresql_user: db={{ db.name }} name={{ db.user }} password={{ db.password }}
+  become_user: postgres
+  tags:
+    - pg_install
+            </code></pre>
+            </section>
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit dbservers --tags pg_install
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
 vagrant@db:~$ psql -d devops -U devops -W
@@ -408,7 +545,7 @@ roles/app
     └── config.properties.j2
             </code></pre>
             <pre>NB! Use variables (./hosts).</pre>
-            <pre>Set 'serial: 1' for appservers in site.yml.</pre>
+            <pre>Set 'serial: 1' for appservers in the playbook (site.yml).</pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/service_module.html">http://docs.ansible.com/service_module.html</a>
@@ -417,13 +554,12 @@ Help:
             </section>
 
             <section>
-            <h2>Task4: Solution</h2>
-            Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
+            <h2>Run it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task4
-git checkout task4 # or keep your own solution
 ansible-playbook site.yml --limit appservers --tags deploy
             </code></pre>
+            <h2>Try it!</h2>
+Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <aside class="notes"> </aside>
             </section>
             <section>
@@ -469,21 +605,33 @@ roles/db
 Help:
 <a href="http://docs.ansible.com/command_module.html">http://docs.ansible.com/command_module.html</a>
 </pre>
-            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 0px;">
-psql -d {{ db.name }} -q -f /tmp/migrate_db.sql
-sudo_user: postgres
-            </code></pre>
             <aside class="notes"> </aside>
             </section>
 
             <section>
             <h2>Task5: Solution</h2>
-            Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task5
-git checkout task5 # or keep your own solution
+- name: Copy db migration script
+  copy: src=migrate_db.sql dest=/tmp/migrate_db.sql
+  become_user: postgres
+  tags:
+    - deploy
+
+- name: Run db migration script
+  command: psql -d {{ db.name }} -q -f /tmp/migrate_db.sql
+  become_user: postgres
+  tags:
+    - deploy
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit dbservers --tags deploy
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
 vagrant@db:~$ psql -d devops -U devops -W
@@ -491,8 +639,10 @@ devops=&gt; \dt
 devops=&gt; select * from hello;
 devops=&gt; \q
             </code></pre>
+Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -527,14 +677,38 @@ Help:
 
             <section>
             <h2>Task6: Solution</h2>
-Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-git diff HEAD origin/task6
-git checkout task6 # or keep your own solution
-ansible-playbook site.yml --limit proxies --tags nginx
+upstream backend  {
+  {% for appserver in groups.appservers %}
+  server {{ appserver }}:{{ app_port }} fail_timeout=1s;
+  {% endfor %}
+}
+ 
+server {
+  listen 80;
+  server_name _;
+  access_log /var/log/nginx/devops-access.log;
+  location / {
+    proxy_pass  http://backend;
+    proxy_redirect          off;
+    proxy_next_upstream     error timeout invalid_header http_500 http_502;
+    proxy_connect_timeout   2;
+  }
+}
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook site.yml --limit proxies --tags nginx
+            </code></pre>
+            <h2>Try it!</h2>
+Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
+            <aside class="notes"> </aside>
+            </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
