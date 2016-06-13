@@ -173,7 +173,7 @@ vagrant up
             </aside>
             </section>
             <section>
-            <h2>Layout</h2>
+            <h2>Layout (convention over configuration)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 500px;">
 ├── ansible.cfg
 ├── hosts
@@ -297,11 +297,11 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
 <li>Ansible uses variables (a lot!).</li>
 <li><a href="http://docs.ansible.com/playbooks_variables.html">http://docs.ansible.com/playbooks_variables.html</a>
 <ul>
-  <li>Inventory</li>
+  <li>Inventory (./hosts)</li>
   <li>group_vars and host_vars</li>
-  <li>Playbook</li>
-  <li>Facts</li>
-  <li>Command line</li>
+  <li>Playbook (site.yml)</li>
+  <li>Facts (local or server)</li>
+  <li>Command line (as arguments)</li>
 </ul>
 <li>Access variables from playbooks: "{{ variable }}"</li>
 </ul>
