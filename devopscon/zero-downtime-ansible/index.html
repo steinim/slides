@@ -242,7 +242,7 @@ ansible -m setup app1.local
             <section>
             <h2>Task1: Install and configure software</h2>
             <ul>
-              <li>Modify roles/common/tasks/apt.yml.</li>
+              <li>Modify roles/<strong>common</strong>/tasks/apt.yml.</li>
               <li>Install Vim.</li>
               <li>Insert the line 'filetype indent off' in /etc/vim/vimrc</li>
             </ul>
@@ -311,7 +311,7 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
             <section>
             <h2>Task2: Create an application user</h2>
             <ul>
-              <li>Create roles/users/tasks/main.yml</li>
+              <li>Create roles/<strong>users</strong>/tasks/main.yml</li>
               <li>Home directory: /home/devops</li>
               <li>ssh-key</li>
               <li>Use variables! (group_vars)</li>
@@ -338,7 +338,7 @@ user_name: "Devops app user"
             </section>
             <section>
             <h2>Task2: Solution</h2>
-            <pre style="font-size: 18px; margin-top: 40px;"># roles/users/tasks/main.yml</pre>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/<strong>users</strong>/tasks/main.yml</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: Create group
   group: name={{ group }} state=present
@@ -451,7 +451,7 @@ db:
             </section>
             <section>
             <h2>Create a template</h2>
-            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/templates/pg_hba.conf.j2</pre>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/<strong>templates</strong>/pg_hba.conf.j2</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 # TYPE  DATABASE        USER            ADDRESS                         METHOD
 local   all             all                                             trust
@@ -460,7 +460,7 @@ host    {{ db.name }}   {{ db.user }}   {{ postgresql.address }}        md5
             </section>
             <section>
             <h2>Create a handler</h2>
-            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/handlers/main.yml</pre>
+            <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/<strong>handlers</strong>/main.yml</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: Restart postgresql
   service: name=postgresql state=restarted
@@ -468,7 +468,7 @@ host    {{ db.name }}   {{ db.user }}   {{ postgresql.address }}        md5
             </section>
             <section>
             <h2>Task3: Solution</h2>
-<pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/tasks/postgresql.yml</pre>
+<pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/<strong>tasks</strong>/postgresql.yml</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: Install Postgresql and dependencies
   apt: pkg={{ item }} state=installed update_cache=yes
