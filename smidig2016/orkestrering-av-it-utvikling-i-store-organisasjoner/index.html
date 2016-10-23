@@ -23,9 +23,10 @@
     <div class="slides">
 
     <section>
-      <h1 style="float: left;">Orkestrering av IT-utvikling<br>i store organisasjoner</h1>
+      <div style="float: left;">
+      <h1>Orkestrering av IT-utvikling<br>i store organisasjoner</h1>
+      </div>
       <img src="img/dirigent.png" style="background: #222; border: 0px; float: right; width: 400px;">
-      <!--<p style="float: right;">Smidig digitalisering 2016</p>-->
       <aside class="notes">
            Stein Inge Morisbak og jobber i BEKK.
       </aside>
@@ -114,18 +115,19 @@
     <section>
         <img style="background: #222; border: 0px; width: 800px;" src="img/safe4.png">
         <aside class="notes">
-          Etter min mening har det vært et alt for stort fokus på PERSONER OG SAMSPILL at de tekniske forutsetningene for å lykkes med Smidig blir helt borte.<br><br>
+          Etter min mening har det vært et alt for stort fokus på PERSONER OG SAMSPILL innen smidig. De tekniske forutsetningene for å lykkes med Smidig blir helt borte.<br><br>
           Alt fokus blir også med Smidig fokusert rundt å bekjempe avhengigheter med *prosess*.
           Smidig funker derfor bra i småskala, men blir det stort må du se andre steder for å finne ut hvordan det skal skalere.
         </aside>
     </section>
 
     <section>
-        <h2>Kommuniser mindre!</h2>
+        <h2>Vi må kommunisere <u>mindre!</u></h2>
+        <img src="img/bezos.jpg" style="float: left;">
+        <blockquote cite="http://www.amazon.com/The-Everything-Store-Bezos-Amazon/dp/0316219266" style="float: right;">&ldquo;Communication is a sign of dysfunction... We should be trying to figure out a way for teams to communicate less with each other, not more.&rdquo;</blockquote>
+        <footer style="float: right; font-size: 0.5em;"><a href="http://www.amazon.com/The-Everything-Store-Bezos-Amazon/dp/0316219266">Jeff Bezos, CEO i Amazon</a></footer>
         <aside class="notes">
-          Den store synderen er alt fokuset på kommunikasjon.<br><br>
-          Kommunikasjon på tvers av team ender fort opp med misforståelser, uenigheter, tidkrevende møter og omfattende dokumentasjon.<br><br>
-          Man bør derfor se etter løsninger hvor teamene er mindre avhengige av å måtte kommunisere med andre team.
+          Vi må derfor redusere behovet for kommunikasjon mellom team.
           Teamene bør være mest mulig autonome.
         </aside>
     </section>
@@ -141,22 +143,12 @@
     </section>
 
     <section>
-        <h2>Vi må kommunisere <u>mindre!</u></h2>
-        <img src="img/bezos.jpg" style="float: left;">
-        <blockquote cite="http://www.amazon.com/The-Everything-Store-Bezos-Amazon/dp/0316219266" style="float: right;">&ldquo;Communication is a sign of dysfunction... We should be trying to figure out a way for teams to communicate less with each other, not more.&rdquo;</blockquote>
-        <footer style="float: right; font-size: 0.5em;"><a href="http://www.amazon.com/The-Everything-Store-Bezos-Amazon/dp/0316219266">Jeff Bezos, CEO i Amazon</a></footer>
-        <aside class="notes">
-          Vi må derfor redusere behovet for kommunikasjon mellom team.<br><br>
-        </aside>
-    </section>
-
-    <section>
         <h2>All kommunikasjon skal foregå over API-er!</h2>
         <img src="img/bezos.jpg" style="float: left;">
         <blockquote cite="" style="float: right;"> &ldquo;The only communication allowed is via service interface calls over the network.&rdquo;</blockquote>
         <footer style="float: right; font-size: 0.5em;"><a href="https://plus.google.com/+RipRowan/posts/eVeouesvaVX">Jeff Bezos, CEO Amazon, i følge en tidligere ansatt i Amazon</a></footer>
         <aside class="notes">
-          Derfor påla Bezos i 2002 alle i Amazon å <b>kun</b> kommunisere mellom systemer over veldefinerte API-er.
+          Derfor påla Jeff Bezos i 2002 alle i Amazon å <b>kun</b> kommunisere mellom systemer over veldefinerte API-er.
         </aside>
     </section>
 
@@ -186,64 +178,11 @@
     </section>
 
     <section>
-      <h2>Conway's lov</h2>
-      <img src="img/how_do_committees_invent.png" style="float: left;">
-      <blockquote cite="https://en.wikipedia.org/wiki/Conway%27s_law" style="float: right;">
-        &ldquo;Organizations which design systems ... are constrained to produce designs which are copies of the communication structures<br>of these organizations&rdquo;
-      </blockquote>
-      <footer style="float: right; font-size: 0.5em;"><a href="http://www.melconway.com/research/committees.html">M. Conway, How Do Committees Invent, 1968</a></footer>
-      <aside class="notes">
-          Melvin Conway sa i 1968 at systemene dine vil gjenspeile organisasjonen din.
-          Det er derfor måten vi er organisert på som fører til at IT-arkitekturen blir som den blir.
-      </aside>
-    </section>
-
-    <section>
-      <h2>Silo-organisasjon</h2>
-      <img src="img/silos.jpg" alt="siloer" width="600px">
-      <footer style="font-size: 0.3em;"><a href="https://www.flickr.com/photos/nakrnsm/3898381742">Photo by Patrick Feller</a></footer>
-      <aside class="notes">
-        <ul>
-          <li>Det er ikke uvanlig at team er organisert etter teknologi (web-team, backend-team, integrasjons-team).
-          <li>Eller etter funksjon (utvikling, test, drift, sikkerhet, ux, forretning).
-          <li>Slike inndelinger kalles silo-organisasjon og kompliserer kommunikasjonen enormt.
-          <li>Det er dessuten veldig lite effektivt fordi oppgaver må løses på tvers av flere enheter
-          <li>noe som medfører overleveringer, venting og misforståelser.
-        </ul>
-      </aside>
-    </section>
-
-    <section>
-      <h2>Monolitten</h2>
-      <img src="img/microservices1.png">
-      <footer style="font-size: 0.5em;"><a href="http://martinfowler.com/articles/microservices.html">Microservices, a definition of this new architectural term, James Lewis og Martin Fowler, 2014</a></footer>
-      <aside class="notes">
-        Om utviklingsteamene er organisert lagdelt for eksempel vil resultatet bli monolittiske applikasjoner<br><br>
-        Det vil si at all forretningsfunksjonalitet blir implementert i en gigantisk applikasjon med en gigantisk database.<br><br>
-        Problemet med denne arkitekturen er at den til slutt faller over av sin egen tyngde og at endringer blir værre og værre å implementere.<br><br>
-        En liten endring ett sted kan påvirke mange andre deler av systemet.
-      </aside>
-    </section>
-
-<!--    <section>
-      <h2>Avmystifisering av Conway's lov</h2>
-      <img src="img/sam_newman.jpeg" style="float: left;">
-      <blockquote cite="https://www.thoughtworks.com/insights/blog/demystifying-conways-law" style="float: right;">&ldquo;Microservices allow organizations to align the architecture of their systems to the structure of their teams.&rdquo;</blockquote>
-      <footer style="font-size: 0.5em;"><a href="https://www.thoughtworks.com/insights/blog/demystifying-conways-law">Sam Newman, Demystifying Conway’s Law, 2015</a></footer>
-      <aside class="notes">
-        Isteden bør man lage mindre systemer organisert rundt forretningsbehov.<br><br> 
-        Man splitter rett og slett opp systemene basert på forretningsområdene i organisasjonen.
-      </aside>
-    </section> -->
-
-    <section>
       <h2>Mikrotjenester</h2>
       <img src="img/microservices2.png">
       <footer style="font-size: 0.5em;"><a href="http://martinfowler.com/articles/microservices.html">Microservices, a definition of this new architectural term, James Lewis og Martin Fowler, 2014</a></footer>
       <aside class="notes">
-         Isteden bør man lage mindre systemer organisert rundt forretningsbehov.<br><br>
-         Man splitter rett og slett opp systemene basert på forretningsområdene i organisasjonen.
-         Da vil systemene og teamene dine speile de forretningsbehovene du har<br>
+         Ved å lage mindre systemer organisert rundt forretningsbehov, så vil systemene og teamene dine speile de forretningsbehovene du har<br><br>
          og en endring i <b>ett</b> forretningsbehov vil kun påvirke <b>ett</b> system.
       </aside>
     </section>
@@ -252,7 +191,7 @@
       <h2>En teknisk løsning på en organisatorisk utfordring</h2>
        <footer style="font-size: 0.5em;">Eksemplet er hentet fra <a href="http://blog.jessitron.com/2016/05/tradeoffs-in-coordination-among-teams.html">"Tradeoffs in Coordination Among Teams"</a> av Jessica Kerr</footer>
       <aside class="notes">
-        I store organisasjoner må du derfor se på IT-arkitektur for å bli mer effektiv.<br><br>
+        I store organisasjoner må vi derfor se på IT-arkitektur for å bli mer effektive.<br><br>
         Det holder ikke med Smidig.<br><br>
         Smidig skalerer dårlig uten å gjøre noe med de teknologiske forutsetningene.
       </aside>
@@ -315,7 +254,7 @@
         Noe må gjøres så vi splitter opp monolitten i deler med:<br><br>
         <ul>
           <li>Hver sin database og dupliserer data om det er nødvendig.
-          <li>Hver sin applikasjon med veldefinerte API-er for kommunikasjon mellom de
+          <li>Hver sin applikasjon med veldefinerte API-er for kommunikasjon mellom de.
         </ul>
         </aside>
     </section>
@@ -328,7 +267,6 @@
         Derfor er pilene tykkere. Farten er omtrent den samme som før.<br><br>
         Forskjellen er at det skalerer. Vi kan legge til flere team uten at kommunikasjon blir en hindring igjen.<br><br>
         Det er ingen koordinering av releaser og alle kjører på i sitt eget tempo.<br><br>
-        Merk at retning og overordnet visjon er et forretningsanliggende, så der må det være konsensus.
         </aside>
     </section>
 
@@ -347,8 +285,7 @@
     <section>
         <h2>Ikke standardiser teknologi eller lag felleskomponenter!</h2>
         <aside class="notes">
-        Viktig å kunne velge riktig teknologi for det du skal lage.
-        Teamene må ha frihet til å velge riktig verktøy for jobben.
+        Merk at teamene må ha frihet til å velge riktig verktøy for jobben.
         Felleskomponenter bør unngås for enhver pris.
         Disse skaper bare trøbbel med bakoverkompatibilitet og krever mye vedlikehold.
         I tillegg vil endringer som er påkrevd av ett system potensielt ødelegge for andre systemer.
@@ -356,7 +293,7 @@
     </section>
 
     <section>
-        <h2>NoOps</h2>
+        <h2>NoOps/Serverless</h2>
         <img src="img/cloud-arrows-coordinating.png">
         <aside class="notes">
         NoOps er et konsept hvor du bruker tjenester hos en public cloud leverandør.<br><br>
@@ -394,14 +331,6 @@
         </aside>
     </section>
 
-<!--    <section>
-      <img src="img/spotify_containers.png">
-      <aside class="notes">
-        Hvert team jobber med sitt forretningsområde.
-        Før var Spotify en monolitt, men nå har de team som har ansvar for selve spilleren, spillelista, artistinformasjon, mobilapp og så videre.
-      </aside>
-    </section> -->
-
     <section>
         <h2>Skatt: Infrastruktur som en intern tjeneste</h2>
         <img src="img/organized-arrows.png">
@@ -436,24 +365,6 @@ Sky gir fantastiske muligheter for å effektivisere systemutvikling. Gov.uk har 
         </aside>
     </section>
 
-<!--
-    <section>
-      <img src="img/ultimate_team.png">
-      <aside class="notes">
-        Den hellige treenighet. Den moderne IT-organisasjonen.
-        Kunden, brukerne og et kryssfunksjonelt team som kan løse alt som trengs for å utvikle, drifte og forvalte applikasjoner.
-      </aside>
-    </section>
-
-    <section>
-      <img src="img/scaling.png">
-      <aside class="notes">
-        Og det skalerer utrolig bra.
-        Autonome team som fokuserer på sin del. Hvert team kan løse alle oppgaver som skal til for å videreutvikle sitt forretningsområde uten å ha noen avhengigheter til andre utenfor teamet.
-        Og så har du virksomhetens visjon som er som en ledestjerne for alt virksomheten foretar seg.
-      </aside>
-    </section>
--->
     <section>
        <img src="img/orkestrering_av_it.png">
        <footer style="font-size: 0.5em;"><a href="http://open.bekk.no/orkestrering-av-it-utvikling-i-store-organisasjoner">http://open.bekk.no/orkestrering-av-it-utvikling-i-store-organisasjoner</a></footer>
