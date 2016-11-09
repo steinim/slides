@@ -242,7 +242,7 @@ ansible -m setup app1.local
             <section>
             <h2>Task1: Install and configure software</h2>
             <ul>
-              <li>Modify roles/<strong>common</strong>/tasks/apt.yml.</li>
+              <li>Modify roles/<strong>common</strong>/tasks/main.yml.</li>
               <li>Install Vim.</li>
               <li>Insert the line 'filetype indent off' in /etc/vim/vimrc</li>
             </ul>
@@ -388,7 +388,7 @@ user_name: "Devops app user"
             <section>
             <h2>Run it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-ansible-playbook site.yml --limit appservers --skip-tags apt,vim,java
+ansible-playbook site.yml --limit appservers --skip-tags vim,java
             </code></pre>
             <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
