@@ -50,9 +50,10 @@
         </section>
 
         <section>
-        <h2>Slides & Repo</h2>
-        <p><a href="http://steinim.github.io/slides/devopspro/zero-downtime-ansible/tutorial.html">http://steinim.github.io/slides/devopspro/zero-downtime-ansible/tutorial.html</a></p>
-        <p><a href="https://github.com/steinim/zero-downtime-ansible">git@github.com:steinim/zero-downtime-ansible.git</a></p>
+        <h2>Slides</h2>
+        <p style="font-size: 24pt;"><a href="http://steinim.github.io/slides/devopspro/zero-downtime-ansible/tutorial.html">http://steinim.github.io/slides/devopspro/zero-downtime-ansible/tutorial.html</a></p>
+        <h2>Source code</h2>
+        <p style="font-size: 24pt;"><a href="https://github.com/steinim/zero-downtime-ansible">git@github.com:steinim/zero-downtime-ansible.git</a></p>
         <aside class="notes"> </aside>
         </section>
 
@@ -259,12 +260,20 @@ git checkout task1_help
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task1
 git checkout task1 # or keep your own solution
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --tags vim
             </code></pre>
             <pre style="font-size: 18px; margin-top: 40px;">
 ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -273,6 +282,7 @@ ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/
             </ul>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Variables</h2>
 <ul>
@@ -317,13 +327,22 @@ git checkout task2_help
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task2
 git checkout task2 # or keep your own solution
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit appservers --skip-tags apt,vim,java
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ssh devops@app1.local
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -338,7 +357,6 @@ ssh devops@app1.local
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 roles/postgresql
 ├── files
-│   ├── ACCC4CF8.asc
 │   └── postgresql.conf
 ├── handlers
 │   └── main.yml
@@ -350,7 +368,7 @@ roles/postgresql
             </code></pre>
             <pre>Use variables (group_vars/all and/or group_vars/dbservers).</pre>
             <pre>Use handler to restart postgresql upon notification</pre>
-            <pre>Template: git checkout master -- roles/postgresql/templates/pg_hba.conf.j2</pre>
+            <pre>Template: git checkout task3 -- roles/postgresql/templates/pg_hba.conf.j2</pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/template_module.html">http://docs.ansible.com/template_module.html</a> (pg_hba.conf.j2)
@@ -366,8 +384,16 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task3
 git checkout task3 # or keep your own solution
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit dbservers --tags pg_install
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
 vagrant@db:~$ psql -d devops -U devops -W
@@ -375,6 +401,7 @@ devops=&gt; \q
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -397,7 +424,7 @@ roles/app
     └── config.properties.j2
             </code></pre>
             <pre>NB! Use variables (./hosts).</pre>
-            <pre>Set 'serial: 1' for appservers in site.yml.</pre>
+            <pre>Set 'serial: 1' for appservers in the playbook (site.yml).</pre>
             <pre>
 Help:
 <a href="http://docs.ansible.com/service_module.html">http://docs.ansible.com/service_module.html</a>
@@ -411,10 +438,20 @@ Help:
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task4
 git checkout task4 # or keep your own solution
-ansible-playbook site.yml --limit appservers --tags deploy
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook site.yml --limit appservers --tags deploy
+            </code></pre>
+            <h2>Try it!</h2>
+Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
+            <aside class="notes"> </aside>
+            </section>
+
             <section>
             <h2>What just happened?</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -467,12 +504,19 @@ sudo_user: postgres
 
             <section>
             <h2>Task5: Solution</h2>
-            Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task5
 git checkout task5 # or keep your own solution
+            </code></pre>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --limit dbservers --tags deploy
             </code></pre>
+            <h2>Try it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 $ vagrant ssh db
 vagrant@db:~$ psql -d devops -U devops -W
@@ -480,8 +524,10 @@ devops=&gt; \dt
 devops=&gt; select * from hello;
 devops=&gt; \q
             </code></pre>
+Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <aside class="notes"> </aside>
             </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -516,14 +562,23 @@ Help:
 
             <section>
             <h2>Task6: Solution</h2>
-Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git diff HEAD origin/task6
 git checkout task6 # or keep your own solution
-ansible-playbook site.yml --limit proxies --tags nginx
             </code></pre>
             <aside class="notes"> </aside>
             </section>
+
+            <section>
+            <h2>Run it!</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-playbook site.yml --limit proxies --tags nginx
+            </code></pre>
+            <h2>Try it!</h2>
+Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me many times
+            <aside class="notes"> </aside>
+            </section>
+
             <section>
             <h2>Progress</h2>
             <ul>
@@ -599,20 +654,13 @@ ansible-playbook site.yml --limit proxies --tags nginx
             <aside class="notes"> </aside>
             </section>
             <section>
-<!--            <h2>I have been playing :-)</h2>
+            <h2>I have been playing :-)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 git checkout play
 ansible-playbook site.yml --limit appservers,dbservers --tags deploy
 ansible-playbook site.yml --limit appservers,dbservers --tags rollback
             </code></pre>
             <aside class="notes"> </aside>
-            </section> -->
-
-            <section>
-              <img style="background: white" src="../../img/devopsdays_oslo.png">
-              <h2>September 5th and 6th 2016</h2>
-              <aside class="notes">
-              </aside>
             </section>
 
             <section>
@@ -622,45 +670,23 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
             <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
             <aside class="notes"> </aside>
             </section>
-<!--
-            <section>
-            <h2>Pros</h2>
-            <ul>
-              <li>Very easy setup, only client.</li>
-              <li>Easy configuration files (YAML).</li>
-              <li>Low startup-cost.</li>
-              <li>Able to deploy applications.</li>
-              <li>Less abstractions.</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
 
-            <section>
-            <h2>Cons</h2>
-            <ul>
-              <li>Configuration drift.</li>
-              <li>Linux/Unix only.</li>
-              <li>Not package-manager-agnostic.</li>
-              <li>Less abstraction.</li>
-              <li>Scalability.</li>
-              <li>Small user base.</li>
-            </ul>
-            <aside class="notes"> </aside>
-            </section>
             <section>
             <h1>What did we forget?</h1>
             </section>
+
             <section>
             <h1>To test!</h1>
             </section>
 
             <section>
             <h2>ServerSpec</h2>
+            <p><a href="http://serverspec.org/">http://serverspec.org/</a></p>
             <ul>
               <li>RSpec</li>
               <li>Tests your servers' actual state</li>
               <li>SSH access</li>
-              <li>No agent softwares on your servers</li>
+              <li>No agent software on your servers</li>
               <li>Use any configuration management tool
               <ul>
                 <li>The one we have talked about</li>
@@ -669,6 +695,7 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
               </li>
               <aside class="notes"> </aside>
               </section>
+
               <section>
               <h2>What are you waiting for?</h2>
               <ul>
@@ -679,7 +706,15 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
               </ul>
               <aside class="notes"> </aside>
               </section>
--->
+
+            <section>
+            <h1>Thank you!</h1>
+            <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
+            <p><a href="https://twitter.com/steinim">@steinim</a></p>
+            <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+            <aside class="notes"> </aside>
+            </section>
+
             </div>
 
           </div>
