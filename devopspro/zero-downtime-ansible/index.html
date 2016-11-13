@@ -106,8 +106,10 @@ fi
         <section>
             <h2>Describe state (declarative)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-- name: ensure installed vim
-  apt: pkg=vim state=installed
+- name: Ensure installed vim
+  apt:
+    pkg=vim
+    state=present
 
 - name: set filetype indent off for vim
   lineinfile:
@@ -224,7 +226,7 @@ ansible -m setup app1.local
                 <li>ssh-key</li>
                </ul>
             <li>A PostgresSQL database.</li>
-            <li>Nginx as a reverse proxy.</li>
+            <li>Nginx as a reverse proxy and load balancer.</li>
             <li>An init script installed as a service.</li>
             <li>Deploy an application that uses the provisioned infrastructure.</li>
             </ul>
@@ -260,7 +262,6 @@ Help:
   apt:
     pkg=vim
     state=present
-    update_cache=no
   tags:
     - vim
 
@@ -378,7 +379,7 @@ user_name: "Devops app user"
     owner={{ user }}
     group={{ group }}
     mode=600
-    regexp=stein.inge.morisbak@BEKK.no$
+    regexp=^ssh-rsa
   tags:
     - users
             </code></pre>
