@@ -102,8 +102,13 @@ fi
         <section>
             <h2>Describe state (declarative)</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-- name: ensure installed vim
-  apt: pkg=vim state=installed
+- name: Ensure installed vim
+  apt:
+    pkg=vim
+    state=present
+    update_cache=no
+  tags:
+    - vim
 
 - name: set filetype indent off for vim
   lineinfile:
@@ -220,7 +225,7 @@ ansible -m setup app1.local
                 <li>ssh-key</li>
                </ul>
             <li>A PostgresSQL database.</li>
-            <li>Nginx as a reverse proxy.</li>
+            <li>Nginx as a reverse proxy and loadbalancer.</li>
             <li>An init script installed as a service.</li>
             <li>Deploy an application that uses the provisioned infrastructure.</li>
             </ul>
@@ -343,8 +348,8 @@ ssh devops@app1.local
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
               <li>Created a user and set up a ssh-key</li>
             </ul>
             <aside class="notes"> </aside>
@@ -402,9 +407,9 @@ devops=&gt; \q
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
               <li>Installed and configured a database and a db user</li>
             </ul>
             <aside class="notes"> </aside>
@@ -470,10 +475,10 @@ Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
               <li>Deployed an application to two appservers and enabled it as a service</li>
             </ul>
             <aside class="notes"> </aside>
@@ -493,7 +498,7 @@ Help:
 </pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 0px;">
 psql -d {{ db.name }} -q -f /tmp/migrate_db.sql
-sudo_user: postgres
+become_user: postgres
             </code></pre>
             <aside class="notes"> </aside>
             </section>
@@ -527,11 +532,11 @@ Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
+              <li style="color: grey;">Deployed an application to two appservers and enabled it as a service</li>
               <li>Migrated the database schema and fetched data from it through the application</li>
             </ul>
             <aside class="notes"> </aside>
@@ -578,12 +583,12 @@ Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me man
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
-              <li>Migrated the database schema and fetched data from it through the application</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
+              <li style="color: grey;">Deployed an application to two appservers and enabled it as a service</li>
+              <li style="color: grey;">Migrated the database schema and fetched data from it through the application</li>
               <li>Set up a reverse proxy for automatic failover between the two appservers</li>
             </ul>
             <aside class="notes"> </aside>
@@ -664,6 +669,49 @@ ansible-playbook site.yml --limit appservers,dbservers --tags rollback
             <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
             <p><a href="https://twitter.com/steinim">@steinim</a></p>
             <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+            <aside class="notes"> </aside>
+            </section>
+
+            <section>
+            <h1>Bonus tasks</h1>
+            </section>
+
+            <section>
+            <h1>Secrets using Ansible Vault</h1>
+            <p><a href="http://docs.ansible.com/ansible/playbooks_vault.html">http://docs.ansible.com/ansible/playbooks_vault.html</a>
+            </section>
+
+        <section>
+        <h2>What Can Be Encrypted With Vault?</h2>
+        <ul>
+          <li>Any structured data file used by Ansible
+            <ul>
+              <li>group_vars/, host_vars/, inventory
+              <li>variables loaded by "include_vars" or "vars_files"
+              <li>variable files passed on the ansible-playbook command line with "-e @file.yml" or "-e @file.json"
+            </ul>
+          <li>Also
+            <ul>
+              <li>tasks, handlers, and so on
+              <li>arbitrary files, even binary files
+            </ul>
+           <p>All will be decrypted on the target host<br>(assuming a valid vault password is supplied when running the play)
+        </ul>
+        <aside class="notes"> </aside>
+        </section>
+
+        <section>
+            <h2>Task7: Put your secrets in the vault</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible-vault create group_vars/vault
+            </code></pre>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 0px;">
+ansible-playbook site.yml --ask-vault-pass
+            </code></pre>
+            <pre>
+Help:
+<a href="http://docs.ansible.com/ansible/playbooks_vault.html">http://docs.ansible.com/ansible/playbooks_vault.html</a>
+</pre>
             <aside class="notes"> </aside>
             </section>
 

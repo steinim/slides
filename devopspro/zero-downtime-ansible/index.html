@@ -401,8 +401,8 @@ ssh devops@app1.local
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
               <li>Created a user and set up a ssh-key</li>
             </ul>
             <aside class="notes"> </aside>
@@ -473,7 +473,8 @@ host    {{ db.name }}   {{ db.user }}   {{ postgresql.address }}        md5
 <pre style="font-size: 18px; margin-top: 40px;"># roles/postgresql/<strong>tasks</strong>/postgresql.yml</pre>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: Install Postgresql and dependencies
-  apt: pkg={{ item }} state=installed update_cache=yes
+  apt: pkg={{ item }}
+       state=installed
   with_items:
     - postgresql-{{ postgresql.version }}
     - python-psycopg2
@@ -529,9 +530,9 @@ devops=&gt; \q
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
               <li>Installed and configured a database and a db user</li>
             </ul>
             <aside class="notes"> </aside>
@@ -587,10 +588,10 @@ Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
               <li>Deployed an application to two appservers and enabled it as a service</li>
             </ul>
             <aside class="notes"> </aside>
@@ -649,11 +650,11 @@ Browse to <a href="http://app1.local:1234/">http://app1.local:1234/</a>
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
+              <li style="color: grey;">Deployed an application to two appservers and enabled it as a service</li>
               <li>Migrated the database schema and fetched data from it through the application</li>
             </ul>
             <aside class="notes"> </aside>
@@ -715,12 +716,12 @@ Browse to <a href="http://proxy.local/">http://proxy.local/</a> # refresh me man
             <section>
             <h2>Progress</h2>
             <ul>
-              <li>Installed software</li>
-              <li>Manipulated files</li>
-              <li>Created a user and set up a ssh-key</li>
-              <li>Installed and configured a database and a db user</li>
-              <li>Deployed an application to two appservers and enabled it as a service</li>
-              <li>Migrated the database schema and fetched data from it through the application</li>
+              <li style="color: grey;">Installed software</li>
+              <li style="color: grey;">Manipulated files</li>
+              <li style="color: grey;">Created a user and set up a ssh-key</li>
+              <li style="color: grey;">Installed and configured a database and a db user</li>
+              <li style="color: grey;">Deployed an application to two appservers and enabled it as a service</li>
+              <li style="color: grey;">Migrated the database schema and fetched data from it through the application</li>
               <li>Set up a reverse proxy for automatic failover between the two appservers</li>
             </ul>
             <aside class="notes"> </aside>
