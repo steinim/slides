@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Boxfuse without Axel Fontaine</title>
+
+    <meta name="description" content="Learn how to provision a database using Terraform and Ansible, and automate zero downtime deployment of a Java application to a load balanced environment using Boxfuse.">
+    <meta name="author" content="Stein Inge Morisbak">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../../css/reveal.min.css">
+    <!-- <link rel="stylesheet" href="../css/theme/default.css" id="theme"> -->
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../../lib/css/zenburn.css">
+
+    <!-- BEKK Theme -->
+    <link rel="stylesheet" href="../../css/theme/bekk.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css" id="custom">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Boxfuse without Axel Fontaine</h2>
+          <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
+          <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
+          <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        </section>
+
+        <section>
+          <h2>Who is Axel Fontaine?</h2>
+          <img height="235" src="../../img/axel_fontaine.jpeg" alt="Axel Fontaine">
+          <p style="font-size: 28px;"><a href="https://twitter.com/axelfontaine">@axelfontaine</a></p>
+          <p style="font-size: 28px;"><a href="https://axelfontaine.com/">https://axelfontaine.com/</a></p>
+          <aside class="notes">@boxfuse founder and  CEO
+            @flywaydb creator
+            Continuous Delivery and Immutable Infrastructure expert
+            Java Champion
+            JavaOne RockStar
+            conference speaker
+            trainer</aside>
+        </section>
+
+        <section>
+          <h2>What is Boxfuse?</h2>
+          <img style="background: white;" height="235" src="../../img/boxfuse.png" alt="Boxfuse">
+          <p style="font-size: 28px;"><a href="https://twitter.com/boxfuse">@boxfuse</a></p>
+          <p style="font-size: 28px;"><a href="https://boxfuse.com/">https://boxfuse.com/</a></p>
+          <aside class="notes"></aside>
+        </section>
+
+        <section>
+          <h2>What's a provisioning framework?</h2>
+          <h2>What's IaaS?</h2>
+          <h2>What's CaaS?</h2>
+          <h2>What's PaaS?</h2>
+          <h2>What's #serverless?</h2>
+          <aside class="notes"> </aside>
+        </section>
+
+        <section>
+          <h2>The Expand/Contract pattern</h2>
+          <br>
+          <table class="reveal" width="100%">
+            <th>Expand</th>
+            <th>Contract</th>
+            <tr>
+              <td width="50%" class="fragment">
+                <ul>
+                  <li>Add tables</li>
+                  <li>Add columns</li>
+                  <li>Tweak indexes</li>
+                </ul>
+              </td>
+              <td width="50%" class="fragment">
+                <ul>
+                  <li>Remove tables</li>
+                  <li>Remove columns</li>
+                  <li>Remove/add constraints</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/architecture.png" alt="architecture">
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/pre-upgrade-db.png" alt="architecture">
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/upgrade1.png" alt="architecture">
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/upgrade2.png" alt="architecture">
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/post-upgrade-db.png" alt="architecture">
+          <aside class="notes"> </aside>
+        </section>
+        <section>
+          <img width="449" height="510" src="../../img/architecture.png" alt="architecture">
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+          <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
+          <p><a href="https://twitter.com/steinim">@steinim</a></p>
+          <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="../../lib/js/head.min.js"></script>
+    <script src="../../js/reveal.min.js"></script>
+
+    <script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+  controls: false,
+  progress: true,
+  history: true,
+  center: true,
+  width: 1100,
+
+  theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+  transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+  { src: '../../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  { src: '../../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: '../../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: '../../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  { src: '../../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+  { src: '../../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});
+
+    </script>
+
+  </body>
+</html>
