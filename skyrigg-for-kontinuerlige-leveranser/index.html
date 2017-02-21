@@ -38,7 +38,7 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
     <div class="reveal">
       <div class="slides">
 
-        <section data-background-video="../../video/bedopress_animasjon_highress.mp4" data-background-color="#000">
+        <section data-background-video="../../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true">
         </section>
 
         <section>
@@ -46,6 +46,12 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
           <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
           <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
           <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+          <aside class="notes">
+            <ul>
+              <li>I dette foredraget skal jeg kun snakke om teknologi.</li>
+              <li>Jeg skal ikke mase om hvorfor det er så lurt og hvorfor alle bare må komme seg i skyen umiddelbart</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-background-iframe="https://ide.visualops.io/workspace/3dd8c4e1-bb4e-4fd9-b941-aa7fe784b61f/ops/app-ac4a9ab2">
@@ -53,21 +59,55 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
         </section>
 
         <section>
-          <h2>Sky-tjenester</h2>
-          <ul>
-            <li>IaaS</li>
+          <h1>Sky-tjenester</h1>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+          <h2>IaaS</h2>
+            Repo: infrastructure (terraform)
             <ul>
               <li>Nettverk</li>
+              <li>Bastion host</li>
+              <li>Andre egendefinerte instanser (mgmtserver, elasticsearch reverse proxy)</li>
             </ul>
-            <li>PaaS</li>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+            <h2>SaaS</h2>
+            Repo: app-infrastructure (terraform)
             <ul>
-              <li>RDS</li>
-              <li>DMS</li>
-              <li>Elastic Beanstalk</li>
-              <li>CloudWatch</li>
+              <li>RDS (Relational Database Service)</li>
+              <li>Route53 (DNS)</li>
+              <li>CloudWatch (monitoring, events, logging)</li>
               <li>ElasticSearch/Kibana</li>
             </ul>
-          </ul>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+            <h2>PaaS</h2>
+            Repo: hver app (eb)
+            <ul>
+              <li>Elastic Beanstalk</li>
+            </ul>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+            <h2>Annet</h2>
+            <ul>
+              <li>Database Migration Service (DMS)</li>
+            </ul>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+            <h2>#Serverless</h2>
+            <ul>
+              <li>&#x1F622;</li>
+            </ul>
           <aside class="notes"> </aside>
         </section>
 
@@ -75,11 +115,64 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
           <h2>Verktøy</h2>
           <ul>
             <li>Bash</li>
+            <li>Envchain</li>
             <li>Pass</li>
             <li>Terraform</li>
+            <li>Terragrunt</li>
+            <li>Terragrunt-wrapper</li>
+            <li>AWS CLI</li>
             <li>Ansible</li>
+            <li>Ansible Vault</li>
             <li>Flyway</li>
           </ul>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+          <h2>Del 1: IaaS</h2>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+          <img src="img/opstest-vpc-infrastructure.png" alt="Stein Inge Morisbak">
+          <aside class="notes">
+            <ul>
+              <li>IaaS</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Del 2: SaaS</h2>
+          <aside class="notes"> </aside>
+        </section>
+        
+        <section>
+          <img src="img/opstest-vpc-db.png" alt="Stein Inge Morisbak">
+          <aside class="notes">
+            <ul>
+              <li>IaaS</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Konsepter</h2>
+          <ul>
+            <li>Immutability</li>
+            <li>PaaS</li>
+            <li>#Serverless</li>
+          </ul>
+          <aside class="notes"> </aside>
+        </section>
+
+        <section>
+          <h2>The right tool for the job</h2>
+          <aside class="notes"> </aside>
+        </section>
+
+        <section>
+          <h2>When Terraform sucks, fix it with Ansible</h2>
           <aside class="notes"> </aside>
         </section>
 
