@@ -38,62 +38,393 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
     <div class="reveal">
       <div class="slides">
 
+<!--
         <section data-background-video="../../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true">
         </section>
+-->
 
         <section>
-          <h2>En skyrigg for kontinuerlige leveranser</h2>
+          <h1>En skyrigg for kontinuerlige leveranser</h1>
           <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
           <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
           <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
           <aside class="notes">
             <ul>
               <li>I dette foredraget skal jeg kun snakke om teknologi.</li>
-              <li>Jeg skal ikke mase om hvorfor det er så lurt og hvorfor alle bare må komme seg i skyen umiddelbart</li>
+              <li>Jeg skal ikke mase om hvorfor det er så lurt og hvorfor alle bare må komme seg ut i skyen umiddelbart</li>
             </ul>
           </aside>
         </section>
 
+        <section>
+          <h1>&nbsp;</h1>
+          <img width="235" height="235" src="img/nsb.png" alt="NSB">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">
+            <ul>
+              <li>Det siste halve året har BEKK-teamet hos NSB jobbet med å migrere tjenester fra intern infrastruktur til AWS.
+              <li>Vi har også etablert et par nye tjenester</li>
+              <li>Enkelhet og automatisering har vært de viktigste prinsippene vi har styrt ette</li>
+              <li>– uten at det skal gå ut over tilgjengelighet, stabilitet, og ikke minst sikkerhet</li>
+              <li>Jeg vil i dette foredraget skryte av og vise frem hva vi har tatt i bruk av praksiser, tjenester og verktøy som understøtter en taktfast og rask flyt av verdifull programvare til produksjon på en trygg og sikker måte.</li>
+
+</li>
+            </ul>
+          </aside>
+        </section>
+
+<!--
         <section data-background-iframe="https://ide.visualops.io/workspace/3dd8c4e1-bb4e-4fd9-b941-aa7fe784b61f/ops/app-ac4a9ab2">
+          <aside class="notes"></aside>
+        </section>
+-->
+
+        <section>
+          <h1>Sky-tjenester</h1>
+          <img width="235" height="235" src="img/aws.jpg" alt="AWS">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">Vi skal se på hvilke skytjenester vi har tatt i bruk i AWS.</aside>
+        </section>
+
+        <section>
+          <h1>Tools</h1>
+          <img width="235" height="235" src="img/toolbox.png" alt="Verktøykasse">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">Og så skal vi se på en rekke verktøy vi bruker for å automatisere, forenkle og sikre infrastruktur og applikasjoner.</aside>
+        </section>
+
+        <section>
+          <h1>Kildekode</h1>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+./infrastructure
+./app-infrastructure
+./app1
+./app2
+./appN
+...
+          </code></pre>
+          <aside class="notes">Repoene er grovt delt inn i tre.</aside>
+        </section>
+        
+        <section>
+          <h2><code>./infrastructure</code> (IaaS)</h2>
+          <ul>
+            <li class="fragment">Nettverk</li>
+            <li class="fragment">Bastion host</li>
+            <li class="fragment">Andre egendefinerte instanser:</li>
+              <ul>
+                <li class="fragment">mgmtserver</li>
+                <li class="fragment">ElasticSearch/Kibana (<b>SaaS</b>)</li>
+                <li class="fragment">ElasticSearch reverse proxy</li>
+              </ul>
+          </ul>
+          <aside class="notes">
+          <ul>
+            <li>I infrastruktur-repoet har du oppsett av basis infrastruktur</li>
+              <ul>
+                <li>Nettverk</li>
+                <li>Bastion host (jump server for å få tilgang til alt inne i bobla av tjenester)</li>
+              </ul>
+            <li>Andre ting som går på tvers:</li>
+              <ul>
+                <li>En server for å gjøre oppgaver internt i det private subnettet.</li>
+                <li>Bør ikke være det samme som bastion-host da denne bør være "hardnet" og kun være en ssh proxy</li>
+                <li>Oppgaver som backup og cron-jobber (kun brukt for en php-app)</li>
+                <li>ElasticSearch cluster for å samle inn logger fra alle mulige steder (SaaS)</li>
+                <li>Reverse proxy for å legge på et lag med sikkerhet foran Kibana</li>
+              </ul>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>The right tool for the job?</h1>
+          <img width="235" height="235" class="fragment" src="img/terraform.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes"> </aside>
+        </section>
+
+<!-- Layout -->
+        <section>
+          <h2>Layout</h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+./infrastructure
+├── modules
+│   ├── &lt;module name&gt;
+│   │   ├── main.tf
+│   │   └── vars.tf
+│   │   ├── outputs.tf
+├── &lt;environment&gt;
+│   ├── main.tf
+│   └── vars.tf
+          </code></pre>
           <aside class="notes"></aside>
         </section>
 
         <section>
-          <h1>Sky-tjenester</h1>
-          <aside class="notes"> </aside>
+          <h1>Nettverk</h1>
+          <img height="235" src="img/network.png" alt="Nettverk">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">Og så skal vi se på en rekke verktøy vi bruker for å automatisere, forenkle og sikre infrastruktur og applikasjoner.</aside>
         </section>
-        
+
         <section>
-          <h2>IaaS</h2>
-            Repo: infrastructure (terraform)
+          <img src="img/vpc.png" alt="VPC">
+          <aside class="notes">
             <ul>
-              <li>Nettverk</li>
-              <li>Bastion host</li>
-              <li>Andre egendefinerte instanser (mgmtserver, elasticsearch reverse proxy)</li>
+              <li>VPC</li>
             </ul>
-          <aside class="notes"> </aside>
+          </aside>
         </section>
-        
+
+<!-- VPC -->
         <section>
-            <h2>SaaS</h2>
-            Repo: app-infrastructure (terraform)
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+
+provider "aws" {
+  region = "${var.aws_region}"
+}
+
+resource "aws_vpc" "vpc" {
+    cidr_block           = "${var.vpc_cidr}"
+    enable_dns_hostnames = true
+    tags { Name = "${var.vpc_name}" }
+}
+
+resource "aws_internet_gateway" "ig" {
+    vpc_id = "${aws_vpc.vpc.id}"
+    tags { Name = "${var.ig_name}" }
+}
+
+# Grant the VPC internet access on its main route table
+resource "aws_route" "internet_access_route" {
+  route_table_id         = "${aws_vpc.vpc.main_route_table_id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.ig.id}"
+}
+          </code></pre>
+          <aside class="notes"></aside>
+        </section>
+
+        <section>
+          <img src="img/availability-zones.png" alt="Availability Zones">
+          <aside class="notes">
             <ul>
-              <li>RDS (Relational Database Service)</li>
-              <li>Route53 (DNS)</li>
-              <li>CloudWatch (monitoring, events, logging)</li>
-              <li>ElasticSearch/Kibana</li>
+              <li>Availability Zones</li>
             </ul>
+          </aside>
+        </section>
+
+<!-- Subnets og Availability Zones -->
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+resource "aws_subnet" "subnet" {
+  vpc_id                  = "${var.vpc_id}"
+  count                   = "${var.number_of_subnets}"
+  cidr_block              = "${lookup(var.cidr_blocks, "zone_${count.index}")}"
+  availability_zone       = "${lookup(var.zones, "zone_${count.index}")}"
+  map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
+
+  tags { Name = "${var.name}_subnet_${lookup(var.zones, "zone_${count.index}")}" }
+}
+          </code></pre>
+          <aside class="notes">
+          Counters and variables
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/subnets.png" alt="Subnets">
+          <aside class="notes">
+            <ul>
+              <li>Subnets</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/db_subnet_group.png" alt="DB Subnet Group">
+          <aside class="notes">
+            <ul>
+              <li>Subnets</li>
+            </ul>
+          </aside>
+        </section>
+
+<!-- Bastion, Mgmtserver, Elasticsearch proxy -->
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+resource "aws_instance" "instance" {
+  ami                         = "${var.ami}"
+  instance_type               = "t2.micro"
+  key_name                    = "${var.key_pair_id}"
+  subnet_id                   = "${var.subnet_id}"
+  associate_public_ip_address = true
+  source_dest_check           = false
+  vpc_security_group_ids = [ "${var.security_group_ids} ]
+  tags { Name = "${var.instance_name}" }
+}
+          </code></pre>
+          <aside class="notes">
+          Bastion host and mgmtserver
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/instances.png" alt="Subnets">
+          <aside class="notes">
+            <ul>
+              <li>Subnets</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/opstest-vpc-infrastructure.png" alt="visualops vpc">
+          <aside class="notes">
+            <ul>
+              <li>IaaS</li>
+            </ul>
+          </aside>
+        </section>
+        
+        <section>
+            <h2><code>./app-infrastructure</code> (SaaS)</h2>
+            <ul>
+              <li class="fragment">RDS (Relational Database Service)</li>
+              <li class="fragment">Route53 (DNS)</li>
+              <li class="fragment">CloudWatch (monitoring, events, logging)</li>
+            </ul>
+          <aside class="notes">
+          <ul>
+            <li>I app-infrastruktur-repoet har du oppsett av app-tjenester som er felles for de fleste appene.</li>
+            <ul>
+              <li>RDS</li>
+              <li>DNS</li>
+              <li>Monitorering, trigging av eventer og overvåkning.</li>
+              <li>Streamer blant annet loggene fra CloudWatch til ElasticSearch.</li>
+            </ul>
+            <li>Felles for disse her er at du slipper å tenke på drift av de.</li>
+            <li>Backup, speiling, patching, skalering osv. er hændtert av AWS</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>The right tool for the job?</h1>
+          <img width="235" height="235" class="fragment" src="img/terraform.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes"> </aside>
+        </section>
+
+<!-- Layout -->
+        <section>
+          <h2>Layout</h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+app-infrastructure
+├── bin
+│   └── get-aws-ids.sh
+└── modules
+    ├── database
+    ├── elb
+    ├── route53_alias_record
+    ├── route53_cname_record
+    └── ssl_cert
+          </code></pre>
+          <aside class="notes"></aside>
+        </section>
+
+<!-- DB -->
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+resource "aws_db_instance" "db" {
+  name                    = "${var.db_name}"
+  identifier              = "${var.db_identifier}"
+  engine                  = "${var.db_engine}"
+  engine_version          = "${var.db_engine_version}"
+  instance_class          = "${var.db_instance_class}"
+  username                = "${var.db_username}"
+  password                = "${var.db_password}"
+  vpc_security_group_ids  = ["${aws_security_group.db_sg.id}"]
+  db_subnet_group_name    = "${var.db_subnet_group_id}"
+  parameter_group_name    = "${var.db_parameter_group_name}"
+  backup_retention_period = "${var.backup_retention_period}"
+  multi_az                = "${var.multi_az}"
+  backup_window           = "${var.backup_window}"
+  allocated_storage       = "${var.allocated_storage}"
+}
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>Kan gjenbrukes på tvers av databaseplattformer.</li>
+            <li>Vi gjør det. Har både MySQL og Postgres</li>
+            <li>Amazon RDS manages backups, software patching, automatic failure detection, and recovery.</li>
+            <li>Multi AZ: Standby i en annen availability zone</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/db.png" alt="Subnets">
+          <aside class="notes">
+            <ul>
+              <li>DB</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+            <h1>Dere skjønner poenget?</h1>
+            <h2 class="fragment">Jeg skipper ELB, DNS og ssl-sertifikater...</h2>
+          <aside class="notes">
+          </aside>
+        </section>
+
+<!--
+        <section>
+          <img src="img/opstest-vpc-db.png" alt="VPC med DB">
+          <aside class="notes">
+            <ul>
+              <li>IaaS</li>
+            </ul>
+          </aside>
+        </section>
+-->
+
+        <section>
+            <h1>Er Terraform nok?</h1>
+            <h2 class="fragment">Joda, men vi trenger å fikse litt og legge til noen støtteverktøy...</h2>
+          <aside class="notes">
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>Støtteverktøy</h2>
+          <ul>
+            <li>Envchain</li>
+            <li>Pass</li>
+            <li>Terragrunt</li>
+            <li>Terragrunt-wrapper</li>
+            <li>AWS CLI</li>
+          </ul>
           <aside class="notes"> </aside>
         </section>
         
         <section>
-            <h2>PaaS</h2>
-            Repo: hver app (eb)
-            Gjør alt det man kunne gjort i Terraform &rarr; Gjør det til PaaS
+            <h2><code>{./app1,./app2,...}</code> (PaaS)</h2>
             <ul>
               <li>Elastic Beanstalk</li>
             </ul>
-          <aside class="notes"> </aside>
+          <aside class="notes">
+            Gjør alt det man kunne gjort i Terraform &rarr; Gjør det til PaaS
+          </aside>
         </section>
         
         <section>
@@ -125,38 +456,11 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
             <li>Ansible</li>
             <li>Ansible Vault</li>
             <li>Flyway</li>
+            <li>Og selvsagt en dash med <code>#!/bin/bash</code>
           </ul>
           <aside class="notes"> </aside>
         </section>
         
-        <section>
-          <h2>Del 1: IaaS</h2>
-          <aside class="notes"> </aside>
-        </section>
-        
-        <section>
-          <img src="img/opstest-vpc-infrastructure.png" alt="Stein Inge Morisbak">
-          <aside class="notes">
-            <ul>
-              <li>IaaS</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Del 2: SaaS</h2>
-          <aside class="notes"> </aside>
-        </section>
-        
-        <section>
-          <img src="img/opstest-vpc-db.png" alt="Stein Inge Morisbak">
-          <aside class="notes">
-            <ul>
-              <li>IaaS</li>
-            </ul>
-          </aside>
-        </section>
-
         <section>
           <h2>Konsepter</h2>
           <ul>
@@ -271,7 +575,7 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
         </section>
 
         <section>
-          <h1>Thank you!</h1>
+          <h2>Thank you!</h2>
           <img width="252" height="235" src="../../img/me_bart.png" alt="Stein Inge Morisbak">
           <p><a href="https://twitter.com/steinim">@steinim</a></p>
           <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
