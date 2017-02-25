@@ -153,14 +153,14 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
           <h2>Layout</h2>
           <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ./infrastructure
+├── &lt;environment&gt;
+│   ├── main.tf
+│   └── vars.tf
 ├── modules
 │   ├── &lt;module name&gt;
 │   │   ├── main.tf
 │   │   └── vars.tf
 │   │   ├── outputs.tf
-├── &lt;environment&gt;
-│   ├── main.tf
-│   └── vars.tf
           </code></pre>
           <aside class="notes"></aside>
         </section>
@@ -184,7 +184,7 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
 
 <!-- VPC -->
         <section>
-          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 
 provider "aws" {
   region = "${var.aws_region}"
@@ -285,6 +285,258 @@ resource "aws_instance" "instance" {
         </section>
 
         <section>
+          <h1>Hva med konfigureringen av ElasticSearch reverse proxy?</h1>
+          <aside class="notes"> </aside>
+        </section>
+
+        <section>
+          <h1>The right tool for the job?</h1>
+          <img width="235" height="235" class="fragment" src="img/ansible.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes"> </aside>
+        </section>
+
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+infrastructure
+├── modules
+│   ├── elasticsearch-proxy
+│   │   ├── main.tf
+│   │   ├── nginx_config_playbook.yml
+│   │   └── wait-for-ssh.sh
+│   │   ├── files
+│   │   │   ├── elasticsearch_nginx.conf.j2
+│   │   │   └── nginx.conf
+│   │   ├── group_vars
+│   │   │   └── all.yml
+│   │   ├── main.tf
+│   │   ├── vars.tf
+│   │   ├── outputs.tf
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+resource "aws_instance" "elasticsearch_proxy" {
+  ...
+  provisioner "local-exec" {
+    command = "cd ${var.playbook_dir} && ./wait-for-ssh.sh \
+              \"-F ~/.ssh/ssh_config_${var.env} ${self.private_ip}\" >/dev/null 2>&1 \
+              && ansible-playbook -i ${self.private_ip}, nginx_config_playbook.yml \
+              --extra-vars=\"the_env=${var.env} \
+              elasticsearch_endpoint=${var.elasticsearch_endpoint} \
+              elasticsearch_proxy_admin_password=${var.elasticsearch_proxy_admin_password} \
+              dns_hostname='${var.dns_hostname}'\""
+  }
+}
+
+resource "aws_route53_record" "elasticsearch_route53_record" {
+  ...
+}
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>It is evaluated in a shell</li>
+            <li>can use environment variables or Terraform variables</li>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>wait-for-ssh.sh</code></h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+#!/bin/sh
+
+ssh $1 exit
+while test $? -gt 0
+do
+   sleep 5
+   echo "Trying again..."
+   ssh $1 exit
+done
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>Man må vente til instansen er oppe før den kan provisjoneres</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>nginx_config_playbook.yml</code></h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+- hosts: "all"
+  remote_user: "ec2-user"
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: create ssl certificate dirs
+    file:
+      path: /etc/nginx/ssl
+      state: directory
+  - name: create self-signed SSL cert
+    command: openssl req -new -nodes -x509 -subj "/C=NO/ST=Oslo/L=Oslo/O=NSB/CN=${ansible_fqdn}" -days 3650 -keyout /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.crt -extensions v3_ca creates=/etc/nginx/ssl/server.crt
+  - name: nxinx config for redirecting to elasticsearch endpoint
+    template:
+      src: files/elasticsearch_nginx.conf.j2
+      dest: /etc/nginx/conf.d/elasticsearch.conf
+      mode: 0644
+  - name: remove default site from default nginx conf
+    copy:
+      src: files/nginx.conf
+      dest: /etc/nginx/nginx.conf
+      mode: 0644
+  - name: set up basic auth
+    htpasswd:
+      path: "/etc/nginx/.htpasswd"
+      create: yes
+      name: admin
+      password: '{{elasticsearch_proxy_admin_password}}'
+      group: nginx
+      mode: 0440
+    no_log: True
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+      enabled: yes
+
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>Playbook</li>
+            <li>Konfigurasjonsstyring, installasjon av software, servicer</li>
+            <li>Det er her Ansible virkelig skinner</li>
+            <li>Er ikke Terraform sin spesialitet</li>
+            <li>Kunne vært løst med Packer og AMI eller Docker</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Hemmeligheter og andre variabler</h1>
+          <img width="235" height="235" src="img/padlock.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">
+          <ul>
+            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
+            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section data-background-iframe="https://github.com/digipost/cloud-tools/tree/master/terraform-wrapper">
+          <aside class="notes">Digipost har utviklet og open sourcet en wrapper rundt Terraform</aside>
+        </section>
+
+        <section data-background-iframe="https://github.com/nsbno/cloud-tools/tree/master/terragrunt-wrapper">
+          <aside class="notes">
+          <ul>
+            <li>NSB har rappet og videreutviklet sin egen wrapper</li>
+            <li>Det er en terragrunt-wrapper som er en wrapper rundt terragrunt som er en wrapper rundt terraform</li>
+            <li>Mer om terragrunt senere.</li>
+          </ul>
+         </aside>
+        </section>
+
+        <section>
+          <h2><code></code></h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+vars:
+  - name: AWS_DEFAULT_REGION
+    value: eu-central-1
+  - name: TF_VAR_env
+    value: prod
+  - name: TF_VAR_public_key
+    value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzwGCC+nMTL6QIg+Z7SXtIXhiJJ5caa5tZkWQ1E6jDgHp7NqDAb21ZzjK3mGFlugF81h3OBF8uZPE5E+A0mRCB/pMzEMi/SBv0nvuPhijT81OeJxiF11Zxejc6gk8YiJIywQcYD3OcmmWvP2gK7MU1VIf3SQjHEROMaz+4uNJlC6QpDJfepxevQVJ4GVk7uq71NJjXV91gyT4/smOz5dP6tT7dYuP5Zn3lr5VN/BmHmtpklK9AWhwoIyRi+t97T1ihgiDvrmg7QSH9hIM+zKH2oxWi0RGV99t+ac6DV54ys4XD7OLAhHdlL7qV2G1TSIFqXXOaV98Cj2Mkxd2vJhhZ"
+
+commands:
+  - executable: "../bin/get-aws-ids.sh"
+    arguments: ["cloud.nsb.no"]
+    outputfile: "dynamic-variables.tf"
+
+secret-vars:
+  - name: AWS_ACCESS_KEY_ID
+    key: nsb/aws/AWS_ACCESS_KEY_ID
+  - name: AWS_SECRET_ACCESS_KEY
+    key: nsb/aws/AWS_SECRET_ACCESS_KEY
+  - name: TF_VAR_elasticsearch_proxy_admin_password
+    key:  nsb/aws/elasticsearch_proxy/prod/admin_password
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>Starte med vars. Hvorfor begynner de med TF_VAR?</li>
+            <li>commands. Lager dynamiske variabler. I dette tilfellet hentes variabler ut med aws_cli</li>
+            <li>secret vars (fra digipost) bruker passwordstore, kommandolinje-verktøy for kryptering av hemmeligheter</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>&nbsp;</h1>
+          <img src="img/pass.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">
+          <ul>
+            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
+            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h2><code>pass</code></h2>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+~/src/nsb/.password-store
+├── nsb
+│   ├── aws
+│   │   ├── AWS_ACCESS_KEY_ID.gpg
+│   │   ├── AWS_SECRET_ACCESS_KEY.gpg
+│   │   ├── elasticsearch_proxy
+│   │   │   ├── prod
+│   │   │   │   └── admin_password.gpg
+│   │   │   ├── test
+│   │   │   │   └── admin_password.gpg
+│   │   ├── nsb.pem.gpg
+│   ├── maven
+│   │   └── settings.xml.gpg
+│   └── travis
+│       └── nsbno-buildserver.gpg
+├── panopticon
+│   └── aws
+│       ├── prod
+│       │   └── vault_password.gpg
+│       └── test
+│           └── vault_password.gpg
+          </code></pre>
+          <aside class="notes">
+          <ul>
+            <li>Kjør pass</li>
+          </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Envchain</h1>
+          <img src="img/envchain.png" alt="Terraform">
+          <p style="font-size: 28px;">&nbsp;</p>
+          <p style="font-size: 28px;">&nbsp;</p>
+          <aside class="notes">
+          <ul>
+            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
+            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+          </ul>
+          </aside>
+        </section>
+
+
+
+<!--
+        <section>
           <img src="img/opstest-vpc-infrastructure.png" alt="visualops vpc">
           <aside class="notes">
             <ul>
@@ -292,6 +544,7 @@ resource "aws_instance" "instance" {
             </ul>
           </aside>
         </section>
+-->
         
         <section>
             <h2><code>./app-infrastructure</code> (SaaS)</h2>
@@ -434,6 +687,17 @@ resource "aws_db_instance" "db" {
             </ul>
           <aside class="notes"> </aside>
         </section>
+
+        <section>
+            <h1>Hvordan henger alt sammen?</h1>
+          <aside class="notes"> </aside>
+            <ul>
+              <li>Har snakket om veldig mye rart nå.</li>
+              <li>Hvordan setter vi alt dette her sammen til et totalbilde?</li>
+            </ul>
+        </section>
+
+<!--
         
         <section>
             <h2>#Serverless</h2>
@@ -468,16 +732,6 @@ resource "aws_db_instance" "db" {
             <li>PaaS</li>
             <li>#Serverless</li>
           </ul>
-          <aside class="notes"> </aside>
-        </section>
-
-        <section>
-          <h2>The right tool for the job</h2>
-          <aside class="notes"> </aside>
-        </section>
-
-        <section>
-          <h2>When Terraform sucks, fix it with Ansible</h2>
           <aside class="notes"> </aside>
         </section>
 
@@ -541,7 +795,7 @@ resource "aws_db_instance" "db" {
         </section>
 
         <section>
-          <h2>Sikkerhet</h2>
+          <h2>Sikkerhet i Boxfuse</h2>
           <aside class="notes">
             <ul>
               <li>Appen din er lagret i en 3djeparts-site med egne credentials og som lagrer dine credentials
@@ -563,7 +817,7 @@ resource "aws_db_instance" "db" {
         <section>
           <h2>The bad</h2>
             <ul>
-              <li>Immutable as can be!
+              <li>
               <li>
             </ul>
           <aside class="notes">
@@ -573,6 +827,8 @@ resource "aws_db_instance" "db" {
             </ul>
           </aside>
         </section>
+
+-->
 
         <section>
           <h2>Thank you!</h2>
