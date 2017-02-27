@@ -428,11 +428,13 @@ done
           </aside>
         </section>
 
-        <section data-background-iframe="https://github.com/digipost/cloud-tools/tree/master/terraform-wrapper">
+        <section>
+          <img src="img/terraform-wrapper.png" alt="terraform-wrapper">
           <aside class="notes">Digipost har utviklet og open sourcet en wrapper rundt Terraform</aside>
         </section>
 
-        <section data-background-iframe="https://github.com/nsbno/cloud-tools/tree/master/terragrunt-wrapper">
+        <section>
+          <img src="img/terragrunt-wrapper.png" alt="terragrunt-wrapper">
           <aside class="notes">
           <ul>
             <li>NSB har rappet og videreutviklet sin egen wrapper</li>
@@ -476,10 +478,7 @@ secret-vars:
         </section>
 
         <section>
-          <h1>&nbsp;</h1>
-          <img src="img/pass.png" alt="Terraform">
-          <p style="font-size: 28px;">&nbsp;</p>
-          <p style="font-size: 28px;">&nbsp;</p>
+          <img src="img/pass.png" alt="passwordstore">
           <aside class="notes">
           <ul>
             <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
@@ -521,10 +520,43 @@ secret-vars:
         </section>
 
         <section>
-          <h1>Envchain</h1>
-          <img src="img/envchain.png" alt="Terraform">
-          <p style="font-size: 28px;">&nbsp;</p>
-          <p style="font-size: 28px;">&nbsp;</p>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+✗ pass show -c bekk/aws/root/password
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px; ">
+
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│ Please enter the passphrase to unlock the secret key for the OpenPGP certificate:  │
+│ "Stein Inge Morisbak &lt;stein.inge.morisbak@BEKK.no&gt;"                                │
+│ 2048-bit RSA key, ID 38380D80,                                                     │
+│ created 2014-05-15 (main key ID 0CB573BF).                                         │
+│                                                                                    │
+│                                                                                    │
+│ Passphrase ***********____________________________________________________________ │
+│                                                                                    │
+│            &lt;OK&gt;                                                  &lt;Cancel&gt;          │
+└────────────────────────────────────────────────────────────────────────────────────┘
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+✗ pass show -c bekk/aws/root/password
+Copied bekk/aws/root/password to clipboard. Will clear in 45 seconds.
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <img src="img/envchain.png" alt="envchain">
           <aside class="notes">
           <ul>
             <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
@@ -533,7 +565,27 @@ secret-vars:
           </aside>
         </section>
 
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+✗ envchain --set aws AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+aws.AWS_ACCESS_KEY_ID: AKIAXXXXXXXXXXXXXXXX
+aws.AWS_SECRET_ACCESS_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+✗ envchain aws env | grep AWS_
+AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+✗ envchain aws terragrunt-wrapper apply
+          </code></pre>
+          <aside class="notes">
+          </aside>
+        </section>
 
 <!--
         <section>
