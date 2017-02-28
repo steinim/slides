@@ -471,8 +471,8 @@ secret-vars:
           <aside class="notes">
           <ul>
             <li>Starte med vars. Hvorfor begynner de med TF_VAR?</li>
-            <li>commands. Lager dynamiske variabler. I dette tilfellet hentes variabler ut med aws_cli</li>
-            <li>secret vars (fra digipost) bruker passwordstore, kommandolinje-verktøy for kryptering av hemmeligheter</li>
+            <li>Commands. Lager dynamiske variabler. I dette tilfellet hentes variabler ut med aws_cli</li>
+            <li>Secret vars (fra digipost) bruker passwordstore, kommandolinje-verktøy for kryptering av hemmeligheter</li>
           </ul>
           </aside>
         </section>
@@ -481,8 +481,7 @@ secret-vars:
           <img src="img/pass.png" alt="passwordstore">
           <aside class="notes">
           <ul>
-            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
-            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+            <li>.</li>
           </ul>
           </aside>
         </section>
@@ -559,8 +558,7 @@ Copied bekk/aws/root/password to clipboard. Will clear in 45 seconds.
           <img src="img/envchain.png" alt="envchain">
           <aside class="notes">
           <ul>
-            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
-            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+            <li></li>
           </ul>
           </aside>
         </section>
@@ -570,7 +568,9 @@ Copied bekk/aws/root/password to clipboard. Will clear in 45 seconds.
 ✗ envchain --set aws AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 aws.AWS_ACCESS_KEY_ID: AKIAXXXXXXXXXXXXXXXX
 aws.AWS_SECRET_ACCESS_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          </code></pre>
 
+          <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ✗ envchain aws env | grep AWS_
 AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
 AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -583,8 +583,21 @@ AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ✗ envchain aws terragrunt-wrapper apply
           </code></pre>
+          <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+Started terragrunt operation at: 2017-02-27 08:22:09.902221974 +0100 CET
+[terragrunt] 2017/02/27 08:22:12 Remote state is already configured for backend s3
+[terragrunt] 2017/02/27 08:22:12 Running command: terraform plan
+Refreshing Terraform state in-memory prior to plan..
+          </code></pre>
+
           <aside class="notes">
           </aside>
+        </section>
+
+        <section data-background-video="movie/terragrunt-infrastructure-plan.mp4" data-background="#000000">
+        </section>
+
+        <section data-background-video="movie/terragrunt-infrastructure-apply.mp4" data-background="#000000">
         </section>
 
 <!--
