@@ -73,12 +73,6 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
      </aside>
     </section>
 
-    <!--
-     <section data-background-iframe="https://ide.visualops.io/workspace/3dd8c4e1-bb4e-4fd9-b941-aa7fe784b61f/ops/app-ac4a9ab2">
-     <aside class="notes"></aside>
-     </section>
-    -->
-
     <section>
      <h1>Sky-tjenester</h1>
      <img width="235" height="235" src="img/aws.jpg" alt="AWS">
@@ -222,26 +216,29 @@ document.write( '<link rel="stylesheet" href="../../css/print/' + ( window.locat
 
     <!-- Layout -->
     <section>
-     <h2><code>./terragrunt</code></h2>
+     <h2><code>./terraform.tfvars</code></h2>
      <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-# Configure Terragrunt to use DynamoDB for locking
-lock = {
-  backend = "dynamodb"
-  config {
-    state_file_id = "mtl-prod"
-    aws_region = "eu-central-1"
+terragrunt = {
+  # Configure Terragrunt to use DynamoDB for locking
+  lock = {
+    backend = "dynamodb"
+    config {
+      state_file_id = "mtl-opstest"
+      aws_region = "eu-central-1"
+    }
+  }
+  # Configure Terragrunt to automatically store tfstate files in S3
+  remote_state = {
+    backend = "s3"
+    config {
+      encrypt = "true"
+      bucket = "terraform-state-nsbno"
+      key = "mtl/opstest/terraform.tfstate"
+      region = "eu-central-1"
+    }
   }
 }
-# Configure Terragrunt to automatically store tfstate files in S3
-remote_state = {
-  backend = "s3"
-  config {
-    encrypt = "true"
-    bucket = "terraform-state-nsbno"
-    key = "mtl/prod/terraform.tfstate"
-    region = "eu-central-1"
-  }
-}
+
      </code></pre>
      <aside class="notes"></aside>
     </section>
@@ -410,7 +407,7 @@ resource "aws_instance" "instance" {
 
     <section>
      <h1>The right tool for the job?</h1>
-     <img width="235" height="235" class="fragment" src="img/ansible.png" alt="Terraform">
+     <img width="235" height="235" class="fragment" src="img/ansible.png" alt="Ansible">
      <p style="font-size: 28px;">&nbsp;</p>
      <p style="font-size: 28px;">&nbsp;</p>
      <aside class="notes"> </aside>
@@ -536,7 +533,7 @@ done
 
     <section>
      <h1>Hemmeligheter og andre variabler</h1>
-     <img width="235" height="235" src="img/padlock.png" alt="Terraform">
+     <img width="235" height="235" src="img/padlock.png" alt="Padlock">
      <p style="font-size: 28px;">&nbsp;</p>
      <p style="font-size: 28px;">&nbsp;</p>
      <aside class="notes">
@@ -570,7 +567,7 @@ vars:
   - name: AWS_DEFAULT_REGION
     value: eu-central-1
   - name: TF_VAR_env
-    value: prod
+    value: opstest
   - name: TF_VAR_public_key
     value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzwGCC+nMTL6QIg+Z7SXtIXhiJJ5caa5tZkWQ1E6jDgHp7NqDAb21ZzjK3mGFlugF81h3OBF8uZPE5E+A0mRCB/pMzEMi/SBv0nvuPhijT81OeJxiF11Zxejc6gk8YiJIywQcYD3OcmmWvP2gK7MU1VIf3SQjHEROMaz+4uNJlC6QpDJfepxevQVJ4GVk7uq71NJjXV91gyT4/smOz5dP6tT7dYuP5Zn3lr5VN/BmHmtpklK9AWhwoIyRi+t97T1ihgiDvrmg7QSH9hIM+zKH2oxWi0RGV99t+ac6DV54ys4XD7OLAhHdlL7qV2G1TSIFqXXOaV98Cj2Mkxd2vJhhZ"
 
@@ -580,12 +577,8 @@ commands:
     outputfile: "dynamic-variables.tf"
 
 secret-vars:
-  - name: AWS_ACCESS_KEY_ID
-    key: nsb/aws/AWS_ACCESS_KEY_ID
-  - name: AWS_SECRET_ACCESS_KEY
-    key: nsb/aws/AWS_SECRET_ACCESS_KEY
   - name: TF_VAR_elasticsearch_proxy_admin_password
-    key:  nsb/aws/elasticsearch_proxy/prod/admin_password
+    key:  nsb/aws/elasticsearch_proxy/opstest/admin_password
      </code></pre>
      <aside class="notes">
       <ul>
@@ -611,12 +604,10 @@ secret-vars:
 ~/src/nsb/.password-store
 ├── nsb
 │   ├── aws
-│   │   ├── AWS_ACCESS_KEY_ID.gpg
-│   │   ├── AWS_SECRET_ACCESS_KEY.gpg
 │   │   ├── elasticsearch_proxy
 │   │   │   ├── prod
 │   │   │   │   └── admin_password.gpg
-│   │   │   ├── test
+│   │   │   ├── opstest
 │   │   │   │   └── admin_password.gpg
 │   │   ├── nsb.pem.gpg
 │   ├── maven
@@ -627,7 +618,7 @@ secret-vars:
 │   └── aws
 │       ├── prod
 │       │   └── vault_password.gpg
-│       └── test
+│       └── opstest
 │           └── vault_password.gpg
      </code></pre>
      <aside class="notes">
@@ -703,10 +694,13 @@ AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ✗ envchain aws terragrunt-wrapper apply
      </code></pre>
      <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-Started terragrunt operation at: 2017-02-27 08:22:09.902221974 +0100 CET
-[terragrunt] 2017/02/27 08:22:12 Remote state is already configured for backend s3
-[terragrunt] 2017/02/27 08:22:12 Running command: terraform plan
-Refreshing Terraform state in-memory prior to plan..
+Started terragrunt operation at: 2017-03-02 16:12:40.505382704 +0100 CET
+[terragrunt] 2017/03/02 16:12:41 Reading Terragrunt config file at /Users/steiningemorisbak/src/nsb/infrastructure/opstest/.terragrunt
+[terragrunt] 2017/03/02 16:12:41 Remote state is already configured for backend s3
+[terragrunt] 2017/03/02 16:12:41 Attempting to acquire lock for state file infrastructure-test1 in DynamoDB
+[terragrunt] 2017/03/02 16:12:41 Attempting to create lock item for state file infrastructure-test1 in DynamoDB table terragrunt_locks
+[terragrunt] 2017/03/02 16:12:42 Lock acquired!
+[terragrunt] 2017/03/02 16:12:42 Running command: terraform apply
      </code></pre>
 
      <aside class="notes">
@@ -736,7 +730,7 @@ Refreshing Terraform state in-memory prior to plan..
         <li>Streamer blant annet loggene fra CloudWatch til ElasticSearch.</li>
        </ul>
        <li>Felles for disse her er at du slipper å tenke på drift av de.</li>
-       <li>Backup, speiling, patching, skalering osv. er hændtert av AWS</li>
+       <li>Backup, speiling, patching, skalering osv. er håndtert av AWS</li>
       </ul>
      </aside>
     </section>
@@ -758,7 +752,6 @@ app-infrastructure
 │   └── get-aws-ids.sh
 └── modules
     ├── database
-    ├── elb
     ├── route53_alias_record
     ├── route53_cname_record
     └── ssl_cert
@@ -814,34 +807,281 @@ resource "aws_db_instance" "db" {
 
     <section>
      <h1>AWS CLI</h1>
-     <aside class="notes"> </aside>
-    </section>
-
-    <section>
-     <h2><code>{./app1,./app2,...}</code> (PaaS)</h2>
-     <ul>
-      <li>Elastic Beanstalk</li>
-     </ul>
+     <h2><code>get-aws-ids.sh</code></h2>
      <aside class="notes">
-      Gjør alt det man kunne gjort i Terraform &rarr; Gjør det til PaaS
+     <ul>
+       <li>Som dere kanskje la merke til kjører jeg et skript for å hente metadata fra aws</li>
+       <li>Bruker aws-cli</li>
+     </ul>
      </aside>
     </section>
 
     <section>
-     <h2>Annet</h2>
-     <ul>
-      <li>Database Migration Service (DMS)</li>
-     </ul>
-     <aside class="notes"> </aside>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+#!/bin/bash
+
+vpcid=$(aws ec2 describe-vpcs --filters "Name=tag-value, Values=${1}_vpc" | jq '.Vpcs[0].VpcId' | sed s/\"//g)
+private_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_private_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
+public_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_public_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
+bastion_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_bastion_ssh_sg*" | jq '.SecurityGroups[0].GroupId')
+mgmtserver_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_mgmtserver_sg*" | jq '.SecurityGroups[0].GroupId')
+nat_ip=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id, Values=${vpcid}" | jq ".NatGateways[0].NatGatewayAddresses[0].PublicIp")
+route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} | jq '.HostedZones[0].Id' | sed 's/\/hostedzone\///g')
+
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section data-background-video="movie/terragrunt-app-infrastructure-plan-and-apply.mp4" data-background="#000000">
     </section>
 
     <section>
-     <h1>Hvordan henger alt sammen?</h1>
+     <h2><code>{./app1,./app2,...}</code> (PaaS)</h2>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h1>The right tool for the job?</h1>
+     <img width="235" height="235" class="fragment" src="img/elastic-beanstalk.png" alt="Elastic Beanstalk">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+     <aside class="notes">
+      <ul>
+        <li>Selve rosinen i pølsa</li>
+        <li>Gjør alt det man kunne gjort i Terraform &rarr; Gjør det til PaaS</li>
+      </ul>
+     </aside>
+    </section>
+
+    <section>
+     <h2>Elastic Beanstalk</h2>
+     <blockquote>Easy to begin, Impossible to outgrow</blockquote>
+     <ul class="fragment">
+       <lh><strong>Automatiserer og håndterer:</strong></lh>
+       <div class="fragment">
+       <li>konfigurasjon</li>
+       <li>deploy</li>
+       <li>kapasitet-provisjonering</li>
+       <li>lastbalansering</li>
+       <li>auto-skalering</li>
+       <li>monitorering</li>
+       </div>
+       <lf class="fragment">Uten ekstra kostnad utover ressursene du forbruker</lf>
+     </ul>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+&lt;app1&gt;
+├──.ebextensions
+|  ├── 00-set-timezone.config
+|  ├── 01-set-number-of-file-descriptors.config
+|  ├── cw-logging.config
+|  └── securelistener.config
+├── Procfile
+├── package.sh
+├── create.sh
+├── deploy.sh
+├── terminate.sh
+├── config
+│   ├── nsbmob-servicelayer-&lt;env&gt;.properties
+├── secretconfig
+│   ├── nsbmob-servicelayer-&lt;env&gt;.properties.encrypted
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h5><code>.ebextensions/00-set-timezone.config</code></h5>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+commands:
+  link_Oslo:
+    command: "ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime"
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h5><code>.ebextensions/</code><br>
+         <code>01-set-number-of-file-descriptors.config</code></h5>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+files:
+  "/etc/security/limits.d/00-webapp.conf":
+    content: |
+      webapp           soft    nofile          65535
+      webapp           hard    nofile          65535
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h5><code>.ebextensions/cw-logging.config</code></h5>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+option_settings:
+  aws:elasticbeanstalk:cloudwatch:logs:
+    StreamLogs: true
+    DeleteOnTerminate: false
+    RetentionInDays: 7
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h5><code>.ebextensions/securelistener.config</code></h5>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+option_settings:
+  aws:elb:listener:443:
+    SSLCertificateId: arn:aws:acm:eu-central-1:635004941268:certificate/6502eb35-99a7-4004-8e47-a5a0ec194c6a
+    ListenerProtocol: HTTPS
+    InstancePort: 80
+  aws:elb:listener:80:
+    ListenerEnabled: false
+  aws:elasticbeanstalk:application:
+    Application Healthcheck URL: /nsbmob/health
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section>
+     <h5><code>Procfile</code></h5>
+     <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+web: java -jar app.jar
+     </code></pre>
+     <aside class="notes">
+     </aside>
+    </section>
+
+    <section data-background-video="movie/eb-create.mp4" data-background="#000000">
+    </section>
+
+    <section data-background-video="movie/eb-deploy.mp4" data-background="#000000">
+    </section>
+
+    <section>
+     <h1>Annet</h1>
+     <ul>
+      <li>Database Migration Service (DMS)</li>
+      <li>Flyway</li>
+     </ul>
+     <aside class="notes">
+Verdt å nevne Flyway også
+     </aside>
+    </section>
+
+    <section>
+     <h1>Flyway</h1>
+     <img width="235" height="235" src="img/flyway.png" alt="Flyway">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+     <aside class="notes">
+Snakke litt om Flyway
+     </aside>
+    </section>
+
+     <section>
+     <h2>The Expand/Contract pattern</h2>
+     <br>
+     <table class="reveal" width="100%">
+     <th>Expand</th>
+     <th>Contract</th>
+     <tr>
+     <td width="50%" class="fragment">
+     <ul>
+     <li>Add tables</li>
+     <li>Add columns</li>
+     <li>Tweak indexes</li>
+     </ul>
+     </td>
+     <td width="50%" class="fragment">
+     <ul>
+     <li>Remove tables</li>
+     <li>Remove columns</li>
+     <li>Remove/add constraints</li>
+     </ul>
+     </td>
+     </tr>
+     </table>
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/architecture.png" alt="architecture">
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/pre-upgrade-db.png" alt="architecture">
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/upgrade1.png" alt="architecture">
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/upgrade2.png" alt="architecture">
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/post-upgrade-db.png" alt="architecture">
      <aside class="notes"> </aside>
+     </section>
+     <section>
+     <img width="449" height="510" src="../../img/architecture.png" alt="architecture">
+     </section>
+
+    <section>
+     <h1>Hvordan henger alt sammen?</h1>
+     <aside class="notes">
      <ul>
       <li>Har snakket om veldig mye rart nå.</li>
       <li>Hvordan setter vi alt dette her sammen til et totalbilde?</li>
      </ul>
+     </aside>
+    </section>
+
+    <section>
+     <h1>1 2 3 4 (5)</h1>
+     <ol>
+      <li class="fragment">IaaS med Terraform</li>
+      <li class="fragment">PaaS-tjenester med Terraform (og litt Ansible)</li>
+      <li class="fragment">Applikasjoner med Elastic Beanstalk (også PaaS)</li>
+      <li class="fragment">DB migrering med Flyway</li>
+      <li class="fragment">Monitorering med CloudWatch ++</li>
+      <li class="fragment">(Masse tooling med Ansible)</li>
+     </ol>
+     <aside class="notes"> </aside>
+    </section>
+
+
+     <!-- Legg inn opstest her og med bilde som backup -->
+     <!--<section data-background-iframe="https://ide.visualops.io/workspace/3dd8c4e1-bb4e-4fd9-b941-aa7fe784b61f/ops/app-ac4a9ab2">
+     <aside class="notes"></aside>
+     </section>-->
+
+    <section>
+     <h1>Planer for fremtiden</h1>
+     <ul>
+      <li class="fragment">Oppsplitting av backends &rarr; mikrotjenester</li>
+      <li class="fragment">Alt i pass</li>
+      <li class="fragment">#Serverless?</li>
+     </ul>
+     <aside class="notes">
+     <ul>
+      <li>Omnikanal, nsb.no og mobil backend</li>
+      <li>Bruker ansible-vault ganske mye. Fører til duplisering av hemmeligheter</li>
+      <li>
+     </ul>
+     </aside>
+    </section>
+
+    <section>
+     <h1>Og ikke glem ...</h1>
+     <aside class="notes">Destroy!</aside>
+    </section>
+
+    <section data-background-video="movie/destroy.mp4" data-background="#000000">
     </section>
 
     <!--
@@ -850,34 +1090,6 @@ resource "aws_db_instance" "db" {
      <h2>#Serverless</h2>
      <ul>
      <li>&#x1F622;</li>
-     </ul>
-     <aside class="notes"> </aside>
-     </section>
-
-     <section>
-     <h2>Verktøy</h2>
-     <ul>
-     <li>Bash</li>
-     <li>Envchain</li>
-     <li>Pass</li>
-     <li>Terraform</li>
-     <li>Terragrunt</li>
-     <li>Terragrunt-wrapper</li>
-     <li>AWS CLI</li>
-     <li>Ansible</li>
-     <li>Ansible Vault</li>
-     <li>Flyway</li>
-     <li>Og selvsagt en dash med <code>#!/bin/bash</code>
-     </ul>
-     <aside class="notes"> </aside>
-     </section>
-
-     <section>
-     <h2>Konsepter</h2>
-     <ul>
-     <li>Immutability</li>
-     <li>PaaS</li>
-     <li>#Serverless</li>
      </ul>
      <aside class="notes"> </aside>
      </section>
