@@ -21,8 +21,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #222;
-  background-color: #222; }
+  background: rgb(23, 22, 23);
+  background-color: rgb(23, 22, 23); }
 
 .reveal {
   font-family: "Lato", sans-serif;
