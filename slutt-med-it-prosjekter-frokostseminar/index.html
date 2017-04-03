@@ -48,7 +48,7 @@
 
       <section>
         <h1>Slutt med IT-prosjekter!</h1>
-        <p>Smidig 2015</p>
+        <p>Frokostseminar Trondheim</p>
         <img width="252" height="235" src="img/me_bart.png" alt="Stein Inge Morisbak">
         <p><a href="https://twitter.com/steinim">@steinim</a></p>
         <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
@@ -164,17 +164,28 @@ Da har du insentivene for å lage skikkelig kvalitetssikret programvare.
           Denne her er like sann.
        </aside>
       </section>
-<!--
       <section>
         <h2>Utfordringer med prosjekt som arbeidsform</h2>
         <ul>
-          <li class="fragment">vanskelig å realisere gevinster fortløpende</li>
+          <li class="fragment">vanskelig å realisere gevinster (skape verdi) fortløpende</li>
           <li class="fragment">konflikt mellom prosjektets mål og virksomhetens mål</li>
           <li class="fragment">stor avstand mellom prosjekt- og linjeorganisasjon</li>
           <li class="fragment">kortsiktig finansieringsmodell</li>
           <li class="fragment">utfordringer med overlevering og kunnskapsoverføring</li>
+          <li class="fragment">vanskelig å skalere</li>1
       </section>
--->
+
+    <section>
+      <h2>Brooks' law</h2>
+      <img src="img/mythical_man_month.jpg" style="float: left;">
+      <blockquote cite="https://en.wikipedia.org/wiki/Brooks%E2%80%99_law" style="float: right;">Adding manpower to a late<br>software project makes it later</blockquote>
+      <footer style="float: right; font-size: 0.5em;"><a href="https://en.wikipedia.org/wiki/Brooks%E2%80%99_law">Fred Brooks, The Mythical Man-Month, 1975</a></footer>
+      <aside class="notes">
+          <p>Når du skal skalere prosjekter kan du ikke bare øke budsjettet og ansette eller leie inn flere folk.
+          <p>Med kontinuerlig produktutvikling i linja er det ikke noe som heter forsinkelse. Der kan du justere bemanning kontinuerlig basert på prioriteringer og forretningsbehov.
+      </aside>
+    </section>
+
       <section>
         <img src="img/prince2.png">
         <aside class="notes">
@@ -201,6 +212,13 @@ Da har du insentivene for å lage skikkelig kvalitetssikret programvare.
         </aside>
       </section>
 
+    <section>
+      <img src="img/homomorphism.png" height="600px">
+      <aside class="notes">
+        There is a homomorphism from the linear graph of a system to the linear graph of its organization.
+      </aside>
+    </section>
+
       <section>
        <h2>Avmystifisering av Conway's lov</h2>
        <img src="img/sam_newman.jpeg" style="float: left;">
@@ -212,6 +230,37 @@ For eksempel så har Netflix og Amazon strukturert seg rundt små team med ansva
 Samme med Spotify.
       </aside>
       </section>
+
+    <section>
+      <img src="img/microservices.png" height="600px">
+      <aside class="notes">
+        Som vi ser har Conway påvirket en av de store hypene i dag - mikrotjenester. Dette er James Lewis og Martin Fowlers illustrasjon av mikrotjenester.. (flip back)
+        <p>Microservices have no precise definition, e.g. size.
+        <p>Some common characteristica<ul>
+        <li>deployed independent from each other
+        <li>automated deployment
+        <li>decentralized and must be orchestrated.
+        <li>talk to each other via well defined APIs
+        <li><b>organized around business capabilities</b><ul>
+        <li>the characteristica which makes service design flexible
+        <li>but not without  a flexible organization
+        </ul>
+        At the top. You can see that this is an inverse Conway maneuver. In a flexible organization, the mirroring of microservices to the organization is a good thing. Flexibility in org. and flexibility of the system architecture.
+        <ul>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Conway's Corollary</h2>
+      <img src="img/conway.png" style="float: left;">
+      <blockquote cite="https://en.wikipedia.org/wiki/Conway%27s_law" style="float: right;">
+        Organizational flexibility<br>is important to effective design
+      </blockquote>
+      <footer style="float: right; font-size: 0.5em;"><a href="http://www.melconway.com/research/committees.html">M. Conway, How Do Committees Invent, 1968</a></footer>
+      <aside class="notes">
+        Conway's Corollary. The flexibility of the organization will affect how it designs things. Also the architecture of the systems they produce.
+      </aside>
+    </section>
 
       <section>
          <img src="img/spotify_teams.png">
