@@ -1,0 +1,48 @@
+En skyrigg for kontinuerlige leveranser - frokostseminar
+---------------------------------------------------------
+
+Hvorfor?
+- Alle virksomheter er IT-virksomheter
+- I et konkurranseutsatt marked er fart og tilpasningsevne viktigst av alt.
+
+Hva er kontinuerlige leveranser?
+
+Hva er DevOps?
+  - You build it your run it.
+  - Ta med forretningssiden også.
+  
+DevOps -> NoOps/JustDevs? -> Serverless
+
+Implikasjoner når utviklere overtar drift
+  - Fordeler
+  - Ulemper
+  - Forutsetninger: Sky, PaaS, hostet RDS, SaaS
+
+Hvilke mål satte vi oss?
+Enkelhet og automatisering har vært de viktigste prinsippene vi har styrt etter – uten at det skal gå ut over tilgjengelighet, stabilitet, og ikke minst sikkerhet.
+
+Maximizing work not done.
+
+Tjenester:
+  - Tooling (automatiser alt! inkludert sikkerhet)
+  - AWS:
+    - IaaS
+    - RDS
+    - PaaS (Elastic Beanstalk)
+    - Monitorering. Også forretningsmessige krav sier mye om tilstanden
+    - Logging
+  - Alt annet: Kjøp hostede tjenester om du kan
+    - Monitorering: Panopticon, Slack, ChatOps
+    - CI: Travis
+    - 
+
+    
+    
+Utfordringer:
+  - Migrering av legacy
+  - 
+  Finne the right tool for the job.
+
+
+Det andre er enkelt
+  - Monitorering er vikt
