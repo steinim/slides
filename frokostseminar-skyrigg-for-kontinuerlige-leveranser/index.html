@@ -89,15 +89,20 @@
 
      <section>
         <img src="img/continuous_delivery.jpg" style="float: left;" width="25%">
+        <blockquote cite="https://martinfowler.com/bliki/ContinuousDelivery.html" style="float: right;">
+...a software development discipline where you build software in such a way that the software can be released to production at any time.
+        <br>
+        <footer style="float: right; font-size: 0.5em;"><a href="https://martinfowler.com/bliki/ContinuousDelivery.html"></a>Martin Fowler, https://martinfowler.com/bliki/ContinuousDelivery.html</footer>
+        </blockquote>
         <blockquote cite="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/" style="float: right;">
-Continuous delivery is about putting the release schedule in the hands of the business, not in the hands of IT.
+Continuous delivery is about putting the release schedule in the hands of the business,<br>not in the hands of IT.
         <br>
         <footer style="float: right; font-size: 0.5em;"><a href="https://continuousdelivery.com/"></a>Jez Humble, https://continuousdelivery.com/</footer>
         </blockquote>
         <aside class="notes">
         </aside>
       </section>
-
+<!--
     <section>
      <h1>Kontinuerlige leveranser<br>&ne;<br>Kontinuerlig deploy</h1>
      <aside class="notes">
@@ -109,7 +114,7 @@ Continuous delivery is about putting the release schedule in the hands of the bu
      <aside class="notes">
      </aside>
     </section>
-
+-->
     <section>
      <h1>Kontinuerlige leveranser &hearts; DevOps</h1>
      <aside class="notes">
@@ -274,17 +279,13 @@ We decided we needed to buy innovation
      <h1>Infrastruktur som kode</h1>
      <ul>
       <li class="fragment">Dokumenterer (infrastruktur som kode)</li>
-      <li class="fragment">Eksekveringsplaner (ingen overaskelser)</li>
-      <li class="fragment">Eksekveringsgrafer (parallelliserer hvor mulig)</li>
+      <li class="fragment">Versjonerer (historikk)</li>
+      <li class="fragment">Sikrer like miljøer</li>
+      <li class="fragment">Testbart</li>
+      <li class="fragment">Evolusjonært (små endringer gradvis)</li>
       <li class="fragment">Automatiserer (fjerner det feilbarlige mennesket)</li>
      </ul>
      <aside class="notes">
-     <ul>
-      <li>Infrastructure as code: dokumentasjon, deling og gjenbruk</li>
-      <li>Execution plans: Viser i detalj hva som skal eksekveres. Unngå overaskelser</li>
-      <li>Resource graph: paralleliserer der den kan og respekterer avhengigheter</li>
-      <li>Automation: Automatiserer alt</li>
-     </ul>
      </aside>
     </section>
 
