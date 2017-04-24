@@ -177,7 +177,7 @@ Continuous delivery is about putting the release schedule in the hands of the bu
     <section>
      <h1>DevOps &hearts; Sky</h1>
      <aside class="notes">
-       Forutsetninger: Sky, hostet RDS, SaaS, PaaS
+       Forutsetninger: Sky, hostet RDS, driftede skytjenester, PaaS
      </aside>
     </section>
 
@@ -236,14 +236,14 @@ Continuous delivery is about putting the release schedule in the hands of the bu
     <section>
       <h1>Våre prinsipper for skybruk</h1>
       <ul>
-        <li class="fragment"><div style="font-size: x-large; display:inline; vertical-align: middle;">Iaas</div> <div style="display:inline; vertical-align: middle;">&rarr; SaaS og PaaS</div></li>
+        <li class="fragment"><div style="font-size: x-large; display:inline; vertical-align: middle;">Iaas</div> <div style="display:inline; vertical-align: middle;">&rarr; driftede skytjenester og PaaS</div></li>
         <li class="fragment">Automatiser mot API-er<br>(Ingen klikking i GUI eller fikling i prod!)</li>
         <li class="fragment">Kjøp/bruk tjenester istedenfor å lage de selv</li>
         <li class="fragment">Bruk <u>offentlig</u> sky. Ikke privat.</li>
        </ul>
      <aside class="notes">
      <ul>
-      <li>Minst mulig IaaS, mest mulig SaaS og PaaS</li>
+      <li>Minst mulig IaaS, mest mulig driftede skytjenester og PaaS</li>
      </ul>
      </aside>
      </section>
@@ -382,7 +382,7 @@ resource "aws_instance" "instance" {
      </section>
 
     <section>
-     <h1>SaaS</h1>
+     <h1>Driftede skytjenester (SaaS)</h1>
      <ul>
       <li class="fragment">RDS (Relational Database Service)</li>
       <li class="fragment">Route53 (DNS)</li>
@@ -392,6 +392,7 @@ resource "aws_instance" "instance" {
      </ul>
      <aside class="notes">
       <ul>
+       <li>SaaS er ikke Office 365, Salesforce og lignende</li>
        <li>Felles for disse her er at du slipper å tenke på drift av de.</li>
        <li>Backup, speiling, patching, skalering osv. er håndtert av AWS</li>
       </ul>
@@ -545,7 +546,7 @@ aws acm request-certificate --domain-name cloud.nsb.no
      <h1>1 2 3 4 5 6</h1>
      <ol>
       <li class="fragment">Reduser IaaS til et minimum</li>
-      <li class="fragment">Bruk SaaS hvor du kan</li>
+      <li class="fragment">Bruk driftede skytjenester hvor du kan</li>
       <li class="fragment">Bruk PaaS for tjenesteutvikling</li>
       <li class="fragment">Automatisering, Automatisering, Automatisering... </li>
       <li class="fragment">Monitorering, Monitorering, Monitorering... </li>
