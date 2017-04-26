@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>En skyrigg for kontinuerlige leveranser</title>
+  <meta name="description" content="Et eksempel på en skyrigg som er tilrettelagt for kontinuerlige leveranser">
+  <meta name="author" content="Stein Inge Morisbak">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.min.css">
+  <link rel="stylesheet" href="../lib/css/zenburn.css">
+  <link rel="stylesheet" href="../css/theme/bekk.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css" id="custom">
+  <script>
+    document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+  </script>
+</head>
+
+ <body>
+  <div class="reveal">
+   <div class="slides">
+
+    <section>
+     <h1>En skyrigg for kontinuerlige leveranser</h1>
+     <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+     <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
+     <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+    </section>
+
+    <section>
+     <h1>&nbsp;</h1>
+     <img width="235" height="235" src="img/nsb.png" alt="NSB">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h1>Sky-tjenester</h1>
+     <img width="235" height="235" src="img/aws.jpg" alt="AWS">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h1>Hvorfor?</h1>
+     <img src="img/ny_industriell_revolusjon.png" alt="Alle virksomheter er IT-virksomheter!">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h1>The Lean Startup</h1>
+     <img src="img/bml.png" alt="Build -> Measure -> Learn">
+    </section>
+
+    <section>
+     <h1>Lean Startup &hearts; Kontinuerlige leveranser</h1>
+    </section>
+
+    <section>
+     <h1>Hva er egentlig<br>Kontinuerlige leveranser?</h1>
+    </section>
+
+    <section>
+        <img src="img/continuous_delivery.jpg" style="float: left;" width="25%">
+        <blockquote cite="https://martinfowler.com/bliki/ContinuousDelivery.html" style="float: right;">
+...a software development discipline where you build software in such a way that the software can be released to production at any time.
+        <br>
+        </blockquote>
+        <footer style="float: right; font-size: 0.5em;"><a href="https://martinfowler.com/bliki/ContinuousDelivery.html">Martin Fowler, https://martinfowler.com/bliki/ContinuousDelivery.html</a></footer>
+        <blockquote cite="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/" style="float: right;">
+Continuous delivery is about putting the release schedule in the hands of the business,<br>not in the hands of IT.
+        </blockquote>
+        <footer style="float: right; font-size: 0.5em;"><a href="https://continuousdelivery.com/">Jez Humble, https://continuousdelivery.com/</a></footer>
+    </section>
+
+    <section>&nbsp;</section>
+
+    <section>
+     <h1>Kontinuerlige leveranser &hearts; DevOps</h1>
+    </section>
+
+    <section>
+     <h1>Hva er egentlig DevOps?</h1>
+    </section>
+
+    <section data-background-image="img/werner_vogels.png">
+     <div style="background-color: rgba(0,0,0, 0.8); float: right; position: absolute; top: -800%; right: 3%;">
+     <h1>&nbsp;You build it, you run it!&nbsp;</h1>
+     <footer style="font-size: 0.5em;">Werner Vogels, CTO @ Amazon</footer>
+     <br>
+     </div>
+    </section>
+
+<section>&nbsp;</section>
+
+  <section>
+    <h1>&nbsp;</h1>
+    <div style="float: left; position: absolute; top: 0%; left: 0%;">
+      <h1>Developers carry beepers</h1>
+    </div>
+      <footer style="font-size: 0.5em;">Kent Beck at a DevOps Norway Meetup in 2013</footer>
+    <div style="float: right; position: absolute; bottom: -250%; right: 0%;">
+      <img src="img/kent_beck.png" width="70%">
+    </div>
+  </section>
+
+    <section>
+     <h1>DevOps &rarr; NoOps/JustDevs?</h1>
+    </section>
+
+    <section>
+     <h1>DevOps &hearts; Sky</h1>
+    </section>
+
+    <section>
+      <h1>Målsetningene våre</h1>
+      <ul>
+        <li class="fragment">Smidige</li>
+        <li class="fragment">Tilpasningsdyktige</li>
+        <li class="fragment">Raske</li>
+        <li class="fragment">Robuste</li>
+        <li class="fragment">Autonome</li>
+      </ul>
+    </section>
+
+    <section>
+            <h1>Vi ønsket et fokusskifte</h1>
+            <br>
+            <table class="reveal" width="100%">
+            <tr>
+            <td width="33%" align="right">
+              <p>Utvikling</p>
+              <p>Drift</p>
+              <p>Forvaltning</p>
+            </td>
+            <td width="33%" align="center">
+              <p>&nbsp;</p>
+              <p>&rarr;</p>
+              <p>&nbsp;</p>
+            </td>
+            <td width="33%" align="left">
+              <p>&nbsp;</p>
+              <p>Produktutvikling</p>
+              <p>&nbsp;</p>
+            </td>
+            </tr>
+            </table>
+    </section>
+
+    <section>
+      <h1>Våre viktigste prinsipper</h1>
+      <blockquote class="fragment">Enkelhet og automatisering</blockquote>
+      <blockquote class="fragment">uten at det skal gå ut over<br>tilgjengelighet, stabilitet, og sikkerhet</blockquote>
+    </section>
+
+    <section>
+      <h1>Løsningen</h1>
+      <ul>
+        <li class="fragment">Kryssfunksjonelle team inkludert forretning
+        <br>(Build &rarr; Measure &rarr; Learn)</li>
+        <li class="fragment">DevOps og kontinuerlige leveranser</li>
+        <li class="fragment">You build it, you run it</li>
+        <li class="fragment">Sky, Sky, Sky!</li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Våre prinsipper for skybruk</h1>
+      <ul>
+        <li class="fragment"><div style="font-size: x-large; display:inline; vertical-align: middle;">Iaas</div> <div style="display:inline; vertical-align: middle;">&rarr; driftede skytjenester og PaaS</div></li>
+        <li class="fragment">Automatiser mot API-er<br>(Ingen klikking i GUI eller fikling i prod!)</li>
+        <li class="fragment">Kjøp/bruk tjenester istedenfor å lage de selv</li>
+        <li class="fragment">Bruk <u>offentlig</u> sky. Ikke privat.</li>
+       </ul>
+     </section>
+
+    <section data-background-image="img/the_pentagon.jpg">
+<!-- <div style="background-color: rgba(0,0,0, 0.8); float: right; position: absolute; top: -800%; right: 3%;"> -->
+        <blockquote style="background-color: rgba(0,0,0, 0.8);" cite="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/">
+We decided we needed to buy innovation
+        <p>&nbsp;</p>
+        <footer style="font-size: 0.5em;"><a href="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/"></a>David B. Gleason from Chicago, IL - The Pentagon</footer>
+        </blockquote>
+     </section>
+
+    <section>
+      <h1>IaaS</h1>
+     </section>
+
+    <section>
+     <h1>Nettverk</h1>
+     <img height="235" src="img/network.png" alt="Nettverk">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h1>Automatiser!</h1>
+     <img width="235" height="235" src="img/terraform.png" alt="Terraform">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h1>Infrastruktur som kode</h1>
+     <ul>
+      <li class="fragment">Dokumenterer (infrastruktur som kode)</li>
+      <li class="fragment">Versjonerer (historikk)</li>
+      <li class="fragment">Sikrer like miljøer (immutable)</li>
+      <li class="fragment">Testbart (kontinuerlig integrasjon)</li>
+      <li class="fragment">Evolusjonært (små endringer gradvis)</li>
+      <li class="fragment">Automatiserer (fjerner det feilbarlige mennesket)</li>
+     </ul>
+    </section>
+
+    <!-- VPC -->
+    <section>
+     <pre><code data-trim style="font-size: 18px; margin-top: 20px; max-height: 600px;">
+resource "aws_vpc" "vpc" {
+    cidr_block           = "${var.vpc_cidr}"
+    enable_dns_hostnames = true
+    tags { Name = "${var.vpc_name}" }
+}
+
+resource "aws_route" "internet_access_route" {
+  route_table_id         = "${aws_vpc.vpc.main_route_table_id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.ig.id}"
+}
+
+resource "aws_subnet" "subnet" {
+  vpc_id                  = "${var.vpc_id}"
+  count                   = "${var.number_of_subnets}"
+  cidr_block              = "${lookup(var.cidr_blocks, "zone_${count.index}")}"
+  availability_zone       = "${lookup(var.zones, "zone_${count.index}")}"
+  map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
+
+  tags { Name = "${var.name}_subnet_${lookup(var.zones, "zone_${count.index}")}" }
+}
+
+resource "aws_instance" "instance" {
+  ami                         = "${var.ami}"
+  instance_type               = "t2.micro"
+  key_name                    = "${var.key_pair_id}"
+  subnet_id                   = "${var.subnet_id}"
+  associate_public_ip_address = true
+  source_dest_check           = false
+  vpc_security_group_ids = [ "${var.security_group_ids} ]
+  tags { Name = "${var.instance_name}" }
+}
+     </code></pre>
+    </section>
+
+    <section>
+     <img src="img/vpc.png" alt="VPC">
+    </section>
+
+    <section>
+     <img src="img/availability-zones.png" alt="Availability Zones">
+    </section>
+
+    <section>
+     <img src="img/subnets.png" alt="Subnets">
+    </section>
+
+    <section>
+     <img src="img/instances.png" alt="Instances">
+    </section>
+
+     <section data-background-image="img/graph.png" data-background-size="100% 100%">
+     </section>
+
+<section>&nbsp;</section>
+
+    <section>
+     <h1>Driftede skytjenester (SaaS)</h1>
+     <ul>
+      <li class="fragment">RDS (Relational Database Service)</li>
+      <li class="fragment">Route53 (DNS)</li>
+      <li class="fragment">CloudWatch (monitoring, events, logging)</li>
+      <li class="fragment">IAM (tilgangskontroll og sikkerhet)</li>
+      <li class="fragment">S3 (skalerbar lagring)</li>
+     </ul>
+    </section>
+
+    <section>
+     <h1>PaaS</h1>
+    </section>
+
+    <section>
+     <h1>Elastic Beanstalk</h1>
+     <img width="235" height="235" src="img/elastic-beanstalk.png" alt="Elastic Beanstalk">
+     <p style="font-size: 28px;">&nbsp;</p>
+     <p style="font-size: 28px;">&nbsp;</p>
+    </section>
+
+    <section>
+     <h2>Elastic Beanstalk</h2>
+     <blockquote>Easy to begin, Impossible to outgrow</blockquote>
+     <ul class="fragment">
+       <lh><strong>Automatiserer og håndterer:</strong></lh>
+       <div class="fragment">
+       <li>konfigurasjon</li>
+       <li>deploy</li>
+       <li>kapasitet-provisjonering</li>
+       <li>lastbalansering</li>
+       <li>auto-skalering</li>
+       <li>monitorering</li>
+       </div>
+       <lf class="fragment">Uten ekstra kostnad utover ressursene du forbruker</lf>
+     </ul>
+    </section>
+
+    <section>
+     <h1>Monitorering</h1>
+     </section>
+
+     <section>
+     10.000-vis av ulike metrikker
+     <img src="img/cloudwatch.png" height="600">
+     </section>
+
+    <section>
+     <h1>Andre tjenester</h1>
+     <ul>
+       <li>Panopticon (intern monitorering)</li>
+       <li>Pingdom (ekstern monitorering)</li>
+       <li>Pagerduty ("vakttelefon")</li>
+       <li>Slack (ChatOps)</li>
+       <li>Github (til alt!)</li>
+       <li>Travis (byggeserver)</li>
+       <li>Pass (hemmeligheter)</li>
+       <li>Ansible (konfigurasjonsstyring)</li>
+     </ul>
+    </section>
+
+    <section>
+     <h1>Hva har vi lært?</h1>
+    </section>
+
+    <section>
+     <h1>1 2 3 4 5 6</h1>
+     <ol>
+      <li class="fragment">Reduser IaaS til et minimum</li>
+      <li class="fragment">Bruk driftede skytjenester hvor du kan</li>
+      <li class="fragment">Bruk PaaS for tjenesteutvikling</li>
+      <li class="fragment">Automatisering, Automatisering, Automatisering... </li>
+      <li class="fragment">Monitorering, Monitorering, Monitorering... </li>
+      <li class="fragment"><b>Migrering av eksisterende tjenester er det vanskeligste</b></li>
+     </ol>
+    </section>
+
+    <section>
+     <h1>Planer for fremtiden</h1>
+     <ul>
+      <li class="fragment">Skrive om fra "lift and shift" til "cloud native" applikasjoner</li>
+      <li class="fragment">Mikrotjenester passer som hånd i hanske<br>for hva NSB ønsker å oppnå</li>
+      <li class="fragment">#Serverless?</li>
+     </ul>
+    </section>
+
+    <section>
+     <h1>Hvilke gevinster sitter vi igjen med?</h1>
+     <ol>
+      <li class="fragment">Redusert ledetid</li>
+      <li class="fragment">Smidig forretningsutvikling</li>
+      <li class="fragment">Fortløpende feilfiksing</li>
+      <li class="fragment">Prod.-like miljøer on demand</li>
+      <li class="fragment">Elastisitet og autoskalering</li>
+      <li class="fragment">Innsikt i alt som skjer</li>
+      <li class="fragment">Eierskap til det som leveres</li>
+      <li class="fragment">Ansvaret er plassert der hvor det hører hjemme</li>
+      <li class="fragment">Færre ting å tenke på</li>
+      <li class="fragment">Det vanskeligste er skyleverandørens ansvar</li>
+      <li class="fragment">Høyere medarbeidertilfredshet</li>
+     </ol>
+    </section>
+
+<!--
+    <section>
+      <h1>Lean Startup &hearts; Kontinuerlige leveranser</h1>
+      <h1>&darr;</h1>
+      <h1>Kontinuerlige leveranser &hearts; DevOps</h1>
+      <h1>&darr;</h1>
+      <h1>DevOps &hearts; Sky</h1>
+    </section>
+-->
+    <section>
+        <blockquote cite="http://cloudscaling.com/blog/cloud-computing/cloud-youre-doing-it-wrong/">
+The primary value of cloud is to generate competitive advantage
+        </blockquote>
+        <footer style="font-size: 0.5em;"><a href="http://cloudscaling.com/blog/cloud-computing/cloud-youre-doing-it-wrong/"></a>Cloud … You’re Doing it Wrong!, Randy Bias</footer>
+     </section>
+
+    <section>
+<!-- <div style="background-color: rgba(0,0,0, 0.8); float: right; position: absolute; top: -800%; right: 3%;"> -->
+        <blockquote cite="http://cloudscaling.com/blog/cloud-computing/cloud-youre-doing-it-wrong/">
+Cost savings is a side effect
+        </blockquote>
+        <footer style="font-size: 0.5em;"><a href="http://cloudscaling.com/blog/cloud-computing/cloud-youre-doing-it-wrong/"></a>Cloud … You’re Doing it Wrong!, Randy Bias</footer>
+     </section>
+
+    <section>
+     <h2>Thank you!</h2>
+     <p>Slides:<br><a href="http://steinim.github.io/slides/frokostseminar-skyrigg-for-kontinuerlige-leveranser/" style="font-size: x-large;">http://steinim.github.io/slides/frokostseminar-skyrigg-for-kontinuerlige-leveranser/</a></p>
+     <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+     <p><a href="https://twitter.com/steinim" style="font-size: x-large;">@steinim</a></p>
+     <p><a href="mailto:stein.inge.morisbak@BEKK.no" style="font-size: x-large;">stein.inge.morisbak@BEKK.no</a></p>
+    </section>
+
+   </div>
+  </div>
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.min.js"></script>
+
+  <script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+ controls: false,
+ progress: true,
+ history: true,
+ center: true,
+ width: 1100,
+
+ theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+ transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+ // Optional libraries used to extend on reveal.js
+ dependencies: [
+  { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+  { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+ ]
+});
+
+  </script>
+
+ </body>
+</html>
