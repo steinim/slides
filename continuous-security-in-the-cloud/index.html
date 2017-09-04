@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/custom.css" id="custom">
   <script>
     document.write('<link rel="stylesheet" href="../css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+
   </script>
 </head>
 
@@ -54,18 +55,20 @@
         </aside>
       </section>
 
+      <!--
       <section>
-        <img src="img/s3-lambda.png" alt="From S3 to Lambda"></img>
+        <img src="img/s3-lambda.png" alt="From S3 to Lambda">
         <aside class="notes">
           Lambda is doing to compute, what S3 did to storage.
         </aside>
       </section>
+      -->
 
       <section>
-        <h1>An introduction to Continuous Delivery and DevOps</h2>
-          <h3>Culture, Velocity and Robustness</h3>
-          <aside class="notes">
-          </aside>
+        <h2>An introduction to Continuous Delivery and DevOps</h2>
+        <h3>Culture, Velocity and Robustness</h3>
+        <aside class="notes">
+        </aside>
       </section>
 
       <section>
@@ -122,7 +125,6 @@
             <li>DNS Failover</li>
             <li>ELB</li>
           </ul>
-          </li>
         </ul>
         <aside class="notes">
         </aside>
@@ -213,12 +215,11 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
-            <li>Det siste halve året har BEKK-teamet hos NSB jobbet med å migrere tjenester fra intern infrastruktur til AWS.
-              <li>Vi har også etablert et par nye tjenester</li>
-              <li>Enkelhet og automatisering har vært de viktigste prinsippene vi har styrt ette</li>
-              <li>– uten at det skal gå ut over tilgjengelighet, stabilitet, og ikke minst sikkerhet</li>
-              <li>Jeg vil i dette foredraget skryte av og vise frem hva vi har tatt i bruk av praksiser, tjenester og verktøy som understøtter en taktfast og rask flyt av verdifull programvare til produksjon på en trygg og sikker måte.</li>
-            </li>
+            <li>Det siste halve året har BEKK-teamet hos NSB jobbet med å migrere tjenester fra intern infrastruktur til AWS.</li>
+            <li>Vi har også etablert et par nye tjenester</li>
+            <li>Enkelhet og automatisering har vært de viktigste prinsippene vi har styrt ette</li>
+            <li>– uten at det skal gå ut over tilgjengelighet, stabilitet, og ikke minst sikkerhet</li>
+            <li>Jeg vil i dette foredraget skryte av og vise frem hva vi har tatt i bruk av praksiser, tjenester og verktøy som understøtter en taktfast og rask flyt av verdifull programvare til produksjon på en trygg og sikker måte.</li>
           </ul>
         </aside>
       </section>
@@ -606,6 +607,7 @@ resource "aws_route53_record" "elasticsearch_route53_record" {
           <ul>
             <li>It is evaluated in a shell</li>
             <li>can use environment variables or Terraform variables</li>
+          </ul>
         </aside>
       </section>
 
@@ -1254,67 +1256,6 @@ eb terminate
 
       <section data-background-video="movie/destroy.mp4" data-background="#000000">
       </section>
-
-      <!--
-
-     <section>
-     <h2>#Serverless</h2>
-     <ul>
-     <li>&#x1F622;</li>
-     </ul>
-     <aside class="notes"> </aside>
-     </section>
-
-     <section>
-     <h2>#Serverless?</h2>
-     <img style="background: white;" height="235" src="../../img/boxfuse.png" alt="Boxfuse">
-     <p style="font-size: 28px;"><a href="https://twitter.com/boxfuse">@boxfuse</a></p>
-     <p style="font-size: 28px;"><a href="https://boxfuse.com/">https://boxfuse.com/</a></p>
-     <aside class="notes">
-     <ul>
-     <li>Føles mer som et provisjoneringsrammeverk du ikke har innsyn i
-     <li>Konvensjon over konfigurasjon
-     <li>Du trenger egentlig ikke valgfrihet om du lager webapps
-     <li>Appen din er lagret i en 3djeparts-site med egne credentials og som lagrer dine credentials
-     </ul>
-     </aside>
-     </section>
-
-     <section>
-     <h2>Sikkerhet i Boxfuse</h2>
-     <aside class="notes">
-     <ul>
-     <li>Appen din er lagret i en 3djeparts-site med egne credentials og som lagrer dine credentials
-     </ul>
-     </aside>
-     </section>
-
-     <section>
-     <h2>The good</h2>
-     <ul>
-     <li>Immutable as can be!
-     <li>
-     </ul>
-     <aside class="notes">
-     <ul>
-     <li>...
-     </ul>
-     </aside>
-     <section>
-     <h2>The bad</h2>
-     <ul>
-     <li>
-     <li>
-     </ul>
-     <aside class="notes">
-     <ul>
-     <li>Veldig lite transparent $rarr; Bratt læringskurve!
-     <li>Credentials lagres hos tredjepart
-     </ul>
-     </aside>
-     </section>
-
-    -->
 
       <section data-background-video="../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)">
         <h2>Thank you!</h2>
