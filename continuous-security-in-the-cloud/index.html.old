@@ -36,6 +36,177 @@
         </aside>
       </section>
 
+      <section>
+        <h1>A brief history of the cloud, devops and security</h1>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>From storage to #serverless</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>In the beginning it was S3</h2>
+        <pre>March 14, 2006</pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <!--
+      <section>
+        <img src="img/s3-lambda.png" alt="From S3 to Lambda">
+        <aside class="notes">
+          Lambda is doing to compute, what S3 did to storage.
+        </aside>
+      </section>
+      -->
+
+      <section>
+        <h2>An introduction to Continuous Delivery and DevOps</h2>
+        <h3>Culture, Velocity and Robustness</h3>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>The dark ages</h2>
+        <h3>The old ways of working with security</h3>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h1>Cloud security fundamentals</h1>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Access control and audit</h2>
+        <ul>
+          <li>Keys</li>
+          <li>2FA</li>
+          <li>Rotation</li>
+          <li>IAM
+            <ul>
+              <li>Users</li>
+              <li>System users</li>
+              <li>Services</li>
+            </ul>
+          </li>
+        </ul>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Governance of cloud resources</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Network security</h2>
+        <ul>
+          <li>VPC</li>
+          <li>Availability Zones</li>
+          <li>Subnets</li>
+          <li>Security groups</li>
+          <li>EIP</li>
+          <li>Bastion host</li>
+          <li>Certificate manager</li>
+          <li>Route 53</li>
+          <li>Reverse proxy</li>
+          <ul>
+            <li>Redirects</li>
+            <li>DNS Failover</li>
+            <li>ELB</li>
+          </ul>
+        </ul>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Shared Responsibility Model</h2>
+        <h3> (which security controls are the cloud vendor's responsibility, and which are yours)</h3>
+        <ul>
+          <li>Elastic Beanstalk</li>
+          <li>RDS</li>
+        </ul>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h1>Automating security</h1>
+        <ul>
+          <li>Terraform</li>
+          <li>Ansible</li>
+          <li>CLI</li>
+          <li>bash</li>
+        </ul>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Infrastructure as code using Terraform</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Configuration as code using Ansible</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Passwords, secrets and keys in an automated pipeline</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Managing individual credentials, VPN and 2FA</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Security logging and monitoring</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Security testing in a continuous delivery pipeline</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h1>In the end</h1>
+        <aside class="notes">
+          wrapping up
+        </aside>
+      </section>
+
+      <section>
+        <h2>Who's responsible?</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Why are you more secure in the cloud than in your own datacenter?</h2>
+        <aside class="notes">
+        </aside>
+      </section>
 
       <section>
         <h1>&nbsp;</h1>
@@ -54,174 +225,11 @@
       </section>
 
       <section>
-        <h1>&nbsp;</h1>
+        <h1>Cloud services</h1>
         <img width="235" height="235" src="img/aws.jpg" alt="AWS">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">Vi skal se på hvilke skytjenester vi har tatt i bruk i AWS.</aside>
-      </section>
-
-      <section data-background-image="img/move_to_cloud.jpg">
-      </section>
-
-      <section>
-        <h1>Why?</h1>
-        <img height="435" src="img/it-factory.png" alt="IT factory">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Alle virksomheter er IT-virksomheter</aside>
-      </section>
-
-      <section>
-        <h1>Why now?</h1>
-        <div class="mb-wrap mb-style-3">
-          <div class="mb-thumb-gene-kim"></div>
-          <blockquote>
-            <p>Those not transforming their IT
-              <br>organizations risk being left behind, missing
-              <br>out on one of the most disruptive and
-              <br>innovative periods in technology.</p>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Gene Kim</p>
-            <cite><a href="http://blogs.wsj.com/cio/2014/05/22/enterprise-devops-adoption-isnt-mandatory-but-neither-is-survival/">The Wall Street Journal, CIO Journal, May 22nd, 2014</a></cite>
-          </div>
-        </div>
-        <aside class="notes">
-          <ul>
-            <li>If you want to compete in a market where more and more businesses are adopting these changes and you don't adopt these new ways of getting work done you are really missing out.</li>
-            <li>It is happening now and can not be stopped.</li>
-            <li>And it is not just for startups. The large enterprises and the public sector also have to take this seriously to not be left behind.</li>
-            <li>The advantages overshadow traditional requirements for security work.</li>
-            <li>Change is inevitable.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section>
-        <h1>A shift in focus</h1>
-        <p>&nbsp;</p>
-        <table class="reveal" width="100%">
-          <tr>
-            <td width="45%" align="right">
-              <p>Development</p>
-              <p>Operations</p>
-              <p>Maintenance</p>
-            </td>
-            <td width="10%" align="center">
-              <p>&#8664;</p>
-              <p>&rArr;</p>
-              <p>&#8663;</p>
-            </td>
-            <td width="45%" align="left">
-              <p>&nbsp;</p>
-              <p><b>Product development</b></p>
-              <p>&nbsp;</p>
-            </td>
-          </tr>
-        </table>
-        <h1>&nbsp;</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Competitive advantage</h1>
-        <ul>
-          <li class="fragment">Innovate more</li>
-          <li class="fragment">Experiment more</li>
-          <li class="fragment">Faster time to market</li>
-          <li class="fragment">Build &rarr; Measure &rarr; Learn &rarr; Repeat <b>&#8634;</b></li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>How?</h2>
-        <h1 class="fragment">Continuous Delivery</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>What is Continuous Delivery?</h1>
-        <img src="img/continuous_delivery.jpg" style="float: left;" width="25%">
-        <blockquote cite="https://martinfowler.com/bliki/ContinuousDelivery.html" style="float: right;">
-          ...a software development discipline where you build software in such a way that the software can be released to production at any time.
-          <br>
-        </blockquote>
-        <footer style="float: right; font-size: 0.5em;">
-          <a href="https://martinfowler.com/bliki/ContinuousDelivery.html"></a>Martin Fowler, https://martinfowler.com/bliki/ContinuousDelivery.html</footer>
-        <blockquote cite="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/" style="float: right;">
-          Continuous delivery is about putting the release schedule in the hands of the business,<br>not in the hands of IT.
-        </blockquote>
-        <footer style="float: right; font-size: 0.5em;">
-          <a href="https://continuousdelivery.com/"></a>Jez Humble, https://continuousdelivery.com/</footer>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Continuous Delivery &hearts; DevOps</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>What is DevOps?</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <!--<section style="background-image: url(img/devops.png); background-position: 50% 50% ; background-size: 35%; background-repeat: no-repeat;">-->
-      <section>
-        <h1>Definition #1</h1>
-        <div class="mb-wrap mb-style-3">
-          <div class="mb-thumb-barton-george"></div>
-          <blockquote>
-            <p>…it is getting developers and operations folk to work closely<br>together to benefit the business.</p>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Barton George</p>
-            <cite><a href="https://venturebeat.com/2013/09/30/an-idiots-guide-to-devops/">An idiot’s guide to DevOps, Sept 30th, 2013</a></cite>
-          </div>
-        </div>
-        <img src="img/devops.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 75%; left: -10%;">
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>But we have no Ops!</h1>
-        <img width="235" height="235" src="img/noops.png" alt="NoOps">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>NoOps != No Operations</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Definition #2</h1>
-        <div class="mb-wrap mb-style-3">
-          <blockquote>
-            <p>Developers carry beepers.</p>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Kent Beck</p>
-            <cite><a href="https://www.meetup.com/DevOps-Norway/events/112627352/">At a DevOps Norway Meetup in 2013</a></cite>
-          </div>
-        </div>
-        <img src="img/kent_beck.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 80%; left: -10%;">
-        <aside class="notes">
-          * Kent Beck once gave me his definition of DevOps, "Developers carry beepers". * And he is absolutely right. It must be the ones that develop the systems that must watch over them. * They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur. * It also creates incentives to build things that don't break.
-        </aside>
       </section>
 
       <section>
@@ -1248,129 +1256,6 @@ eb terminate
 
       <section data-background-video="movie/destroy.mp4" data-background="#000000">
       </section>
-
-
-
-      <!--
-      <section>
-        <h2>Access control and audit</h2>
-        <ul>
-          <li>Keys</li>
-          <li>2FA</li>
-          <li>Rotation</li>
-          <li>IAM
-            <ul>
-              <li>Users</li>
-              <li>System users</li>
-              <li>Services</li>
-            </ul>
-          </li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-
-      <section>
-        <h2>Network security</h2>
-        <ul>
-          <li>VPC</li>
-          <li>Availability Zones</li>
-          <li>Subnets</li>
-          <li>Security groups</li>
-          <li>EIP</li>
-          <li>Bastion host</li>
-          <li>Certificate manager</li>
-          <li>Route 53</li>
-          <li>Reverse proxy</li>
-          <ul>
-            <li>Redirects</li>
-            <li>DNS Failover</li>
-            <li>ELB</li>
-          </ul>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Shared Responsibility Model</h2>
-        <h3> (which security controls are the cloud vendor's responsibility, and which are yours)</h3>
-        <ul>
-          <li>Elastic Beanstalk</li>
-          <li>RDS</li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Automating security</h1>
-        <ul>
-          <li>Terraform</li>
-          <li>Ansible</li>
-          <li>CLI</li>
-          <li>bash</li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Infrastructure as code using Terraform</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Configuration as code using Ansible</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Passwords, secrets and keys in an automated pipeline</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Managing individual credentials, VPN and 2FA</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Security logging and monitoring</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Security testing in a continuous delivery pipeline</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>In the end</h1>
-        <aside class="notes">
-          wrapping up
-        </aside>
-      </section>
-
-      <section>
-        <h2>Who's responsible?</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Why are you more secure in the cloud than in your own datacenter?</h2>
-        <aside class="notes">
-        </aside>
-      </section>
--->
 
       <section data-background-video="../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)">
         <h2>Thank you!</h2>
