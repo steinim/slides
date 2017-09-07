@@ -361,8 +361,8 @@
           <li class="fragment">Cloud, Cloud, Cloud!</li>
         </ul>
       </section>
-      
-      
+
+
       <section>
         <h1>The juicy part</h1>
       </section>
@@ -926,10 +926,23 @@ route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} |
       </section>
 
       <section>
-        <h1>The right tool for the job?</h1>
-        <img width="235" height="235" class="fragment" src="img/elastic-beanstalk.png" alt="Elastic Beanstalk">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
+        <h1>From pets to cattle</h1>
+        <p>&nbsp;</p>
+        <img style="float: left; position: relative; display:inline-block;" width="300" src="img/luke_og_leia.png">
+        <div style="display:inline-block;">
+          <p style="float: none; position: relative; right: 30%;">&#8663;</p>
+          <p style="float: none; position: relative; right: 30%;">&rArr;</p>
+          <p style="float: none; position: relative; right: 30%;">&#8664;</p>
+        </div>
+        <img style="float: right; position: relative;" width="300" src="img/cattle.jpg">
+        <footer class="layer right" style="font-size: 25px; position: relative; left: 37%; bottom: 10%; background-color: rgba(0, 0, 0, 0);">"When one of'em gets sick I just shoot'em in the head"</footer>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h1>Elastic Beanstalk</h1>
+        <img width="235" height="235" src="img/elastic-beanstalk.png" alt="Elastic Beanstalk">
         <aside class="notes">
           <ul>
             <li>Selve rosinen i pølsa</li>
@@ -938,48 +951,21 @@ route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} |
         </aside>
       </section>
 
-      <section>
-        <h1>From pets to cattle</h1>
-        <p>&nbsp;</p>
-        <table class="reveal" width="100%">
-          <tr>
-            <td width="45%" align="right">
-              <p>&nbsp;</p>
-              <p>Cat</p>
-              <p>&nbsp;</p>
-            </td>
-            <td width="10%" align="center">
-              <p>&#8663;</p>
-              <p>&rArr;</p>
-              <p>&#8664;</p>
-            </td>
-            <td width="45%" align="left">
-              <p>Cow</p>
-              <p>Cow</p>
-              <p>Cow</p>
-            </td>
-          </tr>
-        </table>
-        <h1>&nbsp;</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
 
       <section>
         <h2>Elastic Beanstalk</h2>
         <blockquote>Easy to begin, Impossible to outgrow</blockquote>
         <ul class="fragment">
-          <lh><strong>Automatiserer og håndterer:</strong></lh>
+          <lh><strong>Automates and manages:</strong></lh>
           <div class="fragment">
-            <li>konfigurasjon</li>
+            <li>configuration</li>
             <li>deploy</li>
-            <li>kapasitet-provisjonering</li>
-            <li>lastbalansering</li>
-            <li>auto-skalering</li>
-            <li>monitorering</li>
+            <li>capacity provisioning</li>
+            <li>load balancing</li>
+            <li>auto scaling</li>
+            <li>monitoring</li>
           </div>
-          <lf class="fragment">Uten ekstra kostnad utover ressursene du forbruker</lf>
+          <lf class="fragment">Without extra cost beyond the resources you use</lf>
         </ul>
         <aside class="notes">
         </aside>
@@ -1222,8 +1208,8 @@ eb terminate
         <aside class="notes">
         </aside>
       </section>
-      
-      
+
+
       <!--
       <section>
         <h2>Access control and audit</h2>
