@@ -22,6 +22,12 @@ section footer.right {
   font-size: 20px;
 }
 
+section footer.left {
+  left: -8em;
+  bottom: 1em;
+  font-size: 20px;
+}
+
 footer.semitransparent {
   padding: 0.2em 0.5em;
 }
@@ -186,3 +192,4 @@ slide.layer h1 {
   color: #feb6b8;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
+
