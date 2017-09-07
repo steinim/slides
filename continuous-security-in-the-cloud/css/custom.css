@@ -1,8 +1,41 @@
-.reveal ul { line-height: 1.5; }
-.reveal ol { line-height: 1.5; }
+.reveal ul {
+  line-height: 1.5;
+}
 
-.reveal blockquote { line-height: 1.2; }
+.reveal ol {
+  line-height: 1.5;
+}
 
+.reveal blockquote {
+  line-height: 1.2;
+}
+
+section footer {
+  bottom: 3em;
+  position: absolute;
+  font-size: 50%;
+}
+
+section footer.right {
+  right: -8em;
+  bottom: 1em;
+  font-size: 20px;
+}
+
+footer.semitransparent {
+  padding: 0.2em 0.5em;
+}
+
+footer.semitransparent a {
+  color: #eef;
+}
+
+.layer,
+slide.layer h1 {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 0.5em 1em;
+}
 
 .mb-wrap {
   width: 300px;
@@ -30,7 +63,9 @@
   width: 1100px;
 }
 
+
 /*quote box*/
+
 .mb-style-3 blockquote {
   background: rgba(255, 255, 255, 0.12);
   padding: 30px;
@@ -51,7 +86,9 @@
   pointer-events: none;
 }
 
+
 /*quote text*/
+
 .mb-style-3 blockquote p {
   font-size: 36px;
   color: #35bdb2;
@@ -63,7 +100,9 @@
   position: relative;
 }
 
+
 /* "-sign*/
+
 .mb-style-3 blockquote p:before {
   content: '\201C';
   font-family: serif;
@@ -77,7 +116,9 @@
   /*text-shadow: 7px 14px 10px rgba(255, 255, 255, 0.2);*/
 }
 
+
 /*attribution text*/
+
 .mb-style-3 .mb-attribution {
   text-align: right;
   padding: 20px 100px 20px 20px;
@@ -86,7 +127,9 @@
   top: 40px;
 }
 
+
 /*attribution image gene kim*/
+
 .mb-style-3 .mb-thumb-gene-kim {
   display: block;
   width: 70px;
@@ -100,7 +143,9 @@
   box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
 }
 
+
 /*attribution image barton george*/
+
 .mb-style-3 .mb-thumb-barton-george {
   display: block;
   width: 70px;
@@ -114,7 +159,9 @@
   box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
 }
 
+
 /*attribution name*/
+
 .mb-style-3 .mb-author {
   font-weight: 700;
   font-size: 24px;
@@ -122,7 +169,9 @@
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
+
 /*reference*/
+
 .mb-style-3 cite a {
   font-weight: 700;
   font-size: 18px;
@@ -130,7 +179,9 @@
   color: #35bdb2;
 }
 
+
 /*hover over reference link*/
+
 .mb-style-3 cite a:hover {
   color: #feb6b8;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
