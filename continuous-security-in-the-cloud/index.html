@@ -145,19 +145,20 @@
       </section>
 
       <section>
-        <h1>What is Continuous Delivery?</h1>
-        <img src="img/continuous_delivery.jpg" style="float: left;" width="25%">
-        <blockquote cite="https://martinfowler.com/bliki/ContinuousDelivery.html" style="float: right;">
-          ...a software development discipline where you build software in such a way that the software can be released to production at any time.
-          <br>
-        </blockquote>
-        <footer style="float: right; font-size: 0.5em;">
-          <a href="https://martinfowler.com/bliki/ContinuousDelivery.html"></a>Martin Fowler, https://martinfowler.com/bliki/ContinuousDelivery.html</footer>
-        <blockquote cite="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/" style="float: right;">
-          Continuous delivery is about putting the release schedule in the hands of the business,<br>not in the hands of IT.
-        </blockquote>
-        <footer style="float: right; font-size: 0.5em;">
-          <a href="https://continuousdelivery.com/"></a>Jez Humble, https://continuousdelivery.com/</footer>
+        <div class="mb-wrap mb-style-3" style="width: 1050px;">
+          <h1>What is Continuous Delivery?</h1>
+          <img src="img/continuous_delivery.jpg" style="float: left;" width="25%">
+          <blockquote style="text-align: left; margin: auto; left: 5%; top: 50%">
+            ...a software development discipline where you build software in such a way that the software can be released to production at any time.<br>
+            <div style="text-align: right;">
+              <div class="mb-author"><a href="https://martinfowler.com/bliki/ContinuousDelivery.html">Martin Fowler</a></div>
+            </div>
+            <br> Continuous delivery is about putting the release schedule in the hands of the business, not in the hands of IT.<br>
+            <div style="text-align: right;">
+              <div class="mb-author"><a href="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/">Jez Humble</a></div>
+            </div>
+          </blockquote>
+        </div>
         <aside class="notes">
         </aside>
       </section>
@@ -281,10 +282,10 @@
       <section style="width: 100%; height: 100%;">
 
         <footer class="left" style="position: absolute; top: 30%;">
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left;">&nbsp;You manage</div><br><br>
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left;">&nbsp;Vendor managed</div>
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left; position: relative; left: 15%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 20%;">&nbsp;You manage</div><br><br>
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left; position: relative; left: 15%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 20%;">&nbsp;Vendor managed</div>
         </footer>
 
         <h1>Let the cloud vendor cover your *aaS</h1>
@@ -363,7 +364,7 @@
       </section>
 
 
-      <section>
+      <section data-background-image="img/env_bg.png">
         <h1>The juicy part</h1>
       </section>
 
@@ -371,56 +372,49 @@
         <h1>Source code</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ./infrastructure
-./app-infrastructure
+./app-infrastructure...
 ./app1
 ./app2
-./appN
 ...
+./appN
      </code></pre>
-        <aside class="notes">Repoene er grovt delt inn i tre.</aside>
+        <aside class="notes">The repos are devided into thre categories</aside>
       </section>
 
       <section>
-        <h2><code>./infrastructure</code> (IaaS)</h2>
+        <h1>IaaS</h1>
         <ul>
-          <li class="fragment">Nettverk</li>
+          <li class="fragment">Networking</li>
           <li class="fragment">Bastion host</li>
-          <li class="fragment">Andre egendefinerte instanser:</li>
-          <ul>
-            <li class="fragment">mgmtserver</li>
-            <li class="fragment">ElasticSearch/Kibana (<b>SaaS</b>)</li>
-            <li class="fragment">ElasticSearch reverse proxy</li>
-          </ul>
+          <li class="fragment">Management server</li>
         </ul>
         <aside class="notes">
           <ul>
-            <li>I infrastruktur-repoet har du oppsett av basis infrastruktur</li>
+            <li>Infrastructure repo contains basic infrastructure</li>
             <ul>
-              <li>Nettverk</li>
-              <li>Bastion host (jump server for å få tilgang til alt inne i bobla av tjenester)</li>
+              <li>Netwoprking</li>
+              <li>Bastion host (jump server to get access to all the private servers)</li>
+              <li>"Hardned" and just a ssh proxy</li>
             </ul>
-            <li>Andre ting som går på tvers:</li>
+            <li>Other</li>
             <ul>
-              <li>En server for å gjøre oppgaver internt i det private subnettet.</li>
-              <li>Bør ikke være det samme som bastion-host da denne bør være "hardnet" og kun være en ssh proxy</li>
-              <li>Oppgaver som backup og cron-jobber (kun brukt for en php-app)</li>
-              <li>ElasticSearch cluster for å samle inn logger fra alle mulige steder (SaaS)</li>
-              <li>Reverse proxy for å legge på et lag med sikkerhet foran Kibana</li>
+              <li>Mgmtserver in the private subnet for doing administrative tasks</li>
+              <li>Backup and cron-jobs (use as little as possible)</li>>
             </ul>
           </ul>
         </aside>
       </section>
 
       <section>
-        <h1>The right tool for the job?</h1>
-        <img width="235" height="235" class="fragment" src="img/terraform.png" alt="Terraform">
+        <h1>Terraform</h1>
+        <img width="235" height="235" src="img/terraform.png" alt="Terraform">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
-            <li>Terraform er et verktøy for å lage, endre og versjonere infrastruktur på en trygg automatisert og effektiv måte.</li>
-            <li>Du beskriver infrastrukturen din i konfigurasjonsfiler og så generer du en eksekveringsplan som beskriver hva Terraform vil gjøre for å nå den ønskede tilstanden</li>
-            <li>Når du gjør endringer finner Terraform ut av hva som er endringen og eksekverer kun endringen inkrementelt.</li>
+            <li>Terraform is a tool for creating, changing and versioning of infrastructure in a safe, automated and effective manner.</li>
+            <li>Describe your infrastructure in code and generate an execution plan describing what Terraform will provision to reach the desired state.</li>
+            <li>When you make changes, Terraform finds out what the change is and executes the change incrementally. </li>
           </ul>
         </aside>
       </section>
@@ -437,16 +431,17 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
-            <li>Infrastructure as code: dokumentasjon, deling og gjenbruk</li>
-            <li>Execution plans: Viser i detalj hva som skal eksekveres. Unngå overaskelser</li>
-            <li>Resource graph: paralleliserer der den kan og respekterer avhengigheter</li>
-            <li>Automation: Automatiserer alt</li>
+            <li>Infrastructure as code: documentation, sharing and reuse.</li>
+            <li>Execution plans: Shows in detail what is to be executed. Avoid surprises.</li>
+            <li>Resource graph: parallelizes where it can and respects dependencies.</li>
+            <li>Automation: Automates everything</li>
           </ul>
         </aside>
       </section>
 
       <section>
-        <h1><code>./infrastructure</code> (IaaS)</h1>
+        <h1>IaaS</h1>
+        <h2><code>./infrastructure</code></h2>
         <aside class="notes">
           <ul>
             <li>I infrastruktur-repoet har du oppsett av basis infrastruktur</li>
@@ -468,7 +463,7 @@
 
       <!-- Layout -->
       <section>
-        <h2>Layout</h2>
+        <h1>Layout</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ./infrastructure
 ├── &lt;environment&gt;
@@ -484,18 +479,18 @@
       </section>
 
       <section>
-        <h1>Nettverk</h1>
+        <h1>Networking</h1>
         <img height="235" src="img/network.png" alt="Nettverk">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Og så skal vi se på en rekke verktøy vi bruker for å automatisere, forenkle og sikre infrastruktur og applikasjoner.</aside>
+        <aside class="notes"></aside>
       </section>
 
       <section>
         <img src="img/vpc.png" alt="VPC">
         <aside class="notes">
           <ul>
-            <li>VPC</li>
+            <li>A virtual private cloud (VPC) is a virtual network dedicated to your AWS account</li>
           </ul>
         </aside>
       </section>
@@ -526,14 +521,18 @@ resource "aws_route" "internet_access_route" {
   gateway_id             = "${aws_internet_gateway.ig.id}"
 }
      </code></pre>
-        <aside class="notes"></aside>
+        <aside class="notes">
+          A VPC needs an internet gateway and a routing table to gain access to the Internet.
+        </aside>
       </section>
 
       <section>
         <img src="img/availability-zones.png" alt="Availability Zones">
         <aside class="notes">
           <ul>
-            <li>Availability Zones</li>
+            <li>Amazon EC2 is hosted in multiple locations world-wide. Each region is a separate geographic area. </li>
+            <li>Ours is hosted in Frankfurt</li>
+            <li>Each region has multiple, isolated datacenters known as Availability Zones.</li>
           </ul>
         </aside>
       </section>
@@ -574,6 +573,28 @@ resource "aws_subnet" "subnet" {
         </aside>
       </section>
 
+      <section>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+resource "aws_db_subnet_group" "db_subnet_group" {
+  name        = "${var.db_subnet_group_name}"
+  description = "${var.db_subnet_group_name}"
+  subnet_ids  = ["${var.private_subnet_ids}"]
+}
+     </code></pre>
+        <aside class="notes">
+          Counters and variables
+        </aside>
+      </section>
+
+      <section>
+        <img src="img/instances.png" alt="Subnets">
+        <aside class="notes">
+          <ul>
+            <li>Instances</li>
+          </ul>
+        </aside>
+      </section>
+
       <!-- Bastion, Mgmtserver, Elasticsearch proxy -->
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -594,15 +615,6 @@ resource "aws_instance" "instance" {
       </section>
 
       <section>
-        <img src="img/instances.png" alt="Subnets">
-        <aside class="notes">
-          <ul>
-            <li>Subnets</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section>
         <h1>Tools</h1>
         <img width="235" height="235" src="img/toolbox.png" alt="Verktøykasse">
         <p style="font-size: 28px;">&nbsp;</p>
@@ -611,30 +623,28 @@ resource "aws_instance" "instance" {
       </section>
 
       <section>
-        <h1>Hemmeligheter og andre variabler</h1>
+        <h1>Secrets and other variables</h1>
         <img width="235" height="235" src="img/padlock.png" alt="Padlock">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
-            <li>I det forrige eksemplet så dere noen hemmeligheter som variabler</li>
-            <li>For å automatisere innsetting av hemmeligheter har vi satt sammen en pakke</li>
+            <li>In the last example we had some secrets as variables</li>
+            <li>To automate insertion of secrets we have put together some tools</li>
           </ul>
         </aside>
       </section>
 
-      <section>
-        <img src="img/terraform-wrapper.png" alt="terraform-wrapper">
-        <aside class="notes">Digipost har utviklet og open sourcet en wrapper rundt Terraform</aside>
+      <section data-background-image="img/dp_cloud-tools.png">
+        <aside class="notes">
+          Digipost has developed and open sources a wrapper around Terraform written in go.
+        </aside>
       </section>
 
-      <section>
-        <img src="img/terragrunt-wrapper.png" alt="terragrunt-wrapper">
+      <section data-background-image="img/nsb_cloud-tools.png">
         <aside class="notes">
           <ul>
-            <li>NSB har rappet og videreutviklet sin egen wrapper</li>
-            <li>Det er en terragrunt-wrapper som er en wrapper rundt terragrunt som er en wrapper rundt terraform</li>
-            <li>Mer om terragrunt senere.</li>
+            <li>We have created our own wrapper based on that.</li>
           </ul>
         </aside>
       </section>
@@ -645,25 +655,33 @@ resource "aws_instance" "instance" {
 vars:
   - name: AWS_DEFAULT_REGION
     value: eu-central-1
+
   - name: TF_VAR_env
-    value: opstest
+    value: prod
+
+  - name: TF_VAR_vpc_name
+    value: prod
+
   - name: TF_VAR_public_key
     value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzwGCC+nMTL6QIg+Z7SXtIXhiJJ5caa5tZkWQ1E6jDgHp7NqDAb21ZzjK3mGFlugF81h3OBF8uZPE5E+A0mRCB/pMzEMi/SBv0nvuPhijT81OeJxiF11Zxejc6gk8YiJIywQcYD3OcmmWvP2gK7MU1VIf3SQjHEROMaz+4uNJlC6QpDJfepxevQVJ4GVk7uq71NJjXV91gyT4/smOz5dP6tT7dYuP5Zn3lr5VN/BmHmtpklK9AWhwoIyRi+t97T1ihgiDvrmg7QSH9hIM+zKH2oxWi0RGV99t+ac6DV54ys4XD7OLAhHdlL7qV2G1TSIFqXXOaV98Cj2Mkxd2vJhhZ"
 
+secret-vars:
+  - name: TF_VAR_db_root_password
+    key: nsb/aws/nsbno/prod/db_root_password
+
+  - name: TF_VAR_private_key
+    key: nsb/aws/nsb.pem
+
 commands:
   - executable: "../bin/get-aws-ids.sh"
-    arguments: ["cloud.nsb.no"]
+    arguments: ["prod", "cloud.nsb.no"]
     outputfile: "dynamic-variables.tf"
-
-secret-vars:
-  - name: TF_VAR_elasticsearch_proxy_admin_password
-    key:  nsb/aws/elasticsearch_proxy/opstest/admin_password
      </code></pre>
         <aside class="notes">
           <ul>
-            <li>Starte med vars. Hvorfor begynner de med TF_VAR?</li>
-            <li>Commands. Lager dynamiske variabler. I dette tilfellet hentes variabler ut med aws_cli</li>
-            <li>Secret vars (fra digipost) bruker passwordstore, kommandolinje-verktøy for kryptering av hemmeligheter</li>
+            <li>vars: why do they start with TF_VAR?</li>
+            <li>Secret vars uses passwordstore, commandline tool for encrypting secrets</li>
+            <li>Commands. Creates dynamic variables. In this case getting variables using aws_cli (more on that later)</li>
           </ul>
         </aside>
       </section>
@@ -681,24 +699,32 @@ secret-vars:
         <h2><code>pass</code></h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ~/src/nsb/.password-store
-├── nsb
-│   ├── aws
-│   │   ├── elasticsearch_proxy
-│   │   │   ├── prod
-│   │   │   │   └── admin_password.gpg
-│   │   │   ├── opstest
-│   │   │   │   └── admin_password.gpg
-│   │   ├── nsb.pem.gpg
+.
+├── nsb.pem.gpg
+├── nsbno
+│   ├── prod
+│   │   ├── bucket_user_secret_key.gpg
+│   │   ├── db_password.gpg
+│   │   └── vault_password.gpg
+│   ├── test1
+│   │   ├── ...
+├── push
+│   ├── prod
+│   │   ├── ...
+│   └── test1
+│       ├── ...
+├── nexus
+│   └── users
+│       ├── admin.gpg
+│       └── deployment.gpg
+├── ...
 │   ├── maven
-│   │   └── settings.xml.gpg
+│       └── settings.xml.gpg
 │   └── travis
 │       └── nsbno-buildserver.gpg
-├── panopticon
-│   └── aws
-│       ├── prod
-│       │   └── vault_password.gpg
-│       └── opstest
-│           └── vault_password.gpg
+├── enonic
+│      └── cms.licenseKey.gpg
+...
      </code></pre>
         <aside class="notes">
           <ul>
@@ -709,7 +735,7 @@ secret-vars:
 
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ pass show -c bekk/aws/root/password
+✗ pass show -c nsbno/prod/db_password
      </code></pre>
         <aside class="notes">
         </aside>
@@ -736,8 +762,8 @@ secret-vars:
 
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ pass show -c bekk/aws/root/password
-Copied bekk/aws/root/password to clipboard. Will clear in 45 seconds.
+✗ pass show -c nsbno/prod/db_password
+Copied nsbno/prod/db_password to clipboard. Will clear in 45 seconds.
      </code></pre>
         <aside class="notes">
         </aside>
@@ -770,16 +796,30 @@ AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ envchain aws terragrunt-wrapper apply
+✗ envchain aws terraform-wrapper apply
      </code></pre>
         <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-Started terragrunt operation at: 2017-03-02 16:12:40.505382704 +0100 CET
-[terragrunt] 2017/03/02 16:12:41 Reading Terragrunt config file at /Users/steiningemorisbak/src/nsb/infrastructure/opstest/.terragrunt
-[terragrunt] 2017/03/02 16:12:41 Remote state is already configured for backend s3
-[terragrunt] 2017/03/02 16:12:41 Attempting to acquire lock for state file infrastructure-test1 in DynamoDB
-[terragrunt] 2017/03/02 16:12:41 Attempting to create lock item for state file infrastructure-test1 in DynamoDB table terragrunt_locks
-[terragrunt] 2017/03/02 16:12:42 Lock acquired!
-[terragrunt] 2017/03/02 16:12:42 Running command: terraform apply
+You are provisioning PROD. Type PROD to continue... PROD
+     </code></pre>
+
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+Started terraform operation at: 2017-09-08 12:46:57.870942455 +0200 CEST m=+6.052644916
+
+null_resource.upload_efs_backup_script: Refreshing state... (ID: 8456414560025152219)
+aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_prod.cloud.nsb.no_CNAME)
+aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_app1.cloud.nsb.no_CNAME)
+aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_app1.prod.cloud.nsb.no_CNAME)
+aws_security_group.app_security_group: Refreshing state... (ID: sg-5f731534)
+aws_security_group.efs_backup_security_group: Refreshing state... (ID: sg-279d864c)
+aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_cloud.nsb.no_A)
+aws_security_group.efs_security_group: Refreshing state... (ID: sg-a43d30cf)
+aws_iam_user.user: Refreshing state... (ID: nsbno-prod)
+aws_iam_role.role: Refreshing state... (ID: prod-nsbno-s3-full-access)
+aws_iam_policy.policy: Refreshing state... (ID: arn:aws:iam::635004941268:policy/AmazonS3FullAccess-ElasticBeanstalk-NSBNO-prod)
+aws_security_group.db_sg: Refreshing state... (ID: sg-817214ea)
+aws_efs_file_system.efs: Refreshing state... (ID: fs-985cb8c1)
+...
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
      </code></pre>
 
         <aside class="notes">
@@ -794,20 +834,22 @@ Started terragrunt operation at: 2017-03-02 16:12:40.505382704 +0100 CET
       </section>
 
       <section>
-        <h2><code>./app-infrastructure</code> (SaaS)</h2>
+        <h1>SaaS</h1>
+        <h2><code>./app-infrastructure</code></h2>
         <ul>
-          <li class="fragment">RDS (Relational Database Service)</li>
+          <li class="fragment">RDS - Relational Database Service</li>
+          <li class="fragment">EFS - Elastic File System (NFS)</li>
           <li class="fragment">Route53 (DNS)</li>
-          <li class="fragment">CloudWatch (monitoring, events, logging)</li>
+          <li class="fragment">Certificate Manager (SSL/TLS certificates)</li>
         </ul>
         <aside class="notes">
           <ul>
             <li>I app-infrastruktur-repoet har du oppsett av app-tjenester som er felles for de fleste appene.</li>
             <ul>
               <li>RDS</li>
+              <li>EFS</li>
               <li>DNS</li>
-              <li>Monitorering, trigging av eventer og overvåkning.</li>
-              <li>Streamer blant annet loggene fra CloudWatch til ElasticSearch.</li>
+              <li>Certificate Manager</li>
             </ul>
             <li>Felles for disse her er at du slipper å tenke på drift av de.</li>
             <li>Backup, speiling, patching, skalering osv. er håndtert av AWS</li>
@@ -815,33 +857,39 @@ Started terragrunt operation at: 2017-03-02 16:12:40.505382704 +0100 CET
         </aside>
       </section>
 
-      <section>
-        <h1>The right tool for the job?</h1>
-        <img width="235" height="235" class="fragment" src="img/terraform.png" alt="Terraform">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes"> </aside>
-      </section>
-
       <!-- Layout -->
       <section>
         <h2>Layout</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-app-infrastructure
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+.
 ├── bin
 │   └── get-aws-ids.sh
 └── modules
     ├── database
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── vars.tf
+    ├── efs
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── vars.tf
     ├── route53_alias_record
+    │   ├── main.tf
+    │   └── vars.tf
     ├── route53_cname_record
+    │   ├── main.tf
+    │   └── vars.tf
     └── ssl_cert
+        ├── main.tf
+        ├── outputs.tf
+        └── vars.tf
      </code></pre>
         <aside class="notes"></aside>
       </section>
 
       <!-- DB -->
       <section>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 resource "aws_db_instance" "db" {
   name                    = "${var.db_name}"
   identifier              = "${var.db_identifier}"
@@ -854,9 +902,21 @@ resource "aws_db_instance" "db" {
   db_subnet_group_name    = "${var.db_subnet_group_id}"
   parameter_group_name    = "${var.db_parameter_group_name}"
   backup_retention_period = "${var.backup_retention_period}"
+  availability_zone       = "${var.availability_zone}"
   multi_az                = "${var.multi_az}"
   backup_window           = "${var.backup_window}"
+  maintenance_window      = "${var.maintenance_window}"
   allocated_storage       = "${var.allocated_storage}"
+  storage_type            = "${var.storage_type}"
+  apply_immediately       = "${var.apply_immediately}"
+  skip_final_snapshot     = "${var.skip_final_snapshot}"
+}
+
+resource "aws_security_group" "db_sg" {
+    vpc_id      = "${var.vpc_id}"
+    name        = "${var.db_sg_name}"
+    description = "${var.db_sg_name}"
+    tags { Name = "${var.db_sg_name}" }
 }
      </code></pre>
         <aside class="notes">
@@ -879,13 +939,6 @@ resource "aws_db_instance" "db" {
       </section>
 
       <section>
-        <h1>Dere skjønner poenget?</h1>
-        <h2 class="fragment">Jeg skipper DNS og ssl-sertifikater...</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
         <h1>AWS CLI</h1>
         <h2><code>get-aws-ids.sh</code></h2>
         <aside class="notes">
@@ -897,19 +950,74 @@ resource "aws_db_instance" "db" {
       </section>
 
       <section>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;  max-width: 1000px;">
 #!/bin/bash
 
-vpcid=$(aws ec2 describe-vpcs --filters "Name=tag-value, Values=${1}_vpc" | jq '.Vpcs[0].VpcId' | sed s/\"//g)
-private_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_private_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
-public_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_public_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
-bastion_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_bastion_ssh_sg*" | jq '.SecurityGroups[0].GroupId')
-mgmtserver_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${1}_mgmtserver_sg*" | jq '.SecurityGroups[0].GroupId')
+VPC_NAME="${1}"
+DNS_NAME="${2}"
+
+vpcid=$(aws ec2 describe-vpcs --filters "Name=tag-value, Values=${VPC_NAME}_vpc" | jq '.Vpcs[0].VpcId' | sed s/\"//g)
+private_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${VPC_NAME}_private_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
+public_subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${VPC_NAME}_public_subnet*" | jq '.Subnets[].SubnetId' | tr '\n' ',' | sed s/,$//)
+bastion_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${VPC_NAME}_bastion_ssh_sg*" | jq '.SecurityGroups[0].GroupId')
+mgmtserver_security_group_id=$(aws ec2 describe-security-groups --filters "Name=vpc-id, Values=${vpcid}, Name=tag-value, Values=${VPC_NAME}_mgmtserver_sg*" | jq '.SecurityGroups[0].GroupId')
 nat_ip=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id, Values=${vpcid}" | jq ".NatGateways[0].NatGatewayAddresses[0].PublicIp")
-route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} | jq '.HostedZones[0].Id' | sed 's/\/hostedzone\///g')
+route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${DNS_NAME} | jq '.HostedZones[0].Id' | sed 's/\/hostedzone\///g')
+
+echo "
+variable \"vpc_id\" { default=\"$vpcid\" }
+variable \"private_subnet_ids\" {
+  default = [$private_subnets]
+}
+variable \"public_subnet_ids\" {
+  default = [$public_subnets]
+}
+variable \"bastion_security_group_id\" { default = $bastion_security_group_id }
+variable \"mgmtserver_security_group_id\" { default = $mgmtserver_security_group_id }
+variable \"nat_ip\" { default = ${nat_ip} }
+variable \"route53_hosted_zone_id\" { default = ${route53_hosted_zone_id} }
+"
 
      </code></pre>
         <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2><code>cloud-config.yml</code></h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+...
+
+commands:
+  - executable: "../bin/get-aws-ids.sh"
+    arguments: ["prod", "cloud.nsb.no"]
+    outputfile: "dynamic-variables.tf"
+     </code></pre>
+        <aside class="notes">
+          <ul>
+            <li>vars: why do they start with TF_VAR?</li>
+            <li>Secret vars uses passwordstore, commandline tool for encrypting secrets</li>
+            <li>Commands. Creates dynamic variables. In this case getting variables using aws_cli (more on that later)</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h2><code>dynamic-variables.tf</code></h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+variable "vpc_id" { default="vpc-a432e1cc" }
+variable "private_subnet_eu_central_1a" {
+  default = ["subnet-d31a8abb"]
+}
+variable "bastion_security_group_id" { default = "sg-64353b0c" }
+variable "mgmtserver_security_group_id" { default = "sg-65353b0d" }
+variable "route53_hosted_zone_id" { default = "Z1FHZIDFG100FA" }
+variable "mgmtserver" { default = "10.0.3.95" }
+     </code></pre>
+        <aside class="notes">
+          <ul>
+            <li></li>
+          </ul>
         </aside>
       </section>
 
@@ -920,7 +1028,8 @@ route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} |
       </section>
 
       <section>
-        <h2><code>{./app1,./app2,...}</code> (PaaS)</h2>
+        <h1>PaaS</h1>
+        <h2><code>{./app1,./app2,...}</code></h2>
         <aside class="notes">
         </aside>
       </section>
@@ -985,9 +1094,9 @@ route53_hosted_zone_id=$(aws route53 list-hosted-zones-by-name --dns-name ${2} |
 ├── deploy.sh
 ├── terminate.sh
 ├── config
-│   ├── nsbmob-servicelayer-&lt;env&gt;.properties
+│   ├── app-&lt;env&gt;.properties
 ├── secretconfig
-│   ├── nsbmob-servicelayer-&lt;env&gt;.properties.encrypted
+│   ├── secret-&lt;env&gt;.properties.encrypted
      </code></pre>
         <aside class="notes">
         </aside>
@@ -1042,7 +1151,7 @@ option_settings:
   aws:elb:listener:80:
     ListenerEnabled: false
   aws:elasticbeanstalk:application:
-    Application Healthcheck URL: /nsbmob/health
+    Application Healthcheck URL: /health
      </code></pre>
         <aside class="notes">
         </aside>
@@ -1058,7 +1167,7 @@ web: java -jar app.jar
       </section>
 
       <section>
-        <h2>3 kommandoer</h2>
+        <h2>3 commands</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 eb create
 eb deploy
@@ -1076,76 +1185,11 @@ eb terminate
       </section>
 
       <section>
-        <h1>Annet</h1>
-        <ul>
-          <li>Database Migration Service (DMS)</li>
-          <li>Flyway</li>
-        </ul>
-        <aside class="notes">
-          Verdt å nevne Flyway også
-        </aside>
-      </section>
-
-      <section>
-        <h1>Flyway</h1>
-        <img width="235" height="235" src="img/flyway.png" alt="Flyway">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">
-          Snakke litt om Flyway
-        </aside>
-      </section>
-
-      <section>
-        <h2>The Expand/Contract pattern</h2>
-        <br>
-        <table class="reveal" width="100%">
-          <th>Expand</th>
-          <th>Contract</th>
-          <tr>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Add tables</li>
-                <li>Add columns</li>
-                <li>Tweak indexes</li>
-              </ul>
-            </td>
-            <td width="50%" class="fragment">
-              <ul>
-                <li>Remove tables</li>
-                <li>Remove columns</li>
-                <li>Remove/add constraints</li>
-              </ul>
-            </td>
-          </tr>
-        </table>
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/architecture.png" alt="architecture">
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/pre-upgrade-db.png" alt="architecture">
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/upgrade1.png" alt="architecture">
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/upgrade2.png" alt="architecture">
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/post-upgrade-db.png" alt="architecture">
-        <aside class="notes"> </aside>
-      </section>
-      <section>
-        <img width="449" height="510" src="../img/architecture.png" alt="architecture">
-      </section>
-
-      <section>
-        <h1>Oppsummert</h1>
+        <h1>Summing it up</h1>
         <aside class="notes">
           <ul>
-            <li>Har snakket om veldig mye rart nå.</li>
-            <li>Hvordan setter vi alt dette her sammen til et totalbilde?</li>
+            <li>I have been talking a lot. And it's been quite technical too.</li>
+            <li>How do we put all this together?</li>
           </ul>
         </aside>
       </section>
