@@ -353,7 +353,7 @@
       </section>
 
       <section>
-        <h1>Our sollution</h1>
+        <h1>Our solution</h1>
         <ul>
           <li class="fragment">Crossfunctional teams including business
             <br>(Build &rarr; Measure &rarr; Learn)</li>
@@ -384,7 +384,15 @@
       <section>
         <h1>IaaS</h1>
         <ul>
-          <li class="fragment">Networking</li>
+          <div class="fragment">
+            <li>Networking</li>
+            <ul>
+              <li>VPC</li>
+              <li>Availability zones</li>
+              <li>Subnets</li>
+              <li>Security groups (FW rules)</li>
+            </ul>
+          </div>
           <li class="fragment">Bastion host</li>
           <li class="fragment">Management server</li>
         </ul>
@@ -392,7 +400,7 @@
           <ul>
             <li>Infrastructure repo contains basic infrastructure</li>
             <ul>
-              <li>Netwoprking</li>
+              <li>Networking</li>
               <li>Bastion host (jump server to get access to all the private servers)</li>
               <li>"Hardned" and just a ssh proxy</li>
             </ul>
@@ -546,7 +554,7 @@ resource "aws_route" "internet_access_route" {
         </aside>
       </section>
 
-      <!-- Subnets og Availability Zones -->
+      <!-- Subnets and Availability Zones -->
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 resource "aws_subnet" "subnet" {
@@ -595,7 +603,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
         </aside>
       </section>
 
-      <!-- Bastion, Mgmtserver, Elasticsearch proxy -->
+      <!-- Bastion, Mgmtserver -->
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 resource "aws_instance" "instance" {
@@ -615,6 +623,30 @@ resource "aws_instance" "instance" {
       </section>
 
       <section>
+        <h1>Security groups</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-width: 1000px;">
+resource "aws_security_group" "app_security_group" {
+  vpc_id      = "${var.vpc_id}"
+  name        = "${var.app_security_group_name}"
+  description = "${var.app_security_group_name}"
+  tags { Name = "${var.app_security_group_name}" }
+}
+
+# App -> DB
+resource "aws_security_group_rule" "from_app_to_db_egress_security_rule" {
+  type                     = "egress"
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.app_security_group.id}"
+  source_security_group_id = "${var.db_security_group_id}"
+}
+
+...
+     </code></pre>
+      </section>
+
+      <section>
         <h1>Tools</h1>
         <img width="235" height="235" src="img/toolbox.png" alt="Verktøykasse">
         <p style="font-size: 28px;">&nbsp;</p>
@@ -623,7 +655,7 @@ resource "aws_instance" "instance" {
       </section>
 
       <section>
-        <h1>Secrets and other variables</h1>
+        <h2>Passwords, secrets and keys in an automated pipeline</h2>
         <img width="235" height="235" src="img/padlock.png" alt="Padlock">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
@@ -823,14 +855,7 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
      </code></pre>
 
         <aside class="notes">
-          <strong>NB! neste er terminalvideo!</strong>
         </aside>
-      </section>
-
-      <section data-background-video="movie/terragrunt-infrastructure-plan.mp4" data-background="#000000">
-      </section>
-
-      <section data-background-video="movie/terragrunt-infrastructure-apply.mp4" data-background="#000000">
       </section>
 
       <section>
@@ -838,13 +863,16 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <h2><code>./app-infrastructure</code></h2>
         <ul>
           <li class="fragment">RDS - Relational Database Service</li>
-          <li class="fragment">EFS - Elastic File System (NFS)</li>
           <li class="fragment">Route53 (DNS)</li>
           <li class="fragment">Certificate Manager (SSL/TLS certificates)</li>
+          <li class="fragment">EFS - Elastic File System (NFS)</li>
+          <li class="fragment">S3 (Scalable storage)</li>
+          <li class="fragment">CloudWatch (monitoring, events, logs)</li>
+          <li class="fragment">IAM (Identity &amp; Access Management)</li>
         </ul>
         <aside class="notes">
           <ul>
-            <li>I app-infrastruktur-repoet har du oppsett av app-tjenester som er felles for de fleste appene.</li>
+            <li>I app-infrastruktur-repoet har du oppsett av app-tjeneste som er felles for de fleste appene.</li>
             <ul>
               <li>RDS</li>
               <li>EFS</li>
@@ -1021,9 +1049,33 @@ variable "mgmtserver" { default = "10.0.3.95" }
         </aside>
       </section>
 
-      <section data-background-video="movie/terragrunt-app-infrastructure-plan-and-apply.mp4" data-background="#000000">
+      <section>
+        <h1>Monitoring</h1>
         <aside class="notes">
-          <strong>NB! Video med både plan og apply!</strong>
+        </aside>
+      </section>
+
+      <section>
+        Tens of thousands metrics
+        <img src="img/cloudwatch.png" height="600">
+        <aside class="notes">
+          <ul>
+            <li>Disse gutta kan drift</li>
+            <li>Monitorering av forretningsmessige metrikker gir stor verdi!</li>
+            <li>For eksempel er mobil-apper vanskelig å monitorere &rarr; Lite salg kan være indikasjon</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>CloudTrail</h1>
+        <img height="235" src="img/cloudtrail.png" alt="CloudTrail">
+        <aside class="notes">
+          <ul>
+            <li>enables governance, compliance, auditing</li>
+            <li>log, monitor, and retain account activity for actions across your AWS infrastructure</li>
+            <li>event history of actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.</li>
+          </ul>
         </aside>
       </section>
 
@@ -1033,6 +1085,20 @@ variable "mgmtserver" { default = "10.0.3.95" }
         <aside class="notes">
         </aside>
       </section>
+
+      <!--
+      <section>
+        <h2>Infrastructure as code using Terraform</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h2>Configuration as code using Ansible</h2>
+        <aside class="notes">
+        </aside>
+      </section>
+-->
 
       <section>
         <h1>From pets to cattle</h1>
@@ -1174,14 +1240,87 @@ eb deploy
 eb terminate
      </code></pre>
         <aside class="notes">
-          Har laget wrappers. Hente ut metadata om hvilket vpc, hvilken db, subnett etc.
         </aside>
       </section>
 
-      <section data-background-video="movie/eb-create.mp4" data-background="#000000">
+      <section>
+        <h2><code>./create.sh</code></h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+#!/bin/bash
+...
+eb create ${beanstalk_env} \
+  --keyname ${vpc_name} \
+  --vpc.id ${vpc_id} \
+  --vpc.dbsubnets ${private_subnet_ids} \
+  --vpc.ec2subnets ${private_subnet_ids}  \
+  --vpc.elbpublic \
+  --vpc.elbsubnets ${public_subnet_ids} \
+  --vpc.securitygroups ${app_security_group_id} \
+  --envvars RDS_HOSTNAME=${rds_hostname},RDS_PORT=${rds_port},ENV=${app_env} \
+  --platform "${platform}" \
+  --instance_type ${instance_type} \
+  --cname ${beanstalk_env} \
+  --scale ${scale}
+...
+     </code></pre>
+        <aside class="notes">
+          Have created wrappers to fetch metadata about which vpc, what db, subnets etc.
+        </aside>
       </section>
 
-      <section data-background-video="movie/eb-deploy.mp4" data-background="#000000">
+      <section>
+        <h1>Ansible vault</h1>
+        <img height="235" src="img/ansible.png" alt="CloudTrail">
+        <aside class="notes">
+          <ul>
+            <li>property files deployed with applications are decrypted in scripts using passwords from pass</li>
+          </ul>
+        </aside>
+      </section>
+
+
+      <section>
+        <h1>What did we just create?</h1>
+        <h2><a href="http://www.visualops.io/">http://www.visualops.io/</a></h2>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <img src="img/prod-vpc.png" height="650">
+        <aside class="notes"></aside>
+      </section>
+
+      <section>
+        <h1>What didn't i mention?</h1>
+        <ul>
+          <li class="fragment">Managing individual credentials</li>
+          <li class="fragment">2FA</li>
+          <li class="fragment">IAM</li>
+          <li class="fragment">VPN</li>
+          <li class="fragment">Restricting CIDR-blocks</li>
+        </ul>
+        <aside class="notes">
+          <ul>
+            <li></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>Other services we use</h1>
+        <ul>
+          <li>Panopticon (internal monitoring)</li>
+          <li>Pingdom (external monitorering)</li>
+          <li>Pagerduty (paging us when we're on duty)</li>
+          <li>Slack (ChatOps)</li>
+          <li>Github (for everything!)</li>
+          <li>Travis (CI)</li>
+          <li>Ansible (configuration management)</li>
+          <li>Lambdas and SNS for posting events to Slack</li>
+        </ul>
+        <aside class="notes">
+        </aside>
       </section>
 
       <section>
@@ -1195,52 +1334,89 @@ eb terminate
       </section>
 
       <section>
-        <h1>1 2 3 4 (5)</h1>
-        <ol>
-          <li class="fragment">IaaS med Terraform</li>
-          <li class="fragment">PaaS-tjenester med Terraform (og litt Ansible)</li>
-          <li class="fragment">Applikasjoner med Elastic Beanstalk (også PaaS)</li>
-          <li class="fragment">DB migrering med Flyway</li>
-          <li class="fragment">Monitorering med CloudWatch ++</li>
-          <li class="fragment">(Masse tooling med Ansible)</li>
-        </ol>
-        <aside class="notes"> </aside>
-      </section>
-
-
-      <section>
-        <h2><a href="http://www.visualops.io/">http://www.visualops.io/</a></h2>
-        <aside class="notes"></aside>
-      </section>
-
-      <section>
-        <img src="img/opstest-vpc.png" height="650">
-        <aside class="notes"></aside>
-      </section>
-
-      <section>
-        <h1>Planer for fremtiden</h1>
-        <ul>
-          <li class="fragment">Oppsplitting av backends &rarr; mikrotjenester</li>
-          <li class="fragment">Alt i pass</li>
-          <li class="fragment">Automatisere laging av OS images</li>
-          <li class="fragment">#Serverless?</li>
-        </ul>
+        <h1>What did we learn?</h1>
         <aside class="notes">
           <ul>
-            <li>Omnikanal, nsb.no og mobil backend</li>
-            <li>Bruker ansible-vault ganske mye. Fører til duplisering av hemmeligheter</li>
-            <li>
+            <li></li>
           </ul>
         </aside>
       </section>
 
       <section>
-        <h1>Og ikke glem ...</h1>
-        <aside class="notes">Destroy!</aside>
+        <h1>1 2 3 4 5 6</h1>
+        <ol>
+          <li class="fragment">Reduse IaaS to a bare minimum</li>
+          <li class="fragment">Use hosted services where available (SaaS)</li>
+          <li class="fragment">Use PaaS for services and applications</li>
+          <li class="fragment">Automate, Automate, Automate... </li>
+          <li class="fragment">Monitor, Monitor, Monitor... </li>
+          <li class="fragment"><b>Migration of existing services is the hard part</b></li>
+        </ol>
+        <aside class="notes"> </aside>
       </section>
 
-      <section data-background-video="movie/destroy.mp4" data-background="#000000">
+      <section>
+        <h1>Plans for the future</h1>
+        <ul>
+          <li class="fragment">Rewrite "lift and shift" applications to "cloud native"</li>
+          <li class="fragment">Micro services is a perfect match for what NSB wants to achieve</li>
+          <li class="fragment">More #Serverless (a.o. replace most of mgmtserver responsibilities)</li>
+        </ul>
+        <aside class="notes">
+          <ul>
+            <li></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>What did we gain?</h1>
+        <ol>
+          <li class="fragment">Security we can understand</li>
+          <li class="fragment">Insight in everything</li>
+          <li class="fragment">The hard parts is the cloud vendors responsibility</li>
+          <li class="fragment">Prod.-equal environments on demand</li>
+          <li class="fragment">Elasticity and auto scaling</li>
+          <li class="fragment">Agile business development</li>
+          <li class="fragment">Reduced lead time</li>
+          <li class="fragment">Ownership to what's delivered</li>
+          <li class="fragment">Responsibility in the right place</li>
+          <li class="fragment">Less stuff to remember</li>
+          <li class="fragment">Happy employees :-D</li>
+        </ol>
+        <aside class="notes">
+          <ul>
+            <li>Deploying continously for almost every little change (less changes, less that can go wrong)</li>
+            <li>
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background-image="img/the_pentagon.jpg">
+        <div class="mb-wrap mb-style-3">
+          <blockquote style="background: rgba(0, 0, 0, 0.65);">
+            We decided we needed to buy innovation
+          </blockquote>
+          <div class="mb-attribution" style="background: rgba(0, 0, 0, 0.65);">
+            <p class="mb-author">David B. Gleason from Chicago, IL - The Pentagon</p>
+            <cite><a href="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/">The Details About the CIA's Deal With Amazon</a></cite>
+          </div>
+        </div>
+        <!--
+        
+          <blockquote style="background: rgba(0, 0, 0, 0.65);">
+            <p>You build it, you run it!</p>
+          </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author">Werner Vogels (CTO Amazon)</p>
+            <cite style="background: rgba(0, 0, 0, 0.65);"><a href="https://queue.acm.org/detail.cfm?id=1142065">A Conversation with Werner Vogels, Queue, June 30th, 2006</a></cite>
+          </div>
+-->
+        <aside class="notes">
+          <ul>
+            <li></li>
+          </ul>
+        </aside>
       </section>
 
 
@@ -1253,8 +1429,17 @@ eb terminate
         </aside>
       </section>
 
+      <section data-background-video="../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)">
+        <h2>Thank you!</h2>
+        <p>Slides:<br><a href="http://steinim.github.io/slides/continuous-security-in-the-cloud/">http://steinim.github.io/slides/continuous-security-in-the-cloud/</a></p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+      </section>
 
-      <!--
+    </div>
+
+    <!--
       <section>
         <h2>Access control and audit</h2>
         <ul>
@@ -1375,79 +1560,68 @@ eb terminate
       </section>
 -->
 
-      <section data-background-video="../video/bedopress_animasjon_highress.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)">
-        <h2>Thank you!</h2>
-        <p>Slides:<br><a href="http://steinim.github.io/slides/continuous-security-in-the-cloud/">http://steinim.github.io/slides/continuous-security-in-the-cloud/</a></p>
-        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
-        <p><a href="https://twitter.com/steinim">@steinim</a></p>
-        <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
-      </section>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.min.js"></script>
 
-    </div>
-  </div>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
 
-  <script src="../lib/js/head.min.js"></script>
-  <script src="../js/reveal.min.js"></script>
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
-  <script>
-    // Full list of configuration options available here:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-      controls: false,
-      progress: true,
-      history: true,
-      center: true,
-      width: 1100,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: '../lib/js/classList.js',
+            condition: function() {
+              return !document.body.classList;
+            }
+          },
+          {
+            src: '../plugin/markdown/marked.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/markdown/markdown.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          },
+          {
+            src: '../plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          },
+          {
+            src: '../plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          }
+          // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
 
-      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
-
-      // Optional libraries used to extend on reveal.js
-      dependencies: [{
-          src: '../lib/js/classList.js',
-          condition: function() {
-            return !document.body.classList;
-          }
-        },
-        {
-          src: '../plugin/markdown/marked.js',
-          condition: function() {
-            return !!document.querySelector('[data-markdown]');
-          }
-        },
-        {
-          src: '../plugin/markdown/markdown.js',
-          condition: function() {
-            return !!document.querySelector('[data-markdown]');
-          }
-        },
-        {
-          src: '../plugin/highlight/highlight.js',
-          async: true,
-          callback: function() {
-            hljs.initHighlightingOnLoad();
-          }
-        },
-        {
-          src: '../plugin/zoom-js/zoom.js',
-          async: true,
-          condition: function() {
-            return !!document.body.classList;
-          }
-        },
-        {
-          src: '../plugin/notes/notes.js',
-          async: true,
-          condition: function() {
-            return !!document.body.classList;
-          }
-        }
-        // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-        // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-      ]
-    });
-
-  </script>
+    </script>
 
 </body>
 
