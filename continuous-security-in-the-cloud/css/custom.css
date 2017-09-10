@@ -37,7 +37,7 @@ footer.semitransparent a {
 }
 
 .layer,
-slide.layer h1 {
+section.layer h1 {
   background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
   padding: 0.5em 1em;
@@ -193,3 +193,15 @@ slide.layer h1 {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
+.mb-frame {
+  display: block;
+  padding: 20px 100px 20px 20px;
+  position: relative;
+  width: 540px;
+  height: 550px;
+  border-radius: 10%;
+  border-color: #feb6b8;
+  position: absolute;
+  right: 2px;
+  top: 132px;
+  box-shadow: inset 2px 2px 8px #feb6b8, 0 4px 6px #feb6b8;
