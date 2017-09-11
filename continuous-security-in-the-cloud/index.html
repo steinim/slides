@@ -223,21 +223,26 @@
         </div>
         <img src="img/kent_beck.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 80%; left: -10%;">
         <aside class="notes">
-          * Kent Beck once gave me his definition of DevOps, "Developers carry beepers". * And he is absolutely right. It must be the ones that develop the systems that must watch over them. * They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur. * It also creates incentives to build things that don't break.
+          <li>Kent Beck once gave me his definition of DevOps, "Developers carry beepers".</li>
+          <li>And he is absolutely right. It must be the ones that develop the systems that must watch over them.</li>
+          <li>They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur.</li>
+          <li>It also creates incentives to build things that don't break.</li>
         </aside>
       </section>
 
-      <section data-background-image="img/werner_vogels.jpg" style="width: 100%; height: 100%;">
-        <div class="mb-wrap mb-style-3" style="position: relative; left: 27%;">
-          <blockquote style="text-align: left; background-color: rgba(0, 0, 0, 0.5);">
+      <section data-background-image="img/pagerduty.jpg" style="width: 100%; height: 100%;">
+        <div class="mb-wrap mb-style-3">
+          <div class="mb-thumb-werner-vogels"></div>
+          <blockquote style="text-align: left; background-color: rgba(0, 0, 0, 0.7);">
             <p>You build it, you run it!</p>
           </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Werner Vogels (CTO Amazon)</p>
+        </div>
+        <footer class="right">
+          <div class="mb-attribution layer" style="background-color: rgba(0, 0, 0, 0.7);">
+            <p class="mb-author" style="text-align: right;">Werner Vogels (CTO Amazon)</p>
             <cite><a href="https://queue.acm.org/detail.cfm?id=1142065">A Conversation with Werner Vogels, Queue, June 30th, 2006</a></cite>
           </div>
-        </div>
-        <footer class="layer right">Image by <a href="https://www.flickr.com/photos/vannispen/">Guido van Nispen</a> licensed by <a href="http://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></footer>
+        </footer>
         <aside class="notes">
           <p>If you use the line to create products or services instead you can let the team take responsibility from day one.</p>
           <p>You push maintenance and operations to the very start of the development.</p>
@@ -280,6 +285,33 @@
         <h1 class="layer" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">Cloud reduces ops complexity</h1>
         <footer class="layer right">Image by <a href="https://www.flickr.com/photos/afresh1/">Andrew Fresh</a> licensed by <a href="http://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></footer>
         <aside class="notes">
+        </aside>
+      </section>
+
+      <section>
+        <h1>Cloud is secure</h1>
+        <div class="mb-wrap mb-style-3">
+          <div class="mb-thumb-james-staten"></div>
+          <blockquote>
+            <p>If you're resisting the cloud because of security concerns, you're running out of excuses.</p>
+          </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author">James Staten, Forrester Research, Inc.</p>
+            <cite><a href="http://blogs.forrester.com/james_staten/13-12-04-cloud_computing_predictions_for_2014_cloud_joins_the_formal_it_portfolio">Cloud Computing Predictions for 2014: Cloud Joins the Formal IT Portfolio</a></cite>
+          </div>
+        </div>
+        <aside class="notes">
+          <li>Public Cloud is the future.</li>
+          <li>There are so many advantages of putting your infrastructure out there.</li>
+          <li>Not just elasticity, reduced cost and cycle times, and that you have the best operators in the world operating your infrastructure.</li>
+          <li>It also has great security advantages.</li>
+          <li>The cloud security vendors are putting a lot of effort into securing the cloud.</li>
+          <li>Forrester expects this trend to accelerate, as security becomes a critical selling feature and a key evaluation point from the buy-side.</li>
+          <li>You are able to just specify your security requirements and automation takes care of setting everything up the way you prefer it.</li>
+          <li>The large vendors will most certaintly fix security issues the fastest.</li>
+          <li>White hat hackers will constantly seek out to find security issues in the big cloud platforms.</li>
+          <li>Evil hackers also of course.</li>
+          <li>Enterprises will achieve better security this way than on their own.</li>
         </aside>
       </section>
 
@@ -399,8 +431,8 @@
       </section>
 -->
 
-      <section data-background-image="img/env_bg.png">
-        <h1>The juicy part</h1>
+      <section data-background-image="img/devs.jpg">
+        <h1 style="background-color: rgba(0, 0, 0, 0.7);">The juicy part</h1>
       </section>
 
       <section>
@@ -472,6 +504,7 @@
         </ul>
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
+        <img src="img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
         <aside class="notes">
           <ul>
             <li>Infrastructure as code: documentation, sharing and reuse.</li>
@@ -780,7 +813,6 @@ commands:
         <h2><code>pass</code></h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ~/src/nsb/.password-store
-.
 ├── nsb.pem.gpg
 ├── nsbno
 │   ├── prod
@@ -1071,7 +1103,7 @@ commands:
     arguments: ["prod", "cloud.nsb.no"]
     outputfile: "dynamic-variables.tf"
      </code></pre>
-        <div class="mb-frame" style="width: 480px; height: 100px; right: 570px; top: 575px;"></div>
+        <div class="mb-frame" style="width: 480px; height: 100px; right: 570px; top: 585px;"></div>
         <aside class="notes">
           <ul>
             <li>Commands. Creates dynamic variables. In this case getting variables using aws_cli</li>
@@ -1468,8 +1500,8 @@ function decrypt_secret_properties() {
         </aside>
       </section>
 
-      <section data-background-image="img/baby.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.4);">
+      <section data-background-image="img/anger.jpg">
+        <div style="background-color: rgba(0, 0, 0, 0.6);">
           <h1>What did we learn?</h1>
           <ol>
             <li class="fragment">Reduse IaaS to a bare minimum</li>
@@ -1524,12 +1556,31 @@ function decrypt_secret_properties() {
         </aside>
       </section>
 
-      <section data-background-image="img/the_pentagon.jpg" style="width: 100%; height: 100%;">
+      <section data-background-image="img/nasa.jpg">
         <div class="mb-wrap mb-style-3">
-          <blockquote style="position: absolute;  margin: auto; top: 150px; background: rgba(0, 0, 0, 0.7);">
-            We decided we needed to buy innovation<br>
-            <cite><a href="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/">A former intelligence officer in the CIA, The Details About the CIA's Deal With Amazon</a></cite>
+          <blockquote style="background-color: rgba(0, 0, 0, 0.7);">
+            <p>Based on our experience, I belive that we can be even more secure in AWS cloud than in our own data centers.</p>
+            <br>
           </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author">Tom Soderstrom, CTO, NASA JPL</p>
+            <div class="mb-thumb-tom-soderstrom"></div>
+          </div>
+        </div>
+        <aside class="md">
+        </aside>
+      </section>
+
+      <section data-background-image="img/the_pentagon.jpg" style="width: 100%; height: 100%;">
+        <h1>&nbsp;</h1>
+        <h2>&nbsp;</h2>
+        <div class="mb-wrap mb-style-3">
+          <blockquote style="background: rgba(0, 0, 0, 0.7); width: 800px;">
+            <p>We decided we needed to buy innovation</p>
+          </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author layer" style="background: rgba(0, 0, 0, 0.7); text-align: center; right: 30px; position: absolute;"><a href="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/">A former intelligence officer in the CIA, The Details About the CIA's Deal With Amazon</a></p>
+          </div>
         </div>
         <footer class="layer right" style="background: rgba(0, 0, 0, 0.7);">Image by <a href="https://www.flickr.com/people/71861129@N00">David B. Gleason</a> licensed by <a href="http://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></footer>
       </section>

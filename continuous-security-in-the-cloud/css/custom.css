@@ -79,6 +79,7 @@ section.layer h1 {
   position: relative;
   left: 12%;
   box-shadow: inset 0 2px 0 #35bdb2, -5px 4px 25px rgba(255, 255, 255, 0.2);
+  z-index:-1;
 }
 
 .mb-style-3 blockquote:after,
@@ -165,6 +166,46 @@ section.layer h1 {
   box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
 }
 
+/*attribution image werner vogels*/
+
+.mb-style-3 .mb-thumb-werner-vogels    {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/werner_vogels.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+.mb-style-3 .mb-thumb-james-staten {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/james_staten.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+.mb-style-3 .mb-thumb-tom-soderstrom {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/tom_soderstrom.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
 
 /*attribution name*/
 
