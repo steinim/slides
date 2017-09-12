@@ -23,10 +23,7 @@
   <div class="reveal">
     <div class="slides">
 
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Continuous Security in the Cloud</h1>
         <p>JavaZone 2017</p>
         <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
@@ -38,37 +35,37 @@
             <li>Head of BEKKs commitment to DevOps and Cloud</li>
             <li>Member of the Technology Department Management group</li>
             <li>Founder and organizer of DevOps Norway Meetup</li>
-            <li>Programmer</li>
+            <li>Programmer wit a special interest in cloud computing, in particular AWS</li>
           </ul>
         </aside>
       </section>
 
 
-      <section>
+      <section data-background-image="img/nsb_bg.jpg" style="width: 100%; height: 100%;">
         <h1>&nbsp;</h1>
+        <p>&nbsp;</p>
         <img width="235" height="235" src="img/nsb.png" alt="NSB">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
+        <footer class="right" style="float: right; position: absolute; top: 110%; left: 80%;">Image by <a href="https://commons.wikimedia.org/wiki/File:NSB_BMb_74501_1.jpg">MPW57</a> licensed by <a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></footer>
         <aside class="notes">
           <ul>
             <li>The last year the developer team from BEKK has been working on migrating NSBs services from internal infrastructure to AWS.</li>
             <li>Just after summer we finally moved the last system over</li>
-            <li>Our most importent principles has been simplicity and automation</li>
+            <li>Our most importent principles have been simplicity and automation</li>
             <li>– without compromising on availability, stability and last but not least security</li>
-            <li>I will be talking about Jeg vil i dette foredraget skryte av og vise frem hva vi har tatt i bruk av praksiser, tjenester og verktøy som understøtter en taktfast og rask flyt av verdifull programvare til produksjon på en trygg og sikker måte.</li>
+            <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe manner.</li>
           </ul>
         </aside>
       </section>
 
-      <section>
+      <section data-background-image="img/move_to_cloud.jpg" style="width: 100%; height: 100%;">
         <h1>&nbsp;</h1>
+        <p>&nbsp;</p>
         <img width="235" height="235" src="img/aws.jpg" alt="AWS">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Vi skal se på hvilke skytjenester vi har tatt i bruk i AWS.</aside>
-      </section>
-
-      <section data-background-image="img/move_to_cloud.jpg">
+        <aside class="notes">The cloud provider we chose is AWS, so I will be talking about how we use that platform. Hence it is not cloud provider agnostic, but I guess many of the principes will hold for other platforms as well.</aside>
       </section>
 
       <section>
@@ -76,7 +73,22 @@
         <img height="435" src="img/it-factory.png" alt="IT factory">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Alle virksomheter er IT-virksomheter</aside>
+        <aside class="notes">
+          <ul>
+            <li>All businesses today are IT-businesses</li>
+            <li>Innovative use of IT is the way all business get customers and deliver services.</li>
+            <li>Todays users are more demanding than ever and expect more and more.</li>
+            <li>In a market driven by competition speed and ability change rapidly is the most important thing of all.</li>
+            <li>So also for train companies. Some examples are:</li>
+            <ul>
+              <li>Belgian train company led commuters shop groceries on their smart phone while waiting for the train.</li>
+              <li>Drones for surveilling infrastructure or delivering better Wi-fi</li>
+              <li>Gathering of data from all kinds of IoT devices in infrastructure, in the carriages etc. etc.</li>
+              <li>And what happens to train companies when self driving cars and hyperloop enters the market?</li>
+            </ul>
+          </ul>
+
+        </aside>
       </section>
 
       <section>
@@ -112,8 +124,8 @@
           <tr>
             <td width="45%" align="right">
               <p>Development</p>
-              <p>Operations</p>
               <p>Maintenance</p>
+              <p>Operations</p>
             </td>
             <td width="10%" align="center">
               <p>&#8664;</p>
@@ -129,6 +141,11 @@
         </table>
         <h1>&nbsp;</h1>
         <aside class="notes">
+          <ul>
+            <li>There's a shift in focus from the old way of organizing IT</li>
+            <li>We're no longer separating between development of new things, maintenance and operations.</li>
+            <li>Everything is about development of new products.</li>
+          </ul>
         </aside>
       </section>
 
@@ -141,6 +158,13 @@
           <li class="fragment">Build &rarr; Measure &rarr; Learn &rarr; Repeat <b>&#8634;</b></li>
         </ul>
         <aside class="notes">
+          <ul>
+            <li>For NSB, like all other companies, to gain competitive advantake they need to:</li>
+            <li>Innovate more</li>
+            <li>Experiment more</li>
+            <li>Get things out there before competitors</li>
+            <li>Use a business methodology similar to Lean Startup where you continuously learn by experimenting and measuring and pivot whenever the time is right.</li>
+          </ul>
         </aside>
       </section>
 
@@ -148,6 +172,7 @@
         <h2>How?</h2>
         <h1 class="fragment">Continuous Delivery</h1>
         <aside class="notes">
+          To be able to support the business to work like this IT professionals, like us, must be able to deliver quality continuously.
         </aside>
       </section>
 
@@ -167,6 +192,11 @@
           </blockquote>
         </div>
         <aside class="notes">
+          <ul>
+            <li>That means that our software must be ready for production at any time. Long lived development of new features has to go.</li>
+            <li>We need to do this to support how business wants to work.</li>
+            <li>It's all about putting the release schedule in the hands of the business, not in the hands of IT.</li>
+          </ul>
         </aside>
       </section>
 
@@ -251,9 +281,9 @@
           </div>
         </footer>
         <aside class="notes">
-          <p>If you use the line to create products or services instead you can let the team take responsibility from day one.</p>
-          <p>You push maintenance and operations to the very start of the development.</p>
-          <p>They who create the software must be responsible from conception to when the software dies.</p>
+          <p>If you let the team take responsibility for the system as a whole you make sure that everything in the system is well understood.</p>
+          <p>The artificial boundry between operations and development has to go. The team must be responsible for the whole.</p>
+          <p>This of course reduces handovers, misunderstandings and improves velocity.</p>
         </aside>
       </section>
 
@@ -308,10 +338,7 @@
           </div>
         </div>
         <aside class="notes">
-          <li>Public Cloud is the future.</li>
-          <li>There are so many advantages of putting your infrastructure out there.</li>
-          <li>Not just elasticity, reduced cost and cycle times, and that you have the best operators in the world operating your infrastructure.</li>
-          <li>It also has great security advantages.</li>
+          <li>Public cloud has so many security advantages.</li>
           <li>The cloud security vendors are putting a lot of effort into securing the cloud.</li>
           <li>Forrester expects this trend to accelerate, as security becomes a critical selling feature and a key evaluation point from the buy-side.</li>
           <li>You are able to just specify your security requirements and automation takes care of setting everything up the way you prefer it.</li>
@@ -398,6 +425,12 @@
           <h1>Use <b>public</b> cloud!</h1>
         </div>
         <aside class="notes">
+          <ul>
+            <li>Public Cloud is the future.</li>
+            <li>There are so many advantages of putting your infrastructure out there.</li>
+            <li>Not just elasticity, reduced cost and cycle times, and that you have the best operators in the world operating your infrastructure.</li>
+            <li>They also innovate faster, launching new services all the time.</li>
+          </ul>
         </aside>
       </section>
 
@@ -445,9 +478,9 @@
       <section>
         <h1>Source code</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-./infrastructure
-./app-infrastructure...
-./app1
+./infrastructure          #1
+./app-infrastructure...   #2
+./app1                    #3
 ./app2
 ...
 ./appN
@@ -527,18 +560,11 @@
         <h2><code>./infrastructure</code></h2>
         <aside class="notes">
           <ul>
-            <li>I infrastruktur-repoet har du oppsett av basis infrastruktur</li>
+            <li>The infrastructure repo sets up the basis infrastructure</li>
             <ul>
-              <li>Nettverk</li>
-              <li>Bastion host (jump server for å få tilgang til alt inne i bobla av tjenester)</li>
-            </ul>
-            <li>Andre ting som går på tvers:</li>
-            <ul>
-              <li>En server for å gjøre oppgaver internt i det private subnettet.</li>
-              <li>Bør ikke være det samme som bastion-host da denne bør være "hardnet" og kun være en ssh proxy</li>
-              <li>Oppgaver som backup og cron-jobber (kun brukt for en php-app)</li>
-              <li>ElasticSearch cluster for å samle inn logger fra alle mulige steder (SaaS)</li>
-              <li>Reverse proxy for å legge på et lag med sikkerhet foran Kibana</li>
+              <li>Networking</li>
+              <li>Bastion host</li>
+              <li>Mgmtserver</li>
             </ul>
           </ul>
         </aside>
@@ -739,7 +765,7 @@ resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_ru
         <img width="235" height="235" src="img/toolbox.png" alt="Verktøykasse">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Og så skal vi se på en rekke verktøy vi bruker for å automatisere, forenkle og sikre infrastruktur og applikasjoner.</aside>
+        <aside class="notes">Let's look at tools we use to automate, simplify and secure infrastructure and applications.</aside>
       </section>
 
       <section>
@@ -847,9 +873,6 @@ commands:
 ...
      </code></pre>
         <aside class="notes">
-          <ul>
-            <li>Kjør pass</li>
-          </ul>
         </aside>
       </section>
 
@@ -942,7 +965,6 @@ aws_efs_file_system.efs: Refreshing state... (ID: fs-985cb8c1)
 ...
 Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
      </code></pre>
-
         <aside class="notes">
         </aside>
       </section>
@@ -959,19 +981,22 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
           <li class="fragment">CloudWatch (monitoring, events, logs)</li>
           <li class="fragment">CloudTrail (audit)</li>
           <li class="fragment">IAM (Identity &amp; Access Management)</li>
-
         </ul>
         <aside class="notes">
           <ul>
-            <li>I app-infrastruktur-repoet har du oppsett av app-tjeneste som er felles for de fleste appene.</li>
+            <li>The app-infrastructure-repo has all setup of services that are common to most applications.</li>
             <ul>
-              <li>RDS</li>
-              <li>EFS</li>
-              <li>DNS</li>
-              <li>Certificate Manager</li>
+              <li>RDS - Relational Database Service</li>
+              <li>Route53 (DNS)</li>
+              <li>Certificate Manager (SSL/TLS certificates)</li>
+              <li>EFS - Elastic File System (NFS)</li>
+              <li>S3 (Scalable storage)</li>
+              <li>CloudWatch (monitoring, events, logs)</li>
+              <li>CloudTrail (audit)</li>
+              <li>IAM (Identity &amp; Access Management)</li>
             </ul>
-            <li>Felles for disse her er at du slipper å tenke på drift av de.</li>
-            <li>Backup, speiling, patching, skalering osv. er håndtert av AWS</li>
+            <li>Common for all of these is that you don't need to think about operating them.</li>
+            <li>Backup (except EFS), mirroring, patching, scaling and so on is handled by AWS</li>
           </ul>
         </aside>
       </section>
@@ -1040,10 +1065,10 @@ resource "aws_security_group" "db_sg" {
      </code></pre>
         <aside class="notes">
           <ul>
-            <li>Kan gjenbrukes på tvers av databaseplattformer.</li>
-            <li>Vi gjør det. Har både MySQL og Postgres</li>
+            <li>Can be reused across database platforms</li>
+            <li>We use both MySQL and Postgres.</li>
             <li>Amazon RDS manages backups, software patching, automatic failure detection, and recovery.</li>
-            <li>Multi AZ: Standby i en annen availability zone</li>
+            <li>Multi AZ: Standby in another availability zone</li>
           </ul>
         </aside>
       </section>
@@ -1077,7 +1102,8 @@ SYNOPSIS
      </code></pre>
         <aside class="notes">
           <ul>
-            <li></li>
+            <li>We use the aws command line client extensively</li>
+            <li>We want to fiddle in the GUI as little as possible and it's excellent for scripting.</li>
           </ul>
         </aside>
       </section>
@@ -1151,8 +1177,8 @@ variable \"route53_hosted_zone_id\" { default = ${route53_hosted_zone_id} }
      </code></pre>
         <aside class="notes">
           <ul>
-            <li>Som dere kanskje la merke til kjører jeg et skript for å hente metadata fra aws</li>
-            <li>Bruker aws-cli</li>
+            <li>Script for getting metadata from AWS</li>
+            <li>uses aws-cli</li>
           </ul>
         </aside>
       </section>
@@ -1187,6 +1213,11 @@ variable "mgmtserver" { default = "10.0.3.95" }
           <h1>Tens of thousands of metrics</h1>
         </div>
         <aside class="notes">
+          <ul>
+            <li>Easy to set up custom dashboards and enable alerts for threshold values and other happenings</li>
+            <li>You can set up your own metrics also. E.g. How much money flows through the system.</li>
+            <li>Business related monitoring is really valuable. Loosing money is a very good indication that something is wrong.</li>
+          </ul>
         </aside>
       </section>
 
@@ -1247,8 +1278,13 @@ variable "mgmtserver" { default = "10.0.3.95" }
         </div>
         <aside class="notes">
           <ul>
-            <li>Selve rosinen i pølsa</li>
-            <li>Gjør alt det man kunne gjort i Terraform &rarr; Gjør det til PaaS</li>
+            <li>Elastc Beanstalk is the icing on the cake.</li>
+            <li>It does everything you would normally do in Terraform for you &rarr; That's what makes it PaaS</li>
+            <li>You may wonder why we don't use Docker.</li>
+            <li>You could use Docker in Elastic Beanstalk also, but it simply doesn't make any sense for us.</li>
+            <li>At the moment we have around ten services running. Let's say we double that to twenty in the future. It still isn't very many, and large scale orchestration isn't really an issue.</li>
+            <li>And we are using Java. Which already is a contained process in a JVM. Why would you wrap a container in a container.</li>
+            <li>Also we are using micro instances with auto-scaling. They don't cost much, and if we were to buy bigger machines and put a lot of docker containers on them. It would probably cost us more.</li>
           </ul>
         </aside>
       </section>
@@ -1540,10 +1576,6 @@ function decrypt_secret_properties() {
           </ol>
         </div>
         <aside class="notes">
-          <ul>
-            <li>Deploying continously for almost every little change (less changes, less that can go wrong)</li>
-            <li>
-          </ul>
         </aside>
       </section>
 
