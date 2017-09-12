@@ -35,7 +35,7 @@
             <li>Head of BEKKs commitment to DevOps and Cloud</li>
             <li>Member of the Technology Department Management group</li>
             <li>Founder and organizer of DevOps Norway Meetup</li>
-            <li>Programmer wit a special interest in cloud computing, in particular AWS</li>
+            <li>Programmer with a special interest in cloud computing, in particular AWS</li>
           </ul>
         </aside>
       </section>
@@ -52,6 +52,7 @@
           <ul>
             <li>The last year the developer team from BEKK has been working on migrating NSBs services from internal infrastructure to AWS.</li>
             <li>Just after summer we finally moved the last system over</li>
+            <li>And it's certaintly been one of my most exciting projects ever.</li>
             <li>Our most importent principles have been simplicity and automation</li>
             <li>– without compromising on availability, stability and last but not least security</li>
             <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe manner.</li>
@@ -358,10 +359,10 @@
       <section style="width: 100%; height: 100%;">
 
         <footer class="left" style="position: absolute; top: 30%;">
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left; position: relative; left: 15%;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left; position: relative; left: 20%;">&nbsp;You manage</div><br><br>
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left; position: relative; left: 15%;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left; position: relative; left: 20%;">&nbsp;Vendor managed</div>
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left; position: relative; left: 30%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 30%;">&nbsp;You manage</div><br><br>
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left; position: relative; left: 30%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 30%;">&nbsp;Vendor managed</div>
         </footer>
 
         <h1>Let the cloud vendor cover your *aaS</h1>
@@ -601,6 +602,7 @@
         <aside class="notes">
           <ul>
             <li>A virtual private cloud (VPC) is a virtual network dedicated to your AWS account</li>
+            <li>Think of it as an isolated part of the internet reserved for you</li>
           </ul>
         </aside>
       </section>
@@ -662,7 +664,11 @@ resource "aws_subnet" "subnet" {
 }
      </code></pre>
         <aside class="notes">
-          Counters and variables
+          <ul>
+            <li>After you have created a VPC across two availability zones you create subnets</li>
+            <li>You create public subnets which are accessible directly from the Intenet</li>
+            <li>And private subnets which are only accessible from applications and via the bastion host</li>
+          </ul>
         </aside>
       </section>
 
@@ -1333,6 +1339,16 @@ variable "mgmtserver" { default = "10.0.3.95" }
       </section>
 
       <section>
+        <h1>Ansible vault</h1>
+        <img height="235" src="img/ansible.png" alt="Absibe Vault">
+        <aside class="notes">
+          <ul>
+            <li>property files deployed with applications are decrypted in scripts using passwords from pass</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
         <h5><code>.ebextensions/00-set-timezone.config</code></h5>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 commands:
@@ -1435,16 +1451,7 @@ eb create ${beanstalk_env} \
         </aside>
       </section>
 
-      <section>
-        <h1>Ansible vault</h1>
-        <img height="235" src="img/ansible.png" alt="Absibe Vault">
-        <aside class="notes">
-          <ul>
-            <li>property files deployed with applications are decrypted in scripts using passwords from pass</li>
-          </ul>
-        </aside>
-      </section>
-
+      <!--
       <section>
         <h2>Decrypting property files</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px">
@@ -1482,6 +1489,7 @@ function decrypt_secret_properties() {
         </aside>
       </section>
 
+      -->
 
       <section data-background-image="img/creation.jpg">
         <div class="layer" style="background-color: rgba(0, 0, 0, 0.6);">
@@ -1502,10 +1510,7 @@ function decrypt_secret_properties() {
           <h1>What didn't I mention?</h1>
           <ul>
             <li>Managing individual credentials</li>
-            <li>IAM</li>
-            <li>2FA</li>
-            <li>VPN</li>
-            <li>Restricting CIDR-blocks</li>
+            <li>IAM, 2FA, VPN, NAT, CIDR-blocks</li>
             <li><b>Application level security</b></li>
             <li><b>Security culture</b></li>
             <li>Stuff I forgot about</li>
