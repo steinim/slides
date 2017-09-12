@@ -278,7 +278,8 @@
         <aside class="notes">
           <p>If you let the team take responsibility for the system as a whole you make sure that everything in the system is well understood.</p>
           <p>The artificial boundry between operations and development has to go. The team must be responsible for the whole.</p>
-          <p>This of course reduces handovers, misunderstandings and improves velocity.</p>
+          <p>Therefore we are also on call. And we use the pagerduty app to buzz us if something unexpected happens in production.</p>
+          <p>This of course also reduces handovers, misunderstandings and improves velocity.</p>
         </aside>
       </section>
 
@@ -568,17 +569,32 @@
 
       <!-- Layout -->
       <section>
-        <h1>Layout</h1>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+        <h2>Layout</h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ./infrastructure
 ├── &lt;environment&gt;
 │   ├── main.tf
 │   └── vars.tf
-├── modules
-│   ├── &lt;module name&gt;
-│   │   ├── main.tf
-│   │   └── vars.tf
-│   │   ├── outputs.tf
+└── modules
+    ├── vpc
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── vars.tf
+    ├── ig-route-table
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── vars.tf
+    ├── subnet
+    │   ├── main.tf
+    │   └── vars.tf
+    ├── bastion
+    │   ├── main.tf
+    │   └── vars.tf
+    ├── mgmtserver   
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── vars.tf
+    ├── ...
      </code></pre>
         <aside class="notes"></aside>
       </section>
@@ -777,22 +793,17 @@ resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_ru
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
-            <li>In the last example we had some secrets as variables</li>
+            <li>In the examples we have seen some secret variables</li>
             <li>To automate insertion of secrets we have put together some tools</li>
           </ul>
-        </aside>
-      </section>
-
-      <section data-background-image="img/dp_cloud-tools.png">
-        <aside class="notes">
-          Digipost has developed and open sources a wrapper around Terraform written in go.
         </aside>
       </section>
 
       <section data-background-image="img/nsb_cloud-tools.png">
         <aside class="notes">
           <ul>
-            <li>We have created our own wrapper based on that.</li>
+            <li>We have created a wrapper around Terraform to manage just that</li>
+            <li>The wrapper is based on tools developed by the team developing Digipost.</li>
           </ul>
         </aside>
       </section>
@@ -828,9 +839,12 @@ commands:
         <div class="mb-frame fragment" style="width: 480px; height: 175px; right: 570px; top: 400px;"></div>
         <aside class="notes">
           <ul>
+            <li>The wrapper expects a file called cloud-config.yml</li>
+            <li>What it does is to handle variables in different ways. Some plain, some secret and som dynamic.</li>
             <li>vars: why do they start with TF_VAR?</li>
             <li>Secret vars uses passwordstore, commandline tool for encrypting secrets</li>
             <li>Commands. Creates dynamic variables. In this case getting variables using aws_cli (more on that later)</li>
+            <li>Let's have a look at secret variables first, but first I will introduce a nice tool we use for secrets.</li>
           </ul>
         </aside>
       </section>
@@ -839,7 +853,7 @@ commands:
         <img src="img/pass.png" alt="passwordstore">
         <aside class="notes">
           <ul>
-            <li>.</li>
+            <li>pass is a commandline tool for password management</li>
           </ul>
         </aside>
       </section>
@@ -1007,9 +1021,7 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
       <section>
         <h2>Layout</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-.
-├── bin
-│   └── get-aws-ids.sh
+./app-infrastructure
 └── modules
     ├── database
     │   ├── main.tf
@@ -1204,14 +1216,15 @@ variable "mgmtserver" { default = "10.0.3.95" }
         </aside>
       </section>
 
+      <!--
       <section>
         <h1>Monitoring</h1>
         <aside class="notes">
         </aside>
       </section>
 
-      <section data-background-image="img/cloudwatch.png" style="width: 100%; height: 100%;">
-        <div class="layer" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.5);">
+      <section data-background-image="img/cloudwatch.png">
+        <div class="layer" style="background-color: rgba(0, 0, 0, 0.5);">
           <h1>Tens of thousands of metrics</h1>
         </div>
         <aside class="notes">
@@ -1235,7 +1248,7 @@ variable "mgmtserver" { default = "10.0.3.95" }
             <li>event history of actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.</li>
           </ul>
         </aside>
-      </section>
+      </section>-->
 
       <section>
         <h1>PaaS</h1>
@@ -1261,14 +1274,14 @@ variable "mgmtserver" { default = "10.0.3.95" }
       <section>
         <h1>From pets to cattle</h1>
         <p>&nbsp;</p>
-        <img style="float: left; position: relative; display:inline-block;" width="300" src="img/luke_og_leia.png">
+        <img style="float: left; position: relative; display:inline-block; left: 10%;" width="300" src="img/luke_og_leia.png">
         <div style="display:inline-block;">
           <p style="float: none; position: relative; right: 30%;">&#8663;</p>
           <p style="float: none; position: relative; right: 30%;">&rArr;</p>
           <p style="float: none; position: relative; right: 30%;">&#8664;</p>
         </div>
-        <img style="float: right; position: relative;" width="300" src="img/cattle.jpg">
-        <footer class="layer right" style="font-size: 25px; position: relative; left: 37%; bottom: 10%; background-color: rgba(0, 0, 0, 0);">"When one of'em gets sick I just shoot'em in the head"</footer>
+        <img style="float: right; position: relative; right: 10%;" width="300" src="img/cattle.jpg">
+        <footer class="layer right" style="font-size: 25px; position: relative; left: 30%; bottom: 10%; background-color: rgba(0, 0, 0, 0);">"When one of'em gets sick I just shoot'em in the head"</footer>
         <aside class="notes">
         </aside>
       </section>
@@ -1313,7 +1326,7 @@ variable "mgmtserver" { default = "10.0.3.95" }
 
       <section>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-&lt;app1&gt;
+.&lt;app1&gt;
 ├──.ebextensions
 |  ├── 00-set-timezone.config
 |  ├── 03-secure-listener.config
@@ -1323,22 +1336,8 @@ variable "mgmtserver" { default = "10.0.3.95" }
 ├── create.sh
 ├── deploy.sh
 ├── terminate.sh
-├── config
-│   ├── app-&lt;env&gt;.properties
-├── secretconfig
-│   ├── secret-&lt;env&gt;.properties.encrypted
      </code></pre>
         <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Ansible vault</h1>
-        <img height="235" src="img/ansible.png" alt="Absibe Vault">
-        <aside class="notes">
-          <ul>
-            <li>property files deployed with applications are decrypted in scripts using passwords from pass</li>
-          </ul>
         </aside>
       </section>
 
@@ -1503,8 +1502,6 @@ function decrypt_secret_properties() {
         <div class="layer" style="background-color: rgba(0, 0, 0, 0.3);">
           <h1>What didn't I mention?</h1>
           <ul>
-            <li>Managing individual credentials</li>
-            <li>IAM, 2FA, VPN, NAT, CIDR-blocks</li>
             <li><b>Application level security</b></li>
             <li><b>Security culture</b></li>
             <li>Stuff I forgot about</li>
@@ -1523,7 +1520,7 @@ function decrypt_secret_properties() {
           <ul>
             <li>Panopticon (internal monitoring)</li>
             <li>Auth0 (authentication)</li>
-            <li>Pingdom (external monitorering)</li>
+            <li>Pingdom (external monitoring)</li>
             <li>Pagerduty (paging us when we're on duty)</li>
             <li>Slack (ChatOps)</li>
             <li>Github (for everything!)</li>
@@ -1570,9 +1567,9 @@ function decrypt_secret_properties() {
             <li class="fragment">The hard parts is the cloud vendors responsibility</li>
             <li class="fragment">Prod.-equal environments on demand</li>
             <li class="fragment">Elasticity and auto scaling</li>
-            <li class="fragment">Agile business development</li>
             <li class="fragment">Reduced lead time</li>
-            <li class="fragment">Ownership to what's delivered</li>
+            <li class="fragment">Agile business development</li>
+            <li class="fragment">Ownership of what's delivered</li>
             <li class="fragment">Responsibility in the right place</li>
             <li class="fragment">Less stuff to remember</li>
             <li class="fragment">Happy employees :-D</li>
@@ -1598,24 +1595,6 @@ function decrypt_secret_properties() {
         </aside>
       </section>
 
-      <!--
-
-      <section data-background-image="img/nasa.jpg">
-        <div class="mb-wrap mb-style-3">
-          <blockquote style="background-color: rgba(0, 0, 0, 0.7);">
-            <p>Based on our experience, I belive that we can be even more secure in AWS cloud than in our own data centers.</p>
-            <br>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Tom Soderstrom, CTO, NASA JPL</p>
-            <div class="mb-thumb-tom-soderstrom"></div>
-          </div>
-        </div>
-        <aside class="notes">
-        </aside>
-      </section>
-
--->
       <section data-background-image="img/the_pentagon.jpg" style="width: 100%; height: 100%;">
         <h1>&nbsp;</h1>
         <h2>&nbsp;</h2>
@@ -1633,17 +1612,21 @@ function decrypt_secret_properties() {
         </aside>
       </section>
 
-
-      <!--
-        
-          <blockquote style="background: rgba(0, 0, 0, 0.65);">
-            <p>You build it, you run it!</p>
+      <section data-background-image="img/nasa.jpg">
+        <div class="mb-wrap mb-style-3">
+          <blockquote style="background-color: rgba(0, 0, 0, 0.7);">
+            <p>Based on our experience, I belive that we can be even more secure in AWS cloud than in our own data centers.</p>
+            <br>
           </blockquote>
           <div class="mb-attribution">
-            <p class="mb-author">Werner Vogels (CTO Amazon)</p>
-            <cite style="background: rgba(0, 0, 0, 0.65);"><a href="https://queue.acm.org/detail.cfm?id=1142065">A Conversation with Werner Vogels, Queue, June 30th, 2006</a></cite>
+            <p class="mb-author">Tom Soderstrom, CTO, NASA JPL</p>
+            <div class="mb-thumb-tom-soderstrom"></div>
           </div>
--->
+        </div>
+        <aside class="notes">
+          And like NASA realized. You are probably more secure in AWS cloud than in your own data center.
+        </aside>
+      </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)" style="width: 100%; height: 100%;">
         <h2>Thank you!</h2>
@@ -1651,7 +1634,7 @@ function decrypt_secret_properties() {
         <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
         <p><a href="https://twitter.com/steinim">@steinim</a></p>
         <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
-        <footer class="right" style="float: right; position: absolute; top: 75%; left: 90%;">
+        <footer class="right" style="float: right; position: relative; bottom: 25%; left: -2%;">
           <img width="200px" src="img/devopsdays.png" alt="DevOpsDays Oslo">
           <h2>November 1st - 2nd</h2>
         </footer>
