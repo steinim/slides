@@ -32,8 +32,11 @@
         <aside class="notes">
           <ul>
             <li>I'm a programmer working at BEKK Consulting</li>
-            <li>The last year or so I've been working as Tech Lead for the team developing all customer facing applications for the Norwegian Railway, NSB.</li>
-            <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays in Oslo November 1st - 2nd</li>
+            <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays in Oslo November 1st - 2nd. Be sure to get your tickets for that.</li>
+            <li>Two years ago I gave a talk here at JavaZone together with Erlend Oftedal called Continous Security</li>
+            <li>This year I have just slapped on "in ze cloud" (always works if you want to get accepted for conferences these days), and I no longer have Erlend as my security alibi.</li>
+            <li>Currently I'm working as Tech Lead for the team developing all customer facing applications for the Norwegian Railways, NSB.</li>
+            <li>And this talk is sort of an experience report from that work.</li>
           </ul>
         </aside>
       </section>
@@ -53,7 +56,7 @@
             <li>And it's certaintly been one of my most exciting projects ever.</li>
             <!--<li>Our most importent principles have been simplicity and automation</li>
             <li>– without compromising on availability, stability and last but not least security</li>-->
-            <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe manner.</li>
+            <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe and secure manner.</li>
           </ul>
         </aside>
       </section>
@@ -74,13 +77,14 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
           <ul>
+            <li>So why is DevOps and moving to the cloud important?</li>
             <li>All businesses today are IT-businesses</li>
             <li>Innovative use of IT is the way all business get customers and deliver services.</li>
             <li>Todays users are more demanding than ever and expect more and more.</li>
             <li>In a market driven by competition speed and ability change rapidly is the most important thing of all.</li>
             <li>So also for train companies. Some examples are:</li>
             <ul>
-              <li>Belgian train company led commuters shop groceries on their smart phone while waiting for the train.</li>
+              <li>Belgian train company let commuters shop groceries on their smart phone while waiting for the train.</li>
               <li>Drones for surveilling infrastructure or delivering better Wi-fi</li>
               <li>Gathering of data from all kinds of IoT devices in infrastructure, in the carriages etc. etc.</li>
               <li>And what happens to train companies when self driving cars and hyperloop enters the market?</li>
@@ -110,7 +114,7 @@
             <li>If you want to compete in a market where more and more businesses are adopting these changes and you don't adopt these new ways of getting work done you are really missing out.</li>
             <li>It is happening now and can not be stopped.</li>
             <li>And it is not just for startups. The large enterprises and the public sector also have to take this seriously to not be left behind.</li>
-            <li>The advantages overshadow traditional requirements for security work.</li>
+            <li>The advantages overshadow traditional requirements for security work. So we have to change the way we work with security to keep up with the pace.</li>
             <li>Change is inevitable.</li>
           </ul>
         </aside>
@@ -192,7 +196,8 @@
         </div>
         <aside class="notes">
           <ul>
-            <li>That means that our software must be ready for production at any time. Long lived development of new features has to go.</li>
+            <li>So what is continuous delivery?</li>
+            <li>Well. It means that our software must be ready for production at any time. Long lived development of new features has to go.</li>
             <li>We need to do this to support how business wants to work.</li>
             <li>It's all about putting the release schedule in the hands of the business, not in the hands of IT.</li>
           </ul>
@@ -203,12 +208,14 @@
       <section style="width: 100%; height: 100%;">
         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">Continuous Delivery &hearts; DevOps</h1>
         <aside class="notes">
+          Contiuous delivery loves DevOps.
         </aside>
       </section>
 
       <section style="width: 100%; height: 100%;">
         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">What is DevOps?</h1>
         <aside class="notes">
+          So what is DevOps?
         </aside>
       </section>
 
@@ -228,6 +235,7 @@
         <img src="img/devops.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -10%;">
         <footer class="layer right">Image by <a href="https://www.flickr.com/photos/87777282@N00/">newwavegurly</a> licensed by <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a></footer>
         <aside class="notes">
+          Its original meaning is this. It's about getting two diciplines that traditionally has been very separate to work together.
         </aside>
       </section>
 
@@ -237,12 +245,14 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
+          But we have no ops!
         </aside>
       </section>
 
       <section style="width: 100%; height: 100%;">
         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">NoOps != No Operations</h1>
         <aside class="notes">
+          But No Ops does not mean that there's no more operations.
         </aside>
       </section>
 
@@ -259,7 +269,7 @@
         </div>
         <img src="img/kent_beck.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 80%; left: -10%;">
         <aside class="notes">
-          <li>Kent Beck once gave me his definition of DevOps, "Developers carry beepers".</li>
+          <li>Kent Beck once gave me his definition of DevOps at a DevOps Meetup here in Oslo, "Developers carry beepers".</li>
           <li>And he is absolutely right. It must be the ones that develop the systems that must watch over them.</li>
           <li>They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur.</li>
           <li>It also creates incentives to build things that don't break.</li>
@@ -287,6 +297,12 @@
         <h2>Our process:</h2>
         <h1 class="fragment">Get &#128169; done!</h1>
         <aside class="notes">
+          <ul>
+            <li>Our process is simply: get shit done!</li>
+            <li>I guess we're agile (whatever that means) but we don't use any particular methodology</li>
+            <li>We do standups and we have a task board that supports flow from ready to in production</li>
+            <li>Other than that we just get shit done.</li>
+          </ul>
         </aside>
       </section>
 
@@ -311,6 +327,7 @@
       <section style="width: 100%; height: 100%;">
         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">DevOps &hearts; Cloud</h1>
         <aside class="notes">
+          DevOps loves cloud.
         </aside>
       </section>
 
@@ -1638,6 +1655,9 @@ function decrypt_secret_properties() {
           <img width="200px" src="img/devopsdays.png" alt="DevOpsDays Oslo">
           <h2>November 1st - 2nd</h2>
         </footer>
+        <aside class="notes">
+          Remember to give feedback
+        </aside>
       </section>
 
     </div>
