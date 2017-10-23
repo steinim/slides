@@ -807,7 +807,14 @@ resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_ru
 
       <section>
         <img height="600" src="img/ssh_audit.png" alt="SSH Audit">
-        <aside class="notes"></aside>
+        <aside class="notes">
+        <ul>
+          <li>Create ordinary users in AWS IAM, assign them to a group (e. g. Developers) and upload your personal public ssh-key</li>
+          <li>A cron jobb on the bastion host with a role allowing downloads of these keys pulls them to the server</li>
+          <li>The cron job creates individual user for each developer and adds the key to the authorized_keys file</li>
+          <li>Removing a developer from IAM also deletes the user from the bastion host</li>
+          <li>By streaming /var/log/secure to CloudWatch you get a nice audit log for all logins on the server</li>
+        </aside>
       </section>
 
       <section>
