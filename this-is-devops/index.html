@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>This is DevOps – everything else is a lie!</title>
+  <meta name="description" content="This is DevOps – everything else is a lie!">
+  <meta name="author" content="Stein Inge Morisbak">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.min.css">
+  <link rel="stylesheet" href="../lib/css/zenburn.css">
+  <link rel="stylesheet" href="../css/theme/bekk.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css" id="custom">
+  <script>
+    document.write('<link rel="stylesheet" href="../css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>This is DevOps – everything else is a lie!</h1>
+        <p>BEKK Fagdag 10.11.2017</p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        <aside class="notes">
+        </aside>
+      </section>
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <img src="img/old_devops.png" alt="Old DevOps">
+        <p style="font-size: 28px;">&nbsp;</p>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h2>Thank you!</h2>
+        <p>Slides:<br><a href="http://steinim.github.io/slides/this-is-devops/">http://steinim.github.io/slides/this-is-devops/</a></p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        <aside class="notes">
+        </aside>
+      </section>
+
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.min.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: '../lib/js/classList.js',
+            condition: function() {
+              return !document.body.classList;
+            }
+          },
+          {
+            src: '../plugin/markdown/marked.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/markdown/markdown.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          },
+          {
+            src: '../plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          },
+          {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          }
+          // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+</body>
+
+</html>
