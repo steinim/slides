@@ -30,7 +30,7 @@
         <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
         <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
         <aside class="notes">
-Welcome to my talk abot convincing people to act on good ideas and not get stuck doing whatever they are used to doing. It’s about being a change agent in your own organization. Which usually is very hard. Fact is that many people aren’t that interested in making changes. You and me, who are interested in always evolving and finding better ways, have to find ways to convince these people to act on good ideas.
+Welcome to my talk abot convincing people to act on good ideas and not get stuck doing whatever they are used to doing. It’s about being a change agent in your own organization. Which usually is very hard. Fact is that many people aren’t that interested in making changes. You, who are interested in always evolving and finding better ways, have to find ways to convince these people to act on good ideas.
         </aside>
       </section>
 
@@ -46,10 +46,10 @@ I have gathered inspiration from this book written in 2010 and tried to create m
 
       <section data-background="img/me.jpg" style="width: 100%; height: 100%;">
         <aside class="notes">
-<p>Now, this is me. Jovial guy, 43 years old with a wife and two kids. I finished my masters degree in 2000, but started working as a systems engineer at the university back in 1998. From 2004 and onwards I worked mainly as a programmer, and that's when I discovered Agile. I became the first certified Scrum Master in Norway together with a few others. We fought many battles during that time, and we mostly succeeded. But it took years. When I started in BEKK in 2010 I discovered this thing called DevOps, and getting organizations to adopt the DevOps way of thinking has been my main concern since that. I started DevOps Norway Meetup in 2012, and that community has now grown to nearly 1500 people. Throughout the years I have had strong opinions in many areas, and I've learned a lot about how to get people to act on good ideas during my twenty years in the business. So I'll try to share with you some of the things I've learned and what I have seen work for me.
+Now, this is me. Jovial guy, 43 years old with a wife and two kids. I finished my masters degree in 2000, but started working as a systems engineer at the university back in 1998.
         </aside>
       </section>
-<!--
+
       <section data-background="img/homepage.png" style="width: 100%; height: 100%;">
         <aside class="notes">
 This is my professional homepage from that time.
@@ -145,6 +145,7 @@ I started sharing more and more. And sharing is one of the most powerful ways to
           </ul>
         </aside>
       </section>
+
       <section data-background="img/me.jpg" style="width: 100%; height: 100%;">
         <aside class="notes">
           <ul>
@@ -152,10 +153,12 @@ I started sharing more and more. And sharing is one of the most powerful ways to
           </ul>
         </aside>
       </section>
--->
+
       <section data-background="img/code_monkey.png" style="width: 100%; height: 100%;">
         <aside class="notes">
-            <p>I'm certain that all of you have experienced to not be heard, that people don't understand, that nothing that you're suggesting is taken into account, that the organization is heavy and rigid, that you don't have any mandate, that decissions come from above. No matter how much you scream you can't be heard. I've felt all these things. Many times.
+          <ul>
+            <li>I'm certain that all of you have experienced to not be heard, that people don't understand, that nothing that you're suggesting is taken into account, that the organization is heavy and rigid, that you don't have any mandate, that decissions come from above. No matter how much you scream you can't be heard. I've felt all these things. Many times.</li>
+          </ul>
         </aside>
       </section>
 
@@ -169,8 +172,10 @@ if (complain() === true) {
 }
           </pre></code>
         <aside class="notes">
-            <p>But you've got to look up and do something about it. Even if it seems hopeless there's ALWAYS possible to change things. I have been on greenfield projects and legacy projects and there's no difference. Same with the size of the organization. There's always room for pushing limits.
-            <p>So don't complain. Don't give up. Be awesome! You're guaranteed to make change if you just try.
+          <ul>
+            <li>But you've got to look up and do something about it. Even if it seems hopeless there's ALWAYS possible to change things. I have been on greenfield and legacy projects and there's no difference. Same with the size of the organization. There's always room for pushing limits.</li>
+            <li>So don't complain. Don't give up. Be awesome! You're guaranteed to make change if you just try.</li>
+          </ul>
         </aside>
       </section>
 
@@ -193,9 +198,9 @@ if (complain() === true) {
         <p>&nbsp;</p>
         <img width="352" height="352" src="img/sceptic.png">
         <aside class="notes">
-<p>To understand more about why people aren't acting on change we'll look at some sterotypical sceptics most of you probably have met in some context or another.
+To understand more about why people aren't acting on change we'll look at some sterotypical sceptics most of you probably have met in some context or another.
 
-<p>That's my cat by the way. Always sceptical.
+That's my cat by the way. Always sceptical.
         </aside>
       </section>
 
@@ -204,7 +209,7 @@ if (complain() === true) {
         <h2>The argumentative</h2>
         <img width="352" height="352" src="img/argumentative.png">
         <aside class="notes">
-<p>Let's start with the argumentative. The argumentative comes with as many objections as he can in the hope that all the objections creates so much doubt about your suggestion that it falls. The strange thing is that the argumentative might not disagree with you, but he likes to argue for the sake of arguing. If he succeeds in destroying a suggestion, any suggestion, he will be satisfied. The result is often that nothing is done and that it has only contributed to doubt in the whole group. The worst thing is that the argumentative is often seen as an expert. He may not be smart, but he appears to be smart because he has so many objections. That's why he does it. To look smart.</p>
+<p>The argumentative comes with as many objections as he can in the hope that all the objections creates so much doubt about your suggestion that it falls. The strange thing is that the argumentative might not disagree with you, but he likes to argue for the sake of arguing. If he succeeds in destroying a suggestion, any suggestion, he will be satisfied. The result is often that nothing is done and that it has only contributed to doubt in the whole group. The worst thing is that the argumentative is often seen as an expert. He may not be smart, but he appears to be smart because he has so many objections. That's why he does it. To look smart.</p>
 
 <p>Being argumentative is much easier than being the one who presents something. Then you are often nervous and it can be difficult to counter the argumentative's arguments.</p>
 <p>Techniques:
@@ -436,7 +441,7 @@ A colleague of mine, Stefan, has really opened my eyes for this technique. Even 
         <h2>Be visible</h2>
         <img width="352" height="352" src="img/be_visible.png">
         <aside class="notes">
-Be visible! Internally and externally. Contribute to open source, blog or talk at a conference. Share! Then you automatically become the expert. You become the guy to go to for advice and to fix your problems. What we do outside of work is important!
+Be visible! Internally and externally. Contribute to open source, blog or talk at a conference. Share! Then you automatically become the expert. You become the guy to go to for advice and to fix your problems. What we do outside work is important!
         </aside>
       </section>
 
@@ -450,10 +455,10 @@ Be visible! Internally and externally. Contribute to open source, blog or talk a
         </ul>
         <aside class="notes">
 <p>(click) Things take time: Do not focus on winning all the wars at once. But sometimes you don't have much time. For example, shifting to public cloud before the architectural council lands that they want to go for private cloud.
-<p>But many things are such that you have to let people mature, so you must seed your ideas and use all the techniques I have mentioned over time. If you want to be a mean, lean machine that spits out high quality software many times a day and has full autonomy and mandate to do as you please then there are many small steps towards that goal. Do not think short-term. Small wins are not soooo valuable even though it's cool to gain access to production or switch programming language to something that is much better suited to what you're up to. You should have more long-term goals where you end up in a position where you can make ALL the decisions without having to spend a lot of time convincing.
+<p>But many things are such that you have to let people mature, so you must seed your ideas and use all the techniques I have mentioned over time. If you want to be a mean, lean machine that spits out high quality software many times a day and has full autonomy and mandate to do as you please then there are many small steps towards that goal. Do not think short-term. Small wins are not soooo valuable even though it's cool to gain access to production or switch programming languages to something that is much better suited to what you're up to. You should have more long-term goals where you end up in a position where you can make ALL the decisions without having to spend a lot of time convincing.
 <p>(click) Success happens in a silo: If you succeed in the team you are on, it does not mean that the entire organization has changed. It's cool to be in a really good team that does everything right, but it's important to spread success. That's when we really can challenge a whole industry and make our customers winners.
 <p>(click) You may be wrong: Everyone can be wrong. But it's better to make some mistakes than to not try at all. Get allies and talk to like minded people. Then the risk of being wrong is smaller. 
-<p>(click) And most importantly: Better is not a place. It's a direction. Never be completely satisfied. Once you've reached a goal, you should already have thought about the next goal for a long time ago.
+<p>(click) And most importantly: Better is not a place. It's a direction. Never be completely satisfied. Once you've reached a goal, you should already have thought about the next goal a long time ago.
         </aside>
       </section>
 
