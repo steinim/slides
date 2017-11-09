@@ -255,13 +255,3 @@ section.layer h1 {
   box-shadow: inset 2px 2px 8px #feb6b8, 0 4px 6px #feb6b8;
 }
 
-.mb-frame2 {
-  width: 23%;
-  height: 20%;
-  border-radius: 90%;
-  float: left;
-  position: relative;
-  right: -90%;
-  top: 5%;
-  box-shadow: inset 2px 2px 8px #feb6b8, 0 4px 6px #feb6b8;
-}
