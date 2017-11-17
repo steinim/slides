@@ -23,6 +23,12 @@
   <div class="reveal">
     <div class="slides">
 
+      <section data-background-image="img/bekkband.jpg" style="width: 100%; height: 100%;">
+        <aside class="notes">
+        First of all I'd like to thank you for listening to BEKK Band at the party last night. We had a lot of fun.
+        </aside>
+      </section>
+
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Continuous Security in the Cloud</h1>
         <p>Build Stuff 2017</p>
@@ -32,7 +38,7 @@
         <aside class="notes">
           <ul>
             <li>I'm a programmer working at BEKK Consulting</li>
-            <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays in Oslo November 1st - 2nd. Be sure to get your tickets for that.</li>
+            <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays which was held in Oslo a couple of weeks ago.</li>
             <li>Currently I'm working as Tech Lead for the team developing all customer facing applications for the Norwegian Railways, NSB.</li>
             <li>And this talk is sort of an experience report from that work.</li>
           </ul>
@@ -79,7 +85,7 @@
             <li>All businesses today are IT-businesses</li>
             <li>Innovative use of IT is the way all business get customers and deliver services.</li>
             <li>Todays users are more demanding than ever and expect more and more.</li>
-            <li>In a market driven by competition speed and ability change rapidly is the most important thing of all.</li>
+            <li>In a market driven by competition speed and the ability to change rapidly is the most important thing of all.</li>
             <li>So also for train companies. Some examples are:</li>
             <ul>
               <li>Belgian train company let commuters shop groceries on their smart phone while waiting for the train.</li>
@@ -269,7 +275,7 @@
         </div>
         <img src="img/kent_beck.png" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 35%; left: -10%;">
         <aside class="notes">
-          <li>Kent Beck once gave me his definition of DevOps at a DevOps Meetup here in Oslo, "Developers carry beepers".</li>
+          <li>Kent Beck once gave me his definition of DevOps at a DevOps Norway Meetup, "Developers carry beepers".</li>
           <li>And he is absolutely right. It must be the ones that develop the systems that must watch over them.</li>
           <li>They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur.</li>
           <li>It also creates incentives to build things that don't break.</li>
@@ -498,7 +504,7 @@
 ...
 ./appN
      </code></pre>
-        <aside class="notes">The repos are devided into thre categories</aside>
+        <aside class="notes">The repos are devided into three categories</aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
@@ -527,7 +533,7 @@
             <li>Other</li>
             <ul>
               <li>Mgmtserver in the private subnet for doing administrative tasks</li>
-              <li>Backup and cron-jobs (use as little as possible)</li>>
+              <li>Backup and cron-jobs (use as little as possible)</li>
             </ul>
           </ul>
         </aside>
@@ -843,7 +849,6 @@ resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_ru
         <aside class="notes">
           <ul>
             <li>We have created a wrapper around Terraform to manage just that</li>
-            <li>The wrapper is based on tools developed by the team developing Digipost.</li>
           </ul>
         </aside>
       </section>
@@ -889,6 +894,7 @@ secret-vars:
         <aside class="notes">
           <ul>
             <li>pass is a commandline tool for password management</li>
+            <li>an alternative tool to pass is git-crypt.
           </ul>
         </aside>
       </section>
@@ -1234,7 +1240,7 @@ SYNOPSIS
         </div>
         <aside class="notes">
           <ul>
-            <li>Elastc Beanstalk is the icing on the cake.</li>
+            <li>Elastic Beanstalk is the icing on the cake.</li>
             <li>It does everything you would normally do in Terraform for you &rarr; That's what makes it PaaS</li>
             <li>You may wonder why we don't use Docker.</li>
             <li>You could use Docker in Elastic Beanstalk also, but it simply doesn't make any sense for us.</li>
@@ -1754,7 +1760,7 @@ function decrypt_secret_properties() {
             }
           },
           {
-            src: '../plugin/notes/notes.js',
+            src: 'plugin/notes/notes.js',
             async: true,
             condition: function() {
               return !!document.body.classList;
