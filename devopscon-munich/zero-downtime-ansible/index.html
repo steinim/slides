@@ -104,18 +104,19 @@ fi
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 - name: Ensure installed vim
   apt:
-    pkg=vim
-    state=present
-    update_cache=no
+    pkg: vim
+    state: present
+    update_cache: no
   tags:
     - vim
 
-- name: set filetype indent off for vim
+- name: Set filetype indent off
   lineinfile:
-    dest=/etc/vim/vimrc
-    line='filetype indent off'
-    state=present
-
+    dest: /etc/vim/vimrc
+    line: 'filetype indent off'
+    state: present
+  tags:
+    - vim
           </code></pre>
             <aside class="notes"> </aside>
             </section>
