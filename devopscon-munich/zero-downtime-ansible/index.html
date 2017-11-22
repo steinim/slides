@@ -268,12 +268,24 @@ git checkout task1 # or keep your own solution
             </section>
 
             <section>
+            <h2>Check before</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible app1.local -a "grep 'filetype indent off' /etc/vim/vimrc"
+            </code></pre>
+            <div class="fragment">
             <h2>Run it!</h2>
             <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ansible-playbook site.yml --tags vim
             </code></pre>
             <pre style="font-size: 18px; margin-top: 40px;">
 ProTip: Use '--tags', '--skip-tags', '--limit'  and/or 'gather_facts: False'<br/>to reduce execution time.</pre>
+            </div>
+            <div class="fragment">
+            <h2>Check again</h2>
+            <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+ansible app1.local -a "grep 'filetype indent off' /etc/vim/vimrc"
+            </code></pre>
+            </div>
             <aside class="notes"> </aside>
             </section>
 
