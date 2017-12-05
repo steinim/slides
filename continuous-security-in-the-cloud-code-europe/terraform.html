@@ -111,10 +111,10 @@
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>What does it do?</h1>
         <ul>
-          <li>Documents (infrastructure as code)</li>
-          <li>Plans (no surprises)</li>
-          <li>Graphs (parallelizes where possible)</li>
-          <li>Automates (takes the human out of the equation)</li>
+          <li class="fragment">Documents (infrastructure as code)</li>
+          <li class="fragment">Plans (no surprises)</li>
+          <li class="fragment">Graphs (parallelizes where possible)</li>
+          <li class="fragment">Automates (takes the human out of the equation)</li>
         </ul>
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
@@ -164,10 +164,7 @@
     ├── subnet
     │   ├── main.tf
     │   └── vars.tf
-    ├── bastion
-    │   ├── main.tf
-    │   └── vars.tf
-    ├── mgmtserver   
+    ├── instance   
     │   ├── main.tf
     │   ├── outputs.tf
     │   └── vars.tf
@@ -300,8 +297,7 @@ resource "aws_instance" "instance" {
   key_name                    = "${var.key_pair_id}"
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
-  vpc_security_group_ids      = [ "${var.security_group_ids} ]
-  associate_public_ip_address = true
+  vpc_security_group_ids      = [ "${var.security_group_ids}" ]
   tags { Name = "${var.instance_name}" }
 }
      </code></pre>
@@ -529,11 +525,11 @@ AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 ✗ envchain aws terraform-wrapper apply
      </code></pre>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 You are provisioning PROD. Type PROD to continue... PROD
      </code></pre>
 
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 Started terraform operation at: 2017-09-08 12:46:57.870942455 +0200 CEST m=+6.052644916
 
 null_resource.upload_efs_backup_script: Refreshing state... (ID: 8456414560025152219)
