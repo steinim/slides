@@ -35,6 +35,21 @@
             <li>I'm a programmer working at BEKK Consulting</li>
             <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays Oslo.</li>
             <li>Currently I'm working as Tech Lead for the team developing all customer facing applications for the Norwegian Railways, NSB.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background-image="../img/nsb_bg.jpg" style="width: 100%; height: 100%;">
+        <h1>&nbsp;</h1>
+        <p>&nbsp;</p>
+        <img width="235" height="235" src="../img/nsb.png" alt="NSB">
+        <img width="235" height="235" src="../img/terraform.png" alt="Terraform" style="background:none; border:none; box-shadow:none;">
+        <img width="235" height="235" src="../img/aws.jpg" alt="AWS">
+        <p style="font-size: 28px;">&nbsp;</p>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <footer class="layer right">Image by <a href="https://commons.wikimedia.org/wiki/File:NSB_BMb_74501_1.jpg">MPW57</a> licensed by <a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></footer>
+        <aside class="notes">
+          <ul>
             <li>We're using Terraform extensively on that project, and we're using AWS</li>
             <li>I'm curious about everything cloud</li>
             <li>wanted to see if and how GCP differs when it comes to the basic principles of good infrastructure</li>
@@ -43,7 +58,7 @@
       </section>
 
 
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+      <!--<section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Disclaimer</h1>
         <div class="mb-wrap mb-style-3">
           <blockquote>
@@ -57,83 +72,51 @@
             <cite><a href="https://medium.com/@reverentgeek/5-essential-ingredients-for-an-awesome-tech-talk-2e5778b2cb5a">5 Essential Ingredients for an Awesome Tech Talk</a></cite>
           </div>
         </div>
+      </section> -->
+
+      <section data-background-image="../img/devs.jpg" style="width: 100%; height: 100%;">
+        <div style="background-color: rgba(0, 0, 0, 0.4);">
+          <h1>Why?</h1>
+          <ul>
+            <li>Broaden my horizon</li>
+            <li>Build competence</li>
+            <li>Know I'm talking about</li>
+            <li>Have fun!</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          Competency groups in BEKK. Made a workshop. I'm interested in Cloud Platforms in general, and wanted to see what are the differences between e.g. AWS and GCP when you are trying to solve the same problem. Not saying that the architecture and technological choices are the best. I would prefer a PaaS platform, and for applications we have done that on our AWS project. Still we do have a basic setup for things like networking (nat, public/private subnets, routing tables, availability zones etc.
+        </aside>
+      </section>
+
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1 class="layer">AWS Architecture to reproduce</h1>
+        <img width="1198" src="img/aws_architecture.png">
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Why?</h1>
+        <h1 class="layer">GCP Architecture result</h1>
+        <img width="1198" src="img/gcp_architecture.png">
         <aside class="notes">
-          I'm interested in Cloud Platforms in general, and wanted to see what are the differences between e.g. AWS and GCP when you are trying to solve the same problem. Not saying that the architecture and technological choices are the best. I would prefer a PaaS platform, and for applications we have done that on our AWS project. Still we do have a basic setup for things like networking (nat, public/private subnets, routing tables, availability zones etc.
+          The architecture in GCP ended up like this. The two providers differ.
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Glossary</h1>
         <ul>
-          <li>VPC ≈ ...</li>
-          <li>EC2 ≈ Compute Engine</li>
-          <li>RDS ≈ ...</li>
-          <li>ELB ≈ ...</li>
+          <li>aws_security_group &asymp; google_compute_firewall</li>
+          <li>EC2 &asymp; Compute Engine</li>
+          <li>RDS &asymp; GC SQL</li>
+          <li>ELB &asymp; GC LB</li>
         </ul>
       </section>
 
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1 class="layer">Our goal</h1>
-        <img src="img/architecture.png">
-      </section>
-
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1 class="layer">The juicy part</h1>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Source code</h1>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-./infrastructure          #1
-./app-infrastructure...   #2
-./app1                    #3
-./app2
-...
-./appN
-     </code></pre>
-        <aside class="notes">The repos are devided into three categories</aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>IaaS</h1>
-        <ul>
-          <div class="fragment">
-            <li>Networking</li>
-            <ul>
-              <li>VPC</li>
-              <li>Availability zones</li>
-              <li>Subnets</li>
-              <li>Security groups (FW rules)</li>
-            </ul>
-          </div>
-          <li class="fragment">Bastion host</li>
-          <li class="fragment">Management server</li>
-        </ul>
-        <aside class="notes">
-          <ul>
-            <li>Infrastructure repo contains basic infrastructure</li>
-            <ul>
-              <li>Networking</li>
-              <li>Bastion host (jump server to get access to all the private servers)</li>
-              <li>"Hardned" and just a ssh proxy</li>
-            </ul>
-            <li>Other</li>
-            <ul>
-              <li>Mgmtserver in the private subnet for doing administrative tasks</li>
-              <li>Backup and cron-jobs (use as little as possible)</li>
-            </ul>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+      <section>
         <h1>Terraform</h1>
-        <img width="235" height="235" src="img/terraform.png" alt="Terraform">
+        <img width="300" src="../img/terraform.png" alt="Terraform" style="background:none; border:none; box-shadow:none;">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
@@ -145,252 +128,927 @@
         </aside>
       </section>
 
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+      <section>
         <h1>What does it do?</h1>
         <ul>
           <li class="fragment">Documents (infrastructure as code)</li>
           <li class="fragment">Plans (no surprises)</li>
           <li class="fragment">Graphs (parallelizes where possible)</li>
           <li class="fragment">Automates (takes the human out of the equation)</li>
+          <li class="fragment">Provider/Cloud agnostic (sort of)</li>
         </ul>
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <img src="img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
+        <img src="../img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
         <aside class="notes">
           <ul>
             <li>Infrastructure as code: documentation, sharing and reuse.</li>
             <li>Execution plans: Shows in detail what is to be executed. Avoid surprises.</li>
             <li>Resource graph: parallelizes where it can and respects dependencies.</li>
             <li>Automation: Automates everything</li>
+            <li>Provider/Cloud agnostic: single tool with a single DSL. Config does differ from one provider to the next. So indeed there is no such thing as a single agnostic VPC or instance config that can be used to deploy a VPC or instance in both AWS and Azure at the same time. The infrastructure providers themselves are just way to different to be able to do such a thing.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>Why use it?</h1>
+        <ul>
+          <li class="fragment">Repeatable</li>
+          <li class="fragment">Testable</li>
+          <li class="fragment">Predictable</li>
+          <li class="fragment">Self-documenting</li>
+        </ul>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <img src="../img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
+        <aside class="notes">
+          <ul>
+            <li>Infrastructure as code: documentation, sharing and reuse.</li>
+            <li>Execution plans: Shows in detail what is to be executed. Avoid surprises.</li>
+            <li>Resource graph: parallelizes where it can and respects dependencies.</li>
+            <li>Automation: Automates everything</li>
+            <li>Provider/Cloud agnostic: single tool with a single DSL. Config does differ from one provider to the next. So indeed there is no such thing as a single agnostic VPC or instance config that can be used to deploy a VPC or instance in both AWS and Azure at the same time. The infrastructure providers themselves are just way to different to be able to do such a thing.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>Terraform Components</h1>
+        <ul>
+          <li class="fragment">Configurations (<code>*.tf</code>)</li>
+          <li class="fragment">Providers (AWS, Google Cloud, Azure, DigitalOcean, OpenStack...)</li>
+          <li class="fragment">Resources (building blocks) &rarr;
+            <ul>provider specific</ul>
+          </li>
+          <li class="fragment">Variables (infrastructure as data)</li>
+          <li class="fragment">Data sources (fetch or compute data)</li>
+          <li class="fragment">Outputs (data "after the fact")</li>
+          <li class="fragment">Modules (for reuseability)</li>
+        </ul>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <img src="../img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
+        <aside class="notes">
+          <ul>
+            <li>Configurations: text file that contains the infrastructure resource definitions (.tf extension)</li>
+            <li>Providers</li>
+            <li>Resources</li>
+            <li>Variables</li>
+            <li>Data sources</li>
+            <li>Outputs</li>
+            <li>Modules</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background-image="../img/pagerduty.jpg" style="width: 100%; height: 100%;">
+        <h1 class="layer">The juicy part</h1>
+      </section>
+
+      <section data-background-image="img/github_workshop.png" style="width: 100%; height: 100%;">
+        <h2>&nbsp;</h2>
+        <h3 class="layer"><a href="https://github.com/steinim/gcp-terrafrom-workshop">https://github.com/steinim/gcp-terraform-workshop</a></h3>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Source code</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+.
+├── helloworld-java-app
+└── terraform
+    ├── modules
+    │   ├── compute
+    │   ├── db
+    │   ├── instance-template
+    │   ├── lb
+    │   ├── network
+    │   │   ├── bastion
+    │   │   ├── subnet
+    │   └── project
+    ├── prod
+    └── test
+     </code></pre>
+        <aside class="notes">
+          <ul>
+            <li>Java app</li>
+            <li>Modules</li>
+            <li>projects/environments</li>
           </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>IaaS</h1>
-        <h2><code>./infrastructure</code></h2>
+        <h1>Task 1: Getting ready</h1>
+        <ul>
+          <li>Terraform admin project for the service account</li>
+          <li>Remote state bucket</li>
+        </ul>
+        <aside class="notes">
+          Using an Admin Project for your Terraform service account keeps the resources needed for managing your projects separate from the actual projects you create. While these resources could be created with Terraform using a service account from an existing project, in this tutorial you will create a separate project and service account exclusively for Terraform.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Basis variables</h1>
+        <p>Tip! Put the exports in <code>~/.gcp_env</code> and source it in <code>~/.bashrc</code></p>
+        <pre>
+        <code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+export GOOGLE_REGION=europe-west3 # change this if you want to use a different region
+export TF_VAR_org_id=&lt;your_org_id&gt;
+export TF_VAR_billing_account=&lt;your_billing_account_id&gt;
+export TF_VAR_region=${GOOGLE_REGION}
+export TF_VAR_user=${USER}
+export TF_VAR_ssh_key=&lt;path_to_your_public_ssh_key&gt;
+export TF_ADMIN=${USER}-tf-admin
+export TF_CREDS=~/.config/gcloud/tf-admin.json
+        </code>
+        </pre>
+        <p>Find the values for &lt;your_org_id&gt; and &lt;your_billing_account_id&gt;:</p>
+        <pre>
+        <code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+gcloud beta organizations list
+gcloud alpha billing accounts list
+        </code>
+        </pre>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Create the Terraform service account</h1>
+        <p>Create the service account and download the JSON credentials:</p>
+        <pre>
+        <code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+gcloud projects create ${TF_ADMIN} \
+  --organization ${TF_VAR_org_id} \
+  --set-as-default
+
+gcloud alpha billing projects link ${TF_ADMIN} \
+  --billing-account ${TF_VAR_billing_account}
+        </code>
+        </pre>
+        <p>Grant permission to view the Admin Project and manage Cloud Storage:</p>
+        <pre>
+        <code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+gcloud projects add-iam-policy-binding ${TF_ADMIN} \
+  --member serviceAccount:terraform@${TF_ADMIN}.iam.gserviceaccount.com \
+  --role roles/viewer
+
+gcloud projects add-iam-policy-binding ${TF_ADMIN} \
+  --member serviceAccount:terraform@${TF_ADMIN}.iam.gserviceaccount.com \
+  --role roles/storage.admin
+        </code>
+        </pre>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Enable APIs</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable cloudbilling.googleapis.com
+gcloud services enable iam.googleapis.com
+gcloud services enable compute.googleapis.com
+        </code>
+        </pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Remote state</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+cd terraform/test
+
+gsutil mb -l ${TF_VAR_region} -p ${TF_ADMIN} gs://${TF_ADMIN}
+
+cat > backend.tf &lt;&lt;EOF
+terraform {
+ backend "gcs" {
+   bucket = "${TF_ADMIN}"
+   prefix  = "terraform/state/test"
+ }
+}
+EOF        
+        </code>
+        </pre>
+        <p>Initialize the backend</p>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+terraform init
+        </code>
+        </pre>
+        <aside class="notes">
+          Terraform must store state about your managed infrastructure and configuration. This state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures. This state is stored by default in a local file named "terraform.tfstate", but it can also be stored remotely, which works better in a team environment.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>GCP provider and project</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+provider "google" {
+ region = "${var.region}"
+}
+
+resource "random_id" "id" {
+ byte_length = 4
+ prefix      = "${var.name}-"
+}
+
+resource "google_project" "project" {
+ name            = "${var.name}"
+ project_id      = "${random_id.id.hex}"
+ billing_account = "${var.billing_account}"
+ org_id          = "${var.org_id}"
+}
+
+resource "google_project_services" "project" {
+ project = "${google_project.project.project_id}"
+ services = [
+   "compute.googleapis.com"
+ ]
+}
+        </code>
+        </pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Create a module for it</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+.
+├── modules
+│   └── project
+│       ├── main.tf
+├── prod
+└── test
+    ├── backend.tf
+    ├── main.tf
+    └── vars.tf
+        </code>
+        </pre>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+# main.tf
+module "project" {
+  source          = "../modules/project" # path to module
+  name            = "hello-${var.env}"
+  region          = "${var.region}"
+  billing_account = "${var.billing_account}"
+  org_id          = "${var.org_id}"
+}
+        </code>
+        </pre>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+# vars.tf
+variable "env" { default = "test" }
+variable "region" { default = "europe-west3" }
+variable "billing_account" {}
+variable "org_id" {}
+        </code>
+        </pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h3><code>terraform plan</code></h3>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+------------------------------------------------------------------------
+
+Terraform will perform the following actions:
+
+  + module.project.google_project.project
+      id:                  &lt;computed&gt;
+      billing_account:     "0000C2-2C8D36-F6184D"
+      folder_id:           &lt;computed&gt;
+      name:                "hello-test"
+      number:              &lt;computed&gt;
+      org_id:              "396389084239"
+      policy_data:         &lt;computed&gt;
+      policy_etag:         &lt;computed&gt;
+      project_id:          "${random_id.id.hex}"
+      skip_delete:         &lt;computed&gt;
+
+  + module.project.google_project_services.project
+      id:                  &lt;computed&gt;
+      project:             "${google_project.project.project_id}"
+      services.#:          "1"
+      services.2240314979: "compute.googleapis.com"
+
+  + module.project.random_id.id
+      id:                  &lt;computed&gt;
+      b64:                 &lt;computed&gt;
+      b64_std:             &lt;computed&gt;
+      b64_url:             &lt;computed&gt;
+      byte_length:         "4"
+      dec:                 &lt;computed&gt;
+      hex:                 &lt;computed&gt;
+      prefix:              "hello-test-"
+
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+        </code>
+        </pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h3><code>terraform apply</code></h3>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+...
+module.project.random_id.id: Creating...
+  b64:         "" => "&lt;computed&gt;"
+  b64_std:     "" => "&lt;computed&gt;"
+  b64_url:     "" => "&lt;computed&gt;"
+  byte_length: "" => "4"
+  dec:         "" => "&lt;computed&gt;"
+  hex:         "" => "&lt;computed&gt;"
+  prefix:      "" => "hello-test-"
+module.project.random_id.id: Creation complete after 0s (ID: 4r8CrQ)
+module.project.google_project.project: Creating...
+  billing_account: "" => "0000C2-2C8D36-F6184D"
+  folder_id:       "" => "&lt;computed&gt;"
+  name:            "" => "hello-test"
+  number:          "" => "&lt;computed&gt;"
+  org_id:          "" => "396389084239"
+  policy_data:     "" => "&lt;computed&gt;"
+  policy_etag:     "" => "&lt;computed&gt;"
+  project_id:      "" => "hello-test-e2bf02ad"
+  skip_delete:     "" => "&lt;computed&gt;"
+module.project.google_project.project: Still creating... (10s elapsed)
+module.project.google_project.project: Creation complete after 17s (ID: hello-test-e2bf02ad)
+module.project.google_project_services.project: Creating...
+  project:             "" => "hello-test-e2bf02ad"
+  services.#:          "" => "1"
+  services.2240314979: "" => "compute.googleapis.com"
+module.project.google_project_services.project: Still creating... (10s elapsed)
+...
+module.project.google_project_services.project: Still creating... (1m30s elapsed)
+module.project.google_project_services.project: Creation complete after 1m37s (ID: hello-test-e2bf02ad)
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+        </code>
+        </pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+      <section style="width: 100%; height: 100%;">
+        <h1>Profit &#128176;</h1>
+        <img src="img/project_created.png">
+        <aside class="notes">
+        </aside>
+      </section>
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Networking and bastion host</h1>
+        <img width="1198" src="img/gcp_networking.png">
         <aside class="notes">
           <ul>
-            <li>The infrastructure repo sets up the basis infrastructure</li>
+            <li>Infrastructure repo contains basic infrastructure</li>
             <ul>
               <li>Networking</li>
-              <li>Bastion host</li>
-              <li>Mgmtserver</li>
+              <li>Bastion host (jump server to get access to all the private servers)</li>
+              <li>"Hardned" and just a ssh proxy</li>
             </ul>
           </ul>
         </aside>
       </section>
 
-      <!-- Layout -->
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Layout</h2>
+        <h1>Network module</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-./infrastructure
-├── &lt;environment&gt;
-│   ├── main.tf
-│   └── vars.tf
-└── modules
-    ├── vpc
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── vars.tf
-    ├── ig-route-table
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── vars.tf
-    ├── subnet
-    │   ├── main.tf
-    │   └── vars.tf
-    ├── instance   
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── vars.tf
-    ├── ...
+modules/network/
+├── vars.tf
+├── main.tf
+├── outputs.tf
+├── bastion
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── vars.tf
+├── subnet
+│   ├── main.tf
+│   ├── outputs.tf
+│   └── vars.tf
+       </code></pre>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">    
+...
+        
+module "network" {
+  source                     = "../modules/network"
+  name                       = "${module.project.name}"
+  project                    = "${module.project.id}"
+  region                     = "${var.region}"
+  zones                      = "${var.zones}"
+  webservers_subnet_name     = "webservers"
+  webservers_subnet_ip_range = "${var.webservers_subnet_ip_range}"
+  bastion_image              = "${var.bastion_image}"
+  bastion_instance_type      = "${var.bastion_instance_type}"
+  user                       = "${var.user}"
+  ssh_key                    = "${var.ssh_key}"
+}
+        </code></pre>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+# modules/network
+# main.tf
+resource "google_compute_network" "network" {
+  name    = "${var.name}-network"
+  project = "${var.project}"
+}
+
+resource "google_compute_firewall" "allow-ssh-from-everywhere-to-bastion" {
+  name    = "${var.name}-allow-ssh-from-everywhere-to-bastion"
+  project = "${var.project}"
+  network = "${var.name}-network"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+
+  target_tags = ["bastion"]
+}
+
+resource "google_compute_firewall" "allow-ssh-from-bastion-to-webservers" {
+  name               = "${var.name}-allow-ssh-from-bastion-to-webservers"
+  project            = "${var.project}"
+  network            = "${var.name}-network"
+  direction          = "EGRESS"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  target_tags        = ["http"]
+}
+
+resource "google_compute_firewall" "allow-ssh-to-webservers-from-bastion" {
+  name          = "${var.name}-allow-ssh-to-private-network-from-bastion"
+  project       = "${var.project}"
+  network       = "${var.name}-network"
+  direction     = "INGRESS"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_tags   = ["bastion"]
+}
+
+resource "google_compute_firewall" "allow-http-to-appservers" {
+  name          = "${var.name}-allow-http-to-appservers"
+  project       = "${var.project}"
+  network       = "${var.name}-network"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+
+  source_tags   = ["http"]
+}
+
+module "webservers_subnet" {
+  source   = "./subnet"
+  project  = "${var.project}"
+  region   = "${var.region}"
+  name     = "${var.webservers_subnet_name}"
+  network  = "${google_compute_network.network.self_link}"
+  ip_range = "${var.webservers_subnet_ip_range}"
+}
+
+module "bastion" {
+  source        = "./bastion"
+  name          = "${var.name}-bastion"
+  project       = "${var.project}"
+  zones         = "${var.zones}"
+  image         = "${var.bastion_image}"
+  instance_type = "${var.bastion_instance_type}"
+  user          = "${var.user}"
+  ssh_key       = "${var.ssh_key}"
+}
+
+---
+
+# vars.tf
+variable "name" {}
+variable "project" {}
+variable "region" {}
+variable "zones" { type = "list" }
+variable "webservers_subnet_name" {}
+variable "webservers_subnet_ip_range" {}
+variable "bastion_image" {}
+variable "bastion_instance_type" {}
+variable "user" {}
+variable "ssh_key" {}
+
+---
+
+# outputs.tf
+output "name" {
+  value = "${google_compute_network.network.name}"
+}
+output "bastion_public_ip" {
+  value = "${module.bastion.public_ip}"
+}
+output "gateway_ipv4"  {
+  value = "${google_compute_network.network.gateway_ipv4}"
+}
      </code></pre>
         <aside class="notes"></aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Networking</h1>
-        <img height="235" src="img/network.png" alt="Nettverk">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+# modules/network/subnet
+# main.tf
+resource "google_compute_subnetwork" "subnet" {
+  name          = "${var.name}"
+  project       = "${var.project}"
+  region        = "${var.region}"
+  network       = "${var.network}"
+  ip_cidr_range = "${var.ip_range}"
+}
+
+---
+
+# vars.tf
+variable "name" {}
+variable "project" {}
+variable "region" {}
+variable "network" {}
+variable "ip_range" {}
+
+---
+
+# outputs.tf
+output "ip_range" {
+  value = "${google_compute_subnetwork.subnet.ip_cidr_range}"
+}
+output "self_link" {
+  value = "${google_compute_subnetwork.subnet.self_link}"
+}
+     </code></pre>
         <aside class="notes"></aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/vpc.png" alt="VPC">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+# modules/network/bastion
+# main.tf
+resource "google_compute_instance" "bastion" {
+  name         = "${var.name}"
+  project      = "${var.project}"
+  machine_type = "${var.instance_type}"
+  zone         = "${element(var.zones, 0)}"
+
+  metadata {
+    ssh-keys = "${var.user}:${file("${var.ssh_key}")}"
+  }
+
+  boot_disk {
+    initialize_params {
+      image = "${var.image}"
+    }
+  }
+
+  network_interface {
+    subnetwork = "${var.subnet_name}"
+
+    access_config {
+      # Ephemeral IP - leaving this block empty will generate a new external IP and assign it to the machine
+    }
+  }
+
+  tags = ["bastion"]
+}
+
+---
+
+# vars.tf
+variable "name" {}
+variable "project" {}
+variable "zones" { type = "list" }
+variable "subnet_name" {}
+variable "image" {}
+variable "instance_type" {}
+variable "user" {}
+variable "ssh_key" {}
+
+---
+
+# outputs.tf
+output "private_ip" {
+  value = "${google_compute_instance.bastion.network_interface.0.address}"
+}
+output "public_ip" {
+  value = "${google_compute_instance.bastion.network_interface.0.access_config.0.assigned_nat_ip}"
+}
+     </code></pre>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Profit &#128176;</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+ssh -i ~/.ssh/id_rsa $USER@$(terraform output --module=network bastion_public_ip)
+[steinim@hello-test-bastion ~]$
+        </code></pre>
+        <img src="img/bastion_created.png">
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Next: Instance template</h1>
+        <img width="1198" src="img/gcp_instance_template.png">
         <aside class="notes">
-          <ul>
-            <li>A virtual private cloud (VPC) is a virtual network dedicated to your AWS account</li>
-            <li>Think of it as an isolated part of the internet reserved for you</li>
-          </ul>
         </aside>
       </section>
 
-      <!-- VPC -->
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>VPC</h2>
+        <h1>Instance template module</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+modules/instance-template
+├── main.tf
+├── outputs.tf
+└── vars.tf
+        </code></pre>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+# main.tf
+...
 
-provider "aws" {
-  region = "${var.aws_region}"
+module "instance-template" {
+  source        = "../modules/instance-template"
+  name          = "${module.project.name}"
+  env           = "${var.env}"
+  project       = "${module.project.id}"
+  region        = "${var.region}"
+  network_name  = "${module.network.name}"
+  image         = "${var.app_image}"
+  instance_type = "${var.app_instance_type}"
+  user          = "${var.user}"
+  ssh_key       = "${var.ssh_key}"
 }
 
-resource "aws_vpc" "vpc" {
-    cidr_block           = "${var.vpc_cidr}"
-    enable_dns_hostnames = true
-    tags { Name = "${var.vpc_name}" }
-}
+---
 
-resource "aws_internet_gateway" "ig" {
-    vpc_id = "${aws_vpc.vpc.id}"
-    tags { Name = "${var.ig_name}" }
-}
-
-# Grant the VPC internet access on its main route table
-resource "aws_route" "internet_access_route" {
-  route_table_id         = "${aws_vpc.vpc.main_route_table_id}"
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.ig.id}"
-}
-     </code></pre>
-        <aside class="notes">
-          A VPC needs an internet gateway and a routing table to gain access to the Internet.
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/availability-zones.png" alt="Availability Zones">
-        <aside class="notes">
-          <ul>
-            <li>Amazon EC2 is hosted in multiple locations world-wide. Each region is a separate geographic area. </li>
-            <li>Ours is hosted in Frankfurt</li>
-            <li>Each region has multiple, isolated datacenters known as Availability Zones.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Subnets</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-resource "aws_subnet" "subnet" {
-  vpc_id                  = "${var.vpc_id}"
-  count                   = "${var.number_of_subnets}"
-  cidr_block              = "${lookup(var.cidr_blocks, "zone_${count.index}")}"
-  availability_zone       = "${lookup(var.zones, "zone_${count.index}")}"
-  map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
-
-  tags { Name = "${var.name}_subnet_${lookup(var.zones, "zone_${count.index}")}" }
-}
-     </code></pre>
-        <aside class="notes">
-          <ul>
-            <li>After you have created a VPC across two availability zones you create subnets</li>
-            <li>You create public subnets which are accessible directly from the Intenet</li>
-            <li>And private subnets which are only accessible from applications and via the bastion host</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/subnets.png" alt="Subnets">
-        <aside class="notes">
-          <ul>
-            <li>Subnets</li>
-          </ul>
-        </aside>
-      </section>
-
-      <!-- Bastion, Mgmtserver -->
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Instances</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-resource "aws_instance" "instance" {
-  ami                         = "${var.ami}"
-  instance_type               = "t2.micro"
-  key_name                    = "${var.key_pair_id}"
-  subnet_id                   = "${var.subnet_id}"
-  associate_public_ip_address = true
-  vpc_security_group_ids      = [ "${var.security_group_ids}" ]
-  tags { Name = "${var.instance_name}" }
-}
-     </code></pre>
-        <aside class="notes">
-          Bastion host and mgmtserver
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/instances.png" alt="Instances">
-        <aside class="notes">
-          <ul>
-            <li>Instances</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Security groups</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-heigth: 1000px;">
-
-resource "aws_security_group_rule" "mgmtserver_ssh_ingress_from_bastion_security_rule" {
-  type = "ingress"
-  from_port = 22
-  to_port = 22
-  protocol = "tcp"
-  source_security_group_id = "${var.bastion_egress_ssh_security_group_id}"
-  security_group_id = "${aws_security_group.mgmtserver_sg.id}"
-}
-
-resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_rule" {
-  type = "egress"
-  from_port = 22
-  to_port = 22
-  protocol = "tcp"
-  security_group_id = "${var.bastion_egress_ssh_security_group_id}"
-  source_security_group_id = "${aws_security_group.mgmtserver_sg.id}"
-}
+# vars.tf
 
 ...
+
+variable "appserver_count" { default = 2 }
+variable "app_image" { default = "centos-7-v20170918" }
+variable "app_instance_type" { default = "f1-micro" }
+        </code></pre>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+modules/instance-template/
+# main.tf
+
+resource "google_compute_instance_template" "webserver" {
+  name         = "${var.name}-webserver-instance-template"
+  project      = "${var.project}"
+  machine_type = "${var.instance_type}"
+  region       = "${var.region}"
+
+  metadata {
+    ssh-keys = "${var.user}:${file("${var.ssh_key}")}"
+  }
+
+  disk {
+    source_image = "${var.image}"
+    auto_delete  = true
+    boot         = true
+  }
+
+  network_interface {
+    network            = "${var.network_name}"
+    access_config {
+      # Ephemeral IP - leaving this block empty will generate a new external IP and assign it to the machine
+    }
+  }
+
+  metadata_startup_script = "yum install -y nginx ; service nginx start ; hostname > /usr/share/nginx/html/index.html"
+
+  tags = ["http"]
+
+  labels = {
+    environment = "${var.env}"
+  }
+}
+
+---
+
+# vars.tf
+
+variable "name" {}
+variable "project" {}
+variable "network_name" {}
+variable "image" {}
+variable "instance_type" {}
+variable "user" {}
+variable "ssh_key" {}
+variable "env" {}
+variable "region" {}
+
+---
+
+# outputs.tf
+
+output "instance_template" {
+  value = "${google_compute_instance_template.webserver.self_link}"
+}
      </code></pre>
+        <aside class="notes"></aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/security_group.png" alt="Security group">
-        <aside class="notes">
-          <ul>
-            <li>Security groups</li>
-            <li>We want Security at all layers - Not just the edges</li>
-          </ul>
-        </aside>
+        <h1>Profit &#128176;</h1>
+        <img src="img/instance_template_created.png">
+        <aside class="notes"></aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Automating SSH Audit</h1>
-        <aside class="notes">
-          <ul>
-            <li>Many use the key that you assign on creation of instances to log on to them.</li>
-            <li>This key is often shared between the developers. Which of course is insecure and bad practice.</li>
-            <li>Hence you need a way to create personal users on the bastion host and audit that</li>
-            <li>And you need a way to automate that and make sure that developers who quit the team is removed</li>
-            <li>It should also be easy to add new members of the team</li>
-          </ul>
-        </aside>
+        <h1>&#128560; Auto scaling and load balancing &#128561;</h1>
+        <img src="img/gcp_auto_scaling.png">
+        <aside class="notes"></aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img height="600" src="img/ssh_audit.png" alt="SSH Audit">
+        <h1>&#128560; What you'll need &#128560;</h1>
+        <ul>
+          <li class="fragment">google_compute_global_forwarding_rule</li>
+          <li class="fragment">google_compute_target_http_proxy</li>
+          <li class="fragment">google_compute_url_map</li>
+          <li class="fragment">google_compute_backend_service</li>
+          <li class="fragment">google_compute_http_health_check</li>
+          <li class="fragment">google_compute_instance_group_manager</li>
+          <li class="fragment">google_compute_target_pool</li>
+          <li class="fragment">google_compute_instance_group</li>
+          <li class="fragment">google_compute_autoscaler</li>
+        </ul>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Load balancer module</h1>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+modules/lb
+├── main.tf
+└── vars.tf
+        </code></pre>
+        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
+# main.tf
+
+...
+
+module "lb" {
+  source            = "../modules/lb"
+  name              = "${module.project.name}"
+  project           = "${module.project.id}"
+  region            = "${var.region}"
+  count             = "${var.appserver_count}"
+  instance_template = "${module.instance-template.instance_template}"
+  zones             = "${var.zones}"
+}
+        </code></pre>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+# main.tf
+resource "google_compute_global_forwarding_rule" "global_forwarding_rule" {
+  name       = "${var.name}-global-forwarding-rule"
+  project    = "${var.project}"
+  target     = "${google_compute_target_http_proxy.target_http_proxy.self_link}"
+  port_range = "80"
+}
+
+resource "google_compute_target_http_proxy" "target_http_proxy" {
+  name        = "${var.name}-proxy"
+  project     = "${var.project}"
+  url_map     = "${google_compute_url_map.url_map.self_link}"
+}
+
+resource "google_compute_url_map" "url_map" {
+  name            = "${var.name}-url-map"
+  project         = "${var.project}"
+  default_service = "${google_compute_backend_service.backend_service.self_link}"
+}
+
+resource "google_compute_backend_service" "backend_service" {
+  name                  = "${var.name}-backend-service"
+  project               = "${var.project}"
+  port_name             = "http"
+  protocol              = "HTTP"
+  backend {
+    group                 = "${element(google_compute_instance_group_manager.webservers.*.instance_group, 0)}"
+    balancing_mode        = "RATE"
+    max_rate_per_instance = 100
+  }
+
+  backend {
+    group                 = "${element(google_compute_instance_group_manager.webservers.*.instance_group, 1)}"
+    balancing_mode        = "RATE"
+    max_rate_per_instance = 100
+  }
+
+  health_checks = ["${google_compute_http_health_check.healthcheck.self_link}"]
+}
+
+resource "google_compute_http_health_check" "healthcheck" {
+  name         = "${var.name}-healthcheck"
+  project      = "${var.project}"
+  port         = 80
+  request_path = "/"
+}
+
+resource "google_compute_instance_group_manager" "webservers" {
+  name               = "${var.name}-instance-group-manager-${count.index}"
+  project            = "${var.project}"
+  instance_template  = "${var.instance_template}"
+  base_instance_name = "${var.name}-webserver-instance"
+  count              = "${var.count}"
+  zone               = "${element(var.zones, count.index)}"
+  named_port {
+    name = "http"
+    port = 80
+  }
+}
+
+resource "google_compute_autoscaler" "autoscaler" {
+  name    = "${var.name}-scaler-${count.index}"
+  project = "${var.project}"
+  count   = "${var.count}"
+  zone    = "${element(var.zones, count.index)}"
+  target  = "${element(google_compute_instance_group_manager.webservers.*.self_link, count.index)}"
+
+  autoscaling_policy = {
+    max_replicas    = 3
+    min_replicas    = 1
+    cooldown_period = 60
+
+    cpu_utilization {
+      target = 0.6
+    }
+  }
+}
+
+---
+
+# vars.tf
+
+variable "name" {}
+variable "project" {}
+variable "region" {}
+variable "count" {}
+variable "instance_template" {}
+variable "zones" { type = "list" }
+     </code></pre>
+        <aside class="notes"></aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Profit &#128176;</h1>
+        <h2>Jump through bastion</h2>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+ssh -J $USER@$(terraform output --module=network bastion_public_ip) $USER@10.156.0.3
+[steinim@hello-test-webserver-instance-hr80 ~]$
+        </code></pre>
+        <h2>Load balancer created</h2>
+        <img src="img/lb_created.png">
+        <h1>and ...  &#127881;</h1>
+        <aside class="notes"></aside>
+      </section>
+      
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1><div style="background-color: rgba(0, 0, 0, 0.4);">&#128176; &#128640;&#128640;&#128640;&#128640; &#128176;</div></h1>
+        <img src="img/nginx_hello.png">
         <aside class="notes">
-          <ul>
-            <li>Create ordinary users in AWS IAM, assign them to a group (e. g. Developers) and upload your personal public ssh-key</li>
-            <li>A cron jobb on the bastion host with a role allowing downloads of these keys pulls them to the server</li>
-            <li>The cron job creates individual user for each developer and adds the key to the authorized_keys file</li>
-            <li>Removing a developer from IAM also deletes the user from the bastion host</li>
-            <li>By streaming /var/log/secure to CloudWatch you get a nice audit log for all logins on the server</li>
-          </ul>
         </aside>
       </section>
+      
+      
+      
+<!--
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Tools</h1>
@@ -625,7 +1283,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         </aside>
       </section>
 
-      <!-- Layout -->
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h2>Layout</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
@@ -653,7 +1310,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <aside class="notes"></aside>
       </section>
 
-      <!-- DB -->
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
 resource "aws_db_instance" "db" {
@@ -848,6 +1504,8 @@ SYNOPSIS
           </ul>
         </aside>
       </section>
+
+-->
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)" style="width: 100%; height: 100%;">
         <h2>Thank you!</h2>
