@@ -76,7 +76,7 @@
 
       <section data-background-image="../img/devs.jpg" style="width: 100%; height: 100%;">
         <div style="background-color: rgba(0, 0, 0, 0.4);">
-          <h1>Why?</h1>
+          <h1>Why GCP?</h1>
           <ul>
             <li>Broaden my horizon</li>
             <li>Build competence</li>
@@ -84,6 +84,9 @@
             <li>Have fun!</li>
           </ul>
         </div>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <p style="font-size: 28px;">&nbsp;</p>
+        <img src="../img/gcp.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
         <aside class="notes">
           Competency groups in BEKK. Made a workshop. I'm interested in Cloud Platforms in general, and wanted to see what are the differences between e.g. AWS and GCP when you are trying to solve the same problem. Not saying that the architecture and technological choices are the best. I would prefer a PaaS platform, and for applications we have done that on our AWS project. Still we do have a basic setup for things like networking (nat, public/private subnets, routing tables, availability zones etc.
         </aside>
@@ -785,6 +788,8 @@ ssh -i ~/.ssh/id_rsa $USER@$(terraform output --module=network bastion_public_ip
 modules/instance-template
 ├── main.tf
 ├── outputs.tf
+├── scripts
+│   └── startup.sh
 └── vars.tf
         </code></pre>
         <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
@@ -802,7 +807,6 @@ module "instance-template" {
   instance_type = "${var.app_instance_type}"
   user          = "${var.user}"
   ssh_key       = "${var.ssh_key}"
-}
 
 ---
 
@@ -819,9 +823,7 @@ variable "app_instance_type" { default = "f1-micro" }
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
-modules/instance-template/
 # main.tf
-
 resource "google_compute_instance_template" "webserver" {
   name         = "${var.name}-webserver-instance-template"
   project      = "${var.project}"
@@ -845,7 +847,7 @@ resource "google_compute_instance_template" "webserver" {
     }
   }
 
-  metadata_startup_script = "yum install -y nginx ; service nginx start ; hostname > /usr/share/nginx/html/index.html"
+  metadata_startup_script = "${file("${path.module}/scripts/startup.sh")}"
 
   tags = ["http"]
 
@@ -875,6 +877,50 @@ variable "region" {}
 output "instance_template" {
   value = "${google_compute_instance_template.webserver.self_link}"
 }
+
+---
+
+# scripts/startup.sh
+#!/bin/bash
+
+yum install -y nginx java
+
+cat <<'EOF' > /etc/nginx/nginx.conf
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    server {
+        listen      80 default_server;
+        server_name _;
+        location / {
+            proxy_pass  http://127.0.0.1:1234;
+        }
+    }
+}
+EOF
+
+setsebool -P httpd_can_network_connect true
+
+systemctl enable nginx
+systemctl start nginx
+
+curl -o app.jar https://morisbak.net/files/devops.jar
+
+java -jar app.jar > /dev/null 2>&1 &
+
      </code></pre>
         <aside class="notes"></aside>
       </section>
@@ -886,7 +932,7 @@ output "instance_template" {
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>&#128560; Auto scaling and load balancing &#128561;</h1>
+        <h1>Auto scaling and load balancing</h1>
         <img src="img/gcp_auto_scaling.png">
         <aside class="notes"></aside>
       </section>
@@ -1035,20 +1081,22 @@ ssh -J $USER@$(terraform output --module=network bastion_public_ip) $USER@10.156
         </code></pre>
         <h2>Load balancer created</h2>
         <img src="img/lb_created.png">
-        <h1>and ...  &#127881;</h1>
+        <h1>and ... &#127881;</h1>
         <aside class="notes"></aside>
       </section>
-      
+
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1><div style="background-color: rgba(0, 0, 0, 0.4);">&#128176; &#128640;&#128640;&#128640;&#128640; &#128176;</div></h1>
-        <img src="img/nginx_hello.png">
+        <h1>
+          <div style="background-color: rgba(0, 0, 0, 0.4);">&#128176; &#128640;&#128640;&#128640;&#128640; &#128176;</div>
+        </h1>
+        <img src="img/hello.png">
         <aside class="notes">
         </aside>
       </section>
-      
-      
-      
-<!--
+
+
+
+      <!--
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Tools</h1>
