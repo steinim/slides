@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Basic infrastructure on Google Cloud Platform with Terraform</title>
-  <meta name="description" content="Continuous Security in the Cloud">
+  <meta name="description" content="Basic infrastructure on Google Cloud Platform with Terraform">
   <meta name="author" content="Stein Inge Morisbak">
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -23,11 +23,11 @@
   <div class="reveal">
     <div class="slides">
 
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Introduction to:<h2>
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height 100%;">
+        <h2>Introduction to:</h2>
         <h1>Provisioning basic infrastructure on Google Cloud Platform with Terraform</h1>
         <p>Config Management Camp 2018</p>
-        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak" />
         <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
         <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
         <aside class="notes">
@@ -43,105 +43,50 @@
       </section>
 
 
-      <section data-background-image="img/nsb_bg.jpg" style="width: 100%; height: 100%;">
-        <h1>&nbsp;</h1>
-        <p>&nbsp;</p>
-        <img width="235" height="235" src="img/nsb.png" alt="NSB">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <footer class="layer right">Image by <a href="https://commons.wikimedia.org/wiki/File:NSB_BMb_74501_1.jpg">MPW57</a> licensed by <a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></footer>
-        <aside class="notes">
-          <ul>
-            <li>For the last year we have been working on migrating NSBs services from internal infrastructure to AWS.</li>
-            <li>Just after summer we finally moved the last application over.</li>
-            <li>And it's certaintly been one of my most exciting projects ever.</li>
-            <!--<li>Our most importent principles have been simplicity and automation</li>
-            <li>– without compromising on availability, stability and last but not least security</li>-->
-            <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe and secure manner.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-image="img/move_to_cloud.jpg" style="width: 100%; height: 100%;">
-        <h1>&nbsp;</h1>
-        <p>&nbsp;</p>
-        <img width="235" height="235" src="img/aws.jpg" alt="AWS">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">The cloud provider we chose is AWS, so I will be talking about how we use that platform. Hence it is not cloud provider agnostic, but I guess many of the principes will hold for other platforms as well.</aside>
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Disclaimer</h1>
+        <div class="mb-wrap mb-style-3">
+          <blockquote>
+            <p>I’m not an expert! I barely know anything! Everyone will know I’m a fraud!</p>
+          </blockquote>
+          <div class="fragment layer">
+            <p style="font-size: 28px; color: #35bdb2; font-weight: 700;">Psst… here’s a secret: You don’t have to be an expert!</p>
+          </div>
+          <div class="mb-attribution">
+            <p class="mb-author">David Neal</p>
+            <cite><a href="https://medium.com/@reverentgeek/5-essential-ingredients-for-an-awesome-tech-talk-2e5778b2cb5a">5 Essential Ingredients for an Awesome Tech Talk</a></cite>
+          </div>
+        </div>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-
-        <footer class="left" style="position: absolute; top: 30%;">
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left; position: relative; left: 25%;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left; position: relative; left: 25%;">&nbsp;You manage</div><br><br>
-          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left; position: relative; left: 25%;">&nbsp;&nbsp;&nbsp;</div>
-          <div style="float:left; position: relative; left: 25%;">&nbsp;Vendor managed</div>
-        </footer>
-
-        <h1>Let the cloud vendor cover your *aaS</h1>
-
-        <ul class="fragment" data-fragment-index="1" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
-          <h3>On premises</h3>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Runtime</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;OS</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Virtualization&nbsp;</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Servers</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Storage</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Network</li>
-        </ul>
-        <ul class="fragment" data-fragment-index="2" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
-          <h3>IaaS (host)</h3>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Runtime</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;OS</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
-        </ul>
-        <ul class="fragment" data-fragment-index="3" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
-          <h3>PaaS (build)</h3>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Runtime</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;OS</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
-        </ul>
-        <ul class="fragment" data-fragment-index="4" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
-          <h3>SaaS (consume)</h3>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Applications</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Data</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Runtime</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Os</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
-          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
-        </ul>
-
-        <div class="mb-frame fragment"></div>
-
+        <h1>Why?</h1>
         <aside class="notes">
-          <ul>
-            <li>Security ”of” the cloud vs ”in” the cloud</li>
-            <li>Iaas &rarr; PaaS and SaaS</li>
-          </ul>
+          I'm interested in Cloud Platforms in general, and wanted to see what are the differences between e.g. AWS and GCP when you are trying to solve the same problem. Not saying that the architecture and technological choices are the best. I would prefer a PaaS platform, and for applications we have done that on our AWS project. Still we do have a basic setup for things like networking (nat, public/private subnets, routing tables, availability zones etc.
         </aside>
       </section>
 
-      <section data-background-image="img/devs.jpg" style="width: 100%; height: 100%;">
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Glossary</h1>
+        <ul>
+          <li>VPC ≈ ...</li>
+          <li>EC2 ≈ Compute Engine</li>
+          <li>RDS ≈ ...</li>
+          <li>ELB ≈ ...</li>
+        </ul>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1 class="layer">Our goal</h1>
+        <img src="img/architecture.png">
+      </section>
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1 class="layer">The juicy part</h1>
       </section>
 
-      <section style="width: 100%; height: 100%;">
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Source code</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
 ./infrastructure          #1
@@ -430,18 +375,20 @@ resource "aws_security_group_rule" "bastion_ssh_egress_to_mgmtserver_security_ru
             <li>Hence you need a way to create personal users on the bastion host and audit that</li>
             <li>And you need a way to automate that and make sure that developers who quit the team is removed</li>
             <li>It should also be easy to add new members of the team</li>
+          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img height="600" src="img/ssh_audit.png" alt="SSH Audit">
         <aside class="notes">
-        <ul>
-          <li>Create ordinary users in AWS IAM, assign them to a group (e. g. Developers) and upload your personal public ssh-key</li>
-          <li>A cron jobb on the bastion host with a role allowing downloads of these keys pulls them to the server</li>
-          <li>The cron job creates individual user for each developer and adds the key to the authorized_keys file</li>
-          <li>Removing a developer from IAM also deletes the user from the bastion host</li>
-          <li>By streaming /var/log/secure to CloudWatch you get a nice audit log for all logins on the server</li>
+          <ul>
+            <li>Create ordinary users in AWS IAM, assign them to a group (e. g. Developers) and upload your personal public ssh-key</li>
+            <li>A cron jobb on the bastion host with a role allowing downloads of these keys pulls them to the server</li>
+            <li>The cron job creates individual user for each developer and adds the key to the authorized_keys file</li>
+            <li>Removing a developer from IAM also deletes the user from the bastion host</li>
+            <li>By streaming /var/log/secure to CloudWatch you get a nice audit log for all logins on the server</li>
+          </ul>
         </aside>
       </section>
 
@@ -914,70 +861,70 @@ SYNOPSIS
       </section>
 
     </div>
+  </div>
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.min.js"></script>
 
-    <script src="../lib/js/head.min.js"></script>
-    <script src="../js/reveal.min.js"></script>
+  <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      center: true,
+      width: 1280,
+      height: 960,
 
-    <script>
-      // Full list of configuration options available here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: false,
-        progress: true,
-        history: true,
-        center: true,
-        width: 1280,
-        height: 960,
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
-
-        // Optional libraries used to extend on reveal.js
-        dependencies: [{
-            src: '../lib/js/classList.js',
-            condition: function() {
-              return !document.body.classList;
-            }
-          },
-          {
-            src: '../plugin/markdown/marked.js',
-            condition: function() {
-              return !!document.querySelector('[data-markdown]');
-            }
-          },
-          {
-            src: '../plugin/markdown/markdown.js',
-            condition: function() {
-              return !!document.querySelector('[data-markdown]');
-            }
-          },
-          {
-            src: '../plugin/highlight/highlight.js',
-            async: true,
-            callback: function() {
-              hljs.initHighlightingOnLoad();
-            }
-          },
-          {
-            src: '../plugin/zoom-js/zoom.js',
-            async: true,
-            condition: function() {
-              return !!document.body.classList;
-            }
-          },
-          {
-            src: 'plugin/notes/notes.js',
-            async: true,
-            condition: function() {
-              return !!document.body.classList;
-            }
+      // Optional libraries used to extend on reveal.js
+      dependencies: [{
+          src: '../lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
           }
-          // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-          // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-      });
+        },
+        {
+          src: '../plugin/markdown/marked.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: '../plugin/markdown/markdown.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: '../plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        },
+        {
+          src: '../plugin/zoom-js/zoom.js',
+          async: true,
+          condition: function() {
+            return !!document.body.classList;
+          }
+        },
+        {
+          src: 'plugin/notes/notes.js',
+          async: true,
+          condition: function() {
+            return !!document.body.classList;
+          }
+        }
+        // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+        // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+    });
 
-    </script>
+  </script>
 
 </body>
 
