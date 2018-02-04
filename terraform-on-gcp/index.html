@@ -83,6 +83,7 @@
             <li>Know what I'm talking about</li>
             <li>Have fun!</li>
           </ul>
+          <p>&nbsp;</p>
         </div>
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
@@ -106,7 +107,7 @@
           The architecture in GCP ended up like this. The two providers differ.
         </aside>
       </section>
-      
+
       <!--
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
@@ -184,13 +185,11 @@
         <ul>
           <li class="fragment">Configurations (<code>*.tf</code>)</li>
           <li class="fragment">Providers (AWS, Google Cloud, Azure, DigitalOcean, OpenStack...)</li>
-          <li class="fragment">Resources (building blocks) &rarr;
-            <ul>provider specific</ul>
-          </li>
-          <li class="fragment">Variables (infrastructure as data)</li>
-          <li class="fragment">Data sources (fetch or compute data)</li>
-          <li class="fragment">Outputs (data "after the fact")</li>
-          <li class="fragment">Modules (for reuseability)</li>
+          <li class="fragment">Resources (building blocks) &rarr; provider specific
+            <li class="fragment">Variables (infrastructure as data)</li>
+            <li class="fragment">Data sources (fetch or compute data)</li>
+            <li class="fragment">Outputs (data "after the fact")</li>
+            <li class="fragment">Modules (for reuseability)</li>
         </ul>
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
@@ -214,7 +213,7 @@
 
       <section data-background-image="img/github_workshop.png" style="width: 100%; height: 100%;">
         <h2>&nbsp;</h2>
-        <h3 class="layer"><a href="https://github.com/steinim/gcp-terrafrom-workshop">https://github.com/steinim/gcp-terraform-workshop</a></h3>
+        <h3 class="layer"><a href="https://github.com/steinim/gcp-terraform-workshop">https://github.com/steinim/gcp-terraform-workshop</a></h3>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
@@ -256,7 +255,7 @@
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Basis variables</h1>
+        <h1>Basic variables</h1>
         <p>Tip! Put the exports in <code>~/.gcp_env</code> and source it in <code>~/.bashrc</code></p>
         <pre>
         <code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -306,6 +305,7 @@ gcloud projects add-iam-policy-binding ${TF_ADMIN} \
         </pre>
       </section>
 
+      <!--
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Enable APIs</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -319,7 +319,7 @@ gcloud services enable sqladmin.googleapis.com
         <aside class="notes">
         </aside>
       </section>
-
+-->
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Remote state</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -829,19 +829,20 @@ output "public_ip" {
         <h1>Profit &#128176;</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
 ssh -i ~/.ssh/id_rsa $USER@$(terraform output --module=network bastion_public_ip)
+
 [steinim@hello-test-bastion ~]$
         </code></pre>
         <img src="img/bastion_created.png">
         <aside class="notes"></aside>
       </section>
-      
+
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Next: Database</h1>
         <img width="1198" src="img/gcp_db.png">
         <aside class="notes">
         </aside>
       </section>
-      
+
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Database module</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
@@ -1342,10 +1343,13 @@ variable "zones" { type = "list" }
         <h1>Profit &#128176;</h1>
         <h2>Jump through bastion</h2>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
-ssh -i ~/.ssh/id_rsa -J $USER@$(terraform output --module=network bastion_public_ip) $USER@&lt;webserver-private-ip&gt; -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+ssh -i ~/.ssh/id_rsa -J $USER@$(terraform output --module=network bastion_public_ip) \
+$USER@&lt;webserver-private-ip&gt; \
+-o UserKnownHostsFile=/dev/null \
+-o StrictHostKeyChecking=no
+
 [steinim@hello-test-webserver-instance-hr80 ~]$
         </code></pre>
-        <h2>Load balancer created</h2>
         <img src="img/lb_created.png">
         <h1>and ... &#127881;</h1>
         <aside class="notes"></aside>
@@ -1360,466 +1364,28 @@ ssh -i ~/.ssh/id_rsa -J $USER@$(terraform output --module=network bastion_public
         </aside>
       </section>
 
-
-
-      <!--
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Tools</h1>
-        <img width="235" height="235" src="img/toolbox.png" alt="Verktøykasse">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">Let's look at tools we use to automate, simplify and secure infrastructure and applications.</aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Passwords, secrets and keys in an automated pipeline</h2>
-        <img width="235" height="235" src="img/padlock.png" alt="Padlock">
-        <p style="font-size: 28px;">&nbsp;</p>
-        <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes">
-          <ul>
-            <li>In the examples we have seen some secret variables</li>
-            <li>To automate insertion of secrets we have put together some tools</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-image="img/nsb_cloud-tools.png">
-        <aside class="notes">
-          <ul>
-            <li>We have created a wrapper around Terraform to manage just that</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2><code>cloud-config.yml</code></h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-vars:
-  - name: AWS_DEFAULT_REGION
-    value: eu-central-1
-
-  - name: TF_VAR_env
-    value: prod
-
-  - name: TF_VAR_vpc_name
-    value: prod
-
-  - name: TF_VAR_public_key
-    value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzwGCC+nMTL6QIg+Z7SXtIXhiJJ5caa5tZkWQ1E6jDgHp7NqDAb21ZzjK3mGFlugF81h3OBF8uZPE5E+A0mRCB/pMzEMi/SBv0nvuPhijT81OeJxiF11Zxejc6gk8YiJIywQcYD3OcmmWvP2gK7MU1VIf3SQjHEROMaz+4uNJlC6QpDJfepxevQVJ4GVk7uq71NJjXV91gyT4/smOz5dP6tT7dYuP5Zn3lr5VN/BmHmtpklK9AWhwoIyRi+t97T1ihgiDvrmg7QSH9hIM+zKH2oxWi0RGV99t+ac6DV54ys4XD7OLAhHdlL7qV2G1TSIFqXXOaV98Cj2Mkxd2vJhhZ"
-
-secret-vars:
-  - name: TF_VAR_db_root_password
-    key: nsb/aws/nsbno/prod/db_root_password
-
-  - name: TF_VAR_private_key
-    key: nsb/aws/nsb.pem
-
-     </code></pre>
-        <div class="mb-frame fragment" style="width: 480px; height: 175px; right: 750px; top: 400px;"></div>
-        <aside class="notes">
-          <ul>
-            <li>The wrapper expects a file called cloud-config.yml</li>
-            <li>What it does is to handle variables in different ways. Some plain, some secret and som dynamic.</li>
-            <li>vars: why do they start with TF_VAR?</li>
-            <li>Secret vars uses passwordstore, commandline tool for encrypting secrets</li>
-            <li>Let's have a look at secret variables first, but first I will introduce a nice tool we use for secrets.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/pass.png" alt="passwordstore">
-        <aside class="notes">
-          <ul>
-            <li>pass is a commandline tool for password management</li>
-            <li>an alternative tool to pass is git-crypt.
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2><code>pass</code></h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-~/src/nsb/.password-store
-├── nsb.pem.gpg
-├── nsbno
-│   ├── prod
-│   │   ├── bucket_user_secret_key.gpg
-│   │   ├── db_password.gpg
-│   │   └── vault_password.gpg
-│   ├── test1
-│   │   ├── ...
-├── push
-│   ├── prod
-│   │   ├── ...
-│   └── test1
-│       ├── ...
-├── nexus
-│   └── users
-│       ├── admin.gpg
-│       └── deployment.gpg
-├── ...
-│   ├── maven
-│       └── settings.xml.gpg
-│   └── travis
-│       └── nsbno-buildserver.gpg
-├── enonic
-│      └── cms.licenseKey.gpg
-...
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ pass show -c nsbno/prod/db_password
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-width: 900px; ">
-┌────────────────────────────────────────────────────────────────────────────────────┐
-│ Please enter the passphrase to unlock the secret key for the OpenPGP certificate:  │
-│ "Stein Inge Morisbak &lt;stein.inge.morisbak@BEKK.no&gt;"                                │
-│ 2048-bit RSA key, ID 38380D80,                                                     │
-│ created 2014-05-15 (main key ID 0CB573BF).                                         │
-│                                                                                    │
-│                                                                                    │
-│ Passphrase ***********____________________________________________________________ │
-│                                                                                    │
-│            &lt;OK&gt;                                                  &lt;Cancel&gt;          │
-└────────────────────────────────────────────────────────────────────────────────────┘
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ pass show -c nsbno/prod/db_password
-Copied nsbno/prod/db_password to clipboard. Will clear in 45 seconds.
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2><code>envchain</code></h2>
-        <img src="img/envchain.png" alt="envchain">
-        <aside class="notes">
-          <ul>
-            <li>Uses MacOs keychain</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ envchain --set aws AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
-aws.AWS_ACCESS_KEY_ID: AKIAXXXXXXXXXXXXXXXX
-aws.AWS_SECRET_ACCESS_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     </code></pre>
-
-        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ envchain aws env | grep AWS_
-AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
-AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-✗ envchain aws terraform-wrapper apply
-     </code></pre>
-        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-You are provisioning PROD. Type PROD to continue... PROD
-     </code></pre>
-
-        <pre class="fragment"><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-Started terraform operation at: 2017-09-08 12:46:57.870942455 +0200 CEST m=+6.052644916
-
-null_resource.upload_efs_backup_script: Refreshing state... (ID: 8456414560025152219)
-aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_prod.cloud.nsb.no_CNAME)
-aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_app1.cloud.nsb.no_CNAME)
-aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_app1.prod.cloud.nsb.no_CNAME)
-aws_security_group.app_security_group: Refreshing state... (ID: sg-5f731534)
-aws_security_group.efs_backup_security_group: Refreshing state... (ID: sg-279d864c)
-aws_route53_record.environment_route53_record: Refreshing state... (ID: Z1FHZIDFG100FA_cloud.nsb.no_A)
-aws_security_group.efs_security_group: Refreshing state... (ID: sg-a43d30cf)
-aws_iam_user.user: Refreshing state... (ID: nsbno-prod)
-aws_iam_role.role: Refreshing state... (ID: prod-nsbno-s3-full-access)
-aws_iam_policy.policy: Refreshing state... (ID: arn:aws:iam::635004941268:policy/AmazonS3FullAccess-ElasticBeanstalk-NSBNO-prod)
-aws_security_group.db_sg: Refreshing state... (ID: sg-817214ea)
-aws_efs_file_system.efs: Refreshing state... (ID: fs-985cb8c1)
-...
-Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>SaaS</h1>
-        <h2><code>./app-infrastructure</code></h2>
-        <ul>
-          <li>RDS - Relational Database Service</li>
-          <li>Route53 (DNS)</li>
-          <li>Certificate Manager (SSL/TLS certificates)</li>
-          <li>EFS - Elastic File System (NFS)</li>
-          <li>S3 (Scalable storage)</li>
-          <li>CloudWatch (monitoring, events, logs)</li>
-          <li>CloudTrail (audit)</li>
-          <li>IAM (Identity &amp; Access Management)</li>
-        </ul>
-        <aside class="notes">
-          <ul>
-            <li>The app-infrastructure-repo has all setup of services that are common to most applications.</li>
-            <ul>
-              <li>RDS - Relational Database Service</li>
-              <li>Route53 (DNS)</li>
-              <li>Certificate Manager (SSL/TLS certificates)</li>
-              <li>EFS - Elastic File System (NFS)</li>
-              <li>S3 (Scalable storage)</li>
-              <li>CloudWatch (monitoring, events, logs)</li>
-              <li>CloudTrail (audit)</li>
-              <li>IAM (Identity &amp; Access Management)</li>
-            </ul>
-            <li>Common for all of these is that you don't need to think about operating them.</li>
-            <li>Backup (except EFS), mirroring, patching, scaling and so on is handled by AWS</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h2>Layout</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-./app-infrastructure
-└── modules
-    ├── database
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── vars.tf
-    ├── efs
-    │   ├── main.tf
-    │   ├── outputs.tf
-    │   └── vars.tf
-    ├── route53_alias_record
-    │   ├── main.tf
-    │   └── vars.tf
-    ├── route53_cname_record
-    │   ├── main.tf
-    │   └── vars.tf
-    └── ssl_cert
-        ├── main.tf
-        ├── outputs.tf
-        └── vars.tf
-     </code></pre>
-        <aside class="notes"></aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-resource "aws_db_instance" "db" {
-  name                    = "${var.db_name}"
-  identifier              = "${var.db_identifier}"
-  engine                  = "${var.db_engine}"
-  engine_version          = "${var.db_engine_version}"
-  instance_class          = "${var.db_instance_class}"
-  username                = "${var.db_username}"
-  password                = "${var.db_password}"
-  vpc_security_group_ids  = ["${aws_security_group.db_sg.id}"]
-  db_subnet_group_name    = "${var.db_subnet_group_id}"
-  parameter_group_name    = "${var.db_parameter_group_name}"
-  backup_retention_period = "${var.backup_retention_period}"
-  availability_zone       = "${var.availability_zone}"
-  multi_az                = "${var.multi_az}"
-  backup_window           = "${var.backup_window}"
-  maintenance_window      = "${var.maintenance_window}"
-  allocated_storage       = "${var.allocated_storage}"
-  storage_type            = "${var.storage_type}"
-  apply_immediately       = "${var.apply_immediately}"
-  skip_final_snapshot     = "${var.skip_final_snapshot}"
-}
-
-resource "aws_security_group" "db_sg" {
-    vpc_id      = "${var.vpc_id}"
-    name        = "${var.db_sg_name}"
-    description = "${var.db_sg_name}"
-    tags { Name = "${var.db_sg_name}" }
-}
-     </code></pre>
-        <aside class="notes">
-          <ul>
-            <li>Can be reused across database platforms</li>
-            <li>We use both MySQL and Postgres.</li>
-            <li>Amazon RDS manages backups, software patching, automatic failure detection, and recovery.</li>
-            <li>Multi AZ: Standby in another availability zone</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img src="img/db.png" alt="Subnets">
-        <aside class="notes">
-          <ul>
-            <li>DB</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>AWS CLI</h1>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-NAME
-       aws -
-
-DESCRIPTION
-       The  AWS  Command  Line  Interface is a unified tool to manage your AWS
-       services.
-
-SYNOPSIS
-          aws [options] &lt;command&gt; &lt;subcommand&gt; [parameters]
-
-       Use aws command help for information on a  specific  command.  Use  aws
-       help  topics  to view a list of available help topics. The synopsis for
-       each command shows its parameters and their usage. Optional  parameters
-       are shown in square brackets.
-     </code></pre>
-        <aside class="notes">
-          <ul>
-            <li>We use the aws command line client extensively</li>
-            <li>We want to fiddle in the GUI as little as possible and it's excellent for scripting.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>PaaS</h1>
-        <h2><code>{./app1,./app2,...}</code></h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>From pets to cattle</h1>
-        <p>&nbsp;</p>
-        <img style="float: left; position: relative; display:inline-block; left: 10%;" width="300" src="img/luke_og_leia.png">
-        <div style="display:inline-block;">
-          <p style="float: none; position: relative; right: 30%;">&#8663;</p>
-          <p style="float: none; position: relative; right: 30%;">&rArr;</p>
-          <p style="float: none; position: relative; right: 30%;">&#8664;</p>
-        </div>
-        <img style="float: right; position: relative; right: 10%;" width="300" src="img/cattle.jpg">
-        <footer class="layer right" style="font-size: 25px; position: relative; left: 30%; bottom: 0%; background-color: rgba(0, 0, 0, 0);">"When one of'em gets sick I just shoot'em in the head"</footer>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/didnt_mention.jpg">
-        <div class="layer" style="background-color: rgba(0, 0, 0, 0.3);">
-          <h1>What didn't I mention?</h1>
-          <ul>
-            <li><b>Application level security</b></li>
-            <li><b>Security culture</b></li>
-            <li>Stuff I forgot about</li>
-          </ul>
-        </div>
-        <aside class="notes">
-          <ul>
-            <li></li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-image="img/other_services2.png">
-        <div class="layer" style="background-color: rgba(0, 0, 0, 0.5);">
-          <h1>Other services we use</h1>
-          <ul>
-            <li>Panopticon (internal monitoring)</li>
-            <li>Auth0 (authentication)</li>
-            <li>Pingdom (external monitoring)</li>
-            <li>Pagerduty (paging us when we're on duty)</li>
-            <li>Slack (ChatOps)</li>
-            <li>Github (for everything!)</li>
-            <li>Travis (CI)</li>
-            <li>Ansible (configuration management)</li>
-            <li>Lambdas and SNS for posting events to Slack</li>
-          </ul>
-        </div>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/summing_it_up.png">
-        <h1 style="background-color: rgba(0, 0, 0, 0.7);">Summing it up</h1>
-        <aside class="notes">
-          <ul>
-            <li>I have been talking a lot. And it's been quite technical too.</li>
-            <li>How do we put all this together?</li>
-          </ul>
-        </aside>
-      </section>
-
       <section data-background-image="img/anger.jpg">
         <div style="background-color: rgba(0, 0, 0, 0.6);">
-          <h1>What did we learn?</h1>
+          <h1>What did I learn?</h1>
           <ol>
-            <li class="fragment">Reduce IaaS to a bare minimum</li>
-            <li class="fragment">Use hosted services where available (SaaS)</li>
-            <li class="fragment">Use PaaS for services and applications</li>
-            <li class="fragment">Automate, Automate, Automate... </li>
-            <li class="fragment">Monitor, Monitor, Monitor... </li>
-            <li class="fragment"><b>Migration of existing services is the hard part</b></li>
+            <li class="fragment">Terraform is less mature on GCP than AWS</li>
+            <li class="fragment">Especially dependencies is troublesome</li>
+            <li class="fragment">Switching to a different provider is not 1:1</li>
+            <li class="fragment">Would be useful to know more about GCP on beforehand</li>
+            <li class="fragment">GCP is in my opinion very different from AWS</li>
+            <li class="fragment">I'm not done
+            <ul>
+              <li>More refactoring is needed!</li>
+              <li>More security is needed!</li>
+            </ul>
+            </li>
+            <li class="fragment">It was fun &#128513;</li>
+            <li class="fragment">... but a lot of work &#128553;</li>
           </ol>
+          <p>&nbsp;</p>
         </div>
         <aside class="notes"> </aside>
       </section>
-
-      <section data-background-image="img/climbing_to_the_top.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.4);">
-          <h1>What did we gain?</h1>
-          <ol>
-            <li class="fragment">Security we can understand</li>
-            <li class="fragment">Insight in everything</li>
-            <li class="fragment">The hard parts is the cloud vendors responsibility</li>
-            <li class="fragment">Prod.-equal environments on demand</li>
-            <li class="fragment">Elasticity and auto scaling</li>
-            <li class="fragment">Reduced lead time</li>
-            <li class="fragment">Agile business development</li>
-            <li class="fragment">Ownership of what's delivered</li>
-            <li class="fragment">Responsibility in the right place</li>
-            <li class="fragment">Less stuff to remember</li>
-            <li class="fragment">Happy employees :-D</li>
-          </ol>
-        </div>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/future.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.7);">
-          <h1>Plans for the future</h1>
-          <ul>
-            <li class="fragment">Rewrite "lift and shift" applications to "cloud native"</li>
-            <li class="fragment">Microservices is a perfect match for what NSB wants to achieve</li>
-            <li class="fragment">More #Serverless (a.o. replace most of mgmtserver responsibilities)</li>
-          </ul>
-        </div>
-        <aside class="notes">
-          <ul>
-            <li></li>
-          </ul>
-        </aside>
-      </section>
-
--->
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)" style="width: 100%; height: 100%;">
         <h2>Thank you!</h2>
