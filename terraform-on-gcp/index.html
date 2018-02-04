@@ -223,7 +223,6 @@
 ├── helloworld-java-app
 └── terraform
     ├── modules
-    │   ├── compute
     │   ├── db
     │   ├── instance-template
     │   ├── lb
@@ -242,7 +241,7 @@
           </ul>
         </aside>
       </section>
-
+<!--
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Task 1: Getting ready</h1>
         <ul>
@@ -305,7 +304,6 @@ gcloud projects add-iam-policy-binding ${TF_ADMIN} \
         </pre>
       </section>
 
-      <!--
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Enable APIs</h1>
         <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
@@ -385,7 +383,7 @@ resource "google_project_services" "project" {
 .
 ├── modules
 │   └── project
-│       ├── main.tf
+│       └── main.tf
 ├── prod
 └── test
     ├── backend.tf
@@ -705,6 +703,19 @@ module "bastion" {
 
 ---
 
+# outputs.tf
+output "name" {
+  value = "${google_compute_network.network.name}"
+}
+output "bastion_public_ip" {
+  value = "${module.bastion.public_ip}"
+}
+output "gateway_ipv4"  {
+  value = "${google_compute_network.network.gateway_ipv4}"
+}
+
+---
+
 # vars.tf
 variable "name" {}
 variable "project" {}
@@ -718,19 +729,6 @@ variable "bastion_image" {}
 variable "bastion_instance_type" {}
 variable "user" {}
 variable "ssh_key" {}
-
----
-
-# outputs.tf
-output "name" {
-  value = "${google_compute_network.network.name}"
-}
-output "bastion_public_ip" {
-  value = "${module.bastion.public_ip}"
-}
-output "gateway_ipv4"  {
-  value = "${google_compute_network.network.gateway_ipv4}"
-}
      </code></pre>
         <aside class="notes"></aside>
       </section>
@@ -749,15 +747,6 @@ resource "google_compute_subnetwork" "subnet" {
 
 ---
 
-# vars.tf
-variable "name" {}
-variable "project" {}
-variable "region" {}
-variable "network" {}
-variable "ip_range" {}
-
----
-
 # outputs.tf
 output "ip_range" {
   value = "${google_compute_subnetwork.subnet.ip_cidr_range}"
@@ -765,6 +754,15 @@ output "ip_range" {
 output "self_link" {
   value = "${google_compute_subnetwork.subnet.self_link}"
 }
+
+---
+
+# vars.tf
+variable "name" {}
+variable "project" {}
+variable "region" {}
+variable "network" {}
+variable "ip_range" {}
      </code></pre>
         <aside class="notes"></aside>
       </section>
@@ -802,6 +800,16 @@ resource "google_compute_instance" "bastion" {
 
 ---
 
+# outputs.tf
+output "private_ip" {
+  value = "${google_compute_instance.bastion.network_interface.0.address}"
+}
+output "public_ip" {
+  value = "${google_compute_instance.bastion.network_interface.0.access_config.0.assigned_nat_ip}"
+}
+
+---
+
 # vars.tf
 variable "name" {}
 variable "project" {}
@@ -811,16 +819,6 @@ variable "image" {}
 variable "instance_type" {}
 variable "user" {}
 variable "ssh_key" {}
-
----
-
-# outputs.tf
-output "private_ip" {
-  value = "${google_compute_instance.bastion.network_interface.0.address}"
-}
-output "public_ip" {
-  value = "${google_compute_instance.bastion.network_interface.0.access_config.0.assigned_nat_ip}"
-}
      </code></pre>
         <aside class="notes"></aside>
       </section>
@@ -927,6 +925,14 @@ resource "google_sql_user" "default" {
 
 ---
 
+# outputs.tf
+
+output instance_address {
+  value       = "${google_sql_database_instance.master.ip_address.0.ip_address}"
+}
+
+---
+
 # vars.tf
 
 variable project { default = "" }
@@ -979,15 +985,6 @@ variable maintenance_window {
 variable replica_configuration {
   type    = "list"
   default = []
-}
-
-
----
-
-# outputs.tf
-
-output instance_address {
-  value       = "${google_sql_database_instance.master.ip_address.0.ip_address}"
 }
      </code></pre>
         <aside class="notes"></aside>
@@ -1113,6 +1110,14 @@ resource "google_compute_instance_template" "webserver" {
 
 ---
 
+# outputs.tf
+
+output "instance_template" {
+  value = "${google_compute_instance_template.webserver.self_link}"
+}
+
+---
+
 # vars.tf
 
 variable "name" {}
@@ -1128,17 +1133,13 @@ variable "db_name" {}
 variable "db_user" {}
 variable "db_password" {}
 variable "db_ip" {}
-
----
-
-# outputs.tf
-
-output "instance_template" {
-  value = "${google_compute_instance_template.webserver.self_link}"
-}
-
----
-
+     </code></pre>
+        <aside class="notes"></aside>
+      </section>
+      
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 800px;">
+      
 # scripts/startup.sh
 #!/bin/bash
 
@@ -1186,11 +1187,10 @@ EOF
 curl -o app.jar https://morisbak.net/files/helloworld-java-app.jar
 
 java -jar app.jar > /dev/null 2&gt;&amp;1 &amp;
-
      </code></pre>
         <aside class="notes"></aside>
       </section>
-
+      
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>Profit &#128176;</h1>
         <img src="img/instance_template_created.png">
@@ -1368,7 +1368,7 @@ $USER@&lt;webserver-private-ip&gt; \
         <div style="background-color: rgba(0, 0, 0, 0.6);">
           <h1>What did I learn?</h1>
           <ol>
-            <li class="fragment">Terraform is less mature on GCP than AWS</li>
+            <li class="fragment">Terraform is less mature on GCP than on AWS</li>
             <li class="fragment">Especially dependencies is troublesome</li>
             <li class="fragment">Switching to a different provider is not 1:1</li>
             <li class="fragment">Would be useful to know more about GCP on beforehand</li>
