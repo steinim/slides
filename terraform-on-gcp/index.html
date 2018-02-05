@@ -1369,7 +1369,13 @@ $USER@&lt;webserver-private-ip&gt; \
           <h1>What did I learn?</h1>
           <ol>
             <li class="fragment">Terraform is less mature on GCP than on AWS</li>
-            <li class="fragment">Especially dependencies is troublesome</li>
+            <li class="fragment">Especially dependencies is troublesome (asynchrony)
+              <ul>
+              <li>Run it multiple times or write resources that waits</li>
+              <li>Tainting resources is not always possible (instances and auto scaling)</li>
+              <li>Destruction is a mess</li>
+            </ul>
+            </li>
             <li class="fragment">Switching to a different provider is not 1:1</li>
             <li class="fragment">Would be useful to know more about GCP on beforehand</li>
             <li class="fragment">GCP is in my opinion very different from AWS</li>
