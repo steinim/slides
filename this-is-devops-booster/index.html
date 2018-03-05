@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>This is DevOps – everything else is a lie!</title>
+  <meta name="description" content="This is DevOps – everything else is a lie!">
+  <meta name="author" content="Stein Inge Morisbak">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.min.css">
+  <link rel="stylesheet" href="../lib/css/zenburn.css">
+  <link rel="stylesheet" href="../css/theme/bekk.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css" id="custom">
+  <script>
+    document.write('<link rel="stylesheet" href="../css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>This is DevOps – everything else is a lie!</h1>
+        <p>Booster 14.03.2018</p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        <aside class="notes">
+         Welcome to my talk about DevOps. This is the truth. Everything else is a lie.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h2 class="center-slide">A brief history about<br>how DevOps got its name</h2>
+        <aside class="notes">
+         I'm going to start off with a brief history about how DevOps got its name.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <img class="fragment" data-fragment-index="1" width="252" src="img/agile-2008.png" style="background: white;" alt="Agile 2008"><br>
+        <img width="252" src="img/patrick-debois.png">&nbsp; &nbsp;
+        <img class="fragment" data-fragment-index="3" height="200" src="img/agile-infrastructure.png" alt="Agile infrastructure open space">&nbsp; &nbsp;
+        <img class="fragment" data-fragment-index="2" width="252" src="img/andrew-clay-shafer.png"><p>
+        <div class="fragment" data-fragment-index="4" style="font-size: 18px;">
+        <b>10 Deploys per Day: Dev and Ops Cooperation at Flickr.</b><br>
+        <img width="400" src="img/10_deploys_per_day.png">
+        </div></p>
+        <aside class="notes">
+
+<p>Back in 2007: Sysadmin Patrick Debois becomes frustrated by conflicts between developers and operators while consulting on a data center migration for the Belgium government. (click)
+
+<p>August 2008: At the Agile Conference in Toronto, software developer (click) Andrew Shafer proposes an (click) open space session entitled “Agile Infrastructure.” Exactly one person attends: Patrick Debois. Andrew skips his own session since there was no interest in his topic! Later, Debois tracks down Shafer. Based on their talk, they form the Agile Systems Administration Group.
+
+<p>(click) Another important event. At the O’Reilly Velocity 09 conference, John Allspaw and Paul Hammond gave their now legendary talk, “10 Deploys per Day: Dev and Ops Cooperation at Flickr.” Debois wasn’t there, and he tweets that he is very sorry he isn’t there. Paul Nasrat tweets back, “Why not organize your own Velocity event in Belgium?”
+
+<p>October 2009: He does exactly that — but first, he needs a name. He takes the first three letters of development and operations, adds the word “days,” and calls it DevOpsDays.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h2>&nbsp;</h2>
+        <img width="700" src="img/devopsdays.png">
+        <aside class="notes">
+<p>The conference doors open on October 30th to an impressive collection of developers, system administrators, toolsmiths, and others. When the conference ends, the ongoing discussions move to Twitter. To create a memorable hashtag, Debois shortens the name to... 
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">#devops</h1>
+        <aside class="notes">
+        <p>... #DevOps. And the movement has been known as DevOps ever since.
+        </aside>
+      </section>
+
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h2>&nbsp;</h2>
+        <img width="700" src="img/devopsdays_oslo.png">
+        <aside class="notes">
+          <p>Since then there has been over 168 Devopsdays, and this year it has been 52 alone. And there's still 5 more later this year. That's more than once a week! The latest one was here in Oslo.
+        </aside>
+      </section>
+
+<!--
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h2>&nbsp;</h2>
+        <img width="700" src="img/configmgmt.png">
+        <aside class="notes">
+          <p>Another important conference for all the ops people has been Configuration management camp founded in 2012. It is held in Gent where the first ever DevOpsDays was.
+          <p>This conference is focused on all the technical stuff around devops. While devopsdays is more of a culture thing.
+        </aside>
+      </section>
+-->
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1 class="center-slide">What is DevOps?</h1>
+        <aside class="notes">
+          <p>So, what is DevOps?
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Definition</h1>
+        <div class="mb-wrap mb-style-3">
+          <div class="mb-thumb-barton-george"></div>
+          <blockquote>
+            <p>…it is getting developers and operations folk to work closely<br>together to benefit the business.</p>
+          </blockquote>
+          <div class="mb-attribution">
+            <p class="mb-author">Barton George</p>
+            <cite><a href="https://venturebeat.com/2013/09/30/an-idiots-guide-to-devops/">An idiot’s guide to DevOps, Sept 30th, 2013</a></cite>
+          </div>
+        </div>
+        <img src="img/devops.png" style="float: left; background: none; border: none; box-shadow: none; position: absolute; top: 52%; left: -10%;">
+        <footer class="layer right">Image by <a href="https://www.flickr.com/photos/87777282@N00/">newwavegurly</a> licensed by <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a></footer>
+        <aside class="notes">
+          Its original meaning is this. It's about getting two diciplines that traditionally has been very separate to work together.
+        </aside>
+      </section>
+
+      <section data-background="img/devs2.jpg" style="width: 100%; height: 100%;">
+        <div class="center-slide">
+          <h1 style="background-color: rgba(0, 0, 0, 0.7);">We have no Ops!</h1>
+          <img style="background-color: rgba(0, 0, 0, 0.7);" width="235" height="235" src="img/noops.png" alt="NoOps">
+        </div>
+        <aside class="notes">
+        <p>But high performing teams don't have ops anymore!
+        </aside>
+      </section>
+
+      <section data-background="img/anger.jpg" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="background-color: rgba(0, 0, 0, 0.7);">NoOps != No Operations</h1>
+        <aside class="notes">
+          But No Ops does not mean that there's no more operations.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Making s**t work in production (2007)</h1>
+        <h3>&nbsp;</h3>
+        <img height="300px" src="img/release_it.jpg">
+        <aside class="notes">
+          <p>So we needed to learn this stuff. This book was written before devops. But it is DevOps. It's one of the best books I've read and it's basically about making shit work in production.
+        </aside>
+      </section>
+
+
+      <section data-background="img/devs.jpg" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="background-color: rgba(0, 0, 0, 0.7);"><s>Developers vs. Operators</s><br>Engineers/Technologists</h1>
+        <aside class="notes">
+        <p>There's a new breed in town. I don't know what to call it, but engineer or technologist are good candidates. They do both ops and development. Making shit work in production.
+        </aside>
+      </section>
+
+      <section>
+        <div class="mb-wrap mb-style-3" style="width: 1050px;">
+          <h1>DevOps &approx; Continuous Delivery (2010)</h1>
+          <img src="img/continuous_delivery.jpg" style="float: left; background: none; border: none; box-shadow: none;" width="300px">
+          <blockquote style="text-align: left; margin: auto; left: 5%; top: 50%">
+            ...a software development discipline where you build software in such a way that the software can be released to production at any time.<br>
+            <div style="text-align: right;">
+              <br>
+              <div class="mb-author"><a href="https://martinfowler.com/bliki/ContinuousDelivery.html">Martin Fowler</a></div>
+            </div>
+            <br>Continuous delivery is about putting the release schedule in the hands of the business, not in the hands of IT.<br>
+            <div style="text-align: right;">
+              <br>
+              <div class="mb-author"><a href="https://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/">Jez Humble</a></div>
+            </div>
+          </blockquote>
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>DevOps is strongly related to continuous delivery</li>
+            <li>Our software must be ready for production at any time.</li>
+            <li>We need to do this to support how business wants to work.</li>
+            <li>It's all about putting the release schedule in the hands of the business, not in the hands of IT.</li>
+            <li>To do that we must also control operations. There's no time for hand-overs, and everything needs to be automated so that we can put our stuff into production at the touch of a button</li>
+          </ul>
+        </aside>
+      </section>
+
+       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">Continuous Delivery &hearts; DevOps</h1>
+         <aside class="notes">
+          Continuous delivery loves DevOps. Because it includes the IT systems as a whole, increases quality and enhances velocity.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <div class="mb-wrap mb-style-3" style="width: 1050px;">
+          <h1>DevOps &approx; Lean (2013)</h1>
+          <img src="img/the_phoenix_project.png" style="float: left; background: none; border: none; box-shadow: none;" width="300px">
+          <blockquote style="text-align: left; margin: auto; left: 5%; top: 50%">
+           ...something called “DevOps.” Maybe everyone ... is a form of DevOps, but I suspect it’s something much more than that. It’s Product Management, Development, IT Operations, and even Information Security all working together and supporting one another.
+            <div style="text-align: right;">
+              <br>
+              <div class="mb-author"><a href="https://www.goodreads.com/work/quotes/23848838">Gene Kim, The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win</a></div>
+            </div>
+          </blockquote>
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>DevOps is described as Lean in the famous book "The Phoenix Project" by Gene Kim.
+            <li>That kick-started a new understanding of devops. Namely that it includes many more roles than just devs and ops.
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background="img/testicles.jpg" style="width: 100%; height: 100%;">
+        <aside class="notes">
+        <p>Even UX and design has embraced the DevOps mindset. Julia and Maria have the balls to test less and iterate in production on 90% designs.
+        (Julia og Maria)
+        </aside>
+      </section>
+
+
+       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">Lean &hearts; DevOps</h1>
+         <aside class="notes">
+          Lean loves DevOps. Because it enhances flow.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <div class="mb-wrap mb-style-3" style="width: 1050px;">
+          <h1>DevOps &approx; Lean in the Enterprise (2014)</h1>
+          <img src="img/lean_enterprise.png" style="float: left; background: none; border: none; box-shadow: none;" width="260px">
+          <blockquote style="text-align: left; margin: auto; left: 5%; top: 50%">
+            ...true agility means that teams are constantly working to evolve their processes to deal with the particular obstacles they are facing at any given time.
+            <div style="text-align: right;">
+              <br>
+              <div class="mb-author"><a href="https://www.goodreads.com/work/quotes/25533484">Jez Humble, Lean Enterprise: How High Performance Organizations Innovate at Scale</a></div>
+            </div>
+          </blockquote>
+        </div>
+        <aside class="notes">
+        <p>There's also a connection between how high performing organizations innovate at scale and what we've learned in DevOps.
+        <p>Simply put - DevOps is a precondition for innovation in large organizations.
+        </aside>
+       </section>
+
+       <section  data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">The Enterprise &hearts; DevOps</h1>
+         <aside class="notes">
+          The enterprise loves DevOps. Simply because it has to - to be adaptable and Agile.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <div class="mb-wrap mb-style-3" style="width: 1050px;">
+          <h1>Courageous Executives (2017)</h1>
+          <img src="img/courageous_executives.png" style="position: absolute; float: left; left: -30%; background: none; border: none; box-shadow: none;" width="500px">
+          <blockquote style="text-align: left; margin: auto; left: 5%; top: 50%">
+...willing to challenge everything: the status quo, internal siloes, and immovable strategies
+<br><br>... erasing the lines between business and technology
+<br><br>... hiring, empowering, and growing multidisciplinary, future-ready employees
+<br><br> ... investing in platforms that allow their businesses to get ideas to market in weeks, not months
+            <div style="text-align: right;">
+              <br>
+              <div class="mb-author"><a href="https://files.thoughtworks.com/pdfs/courageous-executive/The+Next+Big+Disruption.pdf">The Next Big Disruption: Courageous Executives, ThoughtWorks</a></div>
+            </div>
+          </blockquote>
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;
+        </div>
+        <aside class="notes">
+          <p>Courageous Executives is the next big thing.
+          <p>Courageous Executives will not be disrupted—they ARE the next big disruption.
+          <p>What they do is:
+          <p>remome all internal silos
+          <p>melt business and technology together
+          <p>put together multidisciplinary teams that can solve any challenge that is thrown at them
+          <p>And they get ideas to market super fast.
+        </aside>
+       </section>
+
+       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+         <h1 style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">Courageous Executives &hearts; DevOps</h1>
+         <aside class="notes">
+         <p>Courageous Executives simply loooooves devops.
+         <p>To get to this point would simply not be possible if it wasn't for devops.
+         </aside>
+      </section>
+
+      <section data-background="img/fatigue.jpg" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.7);">DevOps fatigue</h1>
+        <aside class="notes">
+        <p>Devops, devops, devops
+        <p>If you say devops enough times you get tired of it. It has become anything and everything. Completely loosing its meaning.
+        </aside>
+      </section>
+
+      <section data-background="img/fatigue2.jpg" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.7);">Even Agile fatigue</h1>
+        <aside class="notes">
+        <p>Same goes for Agile. Who the heck knows what that even stands for anymore!
+        </aside>
+      </section>
+
+      <section data-background="img/taw.jpg" style="width: 100%; height: 100%;">
+        <aside class="notes">
+        <p>Let's stop talking about DevOps.
+        </aside>
+      </section>
+
+      <section data-background="img/grinde.gif" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.7);">Cloud baby!</h1>
+        <aside class="notes">
+        <p>Let's talk about cloud
+        </aside>
+      </section>
+
+      <section data-background-image="img/use_public_cloud.jpg" style="width: 100%; height: 100%;">
+        <aside class="notes">
+          <ul>
+            <li>And not private cloud</li>
+            <li>Let's talk about Public Cloud.</li>
+            <li>There are so many advantages of putting your infrastructure out there.</li>
+            <li>Not just elasticity, reduced cost and cycle times, and that you have the best operators in the world operating your infrastructure.</li>
+            <li>Public cloud vendors also innovate faster, launching new services all the time.</li>
+            <li>Perfect for (yawn) DevOps</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+
+        <footer class="left" style="position: absolute; top: 30%;">
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178); float:left; position: relative; left: 25%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 25%;">&nbsp;You manage</div><br><br>
+          <div style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5); float:left; position: relative; left: 25%;">&nbsp;&nbsp;&nbsp;</div>
+          <div style="float:left; position: relative; left: 25%;">&nbsp;Vendor managed</div>
+        </footer>
+
+        <h1>Let the cloud vendor cover your *aaS</h1>
+
+        <ul class="fragment" data-fragment-index="1" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
+          <h3>On premises</h3>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Runtime</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;OS</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Virtualization&nbsp;</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Storage</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Servers</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Network</li>
+        </ul>
+        <ul class="fragment" data-fragment-index="1" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
+          <h3>IaaS (host)</h3>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Runtime</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;OS</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
+        </ul>
+        <ul class="fragment" data-fragment-index="2" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
+          <h3>PaaS (build)</h3>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Applications</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgb(53, 189, 178);">&nbsp;Data</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Runtime</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;OS</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
+        </ul>
+        <ul class="fragment" data-fragment-index="2" style="zoom:1; *display: inline; _height: 30px; list-style-type: none;">
+          <h3>SaaS (consume)</h3>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Applications</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Data</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Runtime</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Os</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Virtualization&nbsp;</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Servers</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Storage</li>
+          <li style="box-shadow: -5px 4px 25px rgba(255, 255, 255, 0.5); background: rgba(53, 189, 178, 0.5);">&nbsp;Network</li>
+        </ul>
+
+        <div class="mb-frame fragment" data-fragment-index="2"></div>
+
+        <aside class="notes">
+        <p>Let the cloud vendor cover your ass. (click)
+        <p>No on prem or infrastructure as a service.
+        <p>We want to be on this end of the spectrum.
+        <p>We want Platform as a service and Software as a service.
+        </aside>
+      </section>
+
+      <section data-background="img/synkende_skip.jpg" style="width: 100%; height: 100%;">
+        <div class="center-slide">
+          <h1 style="background-color: rgba(0, 0, 0, 0.7);">Containers</h1>
+          <img style="background-color: rgba(0, 0, 0, 0.7);" height="235" src="img/why_docker.jpeg" alt="Why docker!">
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>Mark my words! Containers is a sinking ship!
+            <li>We don't want to build your OWN PaaS!
+            <li>Cloud vendors have built the best PaaS-es in the world for us.
+            <li>So we want to use those. And reduce operations as much as we can.
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background="img/bella.jpeg" style="width: 100%; height: 100%;">
+        <div class="center-slide">
+          <h1 style="background-color: rgba(0, 0, 0, 0.7);">PaaS &amp; Serverless</h1>
+          <img style="background-color: rgba(0, 0, 0, 0.7);" width="235" height="235" src="img/serverless.png" alt="Serverless">
+        </div>
+        <aside class="notes">
+          <ul>
+            <li>I want a proper engine!
+            <li>The detailed sys admin tasks and low level stuff should be left to the cloud vendors.
+          </ul>
+        </aside>
+      </section>
+
+      <section data-background="img/future_gui.jpg" style="width: 100%; height: 100%;">
+        <div class="center-slide">
+          <h1 style="background-color: rgba(0, 0, 0, 0.7);">Mark my words:<br>may clicking in a GUI be the future?</h1>
+        </div>
+        <aside class="notes">
+          <p>Operations in the future will be super simple.
+          <p>Mark my words: may clicking in a GUI be the future?
+          <p>If the cloud vendors can get their shit together and provide us with good documentation so we don't need to document it in code - I think it actually may happen. I'm just putting it out there so that I can be the first guy who said it.
+        </aside>
+      </section>
+
+<!--
+      <section>
+        <h1>Definition #2</h1>
+        <div class="mb-wrap mb-style-3" style="text-align: left;">
+          <blockquote>
+            <p>Developers carry beepers.
+            <cite style="float: right; position: relative;"><a href="https://www.meetup.com/DevOps-Norway/events/112627352/">Kent Beck  at a DevOps Norway Meetup in 2013</a></cite>
+            </p>
+          </blockquote>
+        </div>
+        <img src="img/kent_beck.png" style="float: left; background: none; border: none; box-shadow: none; position: absolute; top: 70%; left: 5%;">
+        <aside class="notes">
+          <li>Kent Beck once gave me his definition of DevOps at a DevOps Meetup here in Oslo, "Developers carry beepers".</li>
+          <li>And he is absolutely right. It must be the ones that develop the systems that must watch over them.</li>
+          <li>They understand the systems a lot better than anyone else, they understand the risks, and they are better off fixing problems when they occur.</li>
+          <li>It also creates incentives to build things that don't break.</li>
+        </aside>
+      </section>
+
+      <section data-background-image="img/pagerduty.jpg" style="width: 100%; height: 100%;">
+        <div class="mb-wrap mb-style-3">
+          <div class="mb-thumb-werner-vogels"></div>
+          <blockquote style="text-align: left; background-color: rgba(0, 0, 0, 0.7);">
+            <p>You build it, you run it!</p>
+          </blockquote>
+        </div>
+        <footer class="layer right mb-author" style="background-color: rgba(0, 0, 0, 0.7); text-align: right;">Werner Vogels, CTO Amazon<br><a href="https://queue.acm.org/detail.cfm?id=1142065">A Conversation with Werner Vogels, Queue, June 30th, 2006</a>
+        </footer>
+        <aside class="notes">
+          <p>If you let the team take responsibility for the system as a whole you make sure that everything in the system is well understood.</p>
+          <p>The artificial boundry between operations and development has to go. The team must be responsible for the whole.</p>
+          <p>Therefore we are also on call. And we use the pagerduty app to buzz us if something unexpected happens in production.</p>
+          <p>This of course also reduces handovers, misunderstandings and improves velocity.</p>
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>A shift in focus</h1>
+        <p>&nbsp;</p>
+        <table class="reveal" width="100%">
+          <tr>
+            <td width="25%" align="right">
+              <p>Development</p>
+              <p>Maintenance</p>
+              <p>Operations</p>
+            </td>
+            <td width="5%" align="center">
+              <p class="fragment" data-fragment-index="1">&#8664;</p>
+              <p class="fragment" data-fragment-index="1">&rArr;</p>
+              <p class="fragment" data-fragment-index="1">&#8663;</p>
+            </td>
+            <td width="35%" align="center">
+              <p>&nbsp;</p>
+              <p class="fragment" data-fragment-index="1" style="white-space: nowrap;">Product development</p>
+              <p>&nbsp;</p>
+            </td>
+            <td width="5%" align="center">
+              <p>&nbsp;</p>
+              <p class="fragment" data-fragment-index="2" style="white-space: nowrap;">&rArr;</p>
+              <p>&nbsp;</p>
+            </td>
+            <td width="30%" align="left">
+              <p>&nbsp;</p>
+              <p class="fragment" data-fragment-index="2" style="white-space: nowrap;"><b>User experiences</b></p>
+              <p>&nbsp;</p>
+            </td>
+          </tr>
+        </table>
+        <h1>&nbsp;</h1>
+        <aside class="notes">
+          <ul>
+            <li>There's a shift in focus from the old way of organizing IT</li>
+            <li>We're no longer separating between development of new things, maintenance and operations.</li>
+            <li>Everything is about development of new products.</li>
+          </ul>
+        </aside>
+      </section>
+-->
+
+      <section data-background-image="img/future.jpg" style="width: 100%; height: 100%;">
+        <h1 class="center-slide" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.7);">This is DevOps - everything else is a lie!</h1>
+<!--        <div style="background-color: rgba(0, 0, 0, 0.7);">
+          <div class="fragment"><h3>Community</h3></li>
+          <div class="fragment"><h3>Tools and automation</h3></li>
+          <div class="fragment"><h3>A new breed of technologists</h3></li>
+          <div class="fragment"><h3>Affects every profession involved</h3></li>
+          <div class="fragment"><h3>Public Cloud</h3></li>
+          <div class="fragment"><h3>Courageous Leaders</h3></li>
+          <div class="fragment"><h3>Lean Enterprises</h3></li>
+          <div class="fragment"><h3>Encompassing everything</h3></li>
+          <p>&nbsp;</p>
+        </div> -->
+        <aside class="notes">
+          <p>So back to the title. The biggest lie of all is that devops is a specific thing.
+          <p>Devops has been a movement. Like Agile. And a very important one.
+          <p>It has brought with it and made possible such things as:
+          <ul>
+            <li>Continuous delivery
+            <li>True agility
+            <li>Lean enterprises
+            <li>How the cloud is functioning
+            <li>Attention from top management
+            <li>Leaders of today have to embrace devops or be replaced.
+          </ul>
+          <p>I don't care if devops means anything anymore. It has brought with it so many good things and made all this possible.
+        </aside>
+      </section>
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Thank you!</h1>
+        <p>Slides:<br><a href="http://steinim.github.io/slides/this-is-devops/">http://steinim.github.io/slides/this-is-devops-booster/</a></p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        <aside class="notes">
+        </aside>
+      </section>
+
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.min.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: '../lib/js/classList.js',
+            condition: function() {
+              return !document.body.classList;
+            }
+          },
+          {
+            src: '../plugin/markdown/marked.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/markdown/markdown.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            }
+          },
+          {
+            src: '../plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          },
+          {
+            src: '../plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          },
+          {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          }
+          // { src: '../plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: '../plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+</body>
+
+</html>

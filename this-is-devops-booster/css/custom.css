@@ -1,0 +1,257 @@
+.reveal ul {
+  line-height: 1.5;
+}
+
+.reveal ol {
+  line-height: 1.5;
+}
+
+.reveal blockquote {
+  line-height: 1.2;
+}
+
+.center-slide {
+  position: relative;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+section footer {
+  bottom: 3em;
+  position: absolute;
+  font-size: 50%;
+}
+
+section footer.right {
+  right: -6em;
+  bottom: 1em;
+  font-size: 20px;
+}
+
+section footer.left {
+  left: -8em;
+  bottom: 1em;
+  font-size: 20px;
+}
+
+footer.semitransparent {
+  padding: 0.2em 0.5em;
+}
+
+footer.semitransparent a {
+  color: #eef;
+}
+
+.layer,
+section.layer h1 {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 0.5em 1em;
+}
+
+.mb-wrap {
+  width: 300px;
+  margin: 40px auto;
+  padding: 40px;
+  position: relative;
+}
+
+.mb-wrap p {
+  margin: 0;
+  padding: 0;
+}
+
+.mb-wrap blockquote {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.mb-wrap cite {
+  font-style: normal;
+}
+
+.mb-style-3 {
+  width: 1100px;
+}
+
+
+/*quote box*/
+
+.mb-style-3 blockquote {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+  left: 12%;
+  box-shadow: inset 0 2px 0 #35bdb2, -5px 4px 25px rgba(255, 255, 255, 0.2);
+  z-index:-1;
+}
+
+.mb-style-3 blockquote:after,
+.mb-style-3 blockquote:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+
+/*quote text*/
+
+.mb-style-3 blockquote p {
+  font-size: 36px;
+  color: #35bdb2;
+  font-weight: 700;
+  line-height: 60px;
+  font-style: italic;
+  text-indent: 100px;
+  text-align: left;
+  position: relative;
+}
+
+
+/* "-sign*/
+
+.mb-style-3 blockquote p:before {
+  content: '\201C';
+  font-family: serif;
+  font-style: normal;
+  font-weight: 700;
+  position: absolute;
+  font-size: 175px;
+  top: 0px;
+  left: -105px;
+  color: #35bdb2;
+  /*text-shadow: 7px 14px 10px rgba(255, 255, 255, 0.2);*/
+}
+
+
+/*attribution text*/
+
+.mb-style-3 .mb-attribution {
+  text-align: right;
+  padding: 20px 100px 20px 20px;
+  position: relative;
+  right: 40px;
+  top: 40px;
+}
+
+
+/*attribution image gene kim*/
+
+.mb-style-3 .mb-thumb-gene-kim {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/gene_kim.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px;
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+
+/*attribution image barton george*/
+
+.mb-style-3 .mb-thumb-barton-george {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/barton_george.jpeg) no-repeat center center;
+  position: absolute;
+  right: 150px;
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+/*attribution image werner vogels*/
+
+.mb-style-3 .mb-thumb-werner-vogels    {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/werner_vogels.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+.mb-style-3 .mb-thumb-james-staten {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/james_staten.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+.mb-style-3 .mb-thumb-tom-soderstrom {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: url(../img/tom_soderstrom.jpg) no-repeat center center;
+  position: absolute;
+  right: 150px; 
+  bottom: 60px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.5), 0 2px 3px rgba(255, 255, 255, 0.6);
+}
+
+/*attribution name*/
+
+.mb-style-3 .mb-author {
+  font-weight: 700;
+  font-size: 24px;
+  color: #35bdb2;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+
+/*reference*/
+
+.mb-style-3 cite a {
+  font-weight: 700;
+  font-size: 18px;
+  font-style: italic;
+  color: #35bdb2;
+}
+
+
+/*hover over reference link*/
+
+.mb-style-3 cite a:hover {
+  color: #feb6b8;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.mb-frame {
+  display: block;
+  padding: 20px 100px 20px 20px;
+  position: relative;
+  width: 540px;
+  height: 550px;
+  border-radius: 10%;
+  border-color: #feb6b8;
+  position: absolute;
+  right: 2px;
+  top: 132px;
+  box-shadow: inset 2px 2px 8px #feb6b8, 0 4px 6px #feb6b8;
+}
+
