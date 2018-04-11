@@ -30,12 +30,6 @@
         <p style="font-size: 28px;"><a href="https://twitter.com/steinim">@steinim</a></p>
         <p style="font-size: 28px;"><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
         <aside class="notes">
-          <ul>
-            <li>I'm a programmer working at BEKK Consulting</li>
-            <li>I'm also the founder of DevOps Norway Meetup and organizer of DevOpsDays which was held in Oslo a couple of weeks ago.</li>
-            <li>Currently I'm working as Tech Lead for the team developing all customer facing applications for the Norwegian Railways, NSB.</li>
-            <li>And this talk is sort of an experience report from that work.</li>
-          </ul>
         </aside>
       </section>
       
@@ -45,7 +39,8 @@
           <li><a href="https://steinim.github.io/slides/slides/aws-terraform-workshop">https://steinim.github.io/slides/slides/aws-terraform-workshop</a></li>
           <li><a href="https://github.com/steinim/aws-terraform-workshop">https://github.com/steinim/aws-terraform-workshop</a></li>
         </ul>
-        <aside class="notes"> </aside>
+        <aside class="notes">
+        </aside>
       </section>
 
 
@@ -57,14 +52,6 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <footer class="layer right">Image by <a href="https://commons.wikimedia.org/wiki/File:NSB_BMb_74501_1.jpg">MPW57</a> licensed by <a href="https://creativecommons.org/licenses/by/3.0/deed.en">CC BY 3.0</a></footer>
         <aside class="notes">
-          <ul>
-            <li>For the last year we have been working on migrating NSBs services from internal infrastructure to AWS.</li>
-            <li>Just after summer we finally moved the last application over.</li>
-            <li>And it's certaintly been one of my most exciting projects ever.</li>
-            <!--<li>Our most importent principles have been simplicity and automation</li>
-            <li>– without compromising on availability, stability and last but not least security</li>-->
-            <li>I will be talking about the practices, services and tools we have used and how they support a steady and fast flow of valuable software to production in a safe and secure manner.</li>
-          </ul>
         </aside>
       </section>
       
@@ -130,12 +117,6 @@
       <section data-background-image="img/use_public_cloud.jpg" style="width: 100%; height: 100%;">
         <h1 class="layer">Use <b>public</b> cloud!</h1>
         <aside class="notes">
-          <ul>
-            <li>Public Cloud is the future.</li>
-            <li>There are so many advantages of putting your infrastructure out there.</li>
-            <li>Not just elasticity, reduced cost and cycle times, and that you have the best operators in the world operating your infrastructure.</li>
-            <li>They also innovate faster, launching new services all the time.</li>
-          </ul>
         </aside>
       </section>
 
@@ -175,10 +156,6 @@
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
-          <ul>
-            <li>In the examples we have seen some secret variables</li>
-            <li>To automate insertion of secrets we have put together some tools</li>
-          </ul>
         </aside>
       </section>
 
@@ -210,13 +187,6 @@ secret-vars:
      </code></pre>
         <div class="mb-frame fragment" style="width: 480px; height: 110px; right: 750px; top: 330px;"></div>
         <aside class="notes">
-          <ul>
-            <li>The wrapper expects a file called cloud-config.yml</li>
-            <li>What it does is to handle variables in different ways. Some plain, some secret and som dynamic.</li>
-            <li>vars: why do they start with TF_VAR?</li>
-            <li>Secret vars uses passwordstore, commandline tool for encrypting secrets</li>
-            <li>Let's have a look at secret variables first, but first I will introduce a nice tool we use for secrets.</li>
-          </ul>
         </aside>
       </section>
 
@@ -295,9 +265,6 @@ Copied hello/test/db_password to clipboard. Will clear in 45 seconds.
         <h2><code>envchain</code></h2>
         <img src="img/envchain.png" alt="envchain">
         <aside class="notes">
-          <ul>
-            <li>Uses MacOs keychain</li>
-          </ul>
         </aside>
       </section>
 
@@ -358,7 +325,8 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 ...
 ./appN
      </code></pre>
-        <aside class="notes">The repos are devided into three categories</aside>
+        <aside class="notes">
+        </aside>
       </section>
       
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
@@ -367,11 +335,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
         <aside class="notes">
-          <ul>
-            <li>Terraform is a tool for creating, changing and versioning of infrastructure in a safe, automated and effective manner.</li>
-            <li>Describe your infrastructure in code and generate an execution plan describing what Terraform will provision to reach the desired state.</li>
-            <li>When you make changes, Terraform finds out what the change is and executes the change incrementally. </li>
-          </ul>
         </aside>
       </section>
 
@@ -387,12 +350,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <p style="font-size: 28px;">&nbsp;</p>
         <img src="img/terraform.png" width="300px" style="float: left; background:none; border:none; box-shadow:none; position: absolute; top: 52%; left: -20%;">
         <aside class="notes">
-          <ul>
-            <li>Infrastructure as code: documentation, sharing and reuse.</li>
-            <li>Execution plans: Shows in detail what is to be executed. Avoid surprises.</li>
-            <li>Resource graph: parallelizes where it can and respects dependencies.</li>
-            <li>Automation: Automates everything</li>
-          </ul>
         </aside>
       </section>
 
@@ -413,14 +370,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
           <li class="fragment">Bastion host</li>
         </ul>
         <aside class="notes">
-          <ul>
-            <li>Infrastructure repo contains basic infrastructure</li>
-            <ul>
-              <li>Networking</li>
-              <li>Bastion host (jump server to get access to all the private servers)</li>
-              <li>"Hardned" and just a ssh proxy</li>
-            </ul>
-          </ul>
         </aside>
       </section>
 
@@ -428,13 +377,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <h1>IaaS</h1>
         <h2><code>./infrastructure</code></h2>
         <aside class="notes">
-          <ul>
-            <li>The infrastructure repo sets up the basis infrastructure</li>
-            <ul>
-              <li>Networking</li>
-              <li>Bastion host</li>
-            </ul>
-          </ul>
         </aside>
       </section>
 
@@ -464,7 +406,8 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
     │   └── vars.tf
     ├── ...
      </code></pre>
-        <aside class="notes"></aside>
+        <aside class="notes">
+        </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
@@ -472,93 +415,45 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
         <img height="235" src="img/network.png" alt="Nettverk">
         <p style="font-size: 28px;">&nbsp;</p>
         <p style="font-size: 28px;">&nbsp;</p>
-        <aside class="notes"></aside>
+        <aside class="notes">
+        </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/vpc.png" alt="VPC">
         <aside class="notes">
-          <ul>
-            <li>A virtual private cloud (VPC) is a virtual network dedicated to your AWS account</li>
-            <li>Think of it as an isolated part of the internet reserved for you</li>
-          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/availability-zones.png" alt="Availability Zones">
         <aside class="notes">
-          <ul>
-            <li>Amazon EC2 is hosted in multiple locations world-wide. Each region is a separate geographic area. </li>
-            <li>Ours is hosted in Frankfurt</li>
-            <li>Each region has multiple, isolated datacenters known as Availability Zones.</li>
-          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/subnets.png" alt="Subnets">
         <aside class="notes">
-          <ul>
-            <li>Subnets</li>
-          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/db_subnet_group.png" alt="DB Subnet Group">
         <aside class="notes">
-          <ul>
-            <li>Subnets</li>
-          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/instances.png" alt="Instances">
         <aside class="notes">
-          <ul>
-            <li>Instances</li>
-          </ul>
         </aside>
       </section>
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/security_group.png" alt="Security group">
         <aside class="notes">
-          <ul>
-            <li>Security groups</li>
-            <li>We want Security at all layers - Not just the edges</li>
-          </ul>
         </aside>
       </section>
-
-      <!--
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>Automating SSH Audit</h1>
-        <aside class="notes">
-          <ul>
-            <li>Many use the key that you assign on creation of instances to log on to them.</li>
-            <li>This key is often shared between the developers. Which of course is insecure and bad practice.</li>
-            <li>Hence you need a way to create personal users on the bastion host and audit that</li>
-            <li>And you need a way to automate that and make sure that developers who quit the team is removed</li>
-            <li>It should also be easy to add new members of the team</li>
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <img height="600" src="img/ssh_audit.png" alt="SSH Audit">
-        <aside class="notes">
-        <ul>
-          <li>Create ordinary users in AWS IAM, assign them to a group (e. g. Developers) and upload your personal public ssh-key</li>
-          <li>A cron jobb on the bastion host with a role allowing downloads of these keys pulls them to the server</li>
-          <li>The cron job creates individual user for each developer and adds the key to the authorized_keys file</li>
-          <li>Removing a developer from IAM also deletes the user from the bastion host</li>
-          <li>By streaming /var/log/secure to CloudWatch you get a nice audit log for all logins on the server</li>
-        </aside>
-      </section>
-
--->
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>SaaS</h1>
@@ -574,21 +469,6 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
           <li>IAM (Identity &amp; Access Management)</li>
         </ul>
         <aside class="notes">
-          <ul>
-            <li>The app-infrastructure-repo has all setup of services that are common to most applications.</li>
-            <ul>
-              <li>RDS - Relational Database Service</li>
-              <li>Route53 (DNS)</li>
-              <li>Certificate Manager (SSL/TLS certificates)</li>
-              <li>EFS - Elastic File System (NFS)</li>
-              <li>S3 (Scalable storage)</li>
-              <li>CloudWatch (monitoring, events, logs)</li>
-              <li>CloudTrail (audit)</li>
-              <li>IAM (Identity &amp; Access Management)</li>
-            </ul>
-            <li>Common for all of these is that you don't need to think about operating them.</li>
-            <li>Backup (except EFS), mirroring, patching, scaling and so on is handled by AWS</li>
-          </ul>
         </aside>
       </section>
 
@@ -613,71 +493,8 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <img src="img/db.png" alt="DB">
         <aside class="notes">
-          <ul>
-            <li>DB</li>
-          </ul>
         </aside>
       </section>
-
-<!--
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>AWS CLI</h1>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px;">
-NAME
-       aws -
-
-DESCRIPTION
-       The  AWS  Command  Line  Interface is a unified tool to manage your AWS
-       services.
-
-SYNOPSIS
-          aws [options] &lt;command&gt; &lt;subcommand&gt; [parameters]
-
-       Use aws command help for information on a  specific  command.  Use  aws
-       help  topics  to view a list of available help topics. The synopsis for
-       each command shows its parameters and their usage. Optional  parameters
-       are shown in square brackets.
-     </code></pre>
-        <aside class="notes">
-          <ul>
-            <li>We use the aws command line client extensively</li>
-            <li>We want to fiddle in the GUI as little as possible and it's excellent for scripting.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section>
-        <h1>Monitoring</h1>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/cloudwatch.png">
-        <div class="layer" style="background-color: rgba(0, 0, 0, 0.5);">
-          <h1>Tens of thousands of metrics</h1>
-        </div>
-        <aside class="notes">
-          <ul>
-            <li>Easy to set up custom dashboards and enable alerts for threshold values and other happenings</li>
-            <li>You can set up your own metrics also. E.g. How much money flows through the system.</li>
-            <li>Business related monitoring is really valuable. Loosing money is a very good indication that something is wrong.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section data-background-image="img/cloudtrail_dash.png" style="width: 100%; height: 100%;">
-        <div class="layer" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.5);">
-          <h1>CloudTrail</h1>
-          <img height="235" src="img/cloudtrail.png" alt="CloudTrail">
-        </div>
-        <aside class="notes">
-          <ul>
-            <li>enables governance, compliance, auditing</li>
-            <li>log, monitor, and retain account activity for actions across your AWS infrastructure</li>
-            <li>event history of actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.</li>
-          </ul>
-        </aside>
-      </section>-->
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h1>PaaS</h1>
@@ -686,50 +503,12 @@ SYNOPSIS
         </aside>
       </section>
 
-      <!--
-      <section>
-        <h2>Infrastructure as code using Terraform</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Configuration as code using Ansible</h2>
-        <aside class="notes">
-        </aside>
-      </section>
--->
-<!--
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h1>From pets to cattle</h1>
-        <p>&nbsp;</p>
-        <img style="float: left; position: relative; display:inline-block; left: 10%;" width="300" src="img/luke_og_leia.png">
-        <div style="display:inline-block;">
-          <p style="float: none; position: relative; right: 30%;">&#8663;</p>
-          <p style="float: none; position: relative; right: 30%;">&rArr;</p>
-          <p style="float: none; position: relative; right: 30%;">&#8664;</p>
-        </div>
-        <img style="float: right; position: relative; right: 10%;" width="300" src="img/cattle.jpg">
-        <footer class="layer right" style="font-size: 25px; position: relative; left: 30%; bottom: 0%; background-color: rgba(0, 0, 0, 0);">"When one of'em gets sick I just shoot'em in the head"</footer>
-        <aside class="notes">
-        </aside>
-      </section>
--->
       <section data-background-image="img/elastic-beanstalk_dash.png" style="width: 100%; height: 100%;">
         <div class="layer" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%);">
           <h1>Elastic Beanstalk</h1>
           <img width="235" height="235" src="img/elastic-beanstalk.png" alt="Elastic Beanstalk">
         </div>
         <aside class="notes">
-          <ul>
-            <li>Elastic Beanstalk is the icing on the cake.</li>
-            <li>It does everything you would normally do in Terraform for you &rarr; That's what makes it PaaS</li>
-            <li>You may wonder why we don't use Docker.</li>
-            <li>You could use Docker in Elastic Beanstalk also, but it simply doesn't make any sense for us.</li>
-            <li>At the moment we have around ten services running. Let's say we double that to twenty in the future. It still isn't very many, and large scale orchestration isn't really an issue.</li>
-            <li>And we are using Java. Which already is a contained process in a JVM. Why would you wrap a container in a container.</li>
-            <li>Also we are using micro instances with auto-scaling. They don't cost much, and if we were to buy bigger machines and put a lot of docker containers on them. It would probably cost us more.</li>
-          </ul>
         </aside>
       </section>
 
@@ -752,93 +531,6 @@ SYNOPSIS
         <aside class="notes">
         </aside>
       </section>
-<!--
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-.&lt;app1&gt;
-├──.ebextensions
-|  ├── 00-set-timezone.config
-|  ├── 03-secure-listener.config
-|  ├── 05-cw-logging.config
-|  └── ...
-├── Procfile
-├── create.sh
-├── deploy.sh
-├── terminate.sh
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h5><code>.ebextensions/00-set-timezone.config</code></h5>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-commands:
-  link_Oslo:
-    command: "ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime"
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <!--
-      <section>
-        <h5><code>.ebextensions/</code><br>
-          <code>01-set-number-of-file-descriptors.config</code></h5>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-files:
-  "/etc/security/limits.d/00-webapp.conf":
-    content: |
-      webapp           soft    nofile          65535
-      webapp           hard    nofile          65535
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
--->
-
-<!--
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h5><code>.ebextensions/03-securelistener.config</code></h5>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-option_settings:
-  aws:elb:listener:443:
-    SSLCertificateId: arn:aws:acm:eu-central-1:635004941268:certificate/6502eb35-99a7-4004-8e47-a5a0ec194c6a
-    ListenerProtocol: HTTPS
-    InstancePort: 80
-  aws:elb:listener:80:
-    ListenerEnabled: false
-  aws:elasticbeanstalk:application:
-    Application Healthcheck URL: /health
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h5><code>.ebextensions/05-cw-logging.config</code></h5>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-option_settings:
-  aws:elasticbeanstalk:cloudwatch:logs:
-    StreamLogs: true
-    DeleteOnTerminate: false
-    RetentionInDays: 7
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
-        <h5><code>Procfile</code></h5>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-web: java -jar app.jar
-     </code></pre>
-        <aside class="notes">
-        </aside>
-      </section>
-      
--->
 
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
         <h2>3 commands</h2>
@@ -871,194 +563,131 @@ envchain aws eb create ${env}-helloworld \
 ...
      </code></pre>
         <aside class="notes">
-          Have created wrappers to fetch metadata about which vpc, what db, subnets etc.
         </aside>
       </section>
 
-      <!--
-      <section>
-        <h2>Decrypting property files</h2>
-        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px; max-height: 1000px">
-function create_vault_file() {
-  pass_path="${1}"
-  vault_file_variable="${2}"
-
-  vault_file=$(mktemp)
-  pass "${pass_path}" >> ${vault_file}
-  sh -c "sleep 5; rm -f ${vault_file}" &
-  trap_add "rm -f ${vault_file}" EXIT
-}
-
-function decrypt_secret_properties() {
-  app_env="${1}"
-  vault_file="${2}"
-  secret_properties_file="application-${app_env}.properties"
-
-  ansible-vault decrypt "secretconfig/application-${app_env}.properties.encrypted" \
-    --vault-password-file ${vault_file_name} \
-    --output=${secret_properties_file}
-  trap_add "rm -f ${secret_properties_file}" EXIT
-
-  if [ ! -f ${secret_properties_file} ]; then
-      echo "Something went wrong when decrypting secret properties."
-      echo "File ${secret_properties_file} is missing. Can't deploy..."
-      exit 1
-  fi
-}
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)" style="width: 100%; height: 100%;">
+        <h2>Thank you!</h2>
+        <p>Tutorial:<br><a href="https://github.com/steinim/aws-terraform-workshop">https://github.com/steinim/aws-terraform-workshop</a></p>
+        <p>Slides:<br><a href="https://steinim.github.io/slides/aws-terraform-workshop">https://steinim.github.io/slides/aws-terraform-workshop</a></p>
+        <img width="252" height="235" src="../img/me_bart.png" alt="Stein Inge Morisbak">
+        <p><a href="https://twitter.com/steinim">@steinim</a></p>
+        <p><a href="mailto:stein.inge.morisbak@BEKK.no">stein.inge.morisbak@BEKK.no</a></p>
+        <aside class="notes">
+        </aside>
+      </section>
+      
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)">
+        <h1>Extra</h1>
+        <aside class="notes">
+        </aside>
+      </section>
+      
+            <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+.&lt;app1&gt;
+├──.ebextensions
+|  ├── 00-set-timezone.config
+|  ├── 03-secure-listener.config
+|  ├── 05-cw-logging.config
+|  └── ...
+├── Procfile
+├── create.sh
+├── deploy.sh
+├── terminate.sh
      </code></pre>
         <aside class="notes">
-          <ul>
-            <li>property files deployed with applications are decrypted in scripts using passwords from pass</li>
-          </ul>
         </aside>
       </section>
 
-      -->
-<!--
-      <section data-background-image="img/creation.jpg">
-        <div class="layer" style="background-color: rgba(0, 0, 0, 0.6);">
-          <h1>What did we just create?</h1>
-          <h2><a href="http://www.visualops.io/">http://www.visualops.io/</a></h2>
-        </div>
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+        <h5><code>.ebextensions/00-set-timezone.config</code></h5>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+commands:
+  link_Oslo:
+    command: "ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime"
+     </code></pre>
         <aside class="notes">
         </aside>
       </section>
 
-      <section data-background-image="img/creation.jpg" style="width: 100%; height: 100%;">
-        <img src="img/prod-vpc.png" width="948px" height="822px">
-        <aside class="notes"></aside>
-      </section>
-
-      <section data-background-image="img/didnt_mention.jpg">
-        <div class="layer" style="background-color: rgba(0, 0, 0, 0.3);">
-          <h1>What didn't I mention?</h1>
-          <ul>
-            <li><b>Application level security</b></li>
-            <li><b>Security culture</b></li>
-            <li>Stuff I forgot about</li>
-          </ul>
-        </div>
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+        <h5><code>.ebextensions/</code><br>
+          <code>01-set-number-of-file-descriptors.config</code></h5>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+files:
+  "/etc/security/limits.d/00-webapp.conf":
+    content: |
+      webapp           soft    nofile          65535
+      webapp           hard    nofile          65535
+     </code></pre>
         <aside class="notes">
-          <ul>
-            <li></li>
-          </ul>
         </aside>
       </section>
 
-      <section data-background-image="img/other_services2.png">
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+        <h5><code>.ebextensions/03-securelistener.config</code></h5>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+option_settings:
+  aws:elb:listener:443:
+    SSLCertificateId: arn:aws:acm:eu-central-1:635004941268:certificate/6502eb35-99a7-4004-8e47-a5a0ec194c6a
+    ListenerProtocol: HTTPS
+    InstancePort: 80
+  aws:elb:listener:80:
+    ListenerEnabled: false
+  aws:elasticbeanstalk:application:
+    Application Healthcheck URL: /health
+     </code></pre>
+        <aside class="notes">
+        </aside>
+      </section>
+
+
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true">
+        <h5><code>.ebextensions/05-cw-logging.config</code></h5>
+        <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+option_settings:
+  aws:elasticbeanstalk:cloudwatch:logs:
+    StreamLogs: true
+    DeleteOnTerminate: false
+    RetentionInDays: 7
+     </code></pre>
+        <aside class="notes">
+        </aside>
+      </section>
+      
+      <section data-background-image="img/cloudwatch.png">
         <div class="layer" style="background-color: rgba(0, 0, 0, 0.5);">
-          <h1>Other services we use</h1>
-          <ul>
-            <li>Panopticon (internal monitoring)</li>
-            <li>Auth0 (authentication)</li>
-            <li>Pingdom (external monitoring)</li>
-            <li>Pagerduty (paging us when we're on duty)</li>
-            <li>Slack (ChatOps)</li>
-            <li>Github (for everything!)</li>
-            <li>Travis (CI)</li>
-            <li>Ansible (configuration management)</li>
-            <li>Lambdas and SNS for posting events to Slack</li>
-          </ul>
+          <h1>Tens of thousands of metrics</h1>
         </div>
         <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/summing_it_up.png">
-        <h1 style="background-color: rgba(0, 0, 0, 0.7);">Summing it up</h1>
-        <aside class="notes">
           <ul>
-            <li>I have been talking a lot. And it's been quite technical too.</li>
-            <li>How do we put all this together?</li>
+            <li>Easy to set up custom dashboards and enable alerts for threshold values and other happenings</li>
+            <li>You can set up your own metrics also. E.g. How much money flows through the system.</li>
+            <li>Business related monitoring is really valuable. Loosing money is a very good indication that something is wrong.</li>
           </ul>
         </aside>
       </section>
 
-      <section data-background-image="img/anger.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.6);">
-          <h1>What did we learn?</h1>
-          <ol>
-            <li class="fragment">Reduce IaaS to a bare minimum</li>
-            <li class="fragment">Use hosted services where available (SaaS)</li>
-            <li class="fragment">Use PaaS for services and applications</li>
-            <li class="fragment">Automate, Automate, Automate... </li>
-            <li class="fragment">Monitor, Monitor, Monitor... </li>
-            <li class="fragment"><b>Migration of existing services is the hard part</b></li>
-          </ol>
-        </div>
-        <aside class="notes"> </aside>
-      </section>
-
-      <section data-background-image="img/climbing_to_the_top.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.4);">
-          <h1>What did we gain?</h1>
-          <ol>
-            <li class="fragment">Security we can understand</li>
-            <li class="fragment">Insight in everything</li>
-            <li class="fragment">The hard parts is the cloud vendors responsibility</li>
-            <li class="fragment">Prod.-equal environments on demand</li>
-            <li class="fragment">Elasticity and auto scaling</li>
-            <li class="fragment">Reduced lead time</li>
-            <li class="fragment">Agile business development</li>
-            <li class="fragment">Ownership of what's delivered</li>
-            <li class="fragment">Responsibility in the right place</li>
-            <li class="fragment">Less stuff to remember</li>
-            <li class="fragment">Happy employees :-D</li>
-          </ol>
-        </div>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section data-background-image="img/future.jpg">
-        <div style="background-color: rgba(0, 0, 0, 0.7);">
-          <h1>Plans for the future</h1>
-          <ul>
-            <li class="fragment">Rewrite "lift and shift" applications to "cloud native"</li>
-            <li class="fragment">Microservices is a perfect match for what NSB wants to achieve</li>
-            <li class="fragment">More #Serverless (a.o. replace most of mgmtserver responsibilities)</li>
-          </ul>
+      <section data-background-image="img/cloudtrail_dash.png" style="width: 100%; height: 100%;">
+        <div class="layer" style="position: relative; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); background-color: rgba(0, 0, 0, 0.5);">
+          <h1>CloudTrail</h1>
+          <img height="235" src="img/cloudtrail.png" alt="CloudTrail">
         </div>
         <aside class="notes">
           <ul>
-            <li></li>
+            <li>enables governance, compliance, auditing</li>
+            <li>log, monitor, and retain account activity for actions across your AWS infrastructure</li>
+            <li>event history of actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.</li>
           </ul>
         </aside>
       </section>
 
-      <section data-background-image="img/the_pentagon.jpg" style="width: 100%; height: 100%;">
-        <h1>&nbsp;</h1>
-        <h2>&nbsp;</h2>
-        <div class="mb-wrap mb-style-3">
-          <blockquote style="background: rgba(0, 0, 0, 0.7); width: 800px;">
-            <p>We decided we needed to buy innovation</p>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author layer" style="background: rgba(0, 0, 0, 0.7); text-align: center; right: 30px; position: absolute;"><a href="https://www.theatlantic.com/technology/archive/2014/07/the-details-about-the-cias-deal-with-amazon/374632/">A former intelligence officer in the CIA, The Details About the CIA's Deal With Amazon</a></p>
-          </div>
-        </div>
-        <footer class="layer right" style="background: rgba(0, 0, 0, 0.7);">Image by <a href="https://www.flickr.com/people/71861129@N00">David B. Gleason</a> licensed by <a href="http://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></footer>
-        <aside class="notes">
-          So like the CiA found out. It's probably better to buy innovation than do everything yourself.
-        </aside>
+      <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" style="width: 100%; height: 100%;">
+        <h1>Automating SSH Audit</h1>
+        <img height="600" src="img/ssh_audit.png" alt="SSH Audit">
       </section>
-
-      <section data-background-image="img/nasa.jpg">
-        <div class="mb-wrap mb-style-3">
-          <blockquote style="background-color: rgba(0, 0, 0, 0.7);">
-            <p>Based on our experience, I belive that we can be even more secure in AWS cloud than in our own data centers.</p>
-            <br>
-          </blockquote>
-          <div class="mb-attribution">
-            <p class="mb-author">Tom Soderstrom, CTO, NASA JPL</p>
-            <div class="mb-thumb-tom-soderstrom"></div>
-          </div>
-        </div>
-        <aside class="notes">
-          And like NASA realized. You are probably more secure in AWS cloud than in your own data center.
-        </aside>
-      </section>
--->
+      
       <section data-background-video="../video/bekk.no-background.mp4" data-background-video-loop="true" data-background="rgb(23, 22, 23)" style="width: 100%; height: 100%;">
         <h2>Thank you!</h2>
         <p>Tutorial:<br><a href="https://github.com/steinim/aws-terraform-workshop">https://github.com/steinim/aws-terraform-workshop</a></p>
@@ -1071,127 +700,6 @@ function decrypt_secret_properties() {
       </section>
 
     </div>
-
-    <!--
-      <section>
-        <h2>Access control and audit</h2>
-        <ul>
-          <li>Keys</li>
-          <li>2FA</li>
-          <li>Rotation</li>
-          <li>IAM
-            <ul>
-              <li>Users</li>
-              <li>System users</li>
-              <li>Services</li>
-            </ul>
-          </li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-
-      <section>
-        <h2>Network security</h2>
-        <ul>
-          <li>VPC</li>
-          <li>Availability Zones</li>
-          <li>Subnets</li>
-          <li>Security groups</li>
-          <li>EIP</li>
-          <li>Bastion host</li>
-          <li>Certificate manager</li>
-          <li>Route 53</li>
-          <li>Reverse proxy</li>
-          <ul>
-            <li>Redirects</li>
-            <li>DNS Failover</li>
-            <li>ELB</li>
-          </ul>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Shared Responsibility Model</h2>
-        <h3> (which security controls are the cloud vendor's responsibility, and which are yours)</h3>
-        <ul>
-          <li>Elastic Beanstalk</li>
-          <li>RDS</li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>Automating security</h1>
-        <ul>
-          <li>Terraform</li>
-          <li>Ansible</li>
-          <li>CLI</li>
-          <li>bash</li>
-        </ul>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Infrastructure as code using Terraform</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Configuration as code using Ansible</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Passwords, secrets and keys in an automated pipeline</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Managing individual credentials, VPN and 2FA</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Security logging and monitoring</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Security testing in a continuous delivery pipeline</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h1>In the end</h1>
-        <aside class="notes">
-          wrapping up
-        </aside>
-      </section>
-
-      <section>
-        <h2>Who's responsible?</h2>
-        <aside class="notes">
-        </aside>
-      </section>
-
-      <section>
-        <h2>Why are you more secure in the cloud than in your own datacenter?</h2>
-        <aside class="notes">
-        </aside>
-      </section>
--->
 
     <script src="../lib/js/head.min.js"></script>
     <script src="../js/reveal.min.js"></script>
