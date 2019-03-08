@@ -1,0 +1,11 @@
+.reveal ul { line-height: 1.5; }
+.reveal ol { line-height: 1.5; }
+
+.reveal blockquote { line-height: 1.2; }
+
+.reveal .slides section .fragment.highlight-grey {
+  opacity: 1;
+  visibility: visible; }
+
+.reveal .slides section .fragment.highlight-grey.visible {
+  color: grey; }
