@@ -117,7 +117,9 @@ body {
   list-style-type: decimal; }
 
 .reveal ul {
-  list-style-type: disc; }
+  list-style-type: disc;
+  line-height: 1.5;
+}
 
 .reveal ul ul {
   list-style-type: square; }
@@ -321,9 +323,9 @@ body:before {
         opacity: 1;
         visibility: visible;
 }
-        .reveal .slides section .fragment.highlight-hkraft.visible {
-                color: rgb(27, 145, 255, 0.25);
-        }
+.reveal .slides section .fragment.highlight-hkraft.visible {
+        color: rgb(27, 145, 255, 0.25);
+}
 .reveal .slides section .fragment.highlight-current-hkraft.current-fragment {
         color: rgb(27, 145, 255, 0.25);
 }
