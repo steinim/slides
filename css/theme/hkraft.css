@@ -14,8 +14,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #ffffff;
-  background-color: #ffffff; }
+  background: #e0f0f6;
+  background-color: #e0f0f6; }
 
 .reveal {
   font-family: Madera,sans-serif;
@@ -39,7 +39,8 @@ body {
 .reveal h5,
 .reveal h6 {
   margin: 0 0 20px 0;
-  color: rgb(36, 36, 36);
+  /*color: rgb(36, 36, 36);*/
+  color: rgb(0,89,154);
   font-family: Madera,sans-serif;
   font-weight: 600;
   line-height: 1.2;
